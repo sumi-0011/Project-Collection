@@ -8,7 +8,9 @@
         <link rel="stylesheet" href="./bootstrap.css">
         <link rel="stylesheet" href="./book.css">
     <title>Main</title>
-    
+    <?php
+    session_start();
+    ?>
 </head>
 
 <body>
@@ -30,16 +32,43 @@
               <li class="nav-item">
                 <a class="nav-link active" href="book_search.html">도서 검색</a>
               </li>
-              
+            <!-- 내 서재 -->
+            <?php 
+            // 로그인이 되어있지 않으면 내서재를 비활성화
+            $isLogin='';
+            $goLogin='';
+            if(!isset($_SESSION['LOGIN_USER'])){
+              $isLogin = 'disabled';
+              $goLogin = '    로그인이 필요합니다. ';
+            }
+            ?>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">내 서재</a>
+                <a class="nav-link dropdown-toggle <?=$isLogin?>" 
+                data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">내 서재</a>  
+                <!-- <?=$goLogin?> -->
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="#">대출 기록</a>
+                  <a class="dropdown-item" href="#">예약 도서</a>
                   <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">내 정보</a>
                   <a class="dropdown-item" href="#">Separated link</a>
-                </div>
+                </div> 
+              </li> 
+              <!-- 로그인 로그아웃 회원가입 -->
+              <li class="nav-item">
+                <?php
+                  if(isset($_SESSION['LOGIN_USER'])) {
+                    // 로그인 값이 존재하는 경우
+                    ?>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logoutConfirmModal">로그아웃</button> 
+                    <?php
+                  }
+                  else{  //로그인이 안되있는 경우
+                    ?>
+                     <a class="nav-link active" href="login.php">로그인</a>
+                     <?php
+                  }
+                  ?>
               </li>
             </ul>
             <form class="d-flex">
@@ -48,22 +77,33 @@
             </form>
           </div>
         </div>
-      </nav>
-<?php
-$tns = "
-(DESCRIPTION=
-     (ADDRESS_LIST= (ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))
-     (CONNECT_DATA= (SERVICE_NAME=XE))
- ) 
-";
-$dsn = "oci:dbname=".$tns.";charset=utf8";
-$username = 'd201902698';
-$password = 'nemo0408';
+        
 
-try {
-    $conn = new PDO($dsn, $username, $password);
-    // echo $username;
-} catch (PDOException $e) {     
-   echo("에러 내용: ".$e -> getMessage()); 
-} 
+        <div class="modal fade" id="logoutConfirmModal" aria-labelledby="logoutConfirmModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="logoutConfirmModalLabel">
+                    
+                </h5> 
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body"> 
+                  로그아웃 하시겠습니까?
+              </div>
+              <div class="modal-footer">
+                 <!-- //세션을 삭제하고, 로그아웃 창을 나타낸다.  -->
+                <a class="btn btn-warning" href="logout.php" role="button">네</a>
+                <a class="btn btn-warning" href="" role="button">아니요</a>
+              </div>
+          </div>
+    </div>
+
+
+      </nav>
+    <!-- modal -->
+    
+<?php
+var_dump( $_SESSION );
+require './connect.php';
 ?>

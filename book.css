@@ -1,3 +1,7 @@
+/* header */
+.nav-user {
+  float: left;
+}
 /* detail */
 .div-detail{
     margin: 50px auto;
@@ -38,7 +42,7 @@
     font-size: 30px;
 }
 /* 추가, 수정 */
-.div-change{
+.div-change , .div-login {
   margin: 20px auto;
   padding: 20px;
   max-width: 1200px;

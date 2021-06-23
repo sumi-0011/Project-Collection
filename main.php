@@ -1,6 +1,7 @@
 <?php
 require 'header.php';
 
+
 $searchWord = $_GET['searchWord'] ?? '';
 //null값이면defualt로 최근순 
 $sort = $_GET['sort'] ?? 'YEAR';    
@@ -29,6 +30,8 @@ $sort = $_GET['sort'] ?? 'YEAR';
           </thead>
         <tbody>
 <?php 
+
+
 $sort = ($sort=='YEAR')?'YEAR DESC':$sort;
 
 // 순서대로 정렬하되 null인값은 마지막에 오게 정렬한다. 
