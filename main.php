@@ -29,12 +29,11 @@ $sort = $_GET['sort'] ?? 'YEAR';
           </thead>
         <tbody>
 <?php 
-$sort = ($sort=='YEAR')?'YEAR DESC':$sort;
+$sort = ($sort=='YEAR')?'BYEAR DESC':$sort;
 
 // 순서대로 정렬하되 null인값은 마지막에 오게 정렬한다. 
-$stmt = $conn -> prepare("SELECT EBOOK.ISBN, EBOOK.TITLE, EBOOK.PUBLISHER,EBOOK.YEAR,EBOOK.IMG,authors.author
-FROM EBOOK LEFT JOIN AUTHORS
-ON EBOOK.ISBN = authors.isbn  WHERE LOWER(TITLE) LIKE '%' || :searchWord || '%' ORDER BY {$sort} NULLS LAST");
+$stmt = $conn -> prepare("SELECT *
+FROM EBOOK_DETAIL_VEIW  WHERE LOWER(TITLE) LIKE '%' || :searchWord || '%' ORDER BY {$sort} NULLS LAST");
 $stmt -> execute(array($searchWord));
 while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) { 
 ?>
@@ -49,7 +48,7 @@ while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
                     <br>
                     <p>저자 : <?= $row['AUTHOR'] ?></p>
                     <p>출판사 : <?= $row['PUBLISHER'] ?></p>
-                    <p>발행일 : <?= $row['YEAR'] ?></p>    
+                    <p>발행일 : <?= $row['BYEAR'] ?></p>    
                     
                 </td>
                 

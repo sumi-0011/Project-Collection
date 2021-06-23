@@ -2,7 +2,7 @@
 require 'header.php';
 // ISBN을 가지고 원하는 도서의 상세한 정보들을 가져온다.
 $ISBN = $_GET['ISBN'];
-$stmt = $conn -> prepare("SELECT EBOOK.ISBN, EBOOK.TITLE, EBOOK.PUBLISHER,EBOOK.YEAR,EBOOK.IMG,authors.author FROM EBOOK LEFT JOIN AUTHORS ON EBOOK.ISBN = authors.isbn  WHERE EBOOK.ISBN = {$ISBN} "); 
+$stmt = $conn -> prepare("SELECT * FROM EBOOK_DETAIL_VEIW WHERE ISBN = {$ISBN} "); 
 $stmt -> execute(); 
 $bookName = ''; 
 $publisher = ''; 
@@ -11,7 +11,7 @@ $author= '';
 if ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
      $bookName = $row['TITLE'];     
      $publisher = $row['PUBLISHER'];     
-     $year = $row['YEAR']; 
+     $year = $row['BYEAR']; 
      $author = $row['AUTHOR']; 
      
 ?>
