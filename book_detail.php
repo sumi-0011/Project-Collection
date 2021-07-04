@@ -1,10 +1,8 @@
 <?php
 require 'header.php';
-<<<<<<< Updated upstream
 // ISBN을 가지고 원하는 도서의 상세한 정보들을 가져온다.
 $ISBN = $_GET['ISBN'];
 $stmt = $conn -> prepare("SELECT * FROM EBOOK_DETAIL_VEIW WHERE ISBN = {$ISBN} "); 
-=======
 $ISBN = $_GET['ISBN'];
 
 $possible_rental = TRUE; // 대출가능한 도서인지 확인
@@ -81,23 +79,44 @@ if( $user =='manager') {
   $possible_reserve = FALSE;
 }
 // ISBN을 가지고 원하는 도서의 상세한 정보들을 가져온다.
+$ISBN = $_GET['ISBN'];
+ // 대출가능한 도서인지 확인
+ $possible_rental = TRUE;
+ $stmt = $conn -> prepare("SELECT * FROM POSSIBLE_RENTAL WHERE ISBN = {$ISBN}"); 
+ $stmt -> execute();
+ if ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
+   // 빌릴수 있는 도서인경우
+    //  echo $possible_rental;
+    $possible_rental = TRUE;
+ }
+ else {
+   // 빌릴수 없는 도서
+     $possible_rental = FALSE; //버튼 디스플레이를 위해서
+ }
+ 
+
+// ISBN을 가지고 원하는 도서의 상세한 정보들을 가져온다.
+
 $stmt = $conn -> prepare("SELECT EBOOK.ISBN, EBOOK.TITLE, EBOOK.PUBLISHER,EBOOK.YEAR,EBOOK.IMG,authors.author FROM EBOOK LEFT JOIN AUTHORS ON EBOOK.ISBN = authors.isbn  WHERE EBOOK.ISBN = {$ISBN} "); 
->>>>>>> Stashed changes
 $stmt -> execute(); 
 $bookName = ''; 
 $publisher = ''; 
 $year = ''; 
 $author= '';
+
+
 if ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
      $bookName = $row['TITLE'];     
      $publisher = $row['PUBLISHER'];     
      $year = $row['BYEAR']; 
      $author = $row['AUTHOR']; 
+
+    $bookName = $row['TITLE'];     
+    $publisher = $row['PUBLISHER'];     
+    $year = $row['YEAR']; 
+    $author = $row['AUTHOR']; 
      
-<<<<<<< Updated upstream
-=======
-  //  echo '<br>예약 불가능한 이유 : '.$error;
->>>>>>> Stashed changes
+   
 ?>
      
      <div class="div-detail">
@@ -109,17 +128,14 @@ if ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
         </div>
         <div class="detail-box">
           <p> 
-<<<<<<< Updated upstream
-            <span class="badge bg-primary">대출 가능</span>
-            <span class="badge bg-warning">대출 불가능</span>
-=======
+
           <!-- 대출, 예약 가능 여부에 따라 태그들을 화면에 표시한다.  -->
             <span class="badge bg-primary" style="display:<?=($possible_rental)?'' :'none' ?>">대출 가능</span>
             <span class="badge bg-warning " style="display:<?=($possible_rental)?'none' :'' ?>">대출 불가능</span>
             <span class="badge bg-primary" style="display:<?=($possible_reserve)?'' :'none' ?>">예약 가능</span>
             <span class="badge bg-warning " style="display:<?=($possible_reserve)?'none' :'' ?>">예약 불가능</span>
             
->>>>>>> Stashed changes
+
           </p>
           <!-- 위의 php코드 부분에서 디비에서 정보를 찾아 웹에 출력해준다.  -->
             <div  class="detail-word">
@@ -130,20 +146,17 @@ if ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
             </div>
 <?php  
 }  
-?>
+?> 
+
             <div class="detail-button">
               <!--  <a> 요소에 버튼 클래스를 사용할 경우, 이런 링크에는 role="button" 이라는 역할을 줌 -->
-<<<<<<< Updated upstream
-              <button type="button" class="btn btn-outline-primary">대출</button>
-              <button type="button" class="btn btn-outline-primary">예약</button>
-=======
+
                 <!-- $possible_rental가 FALSE 즉 대출을 할수 없는 도서의 경우 대출버튼을 비활성화하였다. -->
               <a class="btn btn-outline-primary" href="RR_process.php?mode=rental&ISBN=<?=$ISBN?>" role="button" 
               style="pointer-events:<?=($possible_rental)?'' :'none' ?>">대출</a>
               <!-- 대출 가능이면 예약 불가능! 예약 버튼 비활성화 + 이미 내가대출한 책이거나 예약한거면 불가능 -->
               <a class="btn btn-outline-primary" href="RR_process.php?mode=reserve&ISBN=<?=$ISBN?>" role="button" 
               style="pointer-events:<?=($possible_reserve)?'' :'none' ?>">예약</a>
->>>>>>> Stashed changes
 
               
             </div>

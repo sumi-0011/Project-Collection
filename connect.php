@@ -1,5 +1,6 @@
 <?php
 //데이터 베이스에 로그인 하는부분
+
 $tns = "
 (DESCRIPTION=
      (ADDRESS_LIST= (ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))

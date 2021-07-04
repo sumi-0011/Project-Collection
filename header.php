@@ -8,7 +8,9 @@
         <link rel="stylesheet" href="./bootstrap.css">
         <link rel="stylesheet" href="./book.css">
     <title>Main</title>
-    
+    <?php
+    session_start();
+    ?>
 </head>
 
 <body>
@@ -30,32 +32,27 @@
               <li class="nav-item">
                 <a class="nav-link active" href="book_search.html">도서 검색</a>
               </li>
-<<<<<<< Updated upstream
-              
-=======
+
             <!-- 내 서재 -->
             <?php 
             // 로그인이 되어있지 않으면 내서재를 비활성화
             $isLogin='';
             $goLogin='';
             // 로그인이 되어있는지 확인한다. 
+
             if(!isset($_SESSION['LOGIN_USER'])){
               $isLogin = 'disabled';
               $goLogin = '    로그인이 필요합니다. ';
             }
             ?>
->>>>>>> Stashed changes
+
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">내 서재</a>
+                <a class="nav-link dropdown-toggle <?=$isLogin?>" 
+                data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">내 서재</a>  
+                <!-- <?=$goLogin?> -->
                 <div class="dropdown-menu">
-<<<<<<< Updated upstream
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-=======
+
+                  
                   <a class="dropdown-item" href="rental_record.php?mode=present">대출 현황</a>
                   <a class="dropdown-item" href="rental_record.php?mode=previous">대출 기록</a>
                   <a class="dropdown-item" href="rental_record.php?mode=reserve">예약 도서</a>
@@ -68,7 +65,6 @@
                     <?php
                     }?>
 
-                  
                 </div> 
               </li> 
               <!-- 로그인 로그아웃 회원가입 -->
@@ -89,7 +85,7 @@
                      <?php
                   }
                   ?>
->>>>>>> Stashed changes
+
               </li>
             </ul>
             <!-- <form class="d-flex">
@@ -98,8 +94,31 @@
             </form> -->
           </div>
         </div>
-<<<<<<< Updated upstream
+
+
+        <div class="modal fade" id="logoutConfirmModal" aria-labelledby="logoutConfirmModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="logoutConfirmModalLabel">
+                    
+                </h5> 
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body"> 
+                  로그아웃 하시겠습니까?
+              </div>
+              <div class="modal-footer">
+                 <!-- //세션을 삭제하고, 로그아웃 창을 나타낸다.  -->
+                <a class="btn btn-warning" href="logout.php" role="button">네</a>
+                <a class="btn btn-warning" href="" role="button">아니요</a>
+              </div>
+          </div>
+    </div>
+
       </nav>
+    <!-- modal -->
+    
 <?php
 $tns = "
 (DESCRIPTION=
@@ -118,7 +137,6 @@ try {
    echo("에러 내용: ".$e -> getMessage()); 
 } 
 ?>
-=======
         
                 <!-- 로그아웃 모달 -->
         <div class="modal fade" id="logoutConfirmModal" aria-labelledby="logoutConfirmModalLabel" aria-hidden="true">
@@ -165,4 +183,6 @@ $up_alert2 = $_GET['msg2'] ?? '';
       <strong><?=$up_alert2?></strong> 
       <!-- <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>. -->
 </div>
->>>>>>> Stashed changes
+var_dump( $_SESSION );
+require './connect.php';
+?>

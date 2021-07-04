@@ -1,6 +1,7 @@
 <?php
 require 'header.php';
 
+
 $searchWord = $_GET['searchWord'] ?? '';
 //null값이면defualt로 최근순으로 정렬한다. 
 $sort = $_GET['sort'] ?? 'YEAR';    
@@ -30,15 +31,15 @@ $sort = $_GET['sort'] ?? 'YEAR';
           </thead>
         <tbody>
 <?php 
-<<<<<<< Updated upstream
+
 $sort = ($sort=='YEAR')?'BYEAR DESC':$sort;
 
 // 순서대로 정렬하되 null인값은 마지막에 오게 정렬한다. 
 $stmt = $conn -> prepare("SELECT *
 FROM EBOOK_DETAIL_VEIW  WHERE LOWER(TITLE) LIKE '%' || :searchWord || '%' ORDER BY {$sort} NULLS LAST");
-=======
 
 // 다른것과 달리 년도는 최근순이므로 역순이여야 한다. 
+
 $sort = ($sort=='YEAR')?'YEAR DESC':$sort;
 
 // 순서대로 정렬하되 null인값은 마지막에 오게 정렬한다. 
@@ -46,7 +47,6 @@ $sort = ($sort=='YEAR')?'YEAR DESC':$sort;
 $stmt = $conn -> prepare("SELECT EBOOK.ISBN, EBOOK.TITLE, EBOOK.PUBLISHER,EBOOK.YEAR,EBOOK.IMG,authors.author
 FROM EBOOK LEFT JOIN AUTHORS
 ON EBOOK.ISBN = authors.isbn  WHERE LOWER(TITLE) LIKE '%' || :searchWord || '%' ORDER BY {$sort} NULLS LAST");
->>>>>>> Stashed changes
 $stmt -> execute(array($searchWord));
 while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) { 
 ?>

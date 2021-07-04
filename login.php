@@ -248,6 +248,7 @@ if($l_mode =='login') {
       <button type="submit" class="btn btn-primary">login</button>
       </fieldset>
   </form>
+
 </div>
 <?php
 }
