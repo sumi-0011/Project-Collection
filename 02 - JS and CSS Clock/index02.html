@@ -62,13 +62,42 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin:100%;
+      /* transform: rotate(90deg); */
     }
-
+    .hour-hand {
+        background-color:darksalmon;
+    }
+    .min-hand {
+        background-color: #018DED;
+    }
+    .second-hand {
+        background-color:black;
+    }
   </style>
 
-  <script src="../js.js">
+  <script >
+
+function setTime() {
+  var today = new Date();
+  //1시간 = 30도 ,1분 = 6도,1초 = 6도
+  var s = (today.getSeconds()/60 )*360 +90;   //Date 객체의 초 (0~59)
+  var m = (today.getMinutes()/60 )*360 +90;   //Date 객체의 분 (0~59)
+  var h = (today.getHours() /12 )*360 +90;   //Date 객체의 시 (0~23)
+
+  const hh = document.querySelector('.hour-hand');
+  const mh = document.querySelector('.min-hand');
+  const sh = document.querySelector('.second-hand');
+
+  console.log(h,m,s);
+  hh.style.transform = `rotateZ(${h}deg)`;
+  mh.style.transform = `rotateZ(${m}deg)`;
+  sh.style.transform = `rotateZ(${s}deg)`;
 
 
+}
+setTime();
+setInterval(setTime,1000);
   </script>
 </body>
 </html>
