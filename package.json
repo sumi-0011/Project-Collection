@@ -1,0 +1,24 @@
+{
+  "name": "starbuck",
+  "version": "1.0.0",
+  "description": "STARBUCK clone coding",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-page -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumi-0011/STARBUCK.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sumi-0011/STARBUCK/issues"
+  },
+  "homepage": "https://github.com/sumi-0011/STARBUCK/",
+  "dependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}
