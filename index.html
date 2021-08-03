@@ -33,15 +33,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"
     integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollToPlugin.min.js"
+    integrity="sha512-1OG9UO4krPizjtz/c9iDbjCqtXznBYdJeD4ccPaYfJHzC6F1qoQ3P1bgQ3J8lgCoK5qGVCqsY4+/RKjLDzITVQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- SWIPER -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <!-- ScrollMagic -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"
+    integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./js/youtude.js"></script>
   <script defer src="./js/main.js"></script>
-  
+
 </head>
 
 
@@ -495,7 +500,7 @@
     <div class="youtude__area">
       <div id="player"> </div>
     </div>
-    <div class="youtude__cover">    </div>
+    <div class="youtude__cover"> </div>
     <div class="inner">
       <img src="./images/floating1.png" alt="Icon" class="floating floating1">
       <img src="./images/floating2.png" alt="Icon" class="floating floating2">
@@ -553,7 +558,7 @@
       <div class="medal">
         <div class="front">
           <img src="./images/reserve_store_medal_front.png" alt="">
-          
+
         </div>
         <div class="back">
           <img src="./images/reserve_store_medal_back.png" alt="">
@@ -578,9 +583,100 @@
         </div>
       </div>
     </div>
-    
-  </section>
 
+  </section>
+  <!-- AWARDS -->
+  <section class="awards">
+    <div class="inner">
+
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="./images/awards_slide1.jpg" alt="대통령 표창" />
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/awards_slide2.jpg" alt="대통령 표창 (3년 연속)" />
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/awards_slide3.jpg" alt="우수사업주 인증" />
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/awards_slide4.jpg" alt="경연대회 대상" />
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/awards_slide5.jpg" alt="대한상의회장상" />
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/awards_slide6.jpg" alt="기업사회공헌 활동 부문" />
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/awards_slide7.jpg" alt="KSI 1위 (5년 연속)" />
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/awards_slide8.jpg" alt="KS-SQI 1위 (5년 연속)" />
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/awards_slide9.jpg" alt="커피전문점 부문 (4년 연속)" />
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/awards_slide10.jpg" alt="동반성장 부문 (4년 연속)" />
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-prev">
+        <span class="material-icons">arrow_back</span>
+      </div>
+      <div class="swiper-next">
+        <span class="material-icons">arrow_forward</span>
+      </div>
+
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <footer>
+    <div class="inner">
+      <ul class="menu">
+        <li>
+          <a href="#" class="green">개인정보처리방침</a>
+        </li>
+        <li>
+          <a href="#">영상정보처리기긱 운영관리 방침</a>
+        </li>
+        <li>
+          <a href="#">홈페이지 이용약관</a>
+        </li>
+        <li>
+          <a href="#">위치정보 이용약관</a>
+        </li>
+        <li>
+          <a href="#">스타벅스 카드 이용약관</a>
+        </li>
+        <li>
+          <a href="#">윤리 경영 핫라인</a>
+        </li>
+      </ul>
+      <div class="btn-group">
+        <a href="#" class="btn btn--white">찾아오시는 길</a>
+        <a href="#" class="btn btn--white">신규입점제의</a>
+        <a href="#" class="btn btn--white">사이트 맵</a>
+      </div>
+      <div class="info">
+        <span>사업자등록번호 201-81-21515</span>
+        <span>(주)스타벅스 코리아 대표이사 이석구</span>
+        <span>TEL : 02) 3015-1100 / FAX : 02) 3015-1106</span>
+        <span>개인정보 책임자 : 강기원</span>
+      </div>
+
+      <p class="copyright">
+        &copy; <span class="this-year"></span> Starbucks Coffee Company. All Rights Reserved.
+      </p>
+      <img src="./images/starbucks_logo_only_text.png" alt="STAR BUCKS" class="logo" />
+    </div>
+  </footer>
+  <div id="to-top">
+    <div class="material-icons">arrow_upward</div>
+  </div>
 </body>
 
 </html>
