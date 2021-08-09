@@ -1,0 +1,293 @@
+body {
+  font-family: 'nbg', '맑은 고딕', HelveticaNeue, DroidSans, Sans-serif, Helvetica;
+  font-size: 1em;
+  line-height: 1;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+.inner {
+  width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  text-decoration: none;
+  vertical-align: baseline;
+  color: #555;
+  background: transparent;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header {
+  border-top: 2px solid #000;
+  border-bottom: 1px solid #e5e5e5;
+
+  background: #f6f5ef;
+
+}
+
+header .inner {
+  left: 0;
+  top: 0;
+  z-index: 11;
+  height: 120px;
+}
+
+header .logo {
+  position: absolute;
+  /* padding: 20px 20px; */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto 0;
+  height: 75px;
+}
+
+header .sub-menu {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  /* width: 464px; */
+}
+
+header .sub-menu ul {
+  display: flex;
+  justify-content: center;
+
+}
+
+header .sub-menu ul li {
+  text-align: center;
+  height: 20px;
+}
+
+header .sub-menu ul li a {
+  font: normal 13px Avenir, Arial, georgia;
+  padding: 11px 16px;
+  display: block;
+  color: #555;
+  /* line-height: 20px; */
+  cursor: pointer;
+}
+
+header .search {
+  position: relative;
+  background: rgb(255, 255, 255);
+  width: 180px;
+  height: 32px;
+  right: 54px;
+  right: 0;
+  top: 3px;
+}
+
+header .search input {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: #777;
+  /* display: none; */
+  font-size: 12px;
+  height: 22px;
+  left: 0;
+  padding: 0 10px;
+  position: absolute;
+  top: 5px;
+  width: 123px;
+}
+
+header .search .material-icons {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  bottom: 0;
+}
+
+header .main-menu {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  right: 0;
+  height: 60px;
+}
+
+header .main-menu .item {
+  display: list-item;
+  text-align: -webkit-match-parent;
+  padding: 11px 16px;
+}
+
+header .main-menu .item:hover {
+  background-color: #2C2A29;
+}
+
+header .main-menu .item:hover .item__name a,
+header .main-menu .item:hover .item__name {
+  color: #64a70b;
+}
+header .main-menu .item .item__contents {
+  margin-top: 33px;
+  /* padding: 20px 20px 10px 20px; */
+  display: none;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  display: none;
+  background: #2C2A29;
+  /* bottom: 0; */
+  /* top: 60px; */
+
+}
+header .main-menu .item:hover .item__contents {
+  display: block;
+}
+header .main-menu .item .item__contents .contents__menu>ul {
+  display: flex;
+  padding: 20px 0;
+  flex-wrap: wrap;
+  height: 100%;
+}
+header .main-menu .item .item__contents .contents__menu>ul>li  {
+  width: 220px;
+  color: #999;
+}
+header .main-menu .item .item__contents .contents__menu>ul>li h4{
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  padding-bottom: 10px;
+  
+}
+header .main-menu .item .item__contents .contents__menu>ul>li ul li{
+  padding: 3px 0;
+  font-size: 12px;
+  color: #999;
+
+}
+
+header .main-menu .item .item__contents .contents__texture  {
+  width: 100%;
+  background-image: url("../images/gnb_sub_txbg.jpg");
+  height: 100px;
+  padding-top: 26px;
+  font-size: 12px;
+}
+header .main-menu .item .item__contents .contents__texture .inner {
+
+}
+header .main-menu .item .item__contents .contents__texture h4 {
+  color: #999;
+}
+header .main-menu .item .item__contents .contents__texture p {
+  color: #64a70b;
+  margin: 4px 0 14px;
+
+}
+
+/* VISUAL */
+.visual {
+  background-image: url('../images/2021_summer3_bg.jpg');
+  height: 646px;
+}
+.visual .inner {
+}
+.visual .visual__slogan {
+  max-width: 203px;
+  width: 22%;
+  padding-top: 5.5%;
+  padding-left: 7.2%;
+}
+.visual .visual__slogan img{
+  position: relative;
+  vertical-align: top;
+max-width: 100%;
+}
+.visual .visual__set {
+    position:absolute ;                                                  
+    width: 100%;
+    height: 100%;
+}
+.visual .visual__set .set__common{
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+}
+.visual .visual__set .set__common::after {
+  height: 91px;
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 10;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.visual .visual__set .set__common.set_01 {
+  bottom: -15%;
+  left: 56.6%;
+  width: 20%;
+  max-width: 208px;
+}
+.visual .visual__set .set__common.set_02 {
+  bottom: -30.9%;
+  left: 42.8%;
+  width: 18%;
+  max-width: 185px;
+}
+.visual .visual__set .set__common.set_03 {
+  bottom: -30.2%;
+  right: 1.7%;
+  width: 19%;
+  max-width: 202px;
+}
+.visual .visual__set .set__common img {
+  position: relative;
+  z-index: 10;
+  vertical-align: top;
+  max-width: 100%;
+}
+
+.visual .visual__set .set__common.set_02::before{
+  content: '';
+  z-index: 9;
+  position: absolute;
+  top: 65.9%;
+  right: -18.7%;
+  display: block;
+  max-width: 249px;
+  width: 134.6%;
+  height: 117px;
+  background: url('https://image.istarbucks.co.kr/upload/common/img/main/2021/2021_summer3_coldbrew_shadow.png') left top no-repeat;
+  background-size: 100% auto;
+}
+.visual .visual__set .set__common.set_01::after {
+  top: 1.6%;
+  left: -98.1%;
+  width: 91%;
+  max-width: 189px;
+  background-image: url('https://image.istarbucks.co.kr/upload/common/img/main/2021/2021_summer3_blended_tit.png');
+}
+.visual .visual__set .set__common.set_02::after {
+  bottom: 19.2%;
+  left: -117.3%;
+  width: 110%;
+  max-width: 203px;
+  background-image: url('https://image.istarbucks.co.kr/upload/common/img/main/2021/2021_summer3_coldbrew_tit.png');
+}
+.visual .visual__set .set__common.set_03::after {
+  top: -19%;
+  left: -18.4%;
+  width: 111%;
+  max-width: 223px;
+  background-image: url('https://image.istarbucks.co.kr/upload/common/img/main/2021/2021_summer3_tea_tit.png');
+}

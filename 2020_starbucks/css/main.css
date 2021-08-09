@@ -279,7 +279,7 @@ header .main-menu .item .item__contents .contents__menu>ul>li ul li:hover {
 }
 
 header .main-menu .item .item__contents .contents__texture {
-  padding: 26px 0;
+  padding-top: 26px 0;
   height: 100px;
   font-size: 12px;
   background-image: url("../images/main_menu_pattern.jpg");
