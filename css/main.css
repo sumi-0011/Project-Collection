@@ -3,7 +3,9 @@ body {
   font-size: 1em;
   line-height: 1;
   min-width: 320px;
-  overflow-x: hidden;
+  overflow-x: scroll;
+
+  height: 3000px;
 }
 
 .inner {
@@ -318,4 +320,108 @@ max-width: 100%;
   border: 2px solid #005481;
   transition: background-color .5s;
   -webkit-transition: background-color .5s;
+}
+
+/* <!-- BADGE --> */
+.visual .badges {
+      position: fixed;
+    top: 154px;
+    left: 54.5%;
+    width: 140px;
+    margin-left: 485px;
+    z-index: 999;
+}
+.visual .badges a.badge {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.visual .badges a.badge img {
+  display: block;
+  width: 100%;
+}
+
+/* NOTICE */
+.notice .notice-line {
+  position: relative;
+}
+.notice .notice-line .bg__left{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #333;
+}
+.notice .notice-line .bg__right{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #f6f5ef;
+}
+.notice .notice-line .inner{
+  height: 62px;
+  display: flex;
+} 
+.notice .notice-line .inner .inner__left {
+  width: 50%;
+  height: 100%;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+}
+.notice .notice-line .inner .inner__left h2{
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  margin-right: 20px;
+}
+.notice .notice-line .inner .inner__left .swiper-container{
+  height: 62px;
+  flex-grow: 1;
+}
+.notice .notice-line .inner .inner__left .swiper-slide {
+  height: 62px;
+  display: flex;
+  align-items: center;
+}
+.notice .notice-line .inner .inner__left .swiper-slide a {
+  color: #fff;
+}
+.notice .notice-line .inner .inner__left .notice-line__more,
+.notice .notice-line .inner .inner__right .toggle-promotion{
+  width: 62px;
+  height: 62px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+
+}
+.notice .notice-line .inner .inner__left .notice-line__more span.material-icons-outlined,
+.notice .notice-line .inner .inner__right .toggle-promotion span.material-icons-outlined{
+  color: #fff;
+  font-size: 30px;
+  width: 32px;
+  height: 32px;
+}
+.notice .notice-line .inner .inner__right {
+  width: 50%;
+  height: 100%;
+  float: right;
+  position: relative;
+}
+.notice .notice-line .inner .inner__right>div{
+  position: absolute;
+  left: 37%; display: flex;align-items: center;
+}
+.notice .notice-line .inner .inner__right h2{
+  font-size: 17px;
+  font-weight: 700;
+  margin-right: 20px;
+}
+.notice .notice-line .inner .inner__right .toggle-promotion span.material-icons-outlined {
+  color: #333;
 }

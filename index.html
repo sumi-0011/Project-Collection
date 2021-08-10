@@ -11,14 +11,23 @@
   <meta property="og:url" content="https://www.starbucks.co.kr/">
   <meta property="og:image" content="https://image.istarbucks.co.kr/common/img/kakaotalk.png">
   <meta property="og:description" content="Starbucks">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+ 
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
   <link rel="stylesheet" href="./css/main.css">
   <title id="titleJoin">Starbucks Coffee Korea</title>
   <title>2021 STARBUCKS</title>
 
   <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js" integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"
+    integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- SWIPER -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 
   <script defer src="./js/main.js"></script>
@@ -395,8 +404,67 @@
       <div class="visual__btn__slogan">
         <a href="#">자세히보기</a>
       </div>
+      <!-- BADGE -->
+
+      <div class="badges">
+        <a href="#" class="badge">
+          <img src="./images/badge1.png" alt="badge1">
+        </a>
+      </div>
     </div>
+
+
   </section>
+  <section class="notice">
+    <div class="notice-line">
+      <div class="bg__left"></div>
+      <div class="bg__right"></div>
+      <div class="inner">
+        <div class="inner__left">
+          <h2>공지사항</h2>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide">
+                <a href="#">크리스마스 & 연말 연시 스타벅스 매장 영업시간</a></div>
+              <div class="swiper-slide">
+                <a href="#"> [당첨자 발표] 2021 스타벅스 플래너 영수증 이벤트</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">스타벅스커피 코리아 애플리케이션 버전 업데이트 안내</a>
+
+              </div>
+              <div class="swiper-slide">
+                <a href="#">[당첨자 발표] 뉴이어 전자영수증 이벤트</a>
+
+              </div>
+            </div>
+
+          </div>
+          <a href="#" class="notice-line__more">
+            <span class="material-icons-outlined">
+              add_circle_outline
+              </span>
+          </a>
+
+        </div>
+        <div class="inner__right">
+          <div>
+            <h2>스타벅스 프로모션</h2>
+            <div class="toggle-promotion">
+              <span class=" material-icons-outlined">
+                expand_circle_down
+                </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
 </body>
 
 </html>
