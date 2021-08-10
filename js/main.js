@@ -7,3 +7,11 @@ visual_set_commonEl.forEach(function(elem, index) {
     opacity:1
   })
 })
+
+
+// SWIPER 
+new Swiper('.notice-line .swiper-container', {
+  direction: 'vertical',
+  autoplay: true,
+  loop: true
+});
