@@ -11,8 +11,10 @@
   <meta property="og:url" content="https://www.starbucks.co.kr/">
   <meta property="og:image" content="https://image.istarbucks.co.kr/common/img/kakaotalk.png">
   <meta property="og:description" content="Starbucks">
- 
-  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet">
 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
@@ -24,10 +26,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"
     integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!-- SWIPER -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+  <!-- SWIPER -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 
   <script defer src="./js/main.js"></script>
@@ -415,6 +417,7 @@
 
 
   </section>
+
   <section class="notice">
     <div class="notice-line">
       <div class="bg__left"></div>
@@ -444,7 +447,7 @@
           <a href="#" class="notice-line__more">
             <span class="material-icons-outlined">
               add_circle_outline
-              </span>
+            </span>
           </a>
 
         </div>
@@ -454,53 +457,87 @@
             <div class="toggle-promotion">
               <span class=" material-icons-outlined">
                 expand_circle_down
-                </span>
+              </span>
             </div>
           </div>
         </div>
 
       </div>
     </div>
-
-    <!-- REWAERD -->
-    <section class="rewards">
-      <div class="inner">
-        <div class="rewards__logo">
-          <img src="./images/rewards-logo.png" alt="">
+  </section>
+  <!-- REWAERD -->
+  <section class="rewards">
+    <div class="inner">
+      <div class="rewards__logo">
+        <img src="./images/rewards-logo.png" alt="">
+      </div>
+      <div class="rewards__conentent">
+        <div class="info-cont">
+          <div class="info-cont_txt">
+            <h2>
+              스타벅스만의 특별한 혜택, <strong>스타벅스 리워드</strong>
+            </h2>
+            <p>
+              <strong>스타벅스 회원이세요?</strong> 로그인을 통해 나만의 리워드를 확인해보세요.
+              <br>
+              <strong>스타벅스 회원이 아니세요?</strong> 가입을 통해 리워드 혜택을 즐기세요.
+            </p>
+          </div>
+          <div class="btn-signin_group">
+            <a href="/mem/join.do" class="btn-signin_join">회원가입</a>
+            <a href="javascript:$.loginLib.showLayerLogin();" class="btn-signin_login">로그인</a>
+          </div>
         </div>
-        <div class="rewards__conentent">
-						<div class="info-cont">
-							<div class="info-cont_txt">
-								<h2>
-									스타벅스만의 특별한 혜택, <strong>스타벅스 리워드</strong>
-								</h2>
-								<p>
-									<strong>스타벅스 회원이세요?</strong> 로그인을 통해 나만의 리워드를 확인해보세요.
-									<br>
-									<strong>스타벅스 회원이 아니세요?</strong> 가입을 통해 리워드 혜택을 즐기세요.
-								</p>
-							</div>
-							<div class="btn-signin_group">
-								<a href="/mem/join.do" class="btn-signin_join">회원가입</a>
-								<a href="javascript:$.loginLib.showLayerLogin();" class="btn-signin_login">로그인</a>
-							</div>
-						</div>
-						
-						<div class="gift-cont">
-							<div class="gift-cont_txt">
-								<p>
-									회원 가입 후, 스타벅스 e-Gift Card를 <strong>"나에게 선물하기"로 구매하시고, 편리하게 등록하세요!</strong>
-									<br>
-									카드를 등록하여 스타벅스 리워드 회원이 되신 후, 첫 구매를 하시면 무료 음료쿠폰을 드립니다!
-								</p>
-							</div>
-							<div class="btn_egift">
-								<a href="/msr/sceGift/gift_step1.do">e-Gift Card 선물하기</a>
-							</div>
-					</div>
+
+        <div class="gift-cont">
+          <div class="gift-cont_txt">
+            <p>
+              회원 가입 후, 스타벅스 e-Gift Card를 <strong>"나에게 선물하기"로 구매하시고, 편리하게 등록하세요!</strong>
+              <br>
+              카드를 등록하여 스타벅스 리워드 회원이 되신 후, 첫 구매를 하시면 무료 음료쿠폰을 드립니다!
+            </p>
+          </div>
+          <div class="btn_egift">
+            <a href="/msr/sceGift/gift_step1.do">e-Gift Card 선물하기</a>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+  <!-- MAIN_BEAN -->
+  <section class="main-bean">
+    <div class="inner">
+      <div class="bean__img scroll-left" style="opacity: 0;">
+        <img src="https://image.istarbucks.co.kr/upload/common/img/main/2021/2021_summer3_bean.png" alt="인도네시아 아체 250g" class="pc-bean">
+      </div>
+      <div class="bean__text scroll-right "  style="opacity: 0;">
+        <img src="https://image.istarbucks.co.kr/upload/common/img/main/2021/2021_summer3_bean_txt.png"
+          alt="인도네시아 최고 고도의 아체 지역에서 만들어진 원두" class="pc-bean-txt">
+       
+        <div class="btn_bean_detail">
+          <a href="/coffee/product_view.do?PRODUCT_CD=11118808">자세히 보기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="reserve">
+    <div class="inner">
+        <div class="reserve_title">
+            <img src="https://image.istarbucks.co.kr/upload/common/img/main/2021/reserve_sundried_brazil_title.png" alt="RESERVE THE MERRY" class="reserve_visual-pc">
+        </div>
+        
+        <div class="reserve_visual scroll-opacity" style="opacity: 0;">
+            <img src="https://image.istarbucks.co.kr/upload/common/img/main/2021/reserve_sundried_brazil_bean4_1.png" alt="" class="reserve_visual-pc">
+           
+        </div>
+        
+        <div class="reserve_detail-btn_wrap">					
+            <div class="reserve_detail-btn">
+                <a class="btn" href="https://www.starbucks.co.kr/whats_new/newsView.do?seq=4088">자세히 보기</a>
+            </div>
+        </div>
+    </div>
+  </section>
 
 </body>
 
