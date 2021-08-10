@@ -425,3 +425,116 @@ max-width: 100%;
 .notice .notice-line .inner .inner__right .toggle-promotion span.material-icons-outlined {
   color: #333;
 }
+
+/* REWAEDS */
+.rewards {
+  padding-top: 30px;
+  padding-bottom: 40px;
+  background-color: #1e3932;
+}
+.rewards .inner {
+  height: 100%;
+  display: inline-flex;
+}
+.rewards .rewards__logo {
+  float: left;
+  width: 16.3%;
+  margin-left: 40px;
+  margin-right: 40px;
+  text-align: center;
+}
+.rewards .rewards__logo img {
+  width: 176px;
+}
+.rewards .rewards__conentent {
+  box-sizing: border-box;
+  float: left;
+  width: calc(83.7% - 80px);
+  padding-right: 30px;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+.rewards .rewards__conentent .info-cont{
+  position: relative;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #4b615b;
+}
+.rewards .rewards__conentent .info-cont .info-cont_txt{
+  margin-bottom: 12px;
+}
+.rewards .rewards__conentent .info-cont .info-cont_txt h2{
+  line-height: 1.4;
+  margin-bottom: 12px;
+  font-size: 26px;
+  font-weight: normal;
+}
+.rewards .rewards__conentent .info-cont .info-cont_txt p{
+  line-height: 1.4;
+  font-size: 17px;
+}
+.rewards .rewards__conentent .info-cont .btn-signin_group{
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  font-size: 0;
+
+}
+.rewards .rewards__conentent .btn-signin_group a {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 38px;
+  line-height: 36px;
+  padding-left: 18.5px;
+  padding-right: 18.5px;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.rewards .rewards__conentent  .btn-signin_join {
+  background-color: #00704a;
+  border: 2px solid #00704a;
+}
+.rewards .rewards__conentent .btn-signin_group a {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 38px;
+  line-height: 36px;
+  padding-left: 18.5px;
+  padding-right: 18.5px;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.rewards .rewards__conentent  .btn-signin_login {
+  margin-left: 9px;
+  background-color: transparent;
+  border: 2px solid #fff;
+}
+.rewards .rewards__conentent .gift-cont{
+  position: relative;
+}
+.rewards .rewards__conentent .gift-cont .gift-cont_txt p{
+  line-height: 1.4;
+  font-size: 14px;
+}
+.rewards .rewards__conentent .gift-cont .btn_egift{
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 183px;
+  height: 38px;
+  line-height: 36px;
+  text-align: center;
+  font-size: 14px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+}
+.rewards .rewards__conentent  .gift-cont .btn_egift a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+}
