@@ -5,7 +5,6 @@ body {
   min-width: 320px;
   overflow-x: scroll;
 
-  height: 6000px;
 }
 
 .inner {
@@ -240,8 +239,11 @@ header .main-menu .item .item__contents .contents__texture p {
 
 /* FOOTER */
 footer {
-  background-color: #272727;
-  border-top: 1px solid #333;
+  background: #2C2A29;
+  clear: both;
+  position: relative;
+  width: 100%;
+  padding: 32px 0 35px 0;
 }
 footer .inner {
   padding: 40px 0 ;
@@ -329,4 +331,52 @@ footer .logo {
   bottom: 30px;
   right: 30px;
   z-index: 9;
+}
+footer .footer_wrap {
+  background: url("../img/footer/footer_logo.png") right 8px no-repeat;
+  display: inline-block;
+  left: 50%;
+  position: relative;    margin-left: -550px;
+  width: 1100px;
+}
+footer .footer_menus {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+footer .footer_menus ul{
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 30px;
+  width: 220px;
+}
+.footer_menus ul ul {
+  display: none;
+  border-bottom: 0;
+}
+.footer_menus ul li a {
+  width: 100%;
+  color: #fff;
+  font-size: 12px;
+  line-height: 24px;
+}
+footer .footer_awards_wrap {
+  /* background: #282828; */
+  position: relative;
+  width: 100%;
+  padding-top: 20px;
+  height: 80px;
+  /* margin-top: 40px; */
+}
+footer .footer_awards_wrap .inner{
+  padding-bottom: 20px;
+
+}
+footer .footer_awards_wrap .footer_awards_slider{
+  display: flex;
+  overflow: hidden;
+}
+footer span.en {
+  display: inline-block;
+  line-height: 40px;
 }

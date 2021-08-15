@@ -552,7 +552,7 @@ max-width: 100%;
   padding: 8px 10px;
   transition: background-color .8s;
   -webkit-transition: background-color .8s;
-  right: -580px;
+  right: calc(580px);
   opacity: 0;
 
 }
