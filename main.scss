@@ -1,0 +1,65 @@
+
+
+body {
+  background-color: hsl(185, 41%, 84%);
+  font-family: 'Space Mono', monospace;
+}
+header {
+  text-align: center;
+  margin-top: 130px;
+  margin-bottom: 80px;
+}
+main {
+  display: flex;
+  justify-content:space-between;
+  padding: 20px;
+  width: 1000px;
+  background-color: hsl(0, 0%, 100%);
+  margin:auto;
+  font-size: 24px;
+  border-radius: 15px;
+  height: auto;
+
+  h4 {
+    font-size: 15px;
+    color: hsl(186, 14%, 43%);
+  font-family: 'Space Mono', monospace;
+    margin-bottom: 10px;
+  }
+
+  input[type="number"].input_num {
+    font-size: 24px;
+    color:  hsl(183, 100%, 15%);
+    border-radius: 5px;
+    border-style:solid ;
+    border: none;
+    padding: 5px;
+  }
+  input[type="number"].input_num:focus {
+    border-radius: 5px;
+    border: 2px solid hsl(172, 67%, 45%);
+    outline:none;
+  }
+  // input:number의 증감버튼 없앰
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  .input_icon {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+  }
+  section {
+    position: relative;
+  }
+  section.bill {
+    
+  }
+}
+article {
+  background-color: whitesmoke;
+  margin: 20px;
+  border-radius: 15px;
+}

@@ -13,30 +13,65 @@
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./main.css">
 </head>
 <body>
+  <header>
+    <img src="./images/logo.svg" alt="" srcset="">
+  </header>
+  <main>
+    <article>
+      <h2 hidden>select</h2>
+      <section class="bill">
+        <h4 >Bill</h4>
+        <img src="./images/icon-dollar.svg" alt="" srcset="" class="input_icon">
+        <input type="number" name="" id="bill_input" class="input_num" dir="rtl">
+      </section>
+      <section class="select_tip">
+          <h4>Select Tip %</h4>
+          <input type="button" value="5%" class="tip_btn">
+          <input type="button" value="10%" class="tip_btn">
+          <input type="button" value="15%" class="tip_btn">
+          <input type="button" value="25%" class="tip_btn">
+          <input type="button" value="50%" class="tip_btn">
+          <input type="number" name="" id="tip_custom" class="tip_btn" class="input_num">
+      </section>
+      <section class="number_people">
+        <h4>Number of People</h4>
+        <img src="./images/icon-person.svg" alt="" srcset="" class="input_icon">
+        <input type="number" name="" id="select_people_num" class="input_num">
+      </section>
+    </article>
+    <article>
+      <section class="tip_amount">
+        <span class="title">
+          Tip Amount
+        </span>
+        <span class="title-sub">
+          /person
+        </span>
+        <span class="calculate_daler">$0.00</span>
+      </section>
+      <section class="total">
+        <span class="title">
+          Tip Amount
+        </span>
+        <span class="title-sub">
+          /person
+        </span>
+        <span class="calculate_daler">$0.00</span>
+      </section>
+      <section class="reset">
+        <input type="button" value="RESET">
+      </section>
+    </article>
 
-  Bill
-
-  Select Tip %
-  5%
-  10%
-  15%
-  25%
-  50%
-  Custom
-
-  Number of People
-
-  Tip Amount
-  / person
-
-  Total
-  / person
-
-  Reset
+  </section>
   
-  <div class="attribution">
+  <div class="attribution" hidden>
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
   </div>
