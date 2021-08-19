@@ -76,7 +76,9 @@ main {
     width: 500px;
     padding: 20px;
   }
-  
+  label  {
+    display: none;
+  }
   section.select_tip {
     .tip_btn_set {
       display: flex;

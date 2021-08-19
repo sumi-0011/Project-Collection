@@ -79,6 +79,10 @@ main article {
   padding: 20px;
 }
 
+main label {
+  display: none;
+}
+
 main section.select_tip .tip_btn_set {
   display: -webkit-box;
   display: -ms-flexbox;
