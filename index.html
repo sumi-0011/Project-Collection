@@ -8,18 +8,49 @@
   
   <title>Frontend Mentor | Calculator app</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <!-- Feel free to remove these styles or customise in your own stylesheet  -->
   <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
   <link rel="stylesheet" href="./css/main.css">
+  <script defer src="./main.js"></script>
 </head>
 <body>
-
+    <header>
+      <h2>calc</h2>
+      <div class="switchs">
+        <input type="button" id="switchBt" class="theme1" >
+        <label for="switchBt"></label>
+       
+      </div>
+    </header>
+    <section class="screen">
+      <div class="item"></div>
+    </section>
+    <section class="container">
+      <div class="item">7</div>
+      <div class="item">8</div>
+      <div class="item">9</div>
+      <div class="item">4</div>
+      <div class="item">DEL</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+      <div class="item">+</div>
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">-</div>
+      <div class="item">.</div>
+      <div class="item">0</div>
+      <div class="item">/</div>
+      <div class="item">x</div>
+      <div class="item">RESET</div>
+      <div class="item">=</div>
+    </section>
 
   
-  <div class="attribution">
+  <div class="attribution" hidden>
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
   </div>
