@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./main.css">
+  <script defer src="./main.js"></script>
 </head>
 <body>
   <header>
@@ -44,10 +45,10 @@
       <section class="number_people">
         <h4>Number of People</h4>
         <img src="./images/icon-person.svg" alt="" srcset="" class="input_icon">
-        <input type="number" name="" id="select_people_num" class="input_num" dir="rtl">
+        <input type="number" name="" id="select_people_num" class="input_num " dir="rtl">
       </section>
     </article>
-    <article>
+    <article id="result">
       <section class="tip_amount">
         <span class="title">
           Tip Amount
@@ -59,7 +60,7 @@
       </section>
       <section class="total">
         <span class="title">
-          Tip Amount
+          Total
         </span>
         <span class="title-sub">
           /person
@@ -67,7 +68,7 @@
         <span class="calculate_daler">$0.00</span>
       </section>
       <section class="reset">
-        <input type="button" value="RESET">
+        <input type="button" class="btn-disabled" disabled  value="RESET">
       </section>
     </article>
 

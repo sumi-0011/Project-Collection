@@ -1,5 +1,12 @@
-
-
+// 변수
+$color_white : hsl(0, 0%, 100%);
+$color_very_dark_cyan :  hsl(183, 100%, 15%);
+$color_strong_cyan :  hsl(172, 67%, 45%);
+$color_light_grayish_cyn1:  hsl(185, 41%, 84%);
+$color_light_grayish_cyn2: hsl(189, 41%, 97%);
+$color_dark_cyan2 :hsl(184, 14%, 56%);
+$strong_border :  3px solid hsl(172, 67%, 45%);
+$font_size_small: 15px;
 body {
   background-color: hsl(185, 41%, 84%);
   font-family: 'Space Mono', monospace;
@@ -17,11 +24,12 @@ main {
   background-color: hsl(0, 0%, 100%);
   margin:auto;
   font-size: 24px;
+  font-weight: 700;
   border-radius: 15px;
   height: auto;
 
   h4 {
-    font-size: 15px;
+    font-size: $font_size_small;
     color: hsl(186, 14%, 43%);
   font-family: 'Space Mono', monospace;
     margin-bottom: 10px;
@@ -30,16 +38,19 @@ main {
   input[type="number"].input_num {
     font-size: 24px;
     color:  hsl(183, 100%, 15%);
-    border-radius: 5px;
-    border: 2px solid hsl(0, 0%, 100%) ;
+    border-radius: 10px;
+    border: 3px solid hsl(0, 0%, 100%) ;
     padding: 5px;
     outline:none;
     width: 97%;
+    font-weight: 700;
+    font-family: 'Space Mono', monospace;
+    background-color: hsl(189, 41%, 97%);
 
   }
   input[type="number"].input_num:focus {
     border-radius: 5px;
-    border: 2px solid hsl(172, 67%, 45%);
+    border: $strong_border;
     outline:none;
   }
   // input:number의 증감버튼 없앰
@@ -51,11 +62,21 @@ main {
   .input_icon {
     position: absolute;
     left: 10px;
-    bottom: 10px;
+    bottom: 18px;
+  }
+  .btn-disabled {
+    opacity: 0.3;
   }
   section {
     position: relative;
   }
+  article {
+    margin: 20px;
+    border-radius: 15px;
+    width: 500px;
+    padding: 20px;
+  }
+  
   section.select_tip {
     .tip_btn_set {
       display: flex;
@@ -71,14 +92,19 @@ main {
       width: 130px;
       margin-bottom: 15px;
       padding: 5px;
+      height: 50px;
+      font-weight: 600;
+      font-family: 'Space Mono';
+      /* position: relative; */
+      padding-bottom: 34px;
     }
     .tip_btn:not(.input_num) {
       background-color: hsl(183, 100%, 15%);
       color: hsl(0, 0%, 100%);
       border-radius: 5px;
-      border: 2px solid hsl(183, 100%, 15%) ;
+      border: 3px solid hsl(183, 100%, 15%) ;
     }
-    .tip_btn:not(.input_num).btn_clicked {
+    .tip_btn:not(.input_num):hover {
       background-color: hsl(185, 41%, 84%);
       border-color: hsl(185, 41%, 84%);
       color:hsl(183, 100%, 15%);
@@ -89,6 +115,7 @@ main {
       color:hsl(183, 100%, 15%);
     }
     .input_num {
+      height: 34px;
       width: 105px;
       padding: 5px;
       text-align:unset;
@@ -102,11 +129,109 @@ main {
     }
     
   }
+  section.number_people {
+    #select_people_num.input_zero_error {
+      border-color:coral ;
+    }
+    h4.input_zero_error::after {
+      content: 'Can\'t be zero';
+      position: absolute;
+      color: coral;
+      right: 0;
+    }
+    
+  }
+
+  article#result {
+    position: relative;
+    background-color: $color_very_dark_cyan;
+    section {
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+    .title {
+      color: $color_white;
+      font-size: $font_size_small;
+      position: relative;
+      top: 10px;
+    }
+    .title::after {
+      content: '/person';
+      color: #7f9c9f;
+      font-size: 12px;
+      position: absolute;
+      top: 25px;
+      left: 0px;
+    }
+    .title-sub {
+      color: $color_dark_cyan2;
+      display: none;
+    }
+    .calculate_daler {
+      font-size: 50px;
+      font-weight: 700;
+      color: $color_strong_cyan;
+      float: right;
+    }
+    section.reset {
+      position: relative;
+      bottom: -120px;
+      font-weight: 700;
+      input[type="button"] {
+        width: 100%;
+        height: 45px;
+        background-color: $color_strong_cyan;
+        border: 3px solid  $color_strong_cyan;
+        bottom: 0;
+        border-radius: 5px;
+      }
+      input[type="button"]:hover {
+        background-color: $color_light_grayish_cyn1;
+        border: 3px solid $color_light_grayish_cyn1;
+      }
+      input[type="button"].btn-disabled:hover {
+        background-color: $color_strong_cyan;
+        border: 3px solid  $color_strong_cyan;
+      }
+    }
+  }
+
 }
-article {
-  background-color: whitesmoke;
-  margin: 20px;
-  border-radius: 15px;
-  width: 500px;
-  padding: 20px;
+@media screen and (max-width: 800px) {
+  body {
+    margin: 0;
+  }
+  header {
+    margin:40px;
+  }
+  main {
+    width:100vw;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    article {
+      width: 80%;
+      padding: 0;
+      margin: 0;
+      margin-top: 25px;
+
+    }
+
+    section.select_tip {
+     
+      .tip_btn {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 15px;
+        flex-grow: 1;
+        margin: 10px;
+      }
+    }
+    article#result section.reset {
+      bottom: -10px;
+    }
+  }
 }
