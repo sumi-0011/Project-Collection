@@ -26,7 +26,7 @@ header {
 
 header h2 {
   all: unset;
-  font-size: 24px;
+  font-size: 35px;
   font-weight: bold;
 }
 
@@ -37,7 +37,7 @@ header .switchs {
 }
 
 header .switchs::before {
-  content: 'theme';
+  content: 'THEME';
   position: relative;
   bottom: 5px;
   right: 5px;
@@ -158,5 +158,57 @@ section.screen .item {
   -ms-grid-column: 3;
   -ms-grid-column-span: 2;
   grid-column: 3 / 5;
+}
+
+@media (min-width: 375px) and (max-width: 757px) {
+  body {
+    padding: 30px;
+  }
+  header, section {
+    max-width: 100%;
+    padding: 0;
+  }
+  header h2 {
+    font-size: 40px;
+  }
+  header .switchs::before {
+    font-size: 20px;
+    bottom: 10px;
+    right: 10px;
+  }
+  header .switchs::after {
+    font-size: 15px;
+    top: -21px;
+    right: -7px;
+    letter-spacing: 17px;
+  }
+  header .switchs label {
+    width: 80px;
+    height: 30px;
+    border-radius: 15px;
+  }
+  header .switchs label::before {
+    width: 20px;
+    height: 20px;
+    left: 5px;
+    bottom: 5px;
+  }
+  header .switchs #switchBt.theme2 + label::before {
+    -webkit-transform: translateX(25px);
+            transform: translateX(25px);
+  }
+  header .switchs #switchBt.theme3 + label::before {
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px);
+  }
+  section.screen {
+    max-width: calc(100% - 40px);
+    padding: 20px;
+  }
+  section.container {
+    max-width: calc(100% - 60px);
+    padding: 30px;
+    gap: 15px;
+  }
 }
 /*# sourceMappingURL=main.css.map */
