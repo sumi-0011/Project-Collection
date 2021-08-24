@@ -287,7 +287,7 @@ body.theme3 section.container .item:nth-child(19) {
           box-shadow: 0 2px #6cf9f2;
 }
 
-@media (min-width: 375px) and (max-width: 757px) {
+@media (min-width: 300px) and (max-width: 757px) {
   body {
     padding: 30px;
   }
