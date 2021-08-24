@@ -199,7 +199,48 @@ body.theme2 {
     }
   }
 }
+body.theme3 {
+  background-color:  hsl(268, 75%, 9%);
+  header {
+    color: hsl(52, 100%, 62%);
+    label {
+      background-color:  hsl(268, 71%, 12%);
+      &::before {
+        background-color: hsl(176, 100%, 44%);
+      
+      }
+   
+    }
+    #switchBt + label::before {
+      transform: translateX($transfromXSize *2 );
+    }
+  }
+  section.screen {
+    background-color:  hsl(268, 71%, 12%);
+    .item {
+      color: hsl(52, 100%, 62%);
 
+    }
+  }
+  section.container {
+    background-color:  hsl(268, 71%, 12%);
+    color: hsl(52, 100%, 62%);
+    .item {
+      background-color:  hsl(268, 47%, 21%);
+      box-shadow: 0 2px   hsl(290, 70%, 36%);
+      &:nth-child(5),&:nth-child(18) {
+        background-color: hsl(281, 89%, 26%);
+        color: $color_white;
+        box-shadow: 0 2px hsl(285, 91%, 52%);
+      }
+      &:nth-child(19) {
+        background-color:   hsl(176, 100%, 44%);
+        color: hsl(198, 20%, 13%);
+        box-shadow: 0 2px hsl(177, 92%, 70%);
+      }
+    }
+  }
+}
 $breakpoint-mobile: 375px;
 $breakpoint-tablet: 758px;
 $breakpoint-desktop: 1440px;

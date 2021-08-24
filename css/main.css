@@ -233,6 +233,60 @@ body.theme2 section.container .item:nth-child(19) {
           box-shadow: 0 2px #893901;
 }
 
+body.theme3 {
+  background-color: #160628;
+}
+
+body.theme3 header {
+  color: #ffe53d;
+}
+
+body.theme3 header label {
+  background-color: #1d0934;
+}
+
+body.theme3 header label::before {
+  background-color: #00e0d1;
+}
+
+body.theme3 header #switchBt + label::before {
+  -webkit-transform: translateX(24px);
+          transform: translateX(24px);
+}
+
+body.theme3 section.screen {
+  background-color: #1d0934;
+}
+
+body.theme3 section.screen .item {
+  color: #ffe53d;
+}
+
+body.theme3 section.container {
+  background-color: #1d0934;
+  color: #ffe53d;
+}
+
+body.theme3 section.container .item {
+  background-color: #341c4f;
+  -webkit-box-shadow: 0 2px #871c9c;
+          box-shadow: 0 2px #871c9c;
+}
+
+body.theme3 section.container .item:nth-child(5), body.theme3 section.container .item:nth-child(18) {
+  background-color: #58077d;
+  color: white;
+  -webkit-box-shadow: 0 2px #bc15f4;
+          box-shadow: 0 2px #bc15f4;
+}
+
+body.theme3 section.container .item:nth-child(19) {
+  background-color: #00e0d1;
+  color: #1b2428;
+  -webkit-box-shadow: 0 2px #6cf9f2;
+          box-shadow: 0 2px #6cf9f2;
+}
+
 @media (min-width: 375px) and (max-width: 757px) {
   body {
     padding: 30px;
