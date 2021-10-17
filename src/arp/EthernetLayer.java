@@ -11,6 +11,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+
 public class EthernetLayer implements BaseLayer {
 	public int nUpperLayerCount = 0;
 	public String pLayerName = null;
@@ -54,6 +55,14 @@ public class EthernetLayer implements BaseLayer {
 		ResetHeader();
 
 	}
+	
+	public _ETHERNET_ADDR GetEnetDstAddress() {
+		return m_sHeader.enet_dstAddr;
+	}
+
+	public _ETHERNET_ADDR GetEnetSrcAddress() {
+		return m_sHeader.enet_srcAddr;
+	}
 
 	public void ResetHeader() {
 		for (int i = 0; i < 6; i++) {
@@ -84,9 +93,9 @@ public class EthernetLayer implements BaseLayer {
 	public boolean checkBroadCast(byte[] input) throws SocketException {
 		for (int i = 0; i < 6; i++) {
 			if (input[i + 18] == (byte) 0x00) {
-				// broadcast�� ��� true
-				// Receiver�� Ethernet Address�� 0x00�ΰ��
-				// ARP�� destAddress�� 18~23 �̴�.
+				// broadcast인 경우 true
+				// Receiver의 Ethernet Address가 0x00인경우
+				// ARP의 destAddress는 18~23 이다.
 			} else {
 				return false;
 			}
@@ -98,96 +107,100 @@ public class EthernetLayer implements BaseLayer {
 
 		for (int i = 0; i < 4; i++) {
 			if (input[i + 14] == input[i + 24]) {
-				// Gratuitous �� ���
-				// Sender's IP Address �� Receiver's IP Address�� �������
+				// Gratuitous 인 경우
+				// Sender's IP Address 와 Receiver's IP Address가 같은경우
 			} else {
 				return false;
 			}
 		}
 
 		return true;
-		// my_srcAddress ����
+		// my_srcAddress 세팅
 	}
 
-	byte[] GratOriginMac = new byte[6]; //���� �� ���ּ�
-	
-	
-	// PC�� ���ּ� ��������
+	byte[] GratOriginMac = new byte[6]; // 변경 전 맥주소
+
+	// PC의 맥주소 가져오기
 	public void getMyPCAddr() throws SocketException {
 		Enumeration<NetworkInterface> interfaces = null;
-		interfaces = NetworkInterface.getNetworkInterfaces(); // ���� PC�� ��� NIC�� ���������� �޴´�.
+		interfaces = NetworkInterface.getNetworkInterfaces(); // 현재 PC의 모든 NIC를 열거형으로 받는다.
 
-		// isUP �߿� MAC�� IP �ּҸ� ���
+		// isUP 중에 MAC과 IP 주소를 출력
 		while (interfaces.hasMoreElements()) {
 			NetworkInterface networkInterface = interfaces.nextElement();
 			if (networkInterface.isUp()) {
-				if (networkInterface.getHardwareAddress() != null) {// loop back Interface�� null�̹Ƿ�, �ɷ��ش�.
-					GratOriginMac = networkInterface.getHardwareAddress(); // MAC�ּ� �ޱ�
-					break; // ���� ������� NIC �̿ܿ��� �ʿ� ����. �ݺ��� Ż��
+				if (networkInterface.getHardwareAddress() != null) {// loop back Interface가 null이므로, 걸러준다.
+					GratOriginMac = networkInterface.getHardwareAddress(); // MAC주소 받기
+					break; // 현재 사용중인 NIC 이외에는 필요 없다. 반복문 탈출
 				}
 			}
 		}
 	}
 
+	public boolean Send(byte[] data, int length) {
+		try {
+			System.out.println("ethernet send test");
+			length = data.length;
+			byte[] dstAddr = new byte[6];
+			byte[] srcAddr = new byte[6];
 
-	boolean Send(byte[] data) throws SocketException {
-		int length = data.length;
-		byte[] dstAddr = new byte[6];
-		byte[] srcAddr = new byte[6];
+			boolean isBraod = checkBroadCast(data); // 만약 브로드이면
+			boolean isGrat = checkGratuitous(data);
 
-		boolean isBraod = checkBroadCast(data); // ���� ��ε��̸�
-		boolean isGrat = checkGratuitous(data);
+			byte[] broadcastAddr = { (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF };
 
-		byte[] broadcastAddr = { (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF };
+			if (isBraod) {
+				System.arraycopy(broadcastAddr, 0, dstAddr, 0, 6);
+			} else {
+				System.arraycopy(data, 18, dstAddr, 0, 6);
+				// dstAddress 세팅
+			}
 
-		if (isBraod) {
-			System.arraycopy(broadcastAddr, 0, dstAddr, 0, 6);
-		} else {
-			System.arraycopy(data, 18, dstAddr, 0, 6);
-			// dstAddress ����
+			// Gratuitous ARP일 경우, 변경 전 MAC주소 세팅
+
+			if (isGrat) {
+				this.getMyPCAddr();
+				System.arraycopy(GratOriginMac, 0, srcAddr, 0, 6);
+			} else {
+				// 아니라면 Sender's Ethernet Address 적용
+				System.arraycopy(data, 8, srcAddr, 0, 6);
+			}
+
+			// my_enetType 세팅
+			// this.ip_src = new _IP_ADDR(); // 12-15
+			// this.ip_dst = new _IP_ADDR(); // 16-19
+			// System.arraycopy(enetType_ARP, 0, my_enetType, 0, 2);
+
+			byte[] frameType = { 0x08, 0x00 };
+			SetFrameType(frameType);
+
+			m_sHeader.enet_data = new byte[data.length + enetHeadSize];
+
+			SetSrcAddress(srcAddr);
+			SetDestinationAddress(dstAddr);
+
+			byte[] bytes = ObjToByte(m_sHeader, data, length);
+			for(byte b : bytes) {
+				System.out.print(b);
+			}
+			
+			this.GetUnderLayer().Send(bytes, length + 14);
+			
+		} catch (SocketException e) {
+			// TODO 자동 생성된 catch 블록
+			e.printStackTrace();
 		}
 
-		// Gratuitous ARP�� ���, ���� �� MAC�ּ� ����
+		return false;
 
-		if (isGrat) {
-			this.getMyPCAddr();
-			System.arraycopy(GratOriginMac, 0, srcAddr, 0, 6);
-		} else {
-			// �ƴ϶�� Sender's Ethernet Address ����
-			System.arraycopy(data, 8, srcAddr, 0, 6);
-		}
-		
-		// my_enetType ����
-		// this.ip_src = new _IP_ADDR(); // 12-15
-		// this.ip_dst = new _IP_ADDR(); // 16-19
-		// System.arraycopy(enetType_ARP, 0, my_enetType, 0, 2);
-
-		byte[] frameType = { 0x08, 0x00 };
-		SetFrameType(frameType);
-		
-		
-		m_sHeader.enet_data = new byte[data.length + enetHeadSize];
-
-		
-		SetSrcAddress(srcAddr);
-		SetDestinationAddress(dstAddr);
-		
-		byte[] bytes = ObjToByte(m_sHeader, data, length);
-		
-
-		if (((NILayer) this.GetUnderLayer()).Send(bytes, length + 14))
-			return true;
-		else
-			return false;
 	}
 
 	/*
-	 * ARP Layer�� ������ �Լ� ���� Reply�� dst == ARP Request�� ���� MAC �ּ�, src == ���� MAC
-	 * �ּ�(Request�� ���� ����-ã���� ��) �� ���� Request�̸� dst == ��ε�ĳ��Ʈ(0xffffffffff), src ==
-	 * Request�� ������ MAC �ּ� (Request�� ���� ��-ó��)
+	 * ARP Layer로 보내는 함수 만약 Reply면 dst == ARP Request를 보낸 MAC 주소, src == 현재 MAC
+	 * 주소(Request에 대한 응답-찾았을 때) 그 외인 Request이면 dst == 브로드캐스트(0xffffffffff), src ==
+	 * Request를 보내는 MAC 주소 (Request를 보낼 때-처음)
 	 */
-	
-	
+
 	public byte[] ObjToByte(_ETHERNET_HEADER Header, byte[] input, int length) {
 		byte[] buf = new byte[length + 14];
 
@@ -205,7 +218,6 @@ public class EthernetLayer implements BaseLayer {
 
 		return buf;
 	}
-	
 
 	public boolean IsMyPacket(byte[] input) {
 		for (int i = 0; i < 6; i++) {
@@ -248,22 +260,27 @@ public class EthernetLayer implements BaseLayer {
 		byte[] dstAddr = new byte[6];
 		byte[] srcAddr = new byte[6];
 		byte[] frame = new byte[2];
-		
+
 		for (int i = 0; i < 6; i++) {
 			dstAddr[i] = input[i];
 			srcAddr[i] = input[i + 6];
 		}
 		frame[0] = input[12];
 		frame[1] = input[13];
-		// ���� ��Ŷ�� dst �ּҰ� �ڽ��� �ּ��� ��� or dst�� Broadcast�� �ƴ� ��� or src �ּҰ� �ڽ��� �ּ��� ���
+		
+		if(IsMyPacket(input)) {
+			System.out.println("내꺼니까 버릴게");
+		}
+		// 받은 패킷의 dst 주소가 자신의 주소일 경우 or dst가 Broadcast가 아닐 경우 or src 주소가 자신의 주소일 경우
 		if (!IsMyPacket(input) || IsBroadcast(input) || IsItMine(input)) {
 			byte[] data = RemoveEnetHeader(input, input.length);
-			// �Ϲ� ������ �� ���
+			// 일반 데이터 일 경우
 			if (frame[0] == (byte) 0x08 && frame[1] == (byte) 0x00) {
 				((IPLayer) this.GetUpperLayer(0)).Receive(data);
 			}
-			// ARP Request or ARP Reply�� ���
+			// ARP Request or ARP Reply일 경우
 			else if (frame[0] == (byte) 0x08 && frame[1] == (byte) 0x06) {
+				System.out.printf("ARP 올라갑니댜ㅏ..");
 				((ARPLayer) this.GetUpperLayer(1)).Receive(data);
 			}
 		}

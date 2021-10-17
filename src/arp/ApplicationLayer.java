@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -24,7 +25,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	public BaseLayer p_UnderLayer = null;
 	public ArrayList<BaseLayer> p_aUpperLayer = new ArrayList<BaseLayer>();
 	public ArrayList<BaseLayer> p_aUnderLayer = new ArrayList<BaseLayer>();;
-
+	static JList<String> ArpArea; // 좌측 ARP 텍스트 출력란
 	BaseLayer UnderLayer;
 
 	private static LayerManager m_LayerMgr = new LayerManager();
@@ -89,9 +90,45 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 
 //		// ARPLayer's applayer setting
 //		((ARPLayer) m_LayerMgr.GetLayer("ARP")).setAppLayer(((ApplicationLayer) m_LayerMgr.GetLayer("Application")));
-//			
+//			// 2초 마다 printCash()를 호출하여 캐시 테이블과 GUI를 갱신하는 쓰레드
+		Runnable task = () -> {
+			while (true) {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				printCache(); // GUI에 cache_Table을 print
+			}
+		};
+		// 위 기능을 수행하는 쓰레드 생성 및 시작.
+		Thread cacheUpdate = new Thread(task,"cacheUpdataThread");
+		cacheUpdate.start();
 
 	}
+	static Iterator cache_Itr;
+	static DefaultListModel<String> ARPModel; 
+	
+	public static void printCache() {
+		getTable();
+		// ARPLayer에서 만든 cache_Table을 가져온다. Sleep초 마다 갱신하는 셈.
+		//cacheTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getCacheList();
+		cache_Itr = cacheTable.iterator();
+		ARPModel.removeAllElements(); 
+		//proxyTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getProxyList();
+		
+		//ARPModel.removeAllElements(); // ARPModel의 값을 모두 지우고,
+		while (cache_Itr.hasNext()) { // 캐시테이블의 모든 값을 ARPModel에 저장하기 위해서 캐시테이블을 순회.
+			_Cache_Table cache = (_Cache_Table)cache_Itr.next();
+			ARPModel.addElement(String.format("%20s%25s%15s", // 캐시테이블의 값 중 dstIPAddr(key), dstMACaddr, status를 아래 형식으로 ARPModel에 저장
+					byteToIP(cache.ipaddr), 														// key는 String이기 때문에 그대로 저장.
+					byteToMAC(cache.ethaddr),
+					cache.state));
+					//ethAddrToQuestionOrEth(cacheTable.get(key).cache_ethaddr), // ethAddr은 byte[]이기 때문에 ??? 혹은 xx:xx 형태의 String으로 변경해서 저장
+					//cache_Table.get(key).cache_status));						// status는 String이기 때문에 그대로 저장
+		}
+	}
+	
 
 	public static void getTable() {
 		cacheTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getCacheList();
@@ -101,6 +138,8 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	public ApplicationLayer(String pName) {
 		pLayerName = pName;
 
+		
+		
 		setTitle("ARP");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(250, 250, 800, 425);
@@ -117,7 +156,8 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		ARPCachePanel.setBounds(10, 5, 360, 340);
 		contentPane.add(ARPCachePanel);
 		ARPCachePanel.setLayout(null);
-
+		
+		
 		// ARPCacheEditorPanel : ARPCacheArea의 바탕이 되는 panel
 		JPanel ARPCacheEditorPanel = new JPanel();// ARP Cache Panel write panel
 		ARPCacheEditorPanel.setBounds(10, 15, 340, 210);
@@ -125,6 +165,12 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		ARPCacheEditorPanel.setLayout(null);
 		ARPCacheEditorPanel.setBackground(Color.red);
 
+		ARPModel = new DefaultListModel<String>();
+		ArpArea = new JList<String>(ARPModel);
+		ArpArea.setBounds(0, 0, 340, 210);
+		ARPCacheEditorPanel.add(ArpArea);
+
+		
 		// ARPCacheArea앞에 선언되어 있어 생성만 하면 됨, 쓰여지는 부분 (흰부분)
 		ARPCacheArea = new JTextArea();
 		ARPCacheArea.setEditable(false);
@@ -404,7 +450,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		return a;
 	}
 	// byte 형식의 addr를 IP Address(ex. 1.1.1.1) 형식으로 변환
-	public String byteToIP(byte[] addr) {
+	public static String byteToIP(byte[] addr) {
 		String ip = "";
 		for(byte b : addr) {
 			ip += Integer.toString(b & 0xff) + ".";
@@ -413,7 +459,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		return ip.substring(0, ip.length() - 1);
 	}
 	// byte 형식의 addr를 MAC Address(ex. ff:ff:ff:ff:ff:ff) 형식으로 변환
-	public String byteToMAC(byte[] addr) {
+	public static String byteToMAC(byte[] addr) {
 		StringBuilder mac = new StringBuilder();
 		for(byte b : addr) {
 			mac.append(String.format("%02X", b));
