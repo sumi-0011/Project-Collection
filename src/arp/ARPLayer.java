@@ -388,8 +388,12 @@ public class ARPLayer implements BaseLayer {
 			setSrcIPAddr(MY_IP_ADDRESS.addr);
 			// setDst는 GUI에서 이루어지고 있다.
 			byte[] ARP_header_added_bytes = ObjToByte(m_aHeader, input, length);
-
 			byte[] target_IP = getDstAddrFromHeader(ARP_header_added_bytes);
+			for(byte b : ARP_header_added_bytes) {
+				System.out.print(b);
+			}
+			System.out.println();
+			
 			_Cache_Table newCache = new _Cache_Table(target_IP, new byte[6], "Incomplete", 3);
 			// dst_Addr를 KEY로 갖고 cache_Entry를 VALUE로 갖는 hashMap 생성
 			if (findCacheTable(target_IP) == -1) {
@@ -418,7 +422,7 @@ public class ARPLayer implements BaseLayer {
 		return true;
 	}
 
-	public synchronized boolean receive(byte[] input) {
+	public boolean Receive(byte[] input) {
 		boolean Mine = isItMine(input);
 		if (isRequest(input)) {// ARP request 인 경우
 			if (isProxyARP(input)) {// proxy ARP request 인 경우
@@ -433,6 +437,7 @@ public class ARPLayer implements BaseLayer {
 				return true;
 			} else {// basic ARP request 인 경우
 				if (Mine) {
+					System.out.println("mine까지 왔음");
 					updateCache(input);
 					Send(input, input.length);// 내 ip 주소로 온 ARP일 때만 reply
 					return true;

@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import arp.ARPLayer;
 import arp.ARPLayer._Cache_Table;
 import arp.ARPLayer._Proxy_Table;
+import arp.ARPLayer;
 
 import javax.swing.border.*;
 
@@ -57,9 +58,15 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	JButton HW_Addr_Send_Button; // IP 주소 : IP_Addr_Send_Button
 	JButton Cancle_Button;
 	JButton End_Button;
-	// ArrayList를 사용하여 delete를 편하게 함.
+	
 	static ArrayList<_Cache_Table> cacheTable; // ARP Basic Cache Table
 	static ArrayList<_Proxy_Table> proxyTable; // Proxy Table
+	// ArrayList를 사용하여 delete를 편하게 함.
+	//static _Proxy_Entry proxyEntry;
+	//static Map<String, _Cache_Entry> cache_Table;
+	//static Set<String> cache_Itr;
+	//static Map<String, _Proxy_Entry> proxy_Table;
+	static ArrayList<byte[]> byteArray = new ArrayList<byte[]>();
 	// 출력하는 ArrayList
 	ArrayList<String> listCacheTable = new ArrayList<String>();
 	ArrayList<String> listProxyTable = new ArrayList<String>();
@@ -106,8 +113,43 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		cacheUpdate.start();
 
 	}
+
+	
+	public static boolean isThisQuestion(byte[] input) {
+		for(byte a : input ) {	//byte[]를 순회하는데
+			if(a != 0) {		// 0 이 아닌 게 있다면,
+				return false;	//  ???가 아니다.
+			}
+		}
+		return true;
+	}
+	public static String ethAddrToQuestionOrEth(byte[] input) {
+		if(isThisQuestion(input)) { // byte[]가 0000..이다 -> Question mark로 출력
+			return "???????????";
+		}
+		else {						// byte[]가 정상적인 ethAddr 형식이다 -> String으로 바꿔서 출력.
+			return byteArrayToString(input);
+		}
+	}
+	
+	public static String byteArrayToString(byte[] b) {	// byte[0] = 1, byte[1] = 2 일 때... 01:02 String으로 변경
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < b.length; ++i) {	
+        	sb.append(String.format("%02X", b[i] ));	// sb에 바이트를 str으로 바꿔서 저장한다. 이 때  1은 01, 2는 02 등 두 글자로 formatting
+            sb.append(":");								
+        }
+        sb.deleteCharAt(sb.length()-1);	// 마지막에 추가된 :를 지운다
+        return sb.toString();
+    }
+	
 	static Iterator cache_Itr;
 	static DefaultListModel<String> ARPModel; 
+	
+	public static void getTable() {
+		cacheTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getCacheList();
+		proxyTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getProxyList();
+	}
+
 	
 	public static void printCache() {
 		getTable();
@@ -129,11 +171,11 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		}
 	}
 	
-
-	public static void getTable() {
-		cacheTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getCacheList();
-		proxyTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getProxyList();
-	}
+//
+//	public static void getTable() {
+//		cacheTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getCacheList();
+//		proxyTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getProxyList();
+//	}
 
 	public ApplicationLayer(String pName) {
 		pLayerName = pName;
@@ -193,7 +235,8 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		IPAddressWrite.setBounds(55, 1, 195, 30);// 249
 		ARPCacheInputPanel.add(IPAddressWrite);
 		IPAddressWrite.setColumns(10); // writing area
-
+		IPAddressWrite.setText("168.188.129.3");	//디버깅
+		
 		// ProxyARPEntry
 		JPanel ProxyARPEntryPanel = new JPanel();
 		ProxyARPEntryPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Proxy ARP Entry",
@@ -273,16 +316,10 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 					byte[] delete_IP_addr = strToByte(deleteArp);
 					
 					// Iterator를 사용하여 ArrayList의 cacheTable에서 해당 IP_Addr데 대한 정보를 삭제
-					Iterator<_Cache_Table> it = cacheTable.iterator();
-					while(it.hasNext()) {
-						_Cache_Table cache = (_Cache_Table)it.next();
-						if(Arrays.equals(cache.ipaddr, delete_IP_addr))
-							it.remove();
-					}
 					
-					//ARPLayer arplayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
+					ARPLayer arplayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
 					// ARPCacheAre에서 해당하는 ip삭제
-					// arplayer.DeleteARPCacheTableAddr(delete_IP_addr);
+					//arplayer.DeleteARPCacheTableAddr(delete_IP_addr);
 
 //                	ARPCacheArea를 다시 보여준다.
 					reload();
@@ -301,7 +338,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == All_Delete_Button) {
 					// TODO : All_Delete_Button 구현
-					cacheTable.clear();
+					//cache_Table.clear();
 					reload();
 				}
 
