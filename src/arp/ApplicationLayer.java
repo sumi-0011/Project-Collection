@@ -190,7 +190,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		
 		setTitle("ARP");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(250, 250, 800, 450);
+		setBounds(250, 250, 800, 430);
 //		contentPan : 전체 GUI 틀 Panel
 		contentPane = new JPanel();
 		((JComponent) contentPane).setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -451,6 +451,12 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == HW_Addr_Send_Button) {
 					// 아직 구현 x Proxy 부분
+					String MAC_str = HW_AddressWrite.getText();
+					byte[] MAC = strToByte(MAC_str);
+
+					TCPLayer tcpLayer = (TCPLayer) m_LayerMgr.GetLayer("TCP");
+					tcpLayer.Send(MAC, 6);
+					HW_AddressWrite.setText("");
 				}
 
 			}
@@ -458,35 +464,35 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		});
 		GratuitousARPInputPanel.add(HW_Addr_Send_Button);//
 
-		End_Button = new JButton("종료");
-		End_Button.setBounds(285, 370, 80, 30);
-		End_Button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == End_Button) {
-					// 종료 버튼 클릭시
-				}
-
-			}
-
-		});
-		contentPane.add(End_Button);//
-
-		Cancle_Button = new JButton("취소");
-		Cancle_Button.setBounds(380, 370, 80, 30);
-		Cancle_Button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == Cancle_Button) {
-					// 취소 버튼 클릭시
-				}
-
-			}
-
-		});
-		contentPane.add(Cancle_Button);//
+//		End_Button = new JButton("종료");
+//		End_Button.setBounds(285, 370, 80, 30);
+//		End_Button.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if (e.getSource() == End_Button) {
+//					// 종료 버튼 클릭시
+//				}
+//
+//			}
+//
+//		});
+//		contentPane.add(End_Button);//
+//
+//		Cancle_Button = new JButton("취소");
+//		Cancle_Button.setBounds(380, 370, 80, 30);
+//		Cancle_Button.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if (e.getSource() == Cancle_Button) {
+//					// 취소 버튼 클릭시
+//				}
+//
+//			}
+//
+//		});
+//		contentPane.add(Cancle_Button);//
 
 		setVisible(true);
 
