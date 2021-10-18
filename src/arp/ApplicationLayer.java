@@ -461,13 +461,8 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		contentPane.add(Cancle_Button);//
 
 		setVisible(true);
-//		********************Test***************************************
-//    	ARPCachelist.add("210.170.1.1 00:70:69:47:2F:31 complete");
-//		ARPCachelist.add("210.170.1.2 00:70:69:47:2F:32 complete");
-//    	ARPCachelist.add("210.170.1.3 00:70:69:47:2F:33 complete");
-//    	ARPCachelist.add("210.170.1.4 00:70:69:47:2F:34 complete");
-//		Todo : reload => 
-		reload();
+
+
 
 	}
 
@@ -512,21 +507,21 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	}
 
 
-//  Local variable '변수명' defined in an enclosing scope must be final or effectively final 
-//  라는 에러가 떠서 밖에 선언 -> 찾아보니 밖에 선언하는게 해결 방법이네요. bb
-	String str = "";
-	public void reload() {
-//  	Todo : ARP레이어 가져오기
-//  	ARPLayer arpLayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
-//		HashMap<byte[], byte[]> arpCacheMap = arpLayer.getArpCache();
-//		String str = "";
-		listCacheTable.forEach(item -> str += item + "\n");
-//    	Test
-		System.out.println("----------- ARPCachelist-------------");
-		System.out.println(str);
-		
-		ARPCacheArea.setText(str);
-	}
+////  Local variable '변수명' defined in an enclosing scope must be final or effectively final 
+////  라는 에러가 떠서 밖에 선언 -> 찾아보니 밖에 선언하는게 해결 방법이네요. bb
+//	String str = "";
+//	public void reload() {
+////  	Todo : ARP레이어 가져오기
+////  	ARPLayer arpLayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
+////		HashMap<byte[], byte[]> arpCacheMap = arpLayer.getArpCache();
+////		String str = "";
+//		listCacheTable.forEach(item -> str += item + "\n");
+////    	Test
+//		System.out.println("----------- ARPCachelist-------------");
+//		System.out.println(str);
+//		
+//		ARPCacheArea.setText(str);
+//	}
 //    baselayer override
 
 	@Override
