@@ -432,7 +432,9 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == ProxyARP_Delete_Button) {
-					// 아직 구현 x Proxy 부분
+					// TODO : proxy 테이블 정보 모두삭제
+					((ARPLayer) m_LayerMgr.GetLayer("ARP")).ProxyTable_All_delete();
+					
 				}
 
 			}
