@@ -405,6 +405,18 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == ProxyARP_Add_Button) {
 					// 아직 구현 x Proxy 부분
+//					TODO
+					String device = DeviceText.getText();
+					String ip_addr = IP_AddrText.getText();
+					String mac_addr = MAC_AddrText.getText();
+					
+					ProxyARPEntryArea.append(device + " " + ip_addr + " " + mac_addr + "\n");
+
+					byte[] add_IP = strToByte(ip_addr);
+					byte[] add_MAC = strToByte(mac_addr);
+					
+//					setProxyTable
+					((ARPLayer) m_LayerMgr.GetLayer("ARP")).setProxyTable(add_IP, add_MAC, device);
 				}
 
 			}
