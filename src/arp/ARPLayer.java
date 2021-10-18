@@ -115,6 +115,7 @@ public class ARPLayer implements BaseLayer {
 		this.pLayerName = pName;
 		getLocalPCAddr();
 		ResetARP();
+		//run_Clean_Thread(cache_Table, cache_Itr);
 	}
 
 	// ARP Header를 초기화한다.
