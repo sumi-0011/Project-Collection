@@ -27,6 +27,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	public ArrayList<BaseLayer> p_aUpperLayer = new ArrayList<BaseLayer>();
 	public ArrayList<BaseLayer> p_aUnderLayer = new ArrayList<BaseLayer>();;
 	static JList<String> ArpArea; // 좌측 ARP 텍스트 출력란
+	static JList<String> ProxyArpArea; // 우측 proxy ARP 텍스트 출력란
 	BaseLayer UnderLayer;
 
 	private static LayerManager m_LayerMgr = new LayerManager();
@@ -37,8 +38,8 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	private JTextField HW_AddressWrite;
 	JTextField ItemText;
 
-	JTextArea ARPCacheArea;
-	JTextArea ProxyARPEntryArea;
+//	JTextArea ARPCacheArea;
+//	JTextArea ProxyARPEntryArea;
 	JTextArea srcAddress;
 	JTextArea dstAddress;
 	JTextArea GratuitousARPArea;
@@ -46,9 +47,14 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	JLabel lblsrc;
 	JLabel lbldst;
 	JLabel IPLabel; // ip 주소 Label
-	JLabel HW_Label; // ip 주소 Label
+	JLabel HW_Label; // 
 	JLabel Item_num;
 	JLabel Device;
+	JLabel MAC_Addr;
+	JLabel IP_Addr;
+	JTextField DeviceText;
+	JTextField MAC_AddrText;
+	JTextField IP_AddrText;
 	
 	JButton Setting_Button;
 	JButton Item_Delete_Button; // ARP Cache : Item_Delete_Button
@@ -57,6 +63,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	JButton ProxyARP_Delete_Button; // ProxyARP : ProxyARP_Delete_Button
 	JButton ProxyARP_Add_Button; // ProxyARP : ProxyARP_Add_Button
 	JButton HW_Addr_Send_Button; // IP 주소 : IP_Addr_Send_Button
+	
 	JButton Cancle_Button;
 	JButton End_Button;
 	
@@ -144,7 +151,9 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
     }
 	
 	static Iterator cache_Itr;
+	static Iterator proxy_Itr;
 	static DefaultListModel<String> ARPModel; 
+	static DefaultListModel<String> ProxyARPModel; 
 	
 	public static void getTable() {
 		cacheTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getCacheList();
@@ -157,6 +166,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		// ARPLayer에서 만든 cache_Table을 가져온다. Sleep초 마다 갱신하는 셈.
 		//cacheTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getCacheList();
 		cache_Itr = cacheTable.iterator();
+		proxy_Itr = proxyTable.iterator();
 		ARPModel.removeAllElements(); 
 		//proxyTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getProxyList();
 		
@@ -169,6 +179,16 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 					cache.state));
 					//ethAddrToQuestionOrEth(cacheTable.get(key).cache_ethaddr), // ethAddr은 byte[]이기 때문에 ??? 혹은 xx:xx 형태의 String으로 변경해서 저장
 					//cache_Table.get(key).cache_status));						// status는 String이기 때문에 그대로 저장
+		}
+		
+		ProxyARPModel.removeAllElements(); 
+		while (proxy_Itr.hasNext()) { // 캐시테이블의 모든 값을 ARPModel에 저장하기 위해서 캐시테이블을 순회.
+			_Proxy_Table proxy = (_Proxy_Table)proxy_Itr.next();
+			ProxyARPModel.addElement(String.format("%15s%20s%25s", 
+					proxy.device,
+					byteToIP(proxy.ipaddr), 														
+					byteToMAC(proxy.ethaddr)
+					));
 		}
 	}
 	
@@ -185,7 +205,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		
 		setTitle("ARP");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(250, 250, 800, 450);
+		setBounds(250, 250, 800, 430);
 //		contentPan : 전체 GUI 틀 Panel
 		contentPane = new JPanel();
 		((JComponent) contentPane).setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -208,6 +228,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		ARPCacheEditorPanel.setLayout(null);
 		ARPCacheEditorPanel.setBackground(Color.red);
 
+		
 		ARPModel = new DefaultListModel<String>();
 		ArpArea = new JList<String>(ARPModel);
 		ArpArea.setBounds(0, 0, 340, 210);
@@ -215,10 +236,10 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 
 		
 		// ARPCacheArea앞에 선언되어 있어 생성만 하면 됨, 쓰여지는 부분 (흰부분)
-		ARPCacheArea = new JTextArea();
-		ARPCacheArea.setEditable(false);
-		ARPCacheArea.setBounds(0, 0, 340, 210);
-		ARPCacheEditorPanel.add(ARPCacheArea);// ARPCache edit
+//		ARPCacheArea = new JTextArea();
+//		ARPCacheArea.setEditable(false);
+//		ARPCacheArea.setBounds(0, 0, 340, 210);
+//		ARPCacheEditorPanel.add(ARPCacheArea);// ARPCache edit
 
 		// ARPCache 부분의 IP주소 입력 부분 Panel
 		JPanel ARPCacheInputPanel = new JPanel();
@@ -252,23 +273,22 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		ProxyARPEntryPanel.add(ProxyARPEntryEditorPanel);
 		ProxyARPEntryEditorPanel.setLayout(null);
 
-		// ProxyARPEntryArea앞에 선언되어 있어 생성만 하면 됨, 쓰여지는 부분 (흰부분)
-		ProxyARPEntryArea = new JTextArea();
-		ProxyARPEntryArea.setEditable(false);
-		ProxyARPEntryArea.setBounds(0, 0, 340, 120);
-		ProxyARPEntryEditorPanel.add(ProxyARPEntryArea);// ARPCache edit
+		ProxyARPModel = new DefaultListModel<String>();
+		ProxyArpArea = new JList<String>(ProxyARPModel);
+		ProxyArpArea.setBounds(0, 0, 340, 120);
+		ProxyARPEntryEditorPanel.add(ProxyArpArea);
+		
+//		// ProxyARPEntryArea앞에 선언되어 있어 생성만 하면 됨, 쓰여지는 부분 (흰부분)
+//		ProxyARPEntryArea = new JTextArea();
+//		ProxyARPEntryArea.setEditable(false);
+//		ProxyARPEntryArea.setBounds(0, 0, 340, 120);
+//		ProxyARPEntryEditorPanel.add(ProxyARPEntryArea);// ARPCache edit
 
 //		GUI 수정
 		Device = new JLabel("Device");
 		Device.setBounds(30, 130, 50, 25);
 		ProxyARPEntryEditorPanel.add(Device);
 
-		
-		JLabel MAC_Addr;
-		JLabel IP_Addr;
-		JTextField DeviceText;
-		JTextField MAC_AddrText;
-		JTextField IP_AddrText;
 		DeviceText = new JTextField();
 		DeviceText.setBounds(110, 130, 210, 25);// 249
 		ProxyARPEntryEditorPanel.add(DeviceText);
@@ -295,7 +315,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		
 		// GratuitousARP
 		JPanel GratuitousARP_Panel = new JPanel();
-		GratuitousARP_Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Proxy ARP Entry",
+		GratuitousARP_Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Gratuitous ARP Entry",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GratuitousARP_Panel.setBounds(380, 300, 360, 65);
 		contentPane.add(GratuitousARP_Panel);
@@ -405,6 +425,18 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == ProxyARP_Add_Button) {
 					// 아직 구현 x Proxy 부분
+//					TODO
+					String device = DeviceText.getText();
+					String ip_addr = IP_AddrText.getText();
+					String mac_addr = MAC_AddrText.getText();
+					
+//					ProxyARPEntryArea.append(device + " " + ip_addr + " " + mac_addr + "\n");
+
+					byte[] add_IP = strToByte(ip_addr);
+					byte[] add_MAC = strToByte(mac_addr);
+					
+//					setProxyTable
+					((ARPLayer) m_LayerMgr.GetLayer("ARP")).setProxyTable(add_IP, add_MAC, device);
 				}
 
 			}
@@ -420,7 +452,9 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == ProxyARP_Delete_Button) {
-					// 아직 구현 x Proxy 부분
+					// TODO : proxy 테이블 정보 모두삭제
+					((ARPLayer) m_LayerMgr.GetLayer("ARP")).ProxyTable_All_delete();
+					
 				}
 
 			}
@@ -437,6 +471,12 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == HW_Addr_Send_Button) {
 					// 아직 구현 x Proxy 부분
+					String MAC_str = HW_AddressWrite.getText();
+					byte[] MAC = strToByte(MAC_str);
+
+					TCPLayer tcpLayer = (TCPLayer) m_LayerMgr.GetLayer("TCP");
+					tcpLayer.Send(MAC, 6);
+					HW_AddressWrite.setText("");
 				}
 
 			}
@@ -444,35 +484,35 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		});
 		GratuitousARPInputPanel.add(HW_Addr_Send_Button);//
 
-		End_Button = new JButton("종료");
-		End_Button.setBounds(285, 370, 80, 30);
-		End_Button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == End_Button) {
-					// 종료 버튼 클릭시
-				}
-
-			}
-
-		});
-		contentPane.add(End_Button);//
-
-		Cancle_Button = new JButton("취소");
-		Cancle_Button.setBounds(380, 370, 80, 30);
-		Cancle_Button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == Cancle_Button) {
-					// 취소 버튼 클릭시
-				}
-
-			}
-
-		});
-		contentPane.add(Cancle_Button);//
+//		End_Button = new JButton("종료");
+//		End_Button.setBounds(285, 370, 80, 30);
+//		End_Button.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if (e.getSource() == End_Button) {
+//					// 종료 버튼 클릭시
+//				}
+//
+//			}
+//
+//		});
+//		contentPane.add(End_Button);//
+//
+//		Cancle_Button = new JButton("취소");
+//		Cancle_Button.setBounds(380, 370, 80, 30);
+//		Cancle_Button.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if (e.getSource() == Cancle_Button) {
+//					// 취소 버튼 클릭시
+//				}
+//
+//			}
+//
+//		});
+//		contentPane.add(Cancle_Button);//
 
 		setVisible(true);
 

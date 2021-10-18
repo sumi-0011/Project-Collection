@@ -648,14 +648,18 @@ public class ARPLayer implements BaseLayer {
 		}
 	}
 
-	
+//	매개변수로 받은 index의 arpcache를 삭제
 	public void ARPTable_index_delete(int index) {
 		cacheTable.remove(index);
 	}
+//	arpcache를 모두 삭제 : ALL_Delete 버튼 누르면 동작
 	public void ARPTable_All_delete() {
 		cacheTable.clear();
 	}
-	
+//	arpcache를 모두 삭제 : proxy table의 delete버튼을 누르면 동작
+	public void ProxyTable_All_delete() {
+		proxyTable.clear();
+	}
 	
 	@Override
 	public void SetUnderLayer(BaseLayer pUnderLayer) {
