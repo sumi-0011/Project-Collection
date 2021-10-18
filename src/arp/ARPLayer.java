@@ -648,6 +648,15 @@ public class ARPLayer implements BaseLayer {
 		}
 	}
 
+	
+	public void ARPTable_index_delete(int index) {
+		cacheTable.remove(index);
+	}
+	public void ARPTable_All_delete() {
+		cacheTable.clear();
+	}
+	
+	
 	@Override
 	public void SetUnderLayer(BaseLayer pUnderLayer) {
 		// TODO Auto-generated method stub

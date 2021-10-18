@@ -303,26 +303,28 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 					// Item_Delete_Button작동
 					// ARPCachelist의 num에 해당하는 item것을 제거한다.
 					int num = ItemText.getText() == "" ? 0 : Integer.parseInt(ItemText.getText());
-//                	테스트 용
-					System.out.println(listCacheTable.get(num));
-					reload();
-//                	TODO : arp레이어에서 메소드를 불러와 index에 해당하는 cache를 제거
-//                	DeleteARPCacheTableAddr(byte[] addr)
-//                	해당하는 ip주소를 byte[] addr로 보내주기 위해 str을 byte로 변환이 필요
-					int index = listCacheTable.get(num).indexOf(" ");
-					String deleteArp = listCacheTable.get(num).substring(0, index);
-					System.out.println("deleteArp" + deleteArp);
-					ItemText.setText("");
-					byte[] delete_IP_addr = strToByte(deleteArp);
-					
-					// Iterator를 사용하여 ArrayList의 cacheTable에서 해당 IP_Addr데 대한 정보를 삭제
-					
 					ARPLayer arplayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
-					// ARPCacheAre에서 해당하는 ip삭제
-					//arplayer.DeleteARPCacheTableAddr(delete_IP_addr);
-
-//                	ARPCacheArea를 다시 보여준다.
-					reload();
+					arplayer.ARPTable_index_delete(num);
+////                	테스트 용
+//					System.out.println(listCacheTable.get(num));
+//					reload();
+////                	TODO : arp레이어에서 메소드를 불러와 index에 해당하는 cache를 제거
+////                	DeleteARPCacheTableAddr(byte[] addr)
+////                	해당하는 ip주소를 byte[] addr로 보내주기 위해 str을 byte로 변환이 필요
+//					int index = listCacheTable.get(num).indexOf(" ");
+//					String deleteArp = listCacheTable.get(num).substring(0, index);
+//					System.out.println("deleteArp" + deleteArp);
+//					ItemText.setText("");
+//					byte[] delete_IP_addr = strToByte(deleteArp);
+//					
+//					// Iterator를 사용하여 ArrayList의 cacheTable에서 해당 IP_Addr데 대한 정보를 삭제
+//					
+//					ARPLayer arplayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
+//					// ARPCacheAre에서 해당하는 ip삭제
+//					//arplayer.DeleteARPCacheTableAddr(delete_IP_addr);
+//
+////                	ARPCacheArea를 다시 보여준다.
+//					reload();
 				}
 
 			}
@@ -339,7 +341,9 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 				if (e.getSource() == All_Delete_Button) {
 					// TODO : All_Delete_Button 구현
 					//cache_Table.clear();
-					reload();
+//					reload();
+					ARPLayer arplayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
+					arplayer.ARPTable_All_delete();
 				}
 
 			}
