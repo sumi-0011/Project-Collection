@@ -46,9 +46,14 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	JLabel lblsrc;
 	JLabel lbldst;
 	JLabel IPLabel; // ip 주소 Label
-	JLabel HW_Label; // ip 주소 Label
+	JLabel HW_Label; // 
 	JLabel Item_num;
 	JLabel Device;
+	JLabel MAC_Addr;
+	JLabel IP_Addr;
+	JTextField DeviceText;
+	JTextField MAC_AddrText;
+	JTextField IP_AddrText;
 	
 	JButton Setting_Button;
 	JButton Item_Delete_Button; // ARP Cache : Item_Delete_Button
@@ -208,6 +213,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		ARPCacheEditorPanel.setLayout(null);
 		ARPCacheEditorPanel.setBackground(Color.red);
 
+		
 		ARPModel = new DefaultListModel<String>();
 		ArpArea = new JList<String>(ARPModel);
 		ArpArea.setBounds(0, 0, 340, 210);
@@ -215,10 +221,10 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 
 		
 		// ARPCacheArea앞에 선언되어 있어 생성만 하면 됨, 쓰여지는 부분 (흰부분)
-		ARPCacheArea = new JTextArea();
-		ARPCacheArea.setEditable(false);
-		ARPCacheArea.setBounds(0, 0, 340, 210);
-		ARPCacheEditorPanel.add(ARPCacheArea);// ARPCache edit
+//		ARPCacheArea = new JTextArea();
+//		ARPCacheArea.setEditable(false);
+//		ARPCacheArea.setBounds(0, 0, 340, 210);
+//		ARPCacheEditorPanel.add(ARPCacheArea);// ARPCache edit
 
 		// ARPCache 부분의 IP주소 입력 부분 Panel
 		JPanel ARPCacheInputPanel = new JPanel();
@@ -263,12 +269,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		Device.setBounds(30, 130, 50, 25);
 		ProxyARPEntryEditorPanel.add(Device);
 
-		
-		JLabel MAC_Addr;
-		JLabel IP_Addr;
-		JTextField DeviceText;
-		JTextField MAC_AddrText;
-		JTextField IP_AddrText;
 		DeviceText = new JTextField();
 		DeviceText.setBounds(110, 130, 210, 25);// 249
 		ProxyARPEntryEditorPanel.add(DeviceText);
