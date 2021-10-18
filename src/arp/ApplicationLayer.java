@@ -48,7 +48,8 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	JLabel IPLabel; // ip 주소 Label
 	JLabel HW_Label; // ip 주소 Label
 	JLabel Item_num;
-
+	JLabel Device;
+	
 	JButton Setting_Button;
 	JButton Item_Delete_Button; // ARP Cache : Item_Delete_Button
 	JButton All_Delete_Button; // ARP Cache : All_Delete_Button
@@ -184,7 +185,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		
 		setTitle("ARP");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(250, 250, 800, 425);
+		setBounds(250, 250, 800, 450);
 //		contentPan : 전체 GUI 틀 Panel
 		contentPane = new JPanel();
 		((JComponent) contentPane).setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -195,7 +196,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		JPanel ARPCachePanel = new JPanel();
 		ARPCachePanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "ARP Cache",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		ARPCachePanel.setBounds(10, 5, 360, 340);
+		ARPCachePanel.setBounds(10, 5, 360, 360);
 		contentPane.add(ARPCachePanel);
 		ARPCachePanel.setLayout(null);
 		
@@ -241,27 +242,62 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		JPanel ProxyARPEntryPanel = new JPanel();
 		ProxyARPEntryPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Proxy ARP Entry",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		ProxyARPEntryPanel.setBounds(380, 5, 360, 270);
+		ProxyARPEntryPanel.setBounds(380, 5, 360, 290);
 		contentPane.add(ProxyARPEntryPanel);
 		ProxyARPEntryPanel.setLayout(null);
 
 		// ProxyARPEntryPanel의 write panel
 		JPanel ProxyARPEntryEditorPanel = new JPanel();
-		ProxyARPEntryEditorPanel.setBounds(10, 15, 340, 250);
+		ProxyARPEntryEditorPanel.setBounds(10, 15, 340, 270);
 		ProxyARPEntryPanel.add(ProxyARPEntryEditorPanel);
 		ProxyARPEntryEditorPanel.setLayout(null);
 
 		// ProxyARPEntryArea앞에 선언되어 있어 생성만 하면 됨, 쓰여지는 부분 (흰부분)
 		ProxyARPEntryArea = new JTextArea();
 		ProxyARPEntryArea.setEditable(false);
-		ProxyARPEntryArea.setBounds(0, 0, 340, 210);
+		ProxyARPEntryArea.setBounds(0, 0, 340, 120);
 		ProxyARPEntryEditorPanel.add(ProxyARPEntryArea);// ARPCache edit
 
+//		GUI 수정
+		Device = new JLabel("Device");
+		Device.setBounds(30, 130, 50, 25);
+		ProxyARPEntryEditorPanel.add(Device);
+
+		
+		JLabel MAC_Addr;
+		JLabel IP_Addr;
+		JTextField DeviceText;
+		JTextField MAC_AddrText;
+		JTextField IP_AddrText;
+		DeviceText = new JTextField();
+		DeviceText.setBounds(110, 130, 210, 25);// 249
+		ProxyARPEntryEditorPanel.add(DeviceText);
+		DeviceText.setColumns(10);
+
+		MAC_Addr = new JLabel("MAC_Addr");
+		MAC_Addr.setBounds(30, 165, 70, 25);
+		ProxyARPEntryEditorPanel.add(MAC_Addr);
+
+		MAC_AddrText = new JTextField();
+		MAC_AddrText.setBounds(110, 165, 210, 25);// 249
+		ProxyARPEntryEditorPanel.add(MAC_AddrText);
+		MAC_AddrText.setColumns(10);
+
+		IP_Addr = new JLabel("IP_Addr");
+		IP_Addr.setBounds(30, 200, 50, 25);
+		ProxyARPEntryEditorPanel.add(IP_Addr);
+
+		IP_AddrText = new JTextField();
+		IP_AddrText.setBounds(110, 200, 210, 25);// 249
+		ProxyARPEntryEditorPanel.add(IP_AddrText);
+		IP_AddrText.setColumns(10);
+		
+		
 		// GratuitousARP
 		JPanel GratuitousARP_Panel = new JPanel();
 		GratuitousARP_Panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Proxy ARP Entry",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		GratuitousARP_Panel.setBounds(380, 280, 360, 65);
+		GratuitousARP_Panel.setBounds(380, 300, 360, 65);
 		contentPane.add(GratuitousARP_Panel);
 		GratuitousARP_Panel.setLayout(null);
 
@@ -305,26 +341,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 					int num = ItemText.getText() == "" ? 0 : Integer.parseInt(ItemText.getText());
 					ARPLayer arplayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
 					arplayer.ARPTable_index_delete(num);
-////                	테스트 용
-//					System.out.println(listCacheTable.get(num));
-//					reload();
-////                	TODO : arp레이어에서 메소드를 불러와 index에 해당하는 cache를 제거
-////                	DeleteARPCacheTableAddr(byte[] addr)
-////                	해당하는 ip주소를 byte[] addr로 보내주기 위해 str을 byte로 변환이 필요
-//					int index = listCacheTable.get(num).indexOf(" ");
-//					String deleteArp = listCacheTable.get(num).substring(0, index);
-//					System.out.println("deleteArp" + deleteArp);
-//					ItemText.setText("");
-//					byte[] delete_IP_addr = strToByte(deleteArp);
-//					
-//					// Iterator를 사용하여 ArrayList의 cacheTable에서 해당 IP_Addr데 대한 정보를 삭제
-//					
-//					ARPLayer arplayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
-//					// ARPCacheAre에서 해당하는 ip삭제
-//					//arplayer.DeleteARPCacheTableAddr(delete_IP_addr);
-//
-////                	ARPCacheArea를 다시 보여준다.
-//					reload();
 				}
 
 			}
@@ -339,9 +355,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == All_Delete_Button) {
-					// TODO : All_Delete_Button 구현
-					//cache_Table.clear();
-//					reload();
+
 					ARPLayer arplayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
 					arplayer.ARPTable_All_delete();
 				}
@@ -384,7 +398,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 
 		// ProxyARPEntry Add button
 		ProxyARP_Add_Button = new JButton("Add");// setting
-		ProxyARP_Add_Button.setBounds(15, 215, 130, 30);
+		ProxyARP_Add_Button.setBounds(30, 230, 130, 30);
 		ProxyARP_Add_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -400,7 +414,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 
 		// ProxyARPEntry Delete button
 		ProxyARP_Delete_Button = new JButton("Delete");
-		ProxyARP_Delete_Button.setBounds(200, 215, 130, 30);
+		ProxyARP_Delete_Button.setBounds(190, 230, 130, 30);
 		ProxyARP_Delete_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -431,7 +445,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		GratuitousARPInputPanel.add(HW_Addr_Send_Button);//
 
 		End_Button = new JButton("종료");
-		End_Button.setBounds(285, 350, 80, 30);
+		End_Button.setBounds(285, 370, 80, 30);
 		End_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -446,7 +460,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		contentPane.add(End_Button);//
 
 		Cancle_Button = new JButton("취소");
-		Cancle_Button.setBounds(380, 350, 80, 30);
+		Cancle_Button.setBounds(380, 370, 80, 30);
 		Cancle_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -461,13 +475,8 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		contentPane.add(Cancle_Button);//
 
 		setVisible(true);
-//		********************Test***************************************
-//    	ARPCachelist.add("210.170.1.1 00:70:69:47:2F:31 complete");
-//		ARPCachelist.add("210.170.1.2 00:70:69:47:2F:32 complete");
-//    	ARPCachelist.add("210.170.1.3 00:70:69:47:2F:33 complete");
-//    	ARPCachelist.add("210.170.1.4 00:70:69:47:2F:34 complete");
-//		Todo : reload => 
-		reload();
+
+
 
 	}
 
@@ -512,21 +521,21 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	}
 
 
-//  Local variable '변수명' defined in an enclosing scope must be final or effectively final 
-//  라는 에러가 떠서 밖에 선언 -> 찾아보니 밖에 선언하는게 해결 방법이네요. bb
-	String str = "";
-	public void reload() {
-//  	Todo : ARP레이어 가져오기
-//  	ARPLayer arpLayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
-//		HashMap<byte[], byte[]> arpCacheMap = arpLayer.getArpCache();
-//		String str = "";
-		listCacheTable.forEach(item -> str += item + "\n");
-//    	Test
-		System.out.println("----------- ARPCachelist-------------");
-		System.out.println(str);
-		
-		ARPCacheArea.setText(str);
-	}
+////  Local variable '변수명' defined in an enclosing scope must be final or effectively final 
+////  라는 에러가 떠서 밖에 선언 -> 찾아보니 밖에 선언하는게 해결 방법이네요. bb
+//	String str = "";
+//	public void reload() {
+////  	Todo : ARP레이어 가져오기
+////  	ARPLayer arpLayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
+////		HashMap<byte[], byte[]> arpCacheMap = arpLayer.getArpCache();
+////		String str = "";
+//		listCacheTable.forEach(item -> str += item + "\n");
+////    	Test
+//		System.out.println("----------- ARPCachelist-------------");
+//		System.out.println(str);
+//		
+//		ARPCacheArea.setText(str);
+//	}
 //    baselayer override
 
 	@Override
