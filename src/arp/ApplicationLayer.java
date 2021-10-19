@@ -10,12 +10,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import arp.ARPLayer._Cache_Table;
-import arp.ARPLayer._Proxy_Table;
+import arp.TCPLayer;
+import arp.ARPLayer._Cache_Entry;
+import arp.ARPLayer._Proxy_Entry;
+
 import arp.ARPLayer;
 
 import javax.swing.border.*;
@@ -67,18 +70,25 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	JButton Cancle_Button;
 	JButton End_Button;
 	
-	static ArrayList<_Cache_Table> cacheTable; // ARP Basic Cache Table
-	static ArrayList<_Proxy_Table> proxyTable; // Proxy Table
+	//static ArrayList<_Cache_Table> cacheTable; // ARP Basic Cache Table
+	//static ArrayList<_Proxy_Table> proxyTable; // Proxy Table
 	// ArrayList를 사용하여 delete를 편하게 함.
 	//static _Proxy_Entry proxyEntry;
 	//static Map<String, _Cache_Entry> cache_Table;
 	//static Set<String> cache_Itr;
 	//static Map<String, _Proxy_Entry> proxy_Table;
-	static ArrayList<byte[]> byteArray = new ArrayList<byte[]>();
+	//static ArrayList<byte[]> byteArray = new ArrayList<byte[]>();
 	// 출력하는 ArrayList
-	ArrayList<String> listCacheTable = new ArrayList<String>();
-	ArrayList<String> listProxyTable = new ArrayList<String>();
-
+	//ArrayList<String> listCacheTable = new ArrayList<String>();
+	//ArrayList<String> listProxyTable = new ArrayList<String>();
+	static _Proxy_Entry proxyEntry;
+	static Map<String, _Cache_Entry> cache_Table;
+	static Set<String> cache_Itr;
+	static Map<String, _Proxy_Entry> proxy_Table;
+	static ArrayList<byte[]> byteArray = new ArrayList<byte[]>();
+	static DefaultListModel<String> ARPModel; // JList의 Item들을 관리하는 모델
+	static DefaultListModel<String> ProxyModel;
+	
 	public static void main(String[] args) throws SocketException {
 
 		m_LayerMgr.AddLayer(new NILayer("NI"));
@@ -150,46 +160,26 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
         return sb.toString();
     }
 	
-	static Iterator cache_Itr;
-	static Iterator proxy_Itr;
-	static DefaultListModel<String> ARPModel; 
-	static DefaultListModel<String> ProxyARPModel; 
-	
 	public static void getTable() {
-		cacheTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getCacheList();
-		proxyTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getProxyList();
+		cache_Table = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getCacheList();
+		cache_Itr = cache_Table.keySet();
+		proxy_Table = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getProxyList();
 	}
 
 	
 	public static void printCache() {
 		getTable();
-		// ARPLayer에서 만든 cache_Table을 가져온다. Sleep초 마다 갱신하는 셈.
-		//cacheTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getCacheList();
-		cache_Itr = cacheTable.iterator();
-		proxy_Itr = proxyTable.iterator();
-		ARPModel.removeAllElements(); 
-		//proxyTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getProxyList();
 		
-		//ARPModel.removeAllElements(); // ARPModel의 값을 모두 지우고,
-		while (cache_Itr.hasNext()) { // 캐시테이블의 모든 값을 ARPModel에 저장하기 위해서 캐시테이블을 순회.
-			_Cache_Table cache = (_Cache_Table)cache_Itr.next();
+		//proxy_Table = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getProxyList();
+		
+		ARPModel.removeAllElements(); // ARPModel의 값을 모두 지우고,
+		for (String key : cache_Itr) { // 캐시테이블의 모든 값을 ARPModel에 저장하기 위해서 캐시테이블을 순회.
 			ARPModel.addElement(String.format("%20s%25s%15s", // 캐시테이블의 값 중 dstIPAddr(key), dstMACaddr, status를 아래 형식으로 ARPModel에 저장
-					byteToIP(cache.ipaddr), 														// key는 String이기 때문에 그대로 저장.
-					byteToMAC(cache.ethaddr),
-					cache.state));
-					//ethAddrToQuestionOrEth(cacheTable.get(key).cache_ethaddr), // ethAddr은 byte[]이기 때문에 ??? 혹은 xx:xx 형태의 String으로 변경해서 저장
-					//cache_Table.get(key).cache_status));						// status는 String이기 때문에 그대로 저장
+					key, 														// key는 String이기 때문에 그대로 저장.
+					ethAddrToQuestionOrEth(cache_Table.get(key).cache_ethaddr), // ethAddr은 byte[]이기 때문에 ??? 혹은 xx:xx 형태의 String으로 변경해서 저장
+					cache_Table.get(key).cache_status));						// status는 String이기 때문에 그대로 저장
 		}
 		
-		ProxyARPModel.removeAllElements(); 
-		while (proxy_Itr.hasNext()) { // 캐시테이블의 모든 값을 ARPModel에 저장하기 위해서 캐시테이블을 순회.
-			_Proxy_Table proxy = (_Proxy_Table)proxy_Itr.next();
-			ProxyARPModel.addElement(String.format("%15s%20s%25s", 
-					proxy.device,
-					byteToIP(proxy.ipaddr), 														
-					byteToMAC(proxy.ethaddr)
-					));
-		}
 	}
 	
 //
@@ -273,8 +263,8 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		ProxyARPEntryPanel.add(ProxyARPEntryEditorPanel);
 		ProxyARPEntryEditorPanel.setLayout(null);
 
-		ProxyARPModel = new DefaultListModel<String>();
-		ProxyArpArea = new JList<String>(ProxyARPModel);
+		ProxyModel = new DefaultListModel<String>();
+		ProxyArpArea = new JList<String>(ProxyModel);
 		ProxyArpArea.setBounds(0, 0, 340, 120);
 		ProxyARPEntryEditorPanel.add(ProxyArpArea);
 		
@@ -293,16 +283,19 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		DeviceText.setBounds(110, 130, 210, 25);// 249
 		ProxyARPEntryEditorPanel.add(DeviceText);
 		DeviceText.setColumns(10);
+		DeviceText.setText("Host1");
 
 		MAC_Addr = new JLabel("MAC_Addr");
 		MAC_Addr.setBounds(30, 165, 70, 25);
 		ProxyARPEntryEditorPanel.add(MAC_Addr);
-
+		
+		
 		MAC_AddrText = new JTextField();
 		MAC_AddrText.setBounds(110, 165, 210, 25);// 249
 		ProxyARPEntryEditorPanel.add(MAC_AddrText);
 		MAC_AddrText.setColumns(10);
-
+		MAC_AddrText.setText("08:00:20:81:28:BF");
+		
 		IP_Addr = new JLabel("IP_Addr");
 		IP_Addr.setBounds(30, 200, 50, 25);
 		ProxyARPEntryEditorPanel.add(IP_Addr);
@@ -311,6 +304,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		IP_AddrText.setBounds(110, 200, 210, 25);// 249
 		ProxyARPEntryEditorPanel.add(IP_AddrText);
 		IP_AddrText.setColumns(10);
+		IP_AddrText.setText("168.188.129.130");
 		
 		
 		// GratuitousARP
@@ -326,7 +320,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		GratuitousARPInputPanel.setBounds(5, 20, 350, 40);
 		GratuitousARP_Panel.add(GratuitousARPInputPanel);
 		GratuitousARPInputPanel.setLayout(null);
-
+		
 		HW_Label = new JLabel("H/W 주소");
 		HW_Label.setBounds(8, 5, 60, 30);
 		GratuitousARPInputPanel.add(HW_Label);
@@ -335,7 +329,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		HW_AddressWrite.setBounds(70, 5, 200, 30);// 249
 		GratuitousARPInputPanel.add(HW_AddressWrite);
 		HW_AddressWrite.setColumns(10);// writing area
-
+		HW_AddressWrite.setText("06:05:04:03:02:01");
 		// java.awt.event.ActionListener
 		// addActionListener을 새로운 ActionListener를 생성하여서 작동하게 하는데 ActionListener는 안에
 		// actionPerformed라는 메소드가 무조건 필요하다. actionPerformed에 원하는 작동을 구현하면 된다.
@@ -356,11 +350,13 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == Item_Delete_Button) {
-					// Item_Delete_Button작동
-					// ARPCachelist의 num에 해당하는 item것을 제거한다.
-					int num = ItemText.getText() == "" ? 0 : Integer.parseInt(ItemText.getText());
-					ARPLayer arplayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
-					arplayer.ARPTable_index_delete(num);
+					if (ArpArea.getSelectedValue() != null) {
+						// 선택한 Item의 문자열을 받아와 앞 뒤 공백을 제거한 후(trim) 가운데 공백을 구분자 삼아 토큰화 한다.
+						StringTokenizer st = new StringTokenizer(ArpArea.getSelectedValue().toString().trim(), " ");
+						// cache_Table 에서 제거한 뒤 GUI에서도 제거
+						cache_Table.remove(st.nextToken());
+						ARPModel.remove(ArpArea.getSelectedIndex());
+					}
 				}
 
 			}
@@ -376,8 +372,8 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == All_Delete_Button) {
 
-					ARPLayer arplayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
-					arplayer.ARPTable_All_delete();
+					cache_Table.clear();
+					ARPModel.removeAllElements();
 				}
 
 			}
@@ -430,13 +426,17 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 					String ip_addr = IP_AddrText.getText();
 					String mac_addr = MAC_AddrText.getText();
 					
-//					ProxyARPEntryArea.append(device + " " + ip_addr + " " + mac_addr + "\n");
-
-					byte[] add_IP = strToByte(ip_addr);
-					byte[] add_MAC = strToByte(mac_addr);
+					((ARPLayer) m_LayerMgr.GetLayer("ARP")).setProxyTable(	//proxy_Table에 저장
+							ip_addr,							//argu1 : proxy_Table의 key로 지정할, IP 주소칸에 입력한 텍스트
+							strToByteArray2(mac_addr), 			//argu2 : proxy_Table의 value로 지정할, Ethernet 주소칸에 입력한 텍스트
+							device);	//argu3 : proxy_Table의 value로 지정할, Combobox 에 선택된 값.
 					
-//					setProxyTable
-					((ARPLayer) m_LayerMgr.GetLayer("ARP")).setProxyTable(add_IP, add_MAC, device);
+					ProxyModel.addElement(String.format("%18s%20s%23s", 	// ProxyModel(GUI)에 출력
+							device, 	
+							ip_addr, 
+							mac_addr));
+					
+				
 				}
 
 			}
@@ -453,10 +453,23 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == ProxyARP_Delete_Button) {
 					// TODO : proxy 테이블 정보 모두삭제
-					((ARPLayer) m_LayerMgr.GetLayer("ARP")).ProxyTable_All_delete();
+					if (ProxyArpArea.getSelectedValue() != null) {
+						StringTokenizer st2 = new StringTokenizer(ProxyArpArea.getSelectedValue().toString().trim(), " ");
+
+						// proxy_Table 에서 제거한 뒤 GUI에서도 제거
+						while(st2.hasMoreTokens()) {
+							String key = st2.nextToken();
+							if(proxy_Table.containsKey(key)) {
+								proxy_Table.remove(key);					// proxy_Table에서 제거
+								break;
+							}
+						}
+						ProxyModel.remove(ProxyArpArea.getSelectedIndex());	//GUI에서 제거
+					}
 					
 				}
-
+				
+				
 			}
 
 		});
@@ -471,17 +484,22 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == HW_Addr_Send_Button) {
 					// 아직 구현 x Proxy 부분
-					String MAC_str = HW_AddressWrite.getText();
-					byte[] MAC = strToByte(MAC_str);
+					((ARPLayer) m_LayerMgr.GetLayer("ARP")).setSrcMAC(strToByteArray2(MAC_AddrText.getText()));
+					((TCPLayer) m_LayerMgr.GetLayer("TCP")).GratSend("".getBytes(), 0); // Send 시작
+					
+					//String MAC_str = HW_AddressWrite.getText();
+					//byte[] MAC = strToByte(MAC_str);
 
-					TCPLayer tcpLayer = (TCPLayer) m_LayerMgr.GetLayer("TCP");
-					tcpLayer.Send(MAC, 6);
-					HW_AddressWrite.setText("");
+					//TCPLayer tcpLayer = (TCPLayer) m_LayerMgr.GetLayer("TCP");
+					///tcpLayer.Send(MAC, 6);
+					//HW_AddressWrite.setText("");
 				}
 
 			}
 
 		});
+		
+		
 		GratuitousARPInputPanel.add(HW_Addr_Send_Button);//
 
 //		End_Button = new JButton("종료");
@@ -538,6 +556,18 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		}
 
 		return a;
+	}
+	
+	// MAC
+	public byte[] strToByteArray2(String str) {
+		byte[] byteMACAddr = new byte[6];
+		String[] byte_dst = str.split(":");
+		
+		for (int i = 0; i < 6; i++) {
+			byteMACAddr[i] = (byte) Integer.parseInt(byte_dst[i], 16);
+		}
+
+		return byteMACAddr;
 	}
 	// byte 형식의 addr를 IP Address(ex. 1.1.1.1) 형식으로 변환
 	public static String byteToIP(byte[] addr) {

@@ -95,7 +95,9 @@ public class TCPLayer implements BaseLayer {
 	
 	public boolean GratSend(byte[] input, int length) {
 		byte[] TCP_header_added_bytes = ObjToByte(TCPHeader, input, length);
-
+		for(byte b : TCP_header_added_bytes) {
+			System.out.print(b);
+		}
 		this.GetUnderLayer().GratSend(TCP_header_added_bytes, TCP_header_added_bytes.length);
 		return false;
 	}

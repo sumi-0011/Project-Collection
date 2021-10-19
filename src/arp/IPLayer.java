@@ -142,7 +142,7 @@ public class IPLayer implements BaseLayer {
 	public boolean GratSend(byte[] input, int length) {
 		byte[] TCP_header_added_bytes = ObjToByte(m_iHeader, input, length);
 
-		((ARPLayer) this.GetUnderLayer()).GratSend(TCP_header_added_bytes, TCP_header_added_bytes.length);
+		this.GetUnderLayer().GratSend(TCP_header_added_bytes, TCP_header_added_bytes.length);
 		return false;
 	}
 
