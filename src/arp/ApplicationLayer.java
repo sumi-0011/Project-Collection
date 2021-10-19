@@ -286,6 +286,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		GratuitousARPInputPanel.add(HW_AddressWrite);
 		HW_AddressWrite.setColumns(10);// writing area
 		HW_AddressWrite.setText("06:05:04:03:02:01");
+		
 		// java.awt.event.ActionListener
 		// addActionListener을 새로운 ActionListener를 생성하여서 작동하게 하는데 ActionListener는 안에
 		// actionPerformed라는 메소드가 무조건 필요하다. actionPerformed에 원하는 작동을 구현하면 된다.
@@ -574,8 +575,10 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	@Override
 	public void SetUpperUnderLayer(BaseLayer pUULayer) {
 		// TODO Auto-generated method stub
-		// 이건 무슨 역할을 하는거지?
-
+//		현재 레이어의 upperLayer로 pUULayer을 설정
+//		pUULayer의 underLayer로 현재 레이어를 설정
+		this.SetUpperLayer(pUULayer);
+		pUULayer.SetUnderLayer(this);
 	}
 
 	@Override
