@@ -35,22 +35,19 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 
 	private static LayerManager m_LayerMgr = new LayerManager();
 
-//	Container contentPane;
 	private JPanel contentPane;
 	private JTextField IPAddressWrite;
 	private JTextField HW_AddressWrite;
 	JTextField ItemText;
 
-//	JTextArea ARPCacheArea;
-//	JTextArea ProxyARPEntryArea;
 	JTextArea srcAddress;
 	JTextArea dstAddress;
 	JTextArea GratuitousARPArea;
 
 	JLabel lblsrc;
 	JLabel lbldst;
-	JLabel IPLabel; // ip 주소 Label
-	JLabel HW_Label; // 
+	JLabel IPLabel; 	// ip 주소 Label
+	JLabel HW_Label; 	// mac 주소 
 	JLabel Item_num;
 	JLabel Device;
 	JLabel MAC_Addr;
@@ -69,18 +66,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	
 	JButton Cancle_Button;
 	JButton End_Button;
-	
-	//static ArrayList<_Cache_Table> cacheTable; // ARP Basic Cache Table
-	//static ArrayList<_Proxy_Table> proxyTable; // Proxy Table
-	// ArrayList를 사용하여 delete를 편하게 함.
-	//static _Proxy_Entry proxyEntry;
-	//static Map<String, _Cache_Entry> cache_Table;
-	//static Set<String> cache_Itr;
-	//static Map<String, _Proxy_Entry> proxy_Table;
-	//static ArrayList<byte[]> byteArray = new ArrayList<byte[]>();
-	// 출력하는 ArrayList
-	//ArrayList<String> listCacheTable = new ArrayList<String>();
-	//ArrayList<String> listProxyTable = new ArrayList<String>();
+
 	static _Proxy_Entry proxyEntry;
 	static Map<String, _Cache_Entry> cache_Table;
 	static Set<String> cache_Itr;
@@ -96,23 +82,12 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		m_LayerMgr.AddLayer(new ARPLayer("ARP"));
 		m_LayerMgr.AddLayer(new IPLayer("IP"));
 		m_LayerMgr.AddLayer(new TCPLayer("TCP"));
-//		m_LayerMgr.AddLayer(new ChatAppLayer("ChatApp"));
-//		m_LayerMgr.AddLayer(new FileAppLayer("FileApp"));
+
 		m_LayerMgr.AddLayer(new ApplicationLayer("Application"));
 
-		// Connect according to layer architecture
-		//m_LayerMgr.ConnectLayers(" NI ( *Ethernet ( *IP ( *TCP ( *Application ) ) )  )");
 		m_LayerMgr.ConnectLayers(" NI ( *Ethernet ( *ARP +IP ( -ARP *TCP ( *Application ) ) ) )");
 		((NILayer) m_LayerMgr.GetLayer("NI")).SetAdapterNumber(0);//PC마다 다르다. 0번이 아닐 수도 있기 때문에, 탐색하는 함수를 만들면 편할듯
 		
-		// Connect IP and ARP
-		//((ARPLayer) m_LayerMgr.GetLayer("ARP")).SetUpperLayer((IPLayer) m_LayerMgr.GetLayer("IP"));
-		//((IPLayer) m_LayerMgr.GetLayer("IP")).SetUnderLayer((ARPLayer) m_LayerMgr.GetLayer("ARP"));
-
-		// Connect ARP and Ethernet
-		//((ARPLayer) m_LayerMgr.GetLayer("ARP")).SetUnderLayer((EthernetLayer) m_LayerMgr.GetLayer("Ethernet"));
-		//((EthernetLayer) m_LayerMgr.GetLayer("Ethernet")).SetUpperLayer((ARPLayer) m_LayerMgr.GetLayer("ARP"));
-
 //		// ARPLayer's applayer setting
 //		((ARPLayer) m_LayerMgr.GetLayer("ARP")).setAppLayer(((ApplicationLayer) m_LayerMgr.GetLayer("Application")));
 //			// 2초 마다 printCash()를 호출하여 캐시 테이블과 GUI를 갱신하는 쓰레드
@@ -182,12 +157,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		
 	}
 	
-//
-//	public static void getTable() {
-//		cacheTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getCacheList();
-//		proxyTable = ((ARPLayer) m_LayerMgr.GetLayer("ARP")).getProxyList();
-//	}
-
 	public ApplicationLayer(String pName) {
 		pLayerName = pName;
 
@@ -224,16 +193,9 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		ArpArea.setBounds(0, 0, 340, 210);
 		ARPCacheEditorPanel.add(ArpArea);
 
-		
-		// ARPCacheArea앞에 선언되어 있어 생성만 하면 됨, 쓰여지는 부분 (흰부분)
-//		ARPCacheArea = new JTextArea();
-//		ARPCacheArea.setEditable(false);
-//		ARPCacheArea.setBounds(0, 0, 340, 210);
-//		ARPCacheEditorPanel.add(ARPCacheArea);// ARPCache edit
 
 		// ARPCache 부분의 IP주소 입력 부분 Panel
 		JPanel ARPCacheInputPanel = new JPanel();
-//		ARPCacheInputPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		ARPCacheInputPanel.setBounds(10, 280, 250, 30); // (x1,y1,x2,y2)
 		ARPCachePanel.add(ARPCacheInputPanel);
 		ARPCacheInputPanel.setLayout(null);
@@ -267,12 +229,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		ProxyArpArea = new JList<String>(ProxyModel);
 		ProxyArpArea.setBounds(0, 0, 340, 120);
 		ProxyARPEntryEditorPanel.add(ProxyArpArea);
-		
-//		// ProxyARPEntryArea앞에 선언되어 있어 생성만 하면 됨, 쓰여지는 부분 (흰부분)
-//		ProxyARPEntryArea = new JTextArea();
-//		ProxyARPEntryArea.setEditable(false);
-//		ProxyARPEntryArea.setBounds(0, 0, 340, 120);
-//		ProxyARPEntryEditorPanel.add(ProxyARPEntryArea);// ARPCache edit
 
 //		GUI 수정
 		Device = new JLabel("Device");
@@ -402,8 +358,9 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 					TCPLayer tcplayer = (TCPLayer) m_LayerMgr.GetLayer("TCP");
 					((ARPLayer) m_LayerMgr.GetLayer("ARP")).setDstIPAddr(strToByte(send_IP)); // ARpLayer에 dstAddr Set
 					((TCPLayer) m_LayerMgr.GetLayer("TCP")).Send("".getBytes(), 0);
-					// tcplayer.Send(IP, 4); //byte[]형식의 IP는 length = 4
-					// abort 수정 사용한 이유가 궁금합니다!
+
+					// abort 수정 사용한 이유가 궁금합니다! -> abort가 뭘까요?
+					
 
 				}
 
@@ -420,8 +377,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == ProxyARP_Add_Button) {
-					// 아직 구현 x Proxy 부분
-//					TODO
 					String device = DeviceText.getText();
 					String ip_addr = IP_AddrText.getText();
 					String mac_addr = MAC_AddrText.getText();
@@ -452,7 +407,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == ProxyARP_Delete_Button) {
-					// TODO : proxy 테이블 정보 모두삭제
+					// proxy 테이블 정보 모두삭제
 					if (ProxyArpArea.getSelectedValue() != null) {
 						StringTokenizer st2 = new StringTokenizer(ProxyArpArea.getSelectedValue().toString().trim(), " ");
 
@@ -483,16 +438,9 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == HW_Addr_Send_Button) {
-					// 아직 구현 x Proxy 부분
 					((ARPLayer) m_LayerMgr.GetLayer("ARP")).setSrcMAC(strToByteArray2(MAC_AddrText.getText()));
 					((TCPLayer) m_LayerMgr.GetLayer("TCP")).GratSend("".getBytes(), 0); // Send 시작
 					
-					//String MAC_str = HW_AddressWrite.getText();
-					//byte[] MAC = strToByte(MAC_str);
-
-					//TCPLayer tcpLayer = (TCPLayer) m_LayerMgr.GetLayer("TCP");
-					///tcpLayer.Send(MAC, 6);
-					//HW_AddressWrite.setText("");
 				}
 
 			}
@@ -589,24 +537,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		mac.deleteCharAt(mac.length() - 1);
 		return mac.toString();
 	}
-
-
-////  Local variable '변수명' defined in an enclosing scope must be final or effectively final 
-////  라는 에러가 떠서 밖에 선언 -> 찾아보니 밖에 선언하는게 해결 방법이네요. bb
-//	String str = "";
-//	public void reload() {
-////  	Todo : ARP레이어 가져오기
-////  	ARPLayer arpLayer = (ARPLayer) m_LayerMgr.GetLayer("ARP");
-////		HashMap<byte[], byte[]> arpCacheMap = arpLayer.getArpCache();
-////		String str = "";
-//		listCacheTable.forEach(item -> str += item + "\n");
-////    	Test
-//		System.out.println("----------- ARPCachelist-------------");
-//		System.out.println(str);
-//		
-//		ARPCacheArea.setText(str);
-//	}
-//    baselayer override
 
 	@Override
 	public String GetLayerName() {
