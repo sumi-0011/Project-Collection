@@ -77,90 +77,34 @@ def my_bilinear(img, x, y):
 
     return interVal
 
-def backward(img1, M):
+def backward(img1,img2, M):
     '''
     :param img1: 변환시킬 이미지
     :param M: 변환 matrix
     :return: 변환된 이미지
     '''
-    h, w, c = img1.shape
+    h, w, c = img2.shape
+    h1,w1,c2 = img1.shape
     result = np.zeros((h, w, c))
-    final_result= np.zeros((h, w, c))
-    # 추가
-    window = 5
+    final_result = np.zeros((h, w, c))
 
     for row in range(h):
         for col in range(w):
-            start_x,start_y = col-2,row-2
-            M_ = np.zeros((window,window,c))
-            for i in range(start_y,start_y+window):
-                for j in range(start_x,start_x+window):
-                    if start_x < 0 or start_y < 0 or (start_x + 1) >= w or (start_y + 1) >= h:
-                        continue
-                    xy_prime = np.array([[start_x, start_y, 1]]).T
-                    xy = (np.linalg.inv(M)).dot(xy_prime)
-                    gaussian_weight = np.exp((-1 / 16) * (start_y ** 2 + start_x ** 2))
-                    x_ = xy[0, 0]
-                    y_ = xy[1, 0]
+            xy_prime = np.array([[col, row, 1]]).T
+            xy = (np.linalg.inv(M)).dot(xy_prime)
+            x_ = xy[0, 0]
+            y_ = xy[1, 0]
 
-                    if x_ < 0 or y_ < 0 or (x_ + 1) >= w or (y_ + 1) >= h:
-                        continue
-                    M_[i-row+2,j-col+2,:] = my_bilinear(img1, x_, y_)
-            for i in range(3):
-                gaussain_result = GaussianFiltering(M_[:, :, i], (5, 5), 1)
-                result[row,col,i] = gaussain_result
-            # result[row, col, :] = M_
-            # xy_prime = np.array([[col, row, 1]]).T
-            # xy = (np.linalg.inv(M)).dot(xy_prime)
-            # gaussian_weight = np.exp((-1 / 16) * (window ** 2 + window ** 2))
-            # x_ = xy[0, 0]
-            # y_ = xy[1, 0]
-            #
-            # if x_ < 0 or y_ < 0 or (x_ + 1) >= w or (y_ + 1) >= h:
-            #     continue
-            #
-            # result[row, col, :] = my_bilinear(img1, x_, y_)
+            if x_ < 0 or y_ < 0 or (x_ + 1) >= w1 or (y_ + 1) >= h1:
+                continue
 
-    # for i in range(3):
-    #     gaussain_result = GaussianFiltering(result[:, :, i], (5, 5), 1)
-    #     final_result[:,:,i] = gaussain_result
-    return result
+            result[row, col, :] = my_bilinear(img1, x_, y_)
+    for i in range(3):
+        gaussain_result = GaussianFiltering(result[:, :, i], (5, 5), 1)
+        final_result[:, :, i] = gaussain_result
     return final_result
 
-# def backward(src, M):
-#     h_src,w_src,c_src = src.shape
-#     dst = np.zeros((h_src, w_src,c_src))
-#     h,w,c = dst.shape
-#
-#     M_inv = np.linalg.inv(M)
-#
-#     for row in range(h):
-#         for col in range(w):
-#             P_dst = np.array([
-#                 [col],[row],[1]
-#             ])
-#             P = np.dot(M_inv,P_dst)
-#             src_col = P[0][0]
-#             src_row = P[1][0]
-#
-#             src_col_right = int(np.ceil(src_col))
-#             src_col_left = int(src_col)
-#
-#             src_row_bottom = int(np.ceil(src_row))
-#             src_row_top = int(src_row)
-#
-#             if src_col_right >= w_src or src_row_bottom >= h_src:
-#                 continue
-#             s = src_col - src_col_left
-#             t = src_row - src_row_top
-#
-#             intensity = (1-s) * (1-t) * src[src_row_top,src_col_left] \
-#                 + s * (1 - t) * src[src_row_top, src_col_right] \
-#                 + (1 - s) * t * src[src_row_bottom, src_col_left] \
-#                 + s * t * src[src_row_bottom, src_col_right]
-#             dst[row,col] = intensity
-#     dst = dst.astype(np.uint8)
-#     return dst
+
 
 def my_ls(matches, kp1, kp2):
     '''
@@ -235,7 +179,7 @@ def feature_matching(img1, img2, keypoint_num=None):
                   [X[3][0], X[4][0], X[5][0]],
                   [0, 0, 1]])
 
-    result = backward(img1, M)
+    result = backward(img1,img2, M)
 
     return result.astype(np.uint8)
 
@@ -322,7 +266,7 @@ def feature_matching_RANSAC(img1, img2, keypoint_num=None, iter_num=500, thresho
 
     best_M = np.array(M_list[max_inliers_idx])
 
-    result = backward(img1, best_M)
+    result = backward(img1,img2, best_M)
     return result.astype(np.uint8)
 
 
@@ -331,18 +275,16 @@ def L2_distance(vector1, vector2):
 
 def main():
     src = cv2.imread('./Lena.png')
-    src = cv2.resize(src,None,fx=0.5,fy=0.5)
     src2 = cv2.imread('./LenaFaceShear.png')
-    print("src : ",src.shape,src2.shape)
-    result_RANSAC = feature_matching_RANSAC(src2, src)
-    result_RANSAC2 = feature_matching_RANSAC(src, src2)
+    src = cv2.resize(src, None, fx=0.5, fy=0.5)
+    result_RANSAC = feature_matching_RANSAC(src, src2)
+    result_LS = feature_matching(src, src2)
     cv2.imshow('input', src)
     cv2.imshow('result RANSAC 201902698', result_RANSAC)
-    cv2.imshow('result LS 201902698', result_RANSAC2)
+    cv2.imshow('result LS 201902698', result_LS)
     cv2.imshow('goal', src2)
     cv2.waitKey()
     cv2.destroyAllWindows()
-
 
 
 if __name__ == '__main__':
