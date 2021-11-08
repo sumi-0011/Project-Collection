@@ -84,9 +84,11 @@ def backward(img1,img2, M):
     :return: 변환된 이미지
     '''
     h, w, c = img2.shape
-    h1,w1,c2 = img1.shape
+    h1,w1,c1 = img1.shape
     result = np.zeros((h, w, c))
     final_result = np.zeros((h, w, c))
+
+    window = 5  #filter 사이즈 값
 
     for row in range(h):
         for col in range(w):
@@ -94,13 +96,16 @@ def backward(img1,img2, M):
             xy = (np.linalg.inv(M)).dot(xy_prime)
             x_ = xy[0, 0]
             y_ = xy[1, 0]
-
+    
+            #예외 처리
             if x_ < 0 or y_ < 0 or (x_ + 1) >= w1 or (y_ + 1) >= h1:
                 continue
 
             result[row, col, :] = my_bilinear(img1, x_, y_)
+
+    # 가우시안 필터적용, RGB값 이므로 3번 필터를 적용해주어야 한다.
     for i in range(3):
-        gaussain_result = GaussianFiltering(result[:, :, i], (5, 5), 1)
+        gaussain_result = GaussianFiltering(result[:, :, i], (window,window), 1)
         final_result[:, :, i] = gaussain_result
     return final_result
 
@@ -278,10 +283,10 @@ def main():
     src2 = cv2.imread('./LenaFaceShear.png')
     src = cv2.resize(src, None, fx=0.5, fy=0.5)
     result_RANSAC = feature_matching_RANSAC(src, src2)
-    result_LS = feature_matching(src, src2)
+    # result_LS = feature_matching(src, src2)
     cv2.imshow('input', src)
     cv2.imshow('result RANSAC 201902698', result_RANSAC)
-    cv2.imshow('result LS 201902698', result_LS)
+    # cv2.imshow('result LS 201902698', result_LS)
     cv2.imshow('goal', src2)
     cv2.waitKey()
     cv2.destroyAllWindows()
