@@ -1,0 +1,13 @@
+.header-container {
+    width: 100%;
+}
+.header-container span{
+    font-size: 24px;
+    float: left;
+}
+/* .header-container input {
+  
+} */
+.header-container input.header-logoutBT {
+      float: right;
+}

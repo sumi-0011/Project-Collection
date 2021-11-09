@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './assets/css/bootstrap.min.css';  //부트스트랩
 import { Head } from './component';
-import { Image, Map, Info, User ,Header} from './page/index.js';
+import { Image, Map, Info, User ,Header } from './page/index.js';
 
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -50,12 +50,8 @@ class App extends Component {
         {is_login
           ? <div>
             <div>
-              {/* navigation부부 => link태그 옮김 */}
+              {/* navigation부분 => link태그 옮김 */}
               <Header/>
-              {/* <Link to='/' ><input type='button' value='사물인식' /></Link>
-              <Link to='/map' ><input type='button' value='배출 장소 확인' /></Link>
-              <Link to='/info' ><input type='button' value='배출방법' /></Link>
-              <Link to='/user' ><input type='button' value='마이페이지' /></Link> */}
             </div>
             <Routes>
               <Route path='/' element={<Image />} />
