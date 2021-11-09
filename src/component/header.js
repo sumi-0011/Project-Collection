@@ -146,7 +146,7 @@ class header extends Component {
         <Modal visible={this.state.visible_login} width='400' height='300' effect='fadeInDown' onClickAway={() => this._closeModal_login()} >
           <div style={{ textAlign: 'center', }}>
             <input type='text' placeholder='아이디' name='login_id' />
-            <input type='text' placeholder='비밀번호' name='login_pw' />
+            <input type='password' placeholder='비밀번호' name='login_pw' />
             <input type='button' value='로그인' name='login_button' onClick={() => this._loginUser()} />
           </div>
         </Modal>
@@ -157,8 +157,8 @@ class header extends Component {
               <input type='text' placeholder='아이디' name='signup_id' />
               <input type='button' value='중복확인' onClick={() => this._check_exist_id()} />
             </div>
-            <input type='text' placeholder='비밀번호' name='signup_pw' />
-            <input type='text' placeholder='비밀번호 확인' name='signup_pw_check' />
+            <input type='password' placeholder='비밀번호' name='signup_pw' />
+            <input type='password' placeholder='비밀번호 확인' name='signup_pw_check' />
             <input type='button' value='회원가입' name='signup_button' onClick={() => this._signup()} />
           </div>
         </Modal>
