@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+public/index.html
+public/index.html
+server/config/awsConfig.json
+server/config/db.json
+server/config/ocr_key.json
