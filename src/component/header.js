@@ -57,8 +57,9 @@ class header extends Component {
       data: login_data,
     })
 
+    const data = {id: id, pw: pw, user_name: login_result.data.name}
     if (login_result.data.result) {
-      this.props._login(login_result.data.name);
+      this.props._login(data);
       this._closeModal_login();
       alert('로그인 성공')
     }

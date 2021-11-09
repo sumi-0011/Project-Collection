@@ -86,4 +86,26 @@ module.exports = {
       })
     }
   },
+  change: {
+    pw: (id, pw, callback) => {
+      User.update({
+        pw: pw
+      }, {
+        where: { id: id }
+      })
+        .then(() => callback(true))
+        .catch(err => { throw err; })
+    }
+  },
+  get: {
+    point: (id, callback) => {
+      User.findAll({
+        attributes:['point'], where: {id:id}
+      })
+      .then(result => {
+        callback(result);
+      })
+      .catch(err => {throw err;})
+    }
+  }
 }

@@ -25,6 +25,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
 
+      point: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
+
       signup_date: {
         type: DataTypes.DATE,
         allowNull: false,

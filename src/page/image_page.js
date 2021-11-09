@@ -34,7 +34,7 @@ class image_page extends Component {
   _detect = async function () {
     const { file_base64 } = this.state;
 
-    if(file_base64 === ''){
+    if (file_base64 === '') {
       return alert('사진을 선택해주세요')
     }
 
@@ -52,15 +52,24 @@ class image_page extends Component {
   render() {
     let my_img = null;
     if (this.state.file_preview_url) {
-      my_img = <img src={this.state.file_preview_url} alt='img' />
+      my_img = <img style={{maxHeight:'100%'}} src={this.state.file_preview_url} alt='img' />
     }
     return (
       <div>
-        {my_img}
-        <label htmlFor='image'>
-          사진 선택
-        </label>
-        <input type='file' id='image' accept='image/*' style={{display:'none'}} onChange={(e) => this._handleFile(e)} />
+        {this.state.file_preview_url === ''
+          ? <div>
+            <label htmlFor='image'>
+              <div style={{ color: 'white', backgroundColor: 'black', opacity: '0.5', width: window.innerWidth / 2, height: window.innerWidth / 3 }} >
+                사진을 선택해 주세요.
+              </div>
+            </label>
+          </div>
+          : <div style={{width: window.innerWidth / 2, height: window.innerWidth / 3, margin:'0 auto'}}>
+            <label style={{width: window.innerWidth / 2, height: window.innerWidth / 3, margin:'0 auto'}} htmlFor='image'>{my_img}</label>
+          </div>
+
+        }
+        <input type='file' id='image' accept='image/*' style={{ display: 'none' }} onChange={(e) => this._handleFile(e)} />
         <input type='button' value='사물인식' onClick={() => this._detect()} />
         {this.state.detect_result.length > 0
           ? this.state.detect_result.map((el, key) => {

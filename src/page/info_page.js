@@ -1,6 +1,6 @@
 import React from 'react'
 import '../assets/test.css';
-import { Link,Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function info_page() {
   return (
     <div className="container infoPage-container">

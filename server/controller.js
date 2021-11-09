@@ -58,4 +58,23 @@ module.exports = {
       })
     }
   },
+  change:{
+    pw: (req, res) => {
+      const id = req.body.id;
+      const pw = req.body.pw;
+
+      model.change.pw(id, pw, result => {
+        res.send(result)
+      })
+    }
+  },
+  get: {
+    point: (req, res) => {
+      const id = req.body.id;
+
+      model.get.point(id, result => {
+        res.send(result[0].dataValues);
+      })
+    }
+  }
 }
