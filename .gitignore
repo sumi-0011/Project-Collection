@@ -26,3 +26,5 @@ public/index.html
 server/config/awsConfig.json
 server/config/db.json
 server/config/ocr_key.json
+*.json
+server/config/ocr_key.json
