@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './assets/css/bootstrap.min.css';  //부트스트랩
 import { Head } from './component';
-import { Image, Map, Info, User ,Header } from './page/index.js';
+import { Image, Map, Info, User ,Nav } from './page/index.js';
 
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -51,7 +51,7 @@ class App extends Component {
           ? <div>
             <div>
               {/* navigation부분 => link태그 옮김 */}
-              <Header/>
+              <Nav/>
             </div>
             <Routes>
               <Route path='/' element={<Image />} />
