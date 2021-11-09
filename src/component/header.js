@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-awesome-modal';
-
+import '../assets/header.css';
 import axios from 'axios';
 
 class header extends Component {
@@ -132,13 +132,15 @@ class header extends Component {
   render() {
     const { is_login, user_name, _logout } = this.props;
     return (
-      <div>
+      <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+      <div class="container text-light">
+          <div class="w-100 d-flex justify-content-between">
         {is_login
-          ? <div>
-            {user_name}님 안녕하세요
-            <input type='button' value='로그아웃' onClick={() => _logout()} />
+          ? <div className="header-container">
+            <span class="navbar-sm-brand text-light text-decoration-none">Welcome {user_name}!</span>
+            <input className="header-logoutBT" type='button' value='로그아웃' onClick={() => _logout()} />
           </div>
-          : <div>
+          : <div className="header-container">
             <input type='button' value='로그인' onClick={() => this._openModal_login()} />
             <input type='button' value='회원가입' onClick={() => this._openModal_signup()} />
           </div>
@@ -162,7 +164,9 @@ class header extends Component {
             <input type='button' value='회원가입' name='signup_button' onClick={() => this._signup()} />
           </div>
         </Modal>
-      </div>
+        </div>
+        </div>
+    </nav>
     );
   }
 }
