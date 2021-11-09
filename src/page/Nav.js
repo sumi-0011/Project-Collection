@@ -1,26 +1,50 @@
 import React from "react";
+import { Image, Map, Info, User } from "./index";
+import { Link } from "react-router-dom";
+export default function Header() {
+  return (
+    // <!-- Header -->
+    <nav className="navbar navbar-expand-lg navbar-light shadow">
+      <div className="container d-flex justify-content-between align-items-center">
+        <a
+          className="navbar-brand text-success logo h1 align-self-center"
+          href="index.html"
+        >
+          Happy Cycle
+        </a>
 
-function Nav() {
-    return (
-        <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
-        <div class="container text-light">
-            <div class="w-100 d-flex justify-content-between">
-                {/* <div>
-                    <i class="fa fa-envelope mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">info@company.com</a>
-                    <i class="fa fa-phone mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
-                </div>
-                <div>
-                    <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
-                    <a class="text-light" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
-                    <a class="text-light" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
-                    <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin fa-sm fa-fw"></i></a>
-                </div> */}
-                <span class="navbar-sm-brand text-light text-decoration-none">sumi님 안녕하세요</span>
-            </div>
+
+        <div
+          className="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+          id="templatemo_main_nav"
+        >
+          <div className="flex-fill">
+            <ul className="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+              <li className="nav-item">
+                <Link to="/">
+                  <span className="nav-link">사물인식</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/map">
+                  <span className="nav-link">배출 장소 확인</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/info">
+                  <span className="nav-link">배출방법</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/user">
+                  <span className="nav-link">마이페이지</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
         </div>
+      </div>
     </nav>
-    )
+  );
 }
-export default Nav;

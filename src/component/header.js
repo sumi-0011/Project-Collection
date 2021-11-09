@@ -132,12 +132,12 @@ class header extends Component {
   render() {
     const { is_login, user_name, _logout } = this.props;
     return (
-      <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
-      <div class="container text-light">
-          <div class="w-100 d-flex justify-content-between">
+      <nav className="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+      <div className="container text-light">
+          <div className="w-100 d-flex justify-content-between">
         {is_login
           ? <div className="header-container">
-            <span class="navbar-sm-brand text-light text-decoration-none">Welcome {user_name}!</span>
+            <span className="navbar-sm-brand text-light text-decoration-none">Welcome {user_name}!</span>
             <input className="header-logoutBT" type='button' value='로그아웃' onClick={() => _logout()} />
           </div>
           : <div className="header-container">
