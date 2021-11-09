@@ -1,21 +1,38 @@
-import React, { Component } from 'react';
-
-class info_page extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <p>
-          재활용 배출 정보 페이지
-        </p>
-      </div>
-    )
-  }
+import React from 'react'
+import '../assets/test.css';
+import { Link,Route } from "react-router-dom";
+export default function info_page() {
+  return (
+    <div className="container infoPage-container">
+    <div className="row border d-flex justify-content-around">
+       <CategoryComponent name="플라스틱류" type="Plastic" />
+       <CategoryComponent name="비닐 포장재 및 일회용 비닐 봉투"/>
+       <CategoryComponent name="스티로폼"/>
+       <CategoryComponent name="금속캔류"/>
+       <CategoryComponent name="고철류"/>
+       <CategoryComponent name="유리병류"/>
+       <CategoryComponent name="폐형광등류"/>
+       <CategoryComponent name="종이류"/>
+       <CategoryComponent name="전자류"/>
+    </div>
+</div>
+  )
 }
+function CategoryComponent({name,type}) {
 
-export default info_page;
+  return(
+    <div className="col-md-3" >
+      <Link to={{
+          pathname: `/info/${type}`,
+            state: { 
+                type : type,
+            }
+        }}>
+
+        {name}
+      </Link>
+      
+      <div></div>
+    </div>
+  )
+}
