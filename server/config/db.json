@@ -1,9 +1,9 @@
 {
   "development" : {
-      "username": "admin",
-      "password": "lightash",
+      "username": "",
+      "password": "",
       "database": "collathon",
-      "host": "database-1.cwn1sweojh0p.us-east-2.rds.amazonaws.com",
+      "host": "",
       "port": "3306",
       "dialect": "mysql"
   }

@@ -12,6 +12,8 @@ export default function Header() {
         >
           Happy Cycle
         </a>
+
+
         <div
           className="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
           id="templatemo_main_nav"
@@ -40,7 +42,7 @@ export default function Header() {
               </li>
             </ul>
           </div>
-         
+
         </div>
       </div>
     </nav>
