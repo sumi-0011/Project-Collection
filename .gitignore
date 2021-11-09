@@ -27,4 +27,5 @@ server/config/awsConfig.json
 server/config/db.json
 server/config/ocr_key.json
 *.json
-server/config/ocr_key.json
+server/config/*.json
+
