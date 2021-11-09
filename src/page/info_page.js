@@ -1,10 +1,11 @@
 import React from 'react'
 import '../assets/test.css';
+import { Link,Route } from "react-router-dom";
 export default function info_page() {
   return (
     <div className="container infoPage-container">
     <div className="row border d-flex justify-content-around">
-       <CategoryComponent name="플라스틱류"/>
+       <CategoryComponent name="플라스틱류" type="Plastic" />
        <CategoryComponent name="비닐 포장재 및 일회용 비닐 봉투"/>
        <CategoryComponent name="스티로폼"/>
        <CategoryComponent name="금속캔류"/>
@@ -17,14 +18,21 @@ export default function info_page() {
 </div>
   )
 }
-function CategoryComponent({name}) {
-  const pageMove = () => {
+function CategoryComponent({name,type}) {
 
-  }
   return(
-    <div className="col-md-3" onClick={() => pageMove({name})}>
+    <div className="col-md-3" >
+      <Link to={{
+          pathname: `/info/${type}`,
+            state: { 
+                type : type,
+            }
+        }}>
+
+        {name}
+      </Link>
       
-      {name}
+      <div></div>
     </div>
   )
 }

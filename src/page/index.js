@@ -5,3 +5,4 @@ export { default as Info } from './info_page';
 export { default as Nav } from './Nav';
 export { default as Modal } from './Modal';
 export { default as Main } from './Main';
+export { default as InfoDetail } from './InfoDetail';

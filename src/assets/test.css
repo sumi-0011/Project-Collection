@@ -6,3 +6,21 @@
     margin: 20px;
     font-size: 30px;
 }
+
+/* info detail */
+.recyle-item {
+    display: flex;
+    /* flex-direction: column; */
+    text-align: left;
+}
+.recyle-item .recycleOk{
+    margin: 40px 0;
+}
+.recyle-item .col-md-2 {
+    margin-left: 50px;
+
+}
+.recyle-item img{
+    max-width: 200px;
+    object-fit: cover;
+}

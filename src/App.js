@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './assets/css/bootstrap.min.css';  //부트스트랩
 import { Head } from './component';
-import { Image, Map, Info, User ,Nav } from './page/index.js';
+import { Image, Map, Info, User ,Nav,InfoDetail } from './page/index.js';
 
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -57,6 +57,7 @@ class App extends Component {
               <Route path='/' element={<Image />} />
               <Route path='/map' element={<Map />} />
               <Route path='/info' element={<Info />} />
+              <Route path='/info/:type' element={<InfoDetail />} />
               <Route path='/user' element={<User />} />
             </Routes>
           </div>
