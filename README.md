@@ -1,4 +1,4 @@
 ## 빌드 방법
 ```
-npm rin dev
+npm run dev
 ```
