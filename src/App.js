@@ -3,12 +3,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PostList from "./components/Test/PostList.js";
 import Detail from "./components/Test/Detail.js";
-
+import Main from './pages/Main';
+import './assets/css/main.css';
 function App() {
   return (
     <BrowserRouter>
-     <TestNav/>
-     <TestRouter/>
+    <Main/>
+     {/* <TestNav/>
+     <TestRouter/> */}
     </BrowserRouter>
   );
 }
@@ -19,6 +21,7 @@ function TestNav() {
         <button className="nav-link">리스트 </button>
       </Link>
       <Link to="/main/posts/1">
+        {/* 이부분은 에러뜨는 것이 정상임 */}
         <button className="nav-link"> 1 </button>
       </Link>
     </div>
