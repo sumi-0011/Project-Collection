@@ -21,17 +21,17 @@ export default function Header() {
             <ul className="nav navbar-nav d-flex justify-content-between mx-lg-auto">
               <li className="nav-item">
                 <Link to="/">
-                  <span className="nav-link">사물인식</span>
+                  <span className="nav-link">내 재활품의 종류는?</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/map">
-                  <span className="nav-link">배출 장소 확인</span>
+                  <span className="nav-link">수거함 위치 확인</span>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/info">
-                  <span className="nav-link">배출방법</span>
+                  <span className="nav-link">재활용품 분리 배출 방법</span>
                 </Link>
               </li>
               <li className="nav-item">
