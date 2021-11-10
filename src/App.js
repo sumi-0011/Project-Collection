@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import PostList from "./components/Test/PostList.js";
 import Detail from "./components/Test/Detail.js";
 import {Main} from './pages/index';
+import {Header} from './components/index';
 import './assets/css/main.css';
 function App() {
   return (
     <BrowserRouter>
     <a href='html\index.html'>sss</a>
+    <Header/>
     <Main/>
      {/* <TestNav/>
      <TestRouter/> */}
