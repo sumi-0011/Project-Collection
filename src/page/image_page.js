@@ -52,7 +52,7 @@ class image_page extends Component {
   render() {
     let my_img = null;
     if (this.state.file_preview_url) {
-      my_img = <img style={{maxHeight:'100%'}} src={this.state.file_preview_url} alt='img' />
+      my_img = <img style={{height:'100%'}} src={this.state.file_preview_url} alt='img' />
     }
     return (
       <div>

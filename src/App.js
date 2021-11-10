@@ -48,7 +48,7 @@ class App extends Component {
     return (
       <div style={{ textAlign: 'center' }}>
         <div>
-          <Head _login={_login} _logout={_logout} is_login={is_login} user_name={user_name} />
+          <Head _login={_login} _logout={_logout} is_login={is_login} id={id} />
         </div>
         {is_login
           ? <div>

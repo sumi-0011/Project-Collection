@@ -56,8 +56,20 @@ class map_page extends Component {
     }
   }
 
-  _click() {
-    console.log('click')
+  _check(){
+    if(document.getElementById('temp').innerHTML === ''){
+      return alert('배출 장소를 선택해주세요.')
+    }
+    let kinds = window.prompt('무엇을 분리 배출하셨나요?')
+
+    if(kinds !== null){
+      if(kinds.length < 1){
+        return alert('종류를 입력해주세요')
+      }
+      else{
+        return alert('수거요청이 완료되었습니다!')
+      }
+    }
   }
 
   render() {
@@ -69,7 +81,7 @@ class map_page extends Component {
         <div>
           선택한 수거함: <b id='temp'></b>
         </div>
-        <input type='button' value='수거요청' />
+        <input type='button' value='수거요청' onClick={()=>this._check()} />
       </div>
     )
   }
