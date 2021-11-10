@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PostList from "./components/Test/PostList.js";
 import Detail from "./components/Test/Detail.js";
-import {Main} from './pages/index';
-import {Header} from './components/index';
+import {Main , NoSiderBarPage} from './pages/index';
+import {Header, Footer} from './components/index';
 import './assets/css/main.css';
 function App() {
   return (
@@ -14,6 +14,8 @@ function App() {
     <Main/>
      {/* <TestNav/>
      <TestRouter/> */}
+
+     <Footer/>
     </BrowserRouter>
   );
 }
