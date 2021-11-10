@@ -3,11 +3,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PostList from "./components/Test/PostList.js";
 import Detail from "./components/Test/Detail.js";
-import Main from './pages/Main';
+import {Main} from './pages/index';
 import './assets/css/main.css';
 function App() {
   return (
     <BrowserRouter>
+    <a href='html\index.html'>sss</a>
     <Main/>
      {/* <TestNav/>
      <TestRouter/> */}
