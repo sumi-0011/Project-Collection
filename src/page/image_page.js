@@ -73,6 +73,7 @@ class image_page extends Component {
                   opacity: "0.5",
                   width: window.innerWidth / 2,
                   height: window.innerWidth / 3,
+                  marginTop:'30px'
                 }}
               >
                 사진을 선택해 주세요.
