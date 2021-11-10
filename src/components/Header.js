@@ -24,6 +24,7 @@ function Nav() {
   return (
     <nav id="nav">
       <ul>
+        {/* 메인 + 확진자 현황 */}
         <li className="current">
           <Link
             to={{
@@ -38,25 +39,45 @@ function Nav() {
           </Link>
           {/* <a href="index.html">Welcome</a> */}
         </li>
-
+            {/* 선별진료소 */}
         <li>
           <Link
             to={{
-              pathname: `/main/10`,
+              pathname: `/clinic`,
               state: {
               },
             }}
-            key={10}
+            key='clinic'
           >
-            10
+            선별진료소
           </Link>
-          <a href="left-sidebar.html">Left Sidebar</a>
+          
         </li>
+        {/* 지도 */}
         <li>
-          <a href="right-sidebar.html">Right Sidebar</a>
+        <Link
+            to={{
+              pathname: `/map`,
+              state: {
+              },
+            }}
+            key='map'
+          >
+            지도
+          </Link>
         </li>
+        {/*  거리두기 */}
         <li>
-          <a href="no-sidebar.html">No Sidebar</a>
+        <Link
+            to={{
+              pathname: `/distance`,
+              state: {
+              },
+            }}
+            key='distance'
+          >
+            거리두기
+          </Link>
         </li>
       </ul>
     </nav>
