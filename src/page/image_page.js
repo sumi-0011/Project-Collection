@@ -70,7 +70,7 @@ class image_page extends Component {
 
         }
         <input type='file' id='image' accept='image/*' style={{ display: 'none' }} onChange={(e) => this._handleFile(e)} />
-        <input type='button' value='확인하기' onClick={() => this._detect()} />
+        <input style={{width:'250px', height:'50px', fontSize:'30px', fontWeight:'bold', borderRadius:'20px', marginTop:'10px', backgroundColor:'#A9F5A9'}} type='button' value='확인하기' onClick={() => this._detect()} />
         {this.state.detect_result.length > 0
           ? this.state.detect_result.map((el, key) => {
             return (

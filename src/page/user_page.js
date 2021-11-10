@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Position } from '../component'
 
 import default_profile from '../assets/img/default_profile.jpg';
+import manage from '../assets/img/manage.png';
 
 class user_page extends Component {
   constructor(props) {
@@ -134,69 +135,109 @@ class user_page extends Component {
           <div >
             <img src={default_profile} alt='profile' style={{ width: window.innerWidth / 10 }} />
           </div>
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'center', marginBottom:'10px' }}>
             <div style={{ fontSize: '30px' }}>안녕하세요 <b>{id}님</b></div>
-            <div>포인트: {this.state.point}</div>
+            <div style={{ fontSize: '20px' }}>
+              포인트: <b>{this.state.point}</b>
+              <label htmlFor='manage'>
+                <img style={{width:'20px', marginLeft:'50px'}} src={manage} alt='manage' />
+              </label>
+              <input style={{visibility:'hidden'}} type='button' id='manage' onClick={() => this._openModal_change_password()}></input>
+            </div>
           </div>
         </div>
-        <div>
-          <input type='button' value='자주 가는 수거함' onClick={() => this._openMap()} />
-          <input type='button' value='월간 분리 배출 현황' onClick={() => this._openStatus()} />
-          <input type='button' value='월간 분리 배출 왕' onClick={() => this._openKing()} />
+        <div style={{marginBottom:'15px'}}>
+          <input style={{ fontSize: '20px', width: '220px', marginRight: '10px', borderRadius: '20px', backgroundColor: '#F7F8E0' }} type='button' value='자주 가는 수거함' onClick={() => this._openMap()} />
+          <input style={{ fontSize: '20px', width: '220px', marginRight: '10px', borderRadius: '20px', backgroundColor: '#CEECF5' }} type='button' value='월간 분리 배출 현황' onClick={() => this._openStatus()} />
+          <input style={{ fontSize: '20px', width: '220px', borderRadius: '20px', backgroundColor: '#F8E0E6' }} type='button' value='월간 분리 배출 왕' onClick={() => this._openKing()} />
         </div>
-        <input type='button' value='비밀번호 변경' onClick={() => this._openModal_change_password()}></input>
 
         {this.state.map
           ? <Position />
           : null
         }
         {this.state.status
-          ? 
-          <div style={{width:'50%', margin:'0 auto'}} >
-            <div style={{display:'flex'}}>
-              <div style={{width:'25%', margin:'0 auto'}}>날짜</div>
-              <div style={{width:'25%', margin:'0 auto'}}>배출 장소</div>
+          ?
+          <div>
+            <div style={{ width: '50%', margin: '0 auto' }} >
+              <div style={{ display: 'flex' }}>
+                <div style={{ width: '25%', margin: '0 auto' }}>날짜</div>
+                <div style={{ width: '25%', margin: '0 auto' }}>수거함 위치</div>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <div style={{ width: '25%', margin: '0 auto' }}>2021-11-01</div>
+                <div style={{ width: '25%', margin: '0 auto' }}>욧골 수거함</div>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <div style={{ width: '25%', margin: '0 auto' }}>2021-11-03</div>
+                <div style={{ width: '25%', margin: '0 auto' }}>욧골 수거함</div>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <div style={{ width: '25%', margin: '0 auto' }}>2021-11-05</div>
+                <div style={{ width: '25%', margin: '0 auto' }}>욧골 수거함</div>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <div style={{ width: '25%', margin: '0 auto' }}>2021-11-07</div>
+                <div style={{ width: '25%', margin: '0 auto' }}>봉암 수거함</div>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <div style={{ width: '25%', margin: '0 auto' }}>2021-11-09</div>
+                <div style={{ width: '25%', margin: '0 auto' }}>봉암 수거함</div>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <div style={{ width: '25%', margin: '0 auto' }}>2021-11-09</div>
+                <div style={{ width: '25%', margin: '0 auto' }}>욧골 수거함</div>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <div style={{ width: '25%', margin: '0 auto' }}>2021-11-10</div>
+                <div style={{ width: '25%', margin: '0 auto' }}>욧골 수거함</div>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <div style={{ width: '25%', margin: '0 auto' }}>2021-11-11</div>
+                <div style={{ width: '25%', margin: '0 auto' }}>욧골 수거함</div>
+              </div>
             </div>
-            <div style={{display:'flex'}}>
-              <div style={{width:'25%', margin:'0 auto'}}>2021-11-01</div>
-              <div style={{width:'25%', margin:'0 auto'}}>욧골 수거함</div>
-            </div> 
-            <div style={{display:'flex'}}>
-              <div style={{width:'25%', margin:'0 auto'}}>2021-11-03</div>
-              <div style={{width:'25%', margin:'0 auto'}}>욧골 수거함</div>
-            </div> 
-            <div style={{display:'flex'}}>
-              <div style={{width:'25%', margin:'0 auto'}}>2021-11-05</div>
-              <div style={{width:'25%', margin:'0 auto'}}>욧골 수거함</div>
-            </div> 
-            <div style={{display:'flex'}}>
-              <div style={{width:'25%', margin:'0 auto'}}>2021-11-07</div>
-              <div style={{width:'25%', margin:'0 auto'}}>봉암 수거함</div>
-            </div> 
-            <div style={{display:'flex'}}>
-              <div style={{width:'25%', margin:'0 auto'}}>2021-11-09</div>
-              <div style={{width:'25%', margin:'0 auto'}}>봉암 수거함</div>
-            </div> 
-            <div style={{display:'flex'}}>
-              <div style={{width:'25%', margin:'0 auto'}}>2021-11-09</div>
-              <div style={{width:'25%', margin:'0 auto'}}>욧골 수거함</div>
-            </div> 
-            <div style={{display:'flex'}}>
-              <div style={{width:'25%', margin:'0 auto'}}>2021-11-10</div>
-              <div style={{width:'25%', margin:'0 auto'}}>욧골 수거함</div>
-            </div> 
-            <div style={{display:'flex'}}>
-              <div style={{width:'25%', margin:'0 auto'}}>2021-11-11</div>
-              <div style={{width:'25%', margin:'0 auto'}}>욧골 수거함</div>
-            </div> 
-
+            <div>
+              분리 배출 총 횟수: 8
+            </div>
           </div>
           : null
         }
         {this.state.king
-          ? 
-          <div>
-            왕
+          ?
+          <div style={{ width: '50%', margin: '0 auto' }}>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '25%', margin: '0 auto' }}>사용자</div>
+              <div style={{ width: '25%', margin: '0 auto' }}>분리 배출 횟수</div>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '25%', margin: '0 auto' }}>김아무개</div>
+              <div style={{ width: '25%', margin: '0 auto' }}>80회</div>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '25%', margin: '0 auto' }}>홍길동</div>
+              <div style={{ width: '25%', margin: '0 auto' }}>70회</div>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '25%', margin: '0 auto' }}>이수진</div>
+              <div style={{ width: '25%', margin: '0 auto' }}>60회</div>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '25%', margin: '0 auto' }}>이민수</div>
+              <div style={{ width: '25%', margin: '0 auto' }}>50회</div>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '25%', margin: '0 auto' }}>김민정</div>
+              <div style={{ width: '25%', margin: '0 auto' }}>40회</div>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '25%', margin: '0 auto' }}>김민재</div>
+              <div style={{ width: '25%', margin: '0 auto' }}>30회</div>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '25%', margin: '0 auto' }}>박지훈</div>
+              <div style={{ width: '25%', margin: '0 auto' }}>20회</div>
+            </div>
           </div>
           : null
         }
@@ -204,7 +245,7 @@ class user_page extends Component {
 
         <Modal visible={this.state.visible_change_password} width='400' height='300' effect='fadeInDown' onClickAway={() => this._closeModal_change_password()} >
           <div>
-            <input type='password' placeholder='기존 비밀번호' name='default_pass' /><br />
+            <input style={{marginTop:'80px'}} type='password' placeholder='기존 비밀번호' name='default_pass' /><br />
             <input type='password' placeholder='새 비밀번호' name='change_password' /><br />
             <input type='password' placeholder='새 비밀번호 확인' name='change_password' /><br />
             <input type='button' value='변경하기' onClick={() => this._change_password(pw)} />

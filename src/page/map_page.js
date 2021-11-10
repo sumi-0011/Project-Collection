@@ -78,10 +78,10 @@ class map_page extends Component {
         <div id='map'
           style={{ margin: '0 auto', width: window.innerWidth / 2, height: window.innerWidth / 3 }}>
         </div>
-        <div>
+        <div style={{fontSize:'30px', marginTop:'10px'}}>
           선택한 수거함: <b id='temp'></b>
         </div>
-        <input type='button' value='수거요청' onClick={()=>this._check()} />
+        <input style={{width:'200px', fontSize:'30px', fontWeight:'bold', borderRadius:'20px', marginTop:'10px', backgroundColor:'#A9F5A9'}} type='button' value='수거요청' onClick={()=>this._check()} />
       </div>
     )
   }
