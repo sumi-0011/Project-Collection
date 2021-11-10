@@ -15,7 +15,7 @@ function App() {
      {/* <TestNav/>
      <TestRouter/> */}
 
-     <Footer/>
+     {/* <Footer/> */}
     </BrowserRouter>
   );
 }

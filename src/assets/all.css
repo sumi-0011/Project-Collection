@@ -1,4 +1,7 @@
-
+#header-wrapper {
+   padding: unset;
+   padding: 20px 0;
+}
 #nav ul li {
     font-size: 14px;
 }
@@ -11,4 +14,17 @@
     border-radius: 6px;
     padding: 0.5em 1em 0.5em 1em;
     background-color: unset;
+}
+
+/* #main-wrapper */
+#main-wrapper {
+
+}
+
+@media screen and (min-width: 980px) {
+    /* 컴퓨터 화면 */
+    #main-wrapper {
+        height: calc(100vh - 100px);
+    }
+
 }

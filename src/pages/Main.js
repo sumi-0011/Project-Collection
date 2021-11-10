@@ -11,16 +11,12 @@ function Main() {
 function Tempelate() {
   return (
     <div id="page-wrapper">
-      {/* <!-- Header --> */}
-      {/* <Header /> */}
       {/* <!-- Banner --> */}
-      <Banner />
+      {/* <Banner /> */}
       {/* <!-- Features --> */}
-      <Features />
+      {/* <Features /> */}
       {/* <!-- Main --> */}
       <MainContainer />
-      {/* <!-- Footer --> */}
-      {/* <Footer /> */}
     </div>
   );
 }
