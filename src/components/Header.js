@@ -1,3 +1,7 @@
+import { Dropdown, Button } from "react-bootstrap";
+import "../assets/all.css";
+import { Link } from "react-router-dom";
+
 function Header() {
   return (
     <div id="header-wrapper">
@@ -5,9 +9,9 @@ function Header() {
         {/* <!-- Logo --> */}
         <div id="logo">
           <h1>
-            <a href="index.html">Verti</a>
+            <a href="index.html">Corona</a>
           </h1>
-          <span>by HTML5 UP</span>
+          <span>by sumi😚</span>
         </div>
 
         {/* <!-- Nav --> */}
@@ -21,40 +25,31 @@ function Nav() {
     <nav id="nav">
       <ul>
         <li className="current">
-          <a href="index.html">Welcome</a>
+          <Link
+            to={{
+              pathname: `/main`,
+              state: {
+               
+              },
+            }}
+            key='mainPage'
+          >
+            Main
+          </Link>
+          {/* <a href="index.html">Welcome</a> */}
         </li>
+
         <li>
-          <a href="#">Dropdown</a>
-          <ul>
-            <li>
-              <a href="#">Lorem ipsum dolor</a>
-            </li>
-            <li>
-              <a href="#">Magna phasellus</a>
-            </li>
-            <li>
-              <a href="#">Phasellus consequat</a>
-              <ul>
-                <li>
-                  <a href="#">Lorem ipsum dolor</a>
-                </li>
-                <li>
-                  <a href="#">Phasellus consequat</a>
-                </li>
-                <li>
-                  <a href="#">Magna phasellus</a>
-                </li>
-                <li>
-                  <a href="#">Etiam dolore nisl</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">Veroeros feugiat</a>
-            </li>
-          </ul>
-        </li>
-        <li>
+          <Link
+            to={{
+              pathname: `/main/10`,
+              state: {
+              },
+            }}
+            key={10}
+          >
+            10
+          </Link>
           <a href="left-sidebar.html">Left Sidebar</a>
         </li>
         <li>
@@ -69,3 +64,48 @@ function Nav() {
 }
 
 export default Header;
+
+// 드롭다운 예시
+{/* <Dropdown className="d-inline mx-2">
+    <Dropdown.Toggle id="dropdown-autoclose-true">
+      Default Dropdown
+    </Dropdown.Toggle>
+
+    <Dropdown.Menu>
+      <Link
+            to={{
+              pathname: `/main/1`,
+              state: {
+               
+              },
+            }}
+            key='fisrt'
+          >
+            first
+          </Link>
+      <Link
+            to={{
+              pathname: `/main/2`,
+              state: {
+               
+              },
+            }}
+            key='sec'
+          >
+            sec
+          </Link>
+      <Link
+            to={{
+              pathname: `/main/3`,
+              state: {
+               
+              },
+            }}
+            key='third'
+          >
+            third
+          </Link>
+      {/* <Dropdown.Item >Menu Item</Dropdown.Item>
+      <Dropdown.Item >Menu Item</Dropdown.Item> */}
+  //   </Dropdown.Menu>
+  // </Dropdown> */}
