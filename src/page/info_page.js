@@ -22,17 +22,20 @@ function CategoryComponent({name,type}) {
 
   return(
     <div className="col-md-3" >
+      
+      
       <Link to={{
           pathname: `/info/${type}`,
             state: { 
                 type : type,
             }
-        }}>
-
-        {name}
+        }}
+        className="category-item vc hc">
+          <div>
+          {name}
+                 </div>
+        
       </Link>
-      
-      <div></div>
     </div>
   )
 }
