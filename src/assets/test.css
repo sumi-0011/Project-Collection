@@ -43,5 +43,13 @@
 }
 .recyle-item img{
     max-width: 200px;
+    min-width: 150px;
+    width: 200px;
     object-fit: cover;
+}
+@media screen and (max-width: 780px) {
+    .recyle-item {
+    flex-direction: column;
+
+    }
 }
