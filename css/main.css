@@ -1,4 +1,8 @@
 @charset "UTF-8";
+ul {
+  list-style: none;
+}
+
 /* Container */
 .container {
   margin: 0 auto;
@@ -119,5 +123,60 @@
   color: #676767;
   font-size: 15px;
   font-weight: 500;
+}
+
+#nav {
+  position: relative;
+}
+
+#nav .nav-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#nav .nav-menu li.item .nav-sub, #nav .nav-menu li.item .nav-sub-container {
+  display: none;
+}
+
+#nav .nav-menu li.item:hover .nav-sub, #nav .nav-menu li.item:hover .nav-sub-container {
+  height: 200px;
+}
+
+#nav .nav-menu li.item:hover .nav-sub {
+  display: block;
+  background: rgba(246, 246, 246, 0.97);
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  width: 100vw;
+}
+
+#nav .nav-menu li.item:hover .nav-sub .nav-sub-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px 150px;
+  position: relative;
+}
+
+#nav .nav-menu li.item:hover .nav-sub .nav-sub-container ul {
+  padding: 0;
+  width: 200px;
+  font-weight: 500;
+}
+
+#nav .nav-menu li.item:hover .nav-sub .nav-sub-container ul li {
+  padding: 10px 0;
 }
 /*# sourceMappingURL=main.css.map */
