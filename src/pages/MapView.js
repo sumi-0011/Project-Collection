@@ -1,13 +1,13 @@
 import React from 'react'
 
-function SocialDistance() {
+function MapView() {
     return (
         <div id="main-wrapper">
       <div className="container">
-        <h1>Welcome, SocialDistance</h1>
+        <h1>Welcome, Map</h1>
       </div>
     </div>
     )
 }
 
-export default SocialDistance;
+export default MapView;

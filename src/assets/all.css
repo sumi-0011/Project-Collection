@@ -1,0 +1,30 @@
+#header-wrapper {
+   padding: unset;
+   padding: 20px 0;
+}
+#nav ul li {
+    font-size: 14px;
+}
+#nav ul li .dropdown button {
+    transition: background-color .25s ease-in-out;
+    font-size: 14px;
+    letter-spacing: 0.025em;
+    color: #696969;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 0.5em 1em 0.5em 1em;
+    background-color: unset;
+}
+
+/* #main-wrapper */
+#main-wrapper {
+
+}
+
+@media screen and (min-width: 980px) {
+    /* 컴퓨터 화면 */
+    #main-wrapper {
+        height: calc(100vh - 100px);
+    }
+
+}
