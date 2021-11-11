@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*global kakao*/
 import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
@@ -235,18 +234,3 @@ export default function MapView(){
         </div>
     )
 }
-=======
-import React from 'react'
-
-function MapView() {
-    return (
-        <div id="main-wrapper">
-      <div className="container">
-        <h1>Welcome, Map</h1>
-      </div>
-    </div>
-    )
-}
-
-export default MapView;
->>>>>>> 7084c62a48ff7d8006070d79be3351bae36d09f9
