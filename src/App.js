@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PostList from "./components/Test/PostList.js";
 import Detail from "./components/Test/Detail.js";
-import { Main, NoSiderBarPage,SocialDistance,ConfirmeState,Map } from "./pages/index";
+import { Main, NoSiderBarPage,SocialDistance,ConfirmeState,MapView } from "./pages/index";
 import { Header, Footer } from "./components/index";
 import "./assets/css/main.css";
 function App() {
@@ -24,7 +24,7 @@ function RouterList() {
     <Switch>
       <Route exact path="/main" component={Main} />
       <Route exact path="/clinic" component={ConfirmeState} />
-      <Route exact path="/map" component={Map} />
+      <Route exact path="/map" component={MapView} />
       <Route exact path="/distance" component={SocialDistance} />
     </Switch>
   );

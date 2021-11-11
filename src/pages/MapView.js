@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Map() {
+function MapView() {
     return (
         <div id="main-wrapper">
       <div className="container">
@@ -10,4 +10,4 @@ function Map() {
     )
 }
 
-export default Map
+export default MapView;
