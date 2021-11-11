@@ -3,20 +3,30 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PostList from "./components/Test/PostList.js";
 import Detail from "./components/Test/Detail.js";
-import {Main , NoSiderBarPage} from './pages/index';
-import {Header, Footer} from './components/index';
-import './assets/css/main.css';
+import { Main, NoSiderBarPage,SocialDistance,ConfirmeState,MapView } from "./pages/index";
+import { Header, Footer } from "./components/index";
+import "./assets/css/main.css";
 function App() {
   return (
     <BrowserRouter>
-    <a href='html\index.html'>sss</a>
-    <Header/>
-    <Main/>
-     {/* <TestNav/>
+      {/* <a href='html\index.html'>sss</a> */}
+      <Header />
+      <RouterList />
+      {/* <TestNav/>
      <TestRouter/> */}
 
-     <Footer/>
+      {/* <Footer/> */}
     </BrowserRouter>
+  );
+}
+function RouterList() {
+  return (
+    <Switch>
+      <Route exact path="/main" component={Main} />
+      <Route exact path="/clinic" component={ConfirmeState} />
+      <Route exact path="/map" component={MapView} />
+      <Route exact path="/distance" component={SocialDistance} />
+    </Switch>
   );
 }
 function TestNav() {
@@ -33,13 +43,13 @@ function TestNav() {
   );
 }
 function TestRouter() {
-  return(
+  return (
     <Switch>
-    <Route exact path="/main" component={PostList} />
-    {/* 이건 나중에 바꾸도록? 숫자로? */}
-    <Route exact path="/main/posts/:id" component={Detail} />
-    
-  </Switch>
-  )
+       {/* 이건 나중에 바꾸도록? 숫자로? */}
+       <Route exact path="/main/posts/:id" component={Detail} />
+      {/* 이건 나중에 바꾸도록? 숫자로? */}
+      {/* <Route exact path="/main/posts/:id" component={Detail} /> */}
+    </Switch>
+  );
 }
 export default App;
