@@ -208,6 +208,10 @@ body {
   text-align: center;
 }
 
+#main-section .section__title {
+  padding: 30px 0;
+}
+
 #main-section .section__content {
   display: -webkit-box;
   display: -ms-flexbox;
