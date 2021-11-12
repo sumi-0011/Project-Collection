@@ -66,6 +66,7 @@ body {
       align-content: center;
   text-align: center;
   color: white;
+  margin: 0;
   font-weight: 700;
 }
 
@@ -393,6 +394,15 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
   }
   #nav .nav-menu li.item .item-content .container .item-container ul {
     min-width: 140px;
+  }
+  #visual .visual_image .visual_txt.visual_text_01 {
+    font-size: 22px;
+  }
+  #visual .visual_image .visual_txt.visual_text_02 {
+    font-size: 28px;
+  }
+  #visual .visual_image .visual_txt.visual_text_03 {
+    font-size: 18px;
   }
   section.section1 .banner-list .banner-item {
     width: 33%;
