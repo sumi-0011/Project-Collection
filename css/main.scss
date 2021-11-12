@@ -257,18 +257,20 @@ section.section1 {
     .banner-list{
         padding: 0;
         display: flex;
+        // flex-direction: row;
         flex-wrap: wrap;
+        
         .banner-item {
             overflow: hidden;
-            img {
-                width: 400px;
+            // img {
+            //     width: 400px;
+            // }
+            img:hover {
+                cursor:pointer;
+                transform:scale(1.05); /* 마우스 오버시 이미지 크기를 1.1 배만큼 확대시킨다. */
+                transition: transform .8s;  
             }
-        img:hover {
-            cursor:pointer;
-            transform:scale(1.05); /* 마우스 오버시 이미지 크기를 1.1 배만큼 확대시킨다. */
-            transition: transform .8s;  
         }
-    }
     }
 }
 section.section2 {
@@ -278,6 +280,7 @@ section.section2 {
     }
     .section__content {
         display: flex;
+        width: 100%;
         .map,.parking {
             overflow: hidden;
             img:hover {
@@ -286,17 +289,41 @@ section.section2 {
                 transition: transform .8s;  
             }
         }
-        .map img {
-            width: 730px;
+        .map {
+            width: 60%;
+            img {
+                width: 100%;
+            }
         }
-        .parking img{
-            width: 230px;
-        }
-        .timetable img,.center-phone img  {
-            width: 465px;
+        .rest {
+            width: 40%;
+            .parking  {
+                width: 100%;
+                display: flex;
+                img{
+                    width: 50%;
+                }
+            }
+            .timetable img,.center-phone img  {
+                width: 100%;
+            }
         }
         
     }
+}
+@media (min-width: 768px) {
+    // section1 수정 한 row에 3개
+    section.section1 {
+        .banner-list {
+            .banner-item {
+                width: 33%;
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
 }
 @media (min-width: 992px) {
     #nav .nav-menu li.item .item-content .container .item-container {
@@ -348,5 +375,10 @@ section.section2 {
 
         }
     }
+    // section.section1 .banner-list .banner-item {
+    //     img {
+    //         width: 400px;
+    //     }
+    // }
 }  
 

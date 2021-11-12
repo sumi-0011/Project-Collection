@@ -322,10 +322,6 @@ section.section1 .banner-list .banner-item {
   overflow: hidden;
 }
 
-section.section1 .banner-list .banner-item img {
-  width: 400px;
-}
-
 section.section1 .banner-list .banner-item img:hover {
   cursor: pointer;
   -webkit-transform: scale(1.05);
@@ -346,6 +342,7 @@ section.section2 .section__content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
 }
 
 section.section2 .section__content .map, section.section2 .section__content .parking {
@@ -363,16 +360,40 @@ section.section2 .section__content .map img:hover, section.section2 .section__co
   transition: transform .8s, -webkit-transform .8s;
 }
 
+section.section2 .section__content .map {
+  width: 60%;
+}
+
 section.section2 .section__content .map img {
-  width: 730px;
+  width: 100%;
 }
 
-section.section2 .section__content .parking img {
-  width: 230px;
+section.section2 .section__content .rest {
+  width: 40%;
 }
 
-section.section2 .section__content .timetable img, section.section2 .section__content .center-phone img {
-  width: 465px;
+section.section2 .section__content .rest .parking {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+section.section2 .section__content .rest .parking img {
+  width: 50%;
+}
+
+section.section2 .section__content .rest .timetable img, section.section2 .section__content .rest .center-phone img {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  section.section1 .banner-list .banner-item {
+    width: 33%;
+  }
+  section.section1 .banner-list .banner-item img {
+    width: 100%;
+  }
 }
 
 @media (min-width: 992px) {
