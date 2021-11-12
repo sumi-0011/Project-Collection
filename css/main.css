@@ -388,6 +388,12 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
 }
 
 @media (min-width: 768px) {
+  #nav .nav-menu li.item .item-content .container .item-container {
+    margin-left: 70px;
+  }
+  #nav .nav-menu li.item .item-content .container .item-container ul {
+    min-width: 140px;
+  }
   section.section1 .banner-list .banner-item {
     width: 33%;
   }

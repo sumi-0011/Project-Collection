@@ -312,6 +312,12 @@ section.section2 {
     }
 }
 @media (min-width: 768px) {
+    #nav .nav-menu li.item .item-content .container .item-container {
+        margin-left: 70px;
+        ul {
+            min-width: 140px;
+        }
+    }
     // section1 수정 한 row에 3개
     section.section1 {
         .banner-list {
