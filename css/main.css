@@ -298,6 +298,7 @@ body {
 #main-section .section__content .content-banner {
   width: 100%;
   height: 300px;
+  overflow: hidden;
 }
 
 #main-section .section__content .content-banner.content-banner-lg {

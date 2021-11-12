@@ -233,9 +233,6 @@ body {
             height: 100%;
             margin: 0 1px;
         }
-        .content-img img{
-            
-        }
         .content-img img {
             width: 100%;
             height: 300px;
@@ -246,6 +243,7 @@ body {
             width: 100%;
             height: 300px;
             // object-fit:cover;
+            overflow: hidden;
         }
         .content-banner.content-banner-lg {
             display: block;
@@ -307,7 +305,6 @@ section.section2 {
             min-width: 175px;
         }
     }
-   
 }
     
 
