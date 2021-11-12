@@ -132,7 +132,8 @@ body {
         font-size: 18px;
         font-weight: 700;
         li.item {
-            .nav-sub, .nav-sub-container,.item-content {
+            flex-grow: 1;
+            .item-content {
                 display: none;
             }
          
@@ -149,13 +150,12 @@ body {
                     height: 200px;
                     padding: 10px 0;
                     .container {
-                        padding-left:165px;
+                        padding-left:184px;
                         .item-container {
                             display: inline-flex;
                             ul {
                                 padding: 0;
-                                // margin-right: 10px;
-                                width: 200px;
+                                min-width: 196px;
                                 font-weight: 500;
                                 li {
                                     
