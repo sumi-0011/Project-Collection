@@ -171,6 +171,7 @@ body {
                 padding: 10px 0;
             }
             .item-content {
+                z-index: 10;
                 display: none;
                 left: 0;
                 position: fixed;
