@@ -246,9 +246,13 @@ body {
   font-size: 18px;
 }
 
+#main-section .section__content img {
+  height: 100%;
+  margin: 0 1px;
+}
+
 #main-section .section__content .content-img img {
   width: 690px;
-  height: 100%;
 }
 
 #main-section .section__content .content-banner {

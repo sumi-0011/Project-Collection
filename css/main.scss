@@ -204,11 +204,12 @@ body {
                 font-size: 18px;
             }
         }
-        .content-img {
-            img {
-                width: 690px;
-                height: 100%;
-            }
+        img {
+            height: 100%;
+            margin: 0 1px;
+        }
+        .content-img img{
+            width: 690px;            
         }
         .content-banner {
             width: 300px;
