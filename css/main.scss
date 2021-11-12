@@ -133,17 +133,12 @@ body {
         font-weight: 700;
         li.item {
             flex-grow: 1;
+            .item-name {
+                padding: 10px 0;
+            }
             .item-content {
                 display: none;
-            }
-         
-            &:hover {
-                .item-name {
-                    background-color: #5c5956;
-                }
-                .item-content {
-                    display: block;
-                    left: 0;
+                left: 0;
                     position: fixed;
                     background: rgba(246, 246, 246, 0.97);
                     right: 0;
@@ -172,6 +167,16 @@ body {
                         }
                       
                     }
+            }
+         
+            &:hover {
+                .item-name {
+                    // background-color: #5c5956;
+                    color: red;
+                }
+                .item-content {
+                    display: block;
+                    
                 }
             } 
             
