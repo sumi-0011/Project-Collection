@@ -13,11 +13,6 @@ body {
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
-@media (min-width: 1200px) {
-    .container {
-      width: 1200px !important;
-    }
-}  
 
 @media (max-width: 769px) {
 
@@ -32,6 +27,7 @@ body {
     }
 
 }
+
 
 // visual
 #visual {
@@ -141,8 +137,8 @@ body {
         align-items: center;
         height: 50px;
         font-size: 18px;
-            padding: 0;
-            font-weight: 700;
+        padding: 0;
+        font-weight: 700;
           
         li.item {
             &.first-item {
@@ -164,11 +160,10 @@ body {
                 padding: 10px 0;
                     .container {
                         .item-container {
-                            margin-left: 145px;
+                            // margin-left: 145px;
                             display: inline-flex;
                             ul {
                                 padding: 0;
-                                min-width: 213px;
                                 font-weight: 500;
                                 li {
                                     padding: 8px 10px 8px 0;
@@ -206,22 +201,29 @@ body {
     }
     .section__content {
         display: flex;
-        height: 290px;
+        // height: 290px;
+        flex-direction: column;
+            height: fit-content;
         .content-ul {
             margin: 0;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
-            width: 200px;
+            // width: 200px;
             padding-left: 0;
+            flex-direction: row;
+            width: 100%;
+            flex-wrap: wrap;
             li {
+                width: calc(25% - 4px);
+                height: 40px;
                 margin: 1px;
                 padding-top: 8px;
                 padding-bottom: 1px;
                 background-color: #aea79f;
-                width: 100%;
-                height: 100%;
+                // width: 100%;
+                // height: 100%;
                 color: white;
                 font-weight: 600;
                 font-size: 18px;
@@ -232,10 +234,24 @@ body {
             margin: 0 1px;
         }
         .content-img img{
-            width: 690px;            
+            
+        }
+        .content-img img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;  // 같은 오브젝트의 사이즈를 컨테이너의 크기에 맞춰 조절할 수 있음
+            overflow-y: hidden;
         }
         .content-banner {
-            width: 300px;
+            width: 100%;
+            height: 300px;
+            // object-fit:cover;
+        }
+        .content-banner.content-banner-lg {
+            display: block;
+        }
+        .content-banner.content-banner-sm {
+            display: none;
         }
     }
 }
@@ -284,7 +300,6 @@ section.section2 {
         
     }
 }
-
 @media (min-width: 992px) {
     #nav .nav-menu li.item .item-content .container .item-container {
         margin-left: 105px;
@@ -292,25 +307,49 @@ section.section2 {
             min-width: 175px;
         }
     }
-    #main-section  {
+   
+}
+    
+
+@media (min-width: 1200px) {
+    .container {
+      width: 1200px !important;
+    }
+    #nav .nav-menu li.item .item-content .container .item-container {
+        margin-left: 145px;
+        ul {
+            min-width: 213px;
+        }
+      
+    }
+    #main-section {
         .section__content {
-            flex-direction: column;
+            flex-direction: row;
+            justify-content: space-evenly;
+            flex-wrap: nowrap;
             .content-ul {
-                flex-direction: row;
-                width: 100%;
-                flex-wrap: wrap;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                width: 200px;
+                flex-wrap: nowrap;
                 li {
-                    width: calc(25% - 4px);
-                    height: 40px;
+                    width: 100%;
                 }
             }
             .content-img img {
-                width: 100%;
-                height: 300px;
-                object-fit: cover;  // 같은 오브젝트의 사이즈를 컨테이너의 크기에 맞춰 조절할 수 있음
-                overflow-y: hidden;
+                width: 690px;            
+                height: 100%;
             }
+            .content-banner.content-banner-lg {
+                display: none;
+            }
+            .content-banner.content-banner-sm {
+                width: 300px;
+                display: block;
+            }
+
         }
-       
     }
-}
+}  
+
