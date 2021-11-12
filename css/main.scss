@@ -292,4 +292,19 @@ section.section2 {
             min-width: 175px;
         }
     }
+    #main-section  {
+        .section__content {
+            flex-direction: column;
+            .content-ul {
+                flex-direction: row;
+                width: 100%;
+                flex-wrap: wrap;
+                li {
+                    width: calc(25% - 4px);
+                    height: 40px;
+                }
+            }
+        }
+       
+    }
 }

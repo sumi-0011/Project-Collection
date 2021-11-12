@@ -366,5 +366,24 @@ section.section2 .section__content .timetable img, section.section2 .section__co
   #nav .nav-menu li.item .item-content .container .item-container ul {
     min-width: 175px;
   }
+  #main-section .section__content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #main-section .section__content .content-ul {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    width: 100%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  #main-section .section__content .content-ul li {
+    width: calc(25% - 4px);
+    height: 40px;
+  }
 }
 /*# sourceMappingURL=main.css.map */
