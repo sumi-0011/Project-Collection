@@ -52,7 +52,6 @@ body {
 }
 
 #visual .swiper-slide {
-  width: 110vw;
   position: relative;
   left: -2.6%;
 }
@@ -69,7 +68,6 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 110vw;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -81,24 +79,21 @@ body {
 
 #visual .visual_image .visual_txt {
   color: white;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 #visual .visual_image .visual_txt.visual_text_01 {
   color: #6febfb;
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 38px;
 }
 
 #visual .visual_image .visual_txt.visual_text_02 {
-  font-size: 45px;
-  font-weight: 700;
-  padding: 15px;
+  font-size: 55px;
+  margin: 15px 0;
 }
 
 #visual .visual_image .visual_txt.visual_text_03 {
-  font-size: 25px;
-  font-weight: 700;
+  font-size: 30px;
 }
 
 #visual .swiper-button-prev, #visual .swiper-button-next {
