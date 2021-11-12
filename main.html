@@ -238,27 +238,44 @@
             </div>
             <div class="section__content">
                 <ul class="content-ul">
-                    <li>목 통증</li>
-                    <li>팔꿈치 통증</li>
-                    <li>허리 통증</li>
-                    <li>어깨 통증</li>
-                    <li>무릎 통증</li>
-                    <li>엉덩이 통증</li>
-                    <li>손,손목 통증</li>
-                    <li>발,발목 통증</li>
+                    <li class="item">
+                        목통증
+                    </li>
+                    <li class="item">팔꿈치 통증</li>
+                    <li class="item">허리 통증</li>
+                    <li class="item">어깨 통증</li>
+                    <li class="item">무릎 통증</li>
+                    <li class="item">엉덩이 통증</li>
+                    <li class="item">손,손목 통증</li>
+                    <li class="item">발,발목 통증</li>
                 </ul>
                 <div class="content-img">
 
                 </div>
                 <div class="content-banner">
-                    
+
                 </div>
             </div>
 
         </div>
     </div>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+    <script>
+        const items = document.querySelectorAll('#main-section ul li.item');
+        const MainSContentImg = document.querySelector('#main-section .content-img');
+
+        // main section에 이미지 추가
+        items.forEach(function(currentItem,currentIndex) {
+            currentItem.addEventListener('mouseover',function() {
+                const value = '<img src="./image/pain_0'+(currentIndex+1)+'.png" alt="어디가 아프세요?">'
+                MainSContentImg.innerHTML = value;
+
+            })
+
+        })
+    </script>
+
 </body>
 
 </html>

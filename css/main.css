@@ -246,8 +246,9 @@ body {
   font-size: 18px;
 }
 
-#main-section .section__content .content-img {
+#main-section .section__content .content-img img {
   width: 690px;
+  height: 100%;
 }
 
 #main-section .section__content .content-banner {

@@ -205,7 +205,10 @@ body {
             }
         }
         .content-img {
-            width: 690px;
+            img {
+                width: 690px;
+                height: 100%;
+            }
         }
         .content-banner {
             width: 300px;
