@@ -219,3 +219,24 @@ body {
         }
     }
 }
+section.section1 {
+    .banner-list{
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        .banner-item {
+            overflow: hidden;
+            img {
+                width: 400px;
+            }
+        img:hover {
+            cursor:pointer;
+
+            transform:scale(1.05); /* 마우스 오버시 이미지 크기를 1.1 배만큼 확대시킨다. */
+            transition: transform .8s;  
+        }
+    }
+    }
+   
+
+}

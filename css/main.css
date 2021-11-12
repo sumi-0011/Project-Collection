@@ -262,4 +262,32 @@ body {
 #main-section .section__content .content-banner {
   width: 300px;
 }
+
+section.section1 .banner-list {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+section.section1 .banner-list .banner-item {
+  overflow: hidden;
+}
+
+section.section1 .banner-list .banner-item img {
+  width: 400px;
+}
+
+section.section1 .banner-list .banner-item img:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  /* 마우스 오버시 이미지 크기를 1.1 배만큼 확대시킨다. */
+  -webkit-transition: -webkit-transform .8s;
+  transition: -webkit-transform .8s;
+  transition: transform .8s;
+  transition: transform .8s, -webkit-transform .8s;
+}
 /*# sourceMappingURL=main.css.map */
