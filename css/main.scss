@@ -4,7 +4,7 @@ ul {
 }
 body {
     overflow-x: hidden;
-
+    width: 100vw;
 }
 /* Container */
 .container {
@@ -14,12 +14,7 @@ body {
     padding-right: 0 !important;
 }
 
-@media (max-width: 769px) {
 
-    .container {
-        padding: 0 15px;
-    }
-}
 /* visusal */
 @media (min-width: 1200px) {
     #visual {
@@ -38,6 +33,12 @@ body {
     .swiper-slide {
         position: relative;
         left: -2.6%;
+    }
+    .swiper-slide:not(.swiper-slide-active) .visual_image   {
+        display: none;
+    }
+    .swiper-slide-active {
+        display: block;
     }
     .visual_image {
         padding: 0 50px;
@@ -402,3 +403,9 @@ section.section2 {
     // }
 }  
 
+@media (max-width: 769px) {
+
+    .container {
+        padding: 0 15px;
+    }
+}
