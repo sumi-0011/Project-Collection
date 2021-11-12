@@ -37,7 +37,6 @@ ul {
 @media (min-width: 1200px) {
     #visual {
         text-align: center;
-        background-color: rebeccapurple;
     }
 
 }
@@ -99,8 +98,6 @@ ul {
         height: 60px;
     }
     .header-link {
-        // display: flex;
-        // align-items: center;
         & > span + span {
             &::before {
                 content: 'ㅣ';
@@ -171,7 +168,6 @@ body {
          
             &:hover {
                 .item-name {
-                    // background-color: #5c5956;
                     color: red;
                 }
                 .item-content {
