@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
     <style>
 
     </style>
@@ -38,20 +38,20 @@
                         <div class="container">
                             <div class="item-container">
 
-                            <ul>
-                                <li><a href="#">의료진소개</a></li>
-                                <li><a href="#">진료시간</a></li>
-                                <li><a href="#">찾아오시는 길</a></li>
-                            </ul>
-                            <ul>
-                                <li><a href="#">병원 내부안내</a></li>
-                                <li><a href="#">의료장비 소개</a></li>
-                            </ul>
-                            <ul>
-                                <li><a href="#">공지사항</a></li>
-                                <li><a href="#">자주하는 질문</a></li>
-                            </ul>
-                        </div>
+                                <ul>
+                                    <li><a href="#">의료진소개</a></li>
+                                    <li><a href="#">진료시간</a></li>
+                                    <li><a href="#">찾아오시는 길</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="#">병원 내부안내</a></li>
+                                    <li><a href="#">의료장비 소개</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="#">공지사항</a></li>
+                                    <li><a href="#">자주하는 질문</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -59,25 +59,25 @@
                     <div class="item-name">
                         바로나 소개
                     </div>
-                  
+
                     <div class="item-content">
                         <div class="container">
                             <div class="item-container">
 
-                            <ul>
-                                <li><a href="#">의료진소개</a></li>
-                                <li><a href="#">진료시간</a></li>
-                                <li><a href="#">찾아오시는 길</a></li>
-                            </ul>
-                            <ul>
-                                <li><a href="#">병원 내부안내</a></li>
-                                <li><a href="#">의료장비 소개</a></li>
-                            </ul>
-                            <ul>
-                                <li><a href="#">공지사항</a></li>
-                                <li><a href="#">자주하는 질문</a></li>
-                            </ul>
-                        </div>
+                                <ul>
+                                    <li><a href="#">의료진소개</a></li>
+                                    <li><a href="#">진료시간</a></li>
+                                    <li><a href="#">찾아오시는 길</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="#">병원 내부안내</a></li>
+                                    <li><a href="#">의료장비 소개</a></li>
+                                </ul>
+                                <ul>
+                                    <li><a href="#">공지사항</a></li>
+                                    <li><a href="#">자주하는 질문</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -231,9 +231,78 @@
             </p>
         </div>
     </div>
+    <div id="main-section">
+        <div class="container">
+            <div class="section__title">
+                <img src="./image/main_tit_01.png" alt="어디가 아프세요?">
+            </div>
+            <div class="section__content">
+                <ul class="content-ul">
+                    <li class="item">
+                        목통증
+                    </li>
+                    <li class="item">팔꿈치 통증</li>
+                    <li class="item">허리 통증</li>
+                    <li class="item">어깨 통증</li>
+                    <li class="item">무릎 통증</li>
+                    <li class="item">엉덩이 통증</li>
+                    <li class="item">손,손목 통증</li>
+                    <li class="item">발,발목 통증</li>
+                </ul>
+                <div class="content-img">
+                    <img src="./image/pain_01.png" alt="어디가 아프세요?">
+                </div>
+                <div class="content-banner">
+                    <img src="./image/pain_banner_sm.png" alt="바로나는 몸의 통증 뿐만 아니라 마음의 통증도 치료합니다. ">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <section class="section1 ">
+        <div class="container">
+            <ul class="banner-list">
+                <li class="banner-item">
+                    <img src="./image/banner_01.png" alt="" srcset="">
+                </li>
+                <li  class="banner-item">
+                    <img src="./image/banner_02.png" alt="" srcset="">
+                </li>
+                <li class="banner-item">
+                    <img src="./image/banner_03.png" alt="" srcset="">
+                </li>
+                <li class="banner-item">
+                    <img src="./image/banner_04.png" alt="" srcset="">
+                </li>
+                <li class="banner-item">
+                    <img src="./image/banner_06.png" alt="" srcset="">
+                </li>
+                <li class="banner-item">
+                    <img src="./image/banner_07.png" alt="" srcset="">
+                </li>
+
+            </ul>
 
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        </div>
+    </section>
+
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+    <script>
+        const items = document.querySelectorAll('#main-section ul li.item');
+        const MainSContentImg = document.querySelector('#main-section .content-img');
+
+        // main section에 이미지 추가
+        items.forEach(function (currentItem, currentIndex) {
+            currentItem.addEventListener('mouseover', function () {
+                const value = '<img src="./image/pain_0' + (currentIndex + 1) + '.png" alt="어디가 아프세요?">'
+                MainSContentImg.innerHTML = value;
+
+            })
+
+        })
+    </script>
+
 </body>
 
 </html>
