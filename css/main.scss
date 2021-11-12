@@ -116,6 +116,9 @@ ul {
 
 }
 
+body {
+    height: 2000px;
+}
 
 #nav {
     position: relative;
@@ -129,55 +132,48 @@ ul {
         font-size: 18px;
         font-weight: 700;
         li.item {
-            .nav-sub, .nav-sub-container {
-                // transition: all ease 2s 0s;
-                // width: 0;
-                // height: 0;
-                // visibility: hidden;
+            .nav-sub, .nav-sub-container,.item-content {
                 display: none;
             }
-            .nav-sub {
-               
-            } 
-            .nav-sub-container {
-                
-            }
+         
             &:hover {
-                .nav-sub,  .nav-sub-container {
-                    height: 200px;
+                .item-name {
+                    background-color: #5c5956;
                 }
-                .nav-sub {
-                    // display: none;
-                    display: block; 
-                    background: rgba(246, 246, 246, 0.97);
-                    position: absolute;
-                    top: 50px;
+                .item-content {
+                    display: block;
                     left: 0;
+                    position: fixed;
+                    background: rgba(246, 246, 246, 0.97);
                     right: 0;
-                    width: 100vw;
-                    .nav-sub-container {
-                        display: flex;
-                        padding: 20px 150px;
-                        position: relative;
-                        // flex-direction: row;
-                        // padding: 10px 120px;
-                        // background-color: salmon;                        
-                        // justify-content: space-between;
-                        
-                        ul {
-                            padding: 0;
-                            width: 200px;
-                            font-weight: 500;
-                            li {
-                                padding: 10px 0;
+                    height: 200px;
+                    padding: 10px 0;
+                    .container {
+                        padding-left:165px;
+                        .item-container {
+                            display: inline-flex;
+                            ul {
+                                padding: 0;
+                                // margin-right: 10px;
+                                width: 200px;
+                                font-weight: 500;
+                                li {
+                                    
+                                    padding: 10px 0;
+                                    & > a {
+                                        color: #5c5956;
+                                        text-decoration: none;
+                                        &:hover {
+                                            color: red;
+                                        }
+                                    }
+                                }
                             }
                         }
-                       
+                      
                     }
-                } 
-                
+                }
             } 
-          
             
         }
     }
