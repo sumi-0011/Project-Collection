@@ -236,7 +236,31 @@ section.section1 {
         }
     }
     }
-   
-
 }
-
+section.section2 {
+    .section__title {
+    text-align: center;
+        padding: 30px 0;
+    }
+    .section__content {
+        display: flex;
+        .map,.parking {
+            overflow: hidden;
+            img:hover {
+                cursor:pointer;
+                transform:scale(1.05); /* 마우스 오버시 이미지 크기를 1.1 배만큼 확대시킨다. */
+                transition: transform .8s;  
+            }
+        }
+        .map img {
+            width: 730px;
+        }
+        .parking img{
+            width: 230px;
+        }
+        .timetable img,.center-phone img  {
+            width: 465px;
+        }
+        
+    }
+}

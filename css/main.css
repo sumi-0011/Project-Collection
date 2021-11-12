@@ -290,4 +290,42 @@ section.section1 .banner-list .banner-item img:hover {
   transition: transform .8s;
   transition: transform .8s, -webkit-transform .8s;
 }
+
+section.section2 .section__title {
+  text-align: center;
+  padding: 30px 0;
+}
+
+section.section2 .section__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+section.section2 .section__content .map, section.section2 .section__content .parking {
+  overflow: hidden;
+}
+
+section.section2 .section__content .map img:hover, section.section2 .section__content .parking img:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  /* 마우스 오버시 이미지 크기를 1.1 배만큼 확대시킨다. */
+  -webkit-transition: -webkit-transform .8s;
+  transition: -webkit-transform .8s;
+  transition: transform .8s;
+  transition: transform .8s, -webkit-transform .8s;
+}
+
+section.section2 .section__content .map img {
+  width: 730px;
+}
+
+section.section2 .section__content .parking img {
+  width: 230px;
+}
+
+section.section2 .section__content .timetable img, section.section2 .section__content .center-phone img {
+  width: 465px;
+}
 /*# sourceMappingURL=main.css.map */
