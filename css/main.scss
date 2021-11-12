@@ -55,6 +55,7 @@ body {
             align-content: center;
             text-align: center;
             color: white;
+            margin: 0;
                 font-weight: 700;
             &.visual_text_01 {
                 color: #6febfb;
@@ -66,6 +67,7 @@ body {
             }
             &.visual_text_03 {
                 font-size: 30px;
+                
             }
         }
         
@@ -318,6 +320,17 @@ section.section2 {
             min-width: 140px;
         }
     }
+    #visual .visual_image  .visual_txt {
+        &.visual_text_01 {
+            font-size: 22px;
+        }
+        &.visual_text_02 {
+            font-size: 28px;
+        }
+        &.visual_text_03 {
+            font-size: 18px;
+        }
+    }
     // section1 수정 한 row에 3개
     section.section1 {
         .banner-list {
@@ -329,6 +342,7 @@ section.section2 {
             }
         }
     }
+    
 
 }
 @media (min-width: 992px) {
