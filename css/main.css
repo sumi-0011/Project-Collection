@@ -21,18 +21,6 @@ body {
   }
 }
 
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    width: 760px;
-  }
-}
-
 @media (max-width: 769px) {
   .container {
     padding: 0 15px;
@@ -58,6 +46,7 @@ body {
 }
 
 #visual .visual_image {
+  padding: 0 50px;
   height: 512px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -79,6 +68,9 @@ body {
 }
 
 #visual .visual_image .visual_txt {
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
   color: white;
   font-weight: 700;
 }
@@ -222,7 +214,7 @@ body {
 }
 
 #nav .nav-menu li.item .item-content .container .item-container ul li {
-  padding: 10px 0;
+  padding: 8px 10px 8px 0;
 }
 
 #nav .nav-menu li.item .item-content .container .item-container ul li > a {
@@ -365,5 +357,14 @@ section.section2 .section__content .parking img {
 
 section.section2 .section__content .timetable img, section.section2 .section__content .center-phone img {
   width: 465px;
+}
+
+@media (min-width: 992px) {
+  #nav .nav-menu li.item .item-content .container .item-container {
+    margin-left: 105px;
+  }
+  #nav .nav-menu li.item .item-content .container .item-container ul {
+    min-width: 175px;
+  }
 }
 /*# sourceMappingURL=main.css.map */
