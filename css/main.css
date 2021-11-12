@@ -48,9 +48,16 @@ body {
 #visual {
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
-#visual .visual_img {
+#visual .swiper-slide {
+  width: 110vw;
+  position: relative;
+  left: -2.6%;
+}
+
+#visual .visual_image {
   height: 512px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -62,38 +69,58 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 110vw;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  position: relative;
-  left: -1%;
 }
 
-#visual .visual_img.visual_02 {
-  width: 100vw;
+#visual .visual_image.visual_02 {
   background: url("../image/visual_02.png");
 }
 
-#visual .visual_img .visual_txt {
+#visual .visual_image .visual_txt {
   color: white;
   font-weight: bold;
 }
 
-#visual .visual_img .visual_txt.visual_txt1 {
+#visual .visual_image .visual_txt.visual_text_01 {
   color: #6febfb;
   font-size: 30px;
   font-weight: 700;
 }
 
-#visual .visual_img .visual_txt.visual_txt2 {
+#visual .visual_image .visual_txt.visual_text_02 {
   font-size: 45px;
   font-weight: 700;
   padding: 15px;
 }
 
-#visual .visual_img .visual_txt.visual_txt3 {
+#visual .visual_image .visual_txt.visual_text_03 {
   font-size: 25px;
   font-weight: 700;
+}
+
+#visual .swiper-button-prev, #visual .swiper-button-next {
+  color: white;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+#visual .swiper-button-prev {
+  left: -10%;
+}
+
+#visual .swiper-button-next {
+  right: -10%;
+}
+
+#visual:hover .swiper-button-prev {
+  left: 30px;
+}
+
+#visual:hover .swiper-button-next {
+  right: 30px;
 }
 
 /* Header */
