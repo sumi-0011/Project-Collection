@@ -35,30 +35,83 @@
             </div>
             <div class="header-mobile">
                 <div class="mBtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                      </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                        class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
                 </div>
                 <div class="header-mobile-title">
-                    
+
                     <img id="header-mobile-logo" src="./image/logo.png" alt="바로나 마취통증의학과" srcset="">
                 </div>
-                
+
 
             </div>
         </div>
     </div>
     <div class="mobile-bar">
-        
-            <nav class="mNav">
-                <ul class="sub">
-                    <div class="closeBtn"><a href="javascript:;">메뉴닫기</a></div>
-                    <li><a href="#!">Menu01</a></li>
-                    <li><a href="#!">Menu02</a></li>
-                    <li><a href="#!">Menu03</a></li>
-                </ul>
-            </nav>
-            <div class="bg-shadow"></div>
+
+        <nav class="mNav">
+            <ul class="sub">
+                <div class="closeBtn"><a href="javascript:;">메뉴닫기</a></div>
+                <li class="menu1 menu">
+                    <a href="#!">병원소개</a>
+                    <ul class="sub-menu">
+                        <li>진료시간</li>
+                        <li>찾아오시는 길</li>
+                        <li>병원 내부안내</li>
+                        <li>의료장비 소개</li>
+                    </ul>
+                </li>
+                <li class="menu2 menu"><a href="#!">통증클리닉</a>
+                    <ul class="sub-menu">
+                        <li>두통</li>
+                        <li>목통증</li>
+                        <li>등통증</li>
+                        <li>어깨 통증</li>
+                        <li>팔꿈치 통증</li>
+                        <li>허리 통증</li>
+                        <li>무릎 통증</li>
+                        <li>엉덩이 통증</li>
+                        <li>사타구니 통증</li>
+                        <li>손목/손가락 통증</li>
+                        <li>발목/발가락 통증</li>
+                     
+                    </ul>
+                </li>
+                <li class="menu3 menu"><a href="#!">전문클리닉</a>
+                    <ul class="sub-menu">
+                        <li>팔꿈치 통증</li>
+                        <li>어깨 통증</li>
+                        <li>목 통증</li>
+                        <li>대상포진</li>
+                        <li>교통사고 진단</li>
+                    </ul>
+                </li>
+                <li class="menu4 menu"><a href="#!">치료법</a>
+                    <ul class="sub-menu">
+                        <li>프롤로 치료</li>
+                        <li>스톨스체외 충격치료</li>
+                        <li>수면 신경치료</li>
+                        <li>무릎 유전자 치료</li>
+                        <li>도수 치료</li>
+                    </ul>
+                </li>
+                <li class="menu5 menu"><a href="#!">상담&예약</a>
+                    <ul class="sub-menu">
+                        <li>공지사항</li>
+                        <li>자주하는질문</li>
+                    </ul>
+                </li>
+                <li class="menu6 menu"><a href="#!">관리자</a>
+                    <ul class="sub-menu">
+                     
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="bg-shadow"></div>
     </div>
     <!-- nav/ -->
     <div id="nav">
@@ -405,33 +458,33 @@
     <!-- 햄버거 nav -->
     <script>
         const navtab = {
-        
-            init: function(){
+
+            init: function () {
                 this.motab();
             },
-            motab: function() {
+            motab: function () {
                 let mBtn = $(".mBtn");
                 let closeBtn = $(".closeBtn");
-        
+
                 // 모바일 버튼 클릭
-                $(mBtn).click(function(){
+                $(mBtn).click(function () {
                     $(".mNav").addClass("on");
                     $(".bg-shadow").css("display", "block");
                 });
                 // 화면 클릭
-                $(".bg-shadow").click(function(){
+                $(".bg-shadow").click(function () {
                     $(".mNav").removeClass("on");
                     $(".bg-shadow").css("display", "none");
                 });
                 // 닫기 버튼 클릭
-                $(closeBtn).click(function(){
+                $(closeBtn).click(function () {
                     $(".mNav").removeClass("on");
                     $(".bg-shadow").css("display", "none");
                 });
             }
         }
-        
-        $(document).ready(function(){
+
+        $(document).ready(function () {
             navtab.init();
         })</script>
 </body>
