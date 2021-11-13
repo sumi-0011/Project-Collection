@@ -544,8 +544,7 @@ section.section2 {
     #nav {
         display: none;
     }
-    #visual {
-        #visual-slide {
+    #visual  #visual-slide{
             .visual_image {
                 padding: 10px;
                 .visual_text_01 {
@@ -558,6 +557,19 @@ section.section2 {
                     font-size: 15px;
                 }
             }
+    }
+    #main-section .section__content {
+        .content-ul{
+            .item {
+                width: calc(50% - 3px);
+            }
+        }
+        .content-img img{
+            height: fit-content;
+        }
+        .content-banner {
+            height: 130px;
+            object-fit: cover ;
         }
     }
   
