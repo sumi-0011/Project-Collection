@@ -462,7 +462,7 @@
     </script>
     <!-- 햄버거 nav -->
     <script>
-      
+
 
 
         const navtab = {
@@ -497,15 +497,15 @@
             },
             motab: function () {
                 const subMenus = document.querySelectorAll('.mobile-bar .menu a');
-        subMenus.forEach((sub) => {
-            sub.addEventListener('click',function() {
-                let onList = document.querySelector('.mobile-bar .menu.on');
-                if(onList) {
-                    onList.classList.remove('on');
-                }
-                sub.parentElement.classList.add('on');
-            })
-        })
+                subMenus.forEach((sub) => {
+                    sub.addEventListener('click', function () {
+                        let onList = document.querySelector('.mobile-bar .menu.on');
+                        if (onList) {
+                            onList.classList.remove('on');
+                        }
+                        sub.parentElement.classList.add('on');
+                    })
+                })
 
             }
         }

@@ -458,15 +458,19 @@ section.section2 {
                 left: 0; 
                 // right: 0;
             }
+            ul {
+                padding-left: 0;
+            }
             .sub {
                 position: relative; 
                 padding-top: 30px;
-                .closeBtn {
-                    // position: absolute; 
-                    // top: 0; 
-                    // right: 0; 
-                    // display: block; 
-                }
+                
+                // .closeBtn {
+                //     // position: absolute; 
+                //     // top: 0; 
+                //     // right: 0; 
+                //     // display: block; 
+                // }
                 .closeBtn a { 
                     display: block; 
                     // text-indent: -9999px;
@@ -477,15 +481,41 @@ section.section2 {
                     margin-right: 20px; 
                 }
                 li.menu{
-
                     a { 
                         display: block; 
-                        font-size: 1.4rem; 
+                        font-size: 16px; 
                         color: #333; 
                         padding: 10px 20px;
                         border-bottom: 1px solid #d1d4d8;
+                        border-top: 1px solid #d1d4d8;
+                        text-decoration: none;
+                    }
+                    
+                    .sub-menu {
+                        background-color: #f6f7fa;
+                        // display: flex;
+                        display: none;
+                        flex-wrap: wrap;
+                        li {
+                            width: 50%;
+                            padding: 10px;
+                            border-bottom: #eaeaea 1px solid;
+                            border-right: #eaeaea 1px solid;
+                            padding-left: 15px;
+                        }
+                        
+                    }
+                    //클릭된 경우
+                    &.on {
+                        a{
+                            color: red;
+                        }
+                        .sub-menu  {
+                            display: flex;
+                        }
                     }
                 }
+               
             }
 
         }
