@@ -294,6 +294,10 @@ body {
   margin-right: 20px;
 }
 
+.mobile-bar .mNav .sub li.menu {
+  position: relative;
+}
+
 .mobile-bar .mNav .sub li.menu a {
   display: block;
   font-size: 16px;
@@ -302,6 +306,14 @@ body {
   border-bottom: 1px solid #d1d4d8;
   border-top: 1px solid #d1d4d8;
   text-decoration: none;
+}
+
+.mobile-bar .mNav .sub li.menu a::after {
+  content: '+';
+  font-size: 35px;
+  position: absolute;
+  right: 10px;
+  top: -3px;
 }
 
 .mobile-bar .mNav .sub li.menu .sub-menu {
@@ -321,6 +333,12 @@ body {
 
 .mobile-bar .mNav .sub li.menu.on a {
   color: red;
+}
+
+.mobile-bar .mNav .sub li.menu.on a::after {
+  content: '-';
+  right: 15px;
+  color: #333;
 }
 
 .mobile-bar .mNav .sub li.menu.on .sub-menu {

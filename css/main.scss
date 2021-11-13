@@ -230,7 +230,6 @@ body {
         width: 80%; 
         height: 100%; 
         transition: all 0.3s ease; 
-        // display: none;
         &.on { 
             left: 0; 
         }
@@ -256,6 +255,7 @@ body {
                 margin-right: 20px; 
             }
             li.menu{
+                position: relative;
                 a { 
                     display: block; 
                     font-size: 16px; 
@@ -265,7 +265,13 @@ body {
                     border-top: 1px solid #d1d4d8;
                     text-decoration: none;
                 }
-                
+                a::after {
+                    content: '+';    
+                    font-size:35px;
+                    position: absolute;
+                    right: 10px;
+                    top: -3px;
+                }
                 .sub-menu {
                     background-color: #f6f7fa;
                     // display: flex;
@@ -283,6 +289,11 @@ body {
                 &.on {
                     a{
                         color: red;
+                    }
+                    a::after {
+                        content: '-';    
+                        right: 15px;
+                        color: #333;
                     }
                     .sub-menu  {
                         display: flex;
