@@ -572,12 +572,22 @@ section.section2 {
             object-fit: cover ;
         }
     }
-    .section1  .banner-list {
+    section.section1  .banner-list {
         .banner-item {
             width: 100%;
             img {
                 width: 100%;
             }
+        }
+    }
+    section.section2 .section__content {
+        flex-direction: column;
+        .map {
+            width: 100%;
+        }
+        .rest {
+            width: 100%;
+            
         }
     }
 }

@@ -645,10 +645,22 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
     -o-object-fit: cover;
        object-fit: cover;
   }
-  .section1 .banner-list .banner-item {
+  section.section1 .banner-list .banner-item {
     width: 100%;
   }
-  .section1 .banner-list .banner-item img {
+  section.section1 .banner-list .banner-item img {
+    width: 100%;
+  }
+  section.section2 .section__content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  section.section2 .section__content .map {
+    width: 100%;
+  }
+  section.section2 .section__content .rest {
     width: 100%;
   }
 }
