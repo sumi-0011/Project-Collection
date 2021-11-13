@@ -15,13 +15,14 @@ body {
 }
 
 
-/* visusal */
-@media (min-width: 1200px) {
-    #visual {
-        text-align: center;
-    }
 
-}
+/* visusal */
+// @media (min-width: 1200px) {
+//     #visual {
+//         text-align: center;
+//     }
+
+// }
 
 
 // visual
@@ -402,10 +403,107 @@ section.section2 {
     //     }
     // }
 }  
-
 @media (max-width: 769px) {
 
     .container {
         padding: 0 15px;
     }
+    #header {
+        height: fit-content;
+        .header-container {
+            display: none;
+            
+            
+        }
+        .header-mobile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .mBtn {
+                // width: 30px;
+                position: relative;
+                left: 30px;
+            }
+            .header-mobile-title {
+                width: fit-content;
+                height: fit-content;
+                margin: auto;
+                padding: 5px;
+                img#header-mobile-logo {
+                    width: fit-content;
+                    height: 60px;
+                   
+                }
+            }
+           
+        }
+       
+    }
+    #nav {
+        display: none;
+    }
+    .mobile-bar {
+        // display: block;
+        background-color: rebeccapurple;
+        .mNav {
+            z-index: 2; 
+            position: fixed; 
+            background-color: #fff; 
+            top: 0; 
+            left: -100%; 
+            width: 80%; 
+            height: 100%; 
+            transition: all 0.3s ease; 
+            &.on { 
+                left: 0; 
+                // right: 0;
+            }
+            .sub {
+                position: relative; 
+                padding-top: 30px;
+                .closeBtn {
+                    // position: absolute; 
+                    // top: 0; 
+                    // right: 0; 
+                    // display: block; 
+                }
+                .closeBtn a { 
+                    display: block; 
+                    // text-indent: -9999px;
+                    // width: 24px; 
+                    // height: 24px; 
+                    // background: url('../images/close.png') no-repeat;
+                    margin-top: 25px; 
+                    margin-right: 20px; 
+                }
+                li a { 
+                    display: block; 
+                    font-size: 1.4rem; 
+                    color: #333; 
+                    padding: 10px 20px;
+                    border-bottom: 1px solid #d1d4d8;
+                }
+            }
+
+        }
+        .bg-shadow {
+            position: fixed; 
+            top: 0; 
+            right: 0; 
+           width: 100%; 
+           height: 100%;
+           z-index: 1; 
+           background: rgba(0, 0, 0, 0.7); 
+           display: none;
+            cursor: pointer; 
+       }
+       
+       
+       
+       
+       
+       
+    }
+
+  
 }

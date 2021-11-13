@@ -17,12 +17,6 @@ body {
 }
 
 /* visusal */
-@media (min-width: 1200px) {
-  #visual {
-    text-align: center;
-  }
-}
-
 #visual {
   margin: 0;
   padding: 0;
@@ -479,6 +473,92 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
 @media (max-width: 769px) {
   .container {
     padding: 0 15px;
+  }
+  #header {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  #header .header-container {
+    display: none;
+  }
+  #header .header-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  #header .header-mobile .mBtn {
+    position: relative;
+    left: 30px;
+  }
+  #header .header-mobile .header-mobile-title {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: auto;
+    padding: 5px;
+  }
+  #header .header-mobile .header-mobile-title img#header-mobile-logo {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 60px;
+  }
+  #nav {
+    display: none;
+  }
+  .mobile-bar {
+    background-color: rebeccapurple;
+  }
+  .mobile-bar .mNav {
+    z-index: 2;
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100%;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .mobile-bar .mNav.on {
+    left: 0;
+  }
+  .mobile-bar .mNav .sub {
+    position: relative;
+    padding-top: 30px;
+  }
+  .mobile-bar .mNav .sub .closeBtn a {
+    display: block;
+    margin-top: 25px;
+    margin-right: 20px;
+  }
+  .mobile-bar .mNav .sub li a {
+    display: block;
+    font-size: 1.4rem;
+    color: #333;
+    padding: 10px 20px;
+    border-bottom: 1px solid #d1d4d8;
+  }
+  .mobile-bar .bg-shadow {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    cursor: pointer;
   }
 }
 /*# sourceMappingURL=main.css.map */
