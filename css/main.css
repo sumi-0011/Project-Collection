@@ -645,5 +645,11 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
     -o-object-fit: cover;
        object-fit: cover;
   }
+  .section1 .banner-list .banner-item {
+    width: 100%;
+  }
+  .section1 .banner-list .banner-item img {
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=main.css.map */
