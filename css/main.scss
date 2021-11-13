@@ -476,12 +476,15 @@ section.section2 {
                     margin-top: 25px; 
                     margin-right: 20px; 
                 }
-                li a { 
-                    display: block; 
-                    font-size: 1.4rem; 
-                    color: #333; 
-                    padding: 10px 20px;
-                    border-bottom: 1px solid #d1d4d8;
+                li.menu{
+
+                    a { 
+                        display: block; 
+                        font-size: 1.4rem; 
+                        color: #333; 
+                        padding: 10px 20px;
+                        border-bottom: 1px solid #d1d4d8;
+                    }
                 }
             }
 

@@ -542,7 +542,7 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
     margin-top: 25px;
     margin-right: 20px;
   }
-  .mobile-bar .mNav .sub li a {
+  .mobile-bar .mNav .sub li.menu a {
     display: block;
     font-size: 1.4rem;
     color: #333;

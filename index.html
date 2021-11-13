@@ -16,7 +16,7 @@
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> -->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 </head>
 
@@ -52,10 +52,10 @@
     </div>
     <div class="mobile-bar">
 
-        <nav class="mNav">
+        <nav class="mNav on">
             <ul class="sub">
                 <div class="closeBtn"><a href="javascript:;">메뉴닫기</a></div>
-                <li class="menu1 menu">
+                <li class=" menu">
                     <a href="#!">병원소개</a>
                     <ul class="sub-menu">
                         <li>진료시간</li>
@@ -64,7 +64,8 @@
                         <li>의료장비 소개</li>
                     </ul>
                 </li>
-                <li class="menu2 menu"><a href="#!">통증클리닉</a>
+                <li class=" menu">
+                    <a href="#!">통증클리닉</a>
                     <ul class="sub-menu">
                         <li>두통</li>
                         <li>목통증</li>
@@ -77,10 +78,11 @@
                         <li>사타구니 통증</li>
                         <li>손목/손가락 통증</li>
                         <li>발목/발가락 통증</li>
-                     
+
                     </ul>
                 </li>
-                <li class="menu3 menu"><a href="#!">전문클리닉</a>
+                <li class=" menu">
+                    <a href="#!">전문클리닉</a>
                     <ul class="sub-menu">
                         <li>팔꿈치 통증</li>
                         <li>어깨 통증</li>
@@ -89,7 +91,8 @@
                         <li>교통사고 진단</li>
                     </ul>
                 </li>
-                <li class="menu4 menu"><a href="#!">치료법</a>
+                <li class=" menu">
+                    <a href="#!">치료법</a>
                     <ul class="sub-menu">
                         <li>프롤로 치료</li>
                         <li>스톨스체외 충격치료</li>
@@ -98,15 +101,17 @@
                         <li>도수 치료</li>
                     </ul>
                 </li>
-                <li class="menu5 menu"><a href="#!">상담&예약</a>
+                <li class=" menu">
+                    <a href="#!">상담&예약</a>
                     <ul class="sub-menu">
                         <li>공지사항</li>
                         <li>자주하는질문</li>
                     </ul>
                 </li>
-                <li class="menu6 menu"><a href="#!">관리자</a>
+                <li class=" menu">
+                    <a href="#!">관리자</a>
                     <ul class="sub-menu">
-                     
+
                     </ul>
                 </li>
             </ul>
@@ -457,6 +462,9 @@
     </script>
     <!-- 햄버거 nav -->
     <script>
+      
+
+
         const navtab = {
 
             init: function () {
@@ -483,9 +491,27 @@
                 });
             }
         }
+        const subNavtab = {
+            init: function () {
+                this.motab();
+            },
+            motab: function () {
+                const subMenus = document.querySelectorAll('.mobile-bar .menu a');
+        subMenus.forEach((sub) => {
+            sub.addEventListener('click',function() {
+                let onList = document.querySelector('.mobile-bar .menu.on');
+                if(onList) {
+                    onList.classList.remove('on');
+                }
+                sub.parentElement.classList.add('on');
+            })
+        })
 
+            }
+        }
         $(document).ready(function () {
             navtab.init();
+            subNavtab.init();
         })</script>
 </body>
 
