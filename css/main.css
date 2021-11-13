@@ -5,6 +5,7 @@ ul {
 
 body {
   overflow-x: hidden;
+  width: 100vw;
 }
 
 /* Container */
@@ -15,19 +16,7 @@ body {
   padding-right: 0 !important;
 }
 
-@media (max-width: 769px) {
-  .container {
-    padding: 0 15px;
-  }
-}
-
 /* visusal */
-@media (min-width: 1200px) {
-  #visual {
-    text-align: center;
-  }
-}
-
 #visual {
   margin: 0;
   padding: 0;
@@ -37,6 +26,14 @@ body {
 #visual .swiper-slide {
   position: relative;
   left: -2.6%;
+}
+
+#visual .swiper-slide:not(.swiper-slide-active) .visual_image {
+  display: none;
+}
+
+#visual .swiper-slide-active {
+  display: block;
 }
 
 #visual .visual_image {
@@ -108,7 +105,9 @@ body {
 
 /* Header */
 #header {
-  height: 90px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 #header .header-container {
@@ -127,22 +126,55 @@ body {
           align-items: center;
 }
 
-#header img {
+#header .header-container img {
   height: 90px;
 }
 
-#header #header-logo {
+#header .header-container #header-logo {
   height: 60px;
 }
 
-#header .header-link > span + span::before {
+#header .header-container .header-link > span + span::before {
   content: 'ㅣ';
 }
 
-#header .header-link a {
+#header .header-container .header-link a {
   color: #676767;
   font-size: 15px;
   font-weight: 500;
+}
+
+#header .header-mobile {
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#header .header-mobile .mBtn {
+  position: relative;
+  left: 30px;
+}
+
+#header .header-mobile .header-mobile-title {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: auto;
+  padding: 5px;
+}
+
+#header .header-mobile .header-mobile-title img#header-mobile-logo {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 60px;
 }
 
 body {
@@ -225,6 +257,106 @@ body {
 
 #nav .nav-menu li.item:hover .item-content {
   display: block;
+}
+
+.mobile-bar {
+  background-color: rebeccapurple;
+}
+
+.mobile-bar .mNav {
+  z-index: 2;
+  position: fixed;
+  background-color: #fff;
+  top: 0;
+  left: -100%;
+  width: 80%;
+  height: 100%;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.mobile-bar .mNav.on {
+  left: 0;
+}
+
+.mobile-bar .mNav ul {
+  padding-left: 0;
+}
+
+.mobile-bar .mNav .sub {
+  position: relative;
+  padding-top: 30px;
+}
+
+.mobile-bar .mNav .sub .closeBtn a {
+  display: block;
+  margin-top: 25px;
+  margin-right: 20px;
+}
+
+.mobile-bar .mNav .sub li.menu {
+  position: relative;
+}
+
+.mobile-bar .mNav .sub li.menu a {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  padding: 10px 20px;
+  border-bottom: 1px solid #d1d4d8;
+  border-top: 1px solid #d1d4d8;
+  text-decoration: none;
+}
+
+.mobile-bar .mNav .sub li.menu a::after {
+  content: '+';
+  font-size: 35px;
+  position: absolute;
+  right: 10px;
+  top: -3px;
+}
+
+.mobile-bar .mNav .sub li.menu .sub-menu {
+  background-color: #f6f7fa;
+  display: none;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.mobile-bar .mNav .sub li.menu .sub-menu li {
+  width: 50%;
+  padding: 10px;
+  border-bottom: #eaeaea 1px solid;
+  border-right: #eaeaea 1px solid;
+  padding-left: 15px;
+}
+
+.mobile-bar .mNav .sub li.menu.on a {
+  color: red;
+}
+
+.mobile-bar .mNav .sub li.menu.on a::after {
+  content: '-';
+  right: 15px;
+  color: #333;
+}
+
+.mobile-bar .mNav .sub li.menu.on .sub-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mobile-bar .bg-shadow {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  cursor: pointer;
 }
 
 #main-section {
@@ -470,6 +602,23 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
   #main-section .section__content .content-banner.content-banner-sm {
     width: 300px;
     display: block;
+  }
+}
+
+@media (max-width: 769px) {
+  .container {
+    padding: 0 15px;
+  }
+  #header .header-container {
+    display: none;
+  }
+  #header .header-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  #nav {
+    display: none;
   }
 }
 /*# sourceMappingURL=main.css.map */
