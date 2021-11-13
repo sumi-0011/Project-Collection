@@ -620,5 +620,17 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
   #nav {
     display: none;
   }
+  #visual #visual-slide .visual_image {
+    padding: 10px;
+  }
+  #visual #visual-slide .visual_image .visual_text_01 {
+    font-size: 15.5px;
+  }
+  #visual #visual-slide .visual_image .visual_text_02 {
+    font-size: 21px;
+  }
+  #visual #visual-slide .visual_image .visual_text_03 {
+    font-size: 15px;
+  }
 }
 /*# sourceMappingURL=main.css.map */
