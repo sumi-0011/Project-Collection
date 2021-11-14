@@ -29,11 +29,14 @@ body {
 #visual {
     margin: 0;
     padding: 0;
+    width: 100vw;
     position: relative;
+    .visual-ul {
+        padding: 0;
 
-    .swiper-slide {
-        position: relative;
-        left: -2.6%;
+    }
+    #visual-slide {
+       width: 100%;
     }
     .swiper-slide:not(.swiper-slide-active) .visual_image   {
         display: none;

@@ -20,12 +20,16 @@ body {
 #visual {
   margin: 0;
   padding: 0;
+  width: 100vw;
   position: relative;
 }
 
-#visual .swiper-slide {
-  position: relative;
-  left: -2.6%;
+#visual .visual-ul {
+  padding: 0;
+}
+
+#visual #visual-slide {
+  width: 100%;
 }
 
 #visual .swiper-slide:not(.swiper-slide-active) .visual_image {
