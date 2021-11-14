@@ -664,4 +664,19 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
     width: 100%;
   }
 }
+
+footer {
+  background-color: #434343;
+  padding: 0 20px;
+}
+
+footer .footer-container {
+  padding: 30px 0;
+  color: #fff;
+  font-size: 13px;
+}
+
+footer .footer-container .copyright {
+  margin-top: 20px;
+}
 /*# sourceMappingURL=main.css.map */
