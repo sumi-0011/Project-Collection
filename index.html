@@ -4,311 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Document</title>
+    <title>바로나통증의학과 방문을 환영합니다.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="./css/main.css">
-    <!-- <link rel="stylesheet" href="./css/mobile.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    
+
     <!-- swiper -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <!-- icon -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- load -->
+    <script defer src="./js/load.js"></script>
+
 </head>
 
 <body>
-    <header >
-        <div class="container">
-            <div class="header-container">
-                <img src="./image/top_tel.png" alt="041-582-8585" srcset="">
-
-                <img id="header-logo" src="./image/logo.png" alt="바로나 마취통증의학과" srcset="">
-                <div class="header-link">
-
-                    <span> <a>홈</a></span>
-                    <span> <a>관리자</a></span>
-                </div>
-            </div>
-            <div class="header-mobile">
-                <div class="mBtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                        class="bi bi-list" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                    </svg>
-                </div>
-                <div class="header-mobile-title">
-
-                    <img id="header-mobile-logo" src="./image/logo.png" alt="바로나 마취통증의학과" srcset="">
-                </div>
-
-
-            </div>
-        </div>
-    </header>
-    <nav id="mobile-nav">
-
-        <nav class="mNav">
-            <ul class="sub">
-                <div class="closeBtn"><a href="javascript:;">메뉴닫기</a></div>
-                <li class=" menu">
-                    <a href="#!">병원소개</a>
-                    <ul class="sub-menu">
-                        <li>진료시간</li>
-                        <li>찾아오시는 길</li>
-                        <li>병원 내부안내</li>
-                        <li>의료장비 소개</li>
-                    </ul>
-                </li>
-                <li class=" menu">
-                    <a href="#!">통증클리닉</a>
-                    <ul class="sub-menu">
-                        <li>두통</li>
-                        <li>목통증</li>
-                        <li>등통증</li>
-                        <li>어깨 통증</li>
-                        <li>팔꿈치 통증</li>
-                        <li>허리 통증</li>
-                        <li>무릎 통증</li>
-                        <li>엉덩이 통증</li>
-                        <li>사타구니 통증</li>
-                        <li>손목/손가락 통증</li>
-                        <li>발목/발가락 통증</li>
-
-                    </ul>
-                </li>
-                <li class=" menu">
-                    <a href="#!">전문클리닉</a>
-                    <ul class="sub-menu">
-                        <li>팔꿈치 통증</li>
-                        <li>어깨 통증</li>
-                        <li>목 통증</li>
-                        <li>대상포진</li>
-                        <li>교통사고 진단</li>
-                    </ul>
-                </li>
-                <li class=" menu">
-                    <a href="#!">치료법</a>
-                    <ul class="sub-menu">
-                        <li>프롤로 치료</li>
-                        <li>스톨스체외 충격치료</li>
-                        <li>수면 신경치료</li>
-                        <li>무릎 유전자 치료</li>
-                        <li>도수 치료</li>
-                    </ul>
-                </li>
-                <li class=" menu">
-                    <a href="#!">상담&예약</a>
-                    <ul class="sub-menu">
-                        <li>공지사항</li>
-                        <li>자주하는질문</li>
-                    </ul>
-                </li>
-                <li class=" menu">
-                    <a href="#!">관리자</a>
-                    <ul class="sub-menu">
-
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div class="bg-shadow"></div>
-    </nav>
-    <!-- nav/ -->
-    <nav id="lg-nav">
-        <div class="container">
-            <ul class="nav-menu">
-                <li class="item">
-                    <img src="./image/btn_menu_bar.png" alt="">
-                    <div class="item-content">
-                        <div class="container">
-                            <div class="item-container">
-
-                                <ul>
-                                    <li><a href="#">의료진소개</a></li>
-                                    <li><a href="#">진료시간</a></li>
-                                    <li><a href="#">찾아오시는 길</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">병원 내부안내</a></li>
-                                    <li><a href="#">의료장비 소개</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">자주하는 질문</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item ">
-                    <div class="item-name">
-                        바로나 소개
-                    </div>
-
-                    <div class="item-content">
-                        <div class="container">
-                            <div class="item-container">
-
-                                <ul>
-                                    <li><a href="#">의료진소개</a></li>
-                                    <li><a href="#">진료시간</a></li>
-                                    <li><a href="#">찾아오시는 길</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">병원 내부안내</a></li>
-                                    <li><a href="#">의료장비 소개</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">자주하는 질문</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item-name">
-                        통증클리닉
-
-                    </div>
-
-                    <div class="item-content">
-                        <div class="container">
-                            <div class="item-container">
-                                <ul>
-                                    <li><a href="#">두통</a></li>
-                                    <li><a href="#">목 통증</a></li>
-                                    <li><a href="#">등 통증</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">어깨 통증</a></li>
-                                    <li><a href="#">팔꿈치 통증</a></li>
-                                    <li><a href="#">허리 통증</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">무릎 통증</a></li>
-                                    <li><a href="#">엉덩이 통증</a></li>
-                                    <li><a href="#">사타구니 통증</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">손목/손가락 통증</a></li>
-                                    <li><a href="#">발목/발가락 통증</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">자주하는질문</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </li>
-                <li class="item">
-                    <div class="item-name">전문클리닉</div>
-                    <div class="item-content">
-                        <div class="container">
-                            <div class="item-container">
-
-                                <ul>
-                                    <li><a href="#">팔꿈치 통증</a></li>
-                                    <li><a href="#">어깨 통증</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">목 통증</a></li>
-                                    <li><a href="#">대상포진</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">프롤로 치료</a></li>
-                                    <li><a href="#">스톨스체외 충격파치료</a></li>
-                                    <li><a href="#">수면 신경치료</a></li>
-                                    <li><a href="#">교통사고 치료</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">도수 치료</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">자주하는질문</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </li>
-
-                <li class="item">
-                    <div class="item-name">
-                        전문치료법
-
-                    </div>
-                    <div class="item-content">
-                        <div class="container">
-                            <div class="item-container">
-
-                                <ul>
-                                    <li><a href="#">팔꿈치 통증</a></li>
-                                    <li><a href="#">어깨 통증</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">목 통증</a></li>
-                                    <li><a href="#">대상포진</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">프롤로 치료</a></li>
-                                    <li><a href="#">스톨스체외 충격파치료</a></li>
-                                    <li><a href="#">수면 신경치료</a></li>
-                                    <li><a href="#">교통사고 치료</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">도수 치료</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">자주하는질문</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item">
-                    <div class="item-name">
-                        상담&예약
-                    </div>
-                    <div class="item-content">
-                        <div class="container">
-                            <div class="item-container">
-                                <ul>
-                                    <li><a href="#">의료진소개</a></li>
-                                    <li><a href="#">진료시간</a></li>
-                                    <li><a href="#">찾아오시는길</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">병원내부안내</a></li>
-                                    <li><a href="#">의료장비소개</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">자주하는질문</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </li>
-
-            </ul>
-        </div>
-    </nav>
-
+    <header></header>
+    <nav id="mobile-nav"></nav>
+    <nav id="lg-nav"></nav>
     <div id="visual">
         <div id="visual-slide" class="swiper-container">
             <ul class="slides swiper-wrapper visual-ul">
@@ -339,10 +57,6 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
     </div>
-
-
-
-
     <div id="main-section">
         <div class="container">
             <div class="section__title">
@@ -428,110 +142,16 @@
         </div>
     </section>
     <footer>
-        <div class="container">
-            <div class="footer-container">
-                <p>            병원명 : 바로나 마취통증의학과 ㅣ 주소 : 충남 천안시 서북구 성정동 1535 AM타워 701호 (신한은행 7층)
-                </p>
-                <p> 사업자등록번호 : 401-93-04725 ㅣ 대표자 : 박기근 ㅣ 대표전화 : 041-582-8585</p>
-                <p>팩스번호 : 041-566-8556 ㅣ e-mail : barona@naver.com</p>
-                <div class="copyright">
-                    copyright© 바로나 마취통증의학과 all rights reserved.
-                </div>
-            </div>
-           
 
-
-
-        </div>
     </footer>
+
     <script>
-        const items = document.querySelectorAll('#main-section ul li.item');
-        const MainSContentImg = document.querySelector('#main-section .content-img');
-
-        // main section에 이미지 추가
-        items.forEach(function (currentItem, currentIndex) {
-            currentItem.addEventListener('mouseover', function () {
-                const value = '<img src="./image/pain_0' + (currentIndex + 1) + '.png" alt="어디가 아프세요?">'
-                MainSContentImg.innerHTML = value;
-
-            })
-
-        })
+      
     </script>
 
-
-    <script>
-        const slide = new Swiper('#visual-slide', {
-            // 다양한 옵션 설정, 
-            // 아래에서 설명하는 옵션들은 해당 위치에 들어갑니다!!
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            loopAdditionalSlides: 1,
-            pagination: false, // pager 여부
-            // autoplay: {  // 자동 슬라이드 설정 , 비 활성화 시 false
-            //     delay: 3000,   // 시간 설정
-            //     disableOnInteraction: false,  // false로 설정하면 스와이프 후 자동 재생이 비활성화 되지 않음
-            // },
-            navigation: {   // 버튼 사용자 지정
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        })
-    </script>
-    <!-- 햄버거 nav -->
-    <script>
-
-
-
-        const navtab = {
-
-            init: function () {
-                this.motab();
-            },
-            motab: function () {
-                let mBtn = $(".mBtn");
-                let closeBtn = $(".closeBtn");
-
-                // 모바일 버튼 클릭
-                $(mBtn).click(function () {
-                    $(".mNav").addClass("on");
-                    $(".bg-shadow").css("display", "block");
-                });
-                // 화면 클릭
-                $(".bg-shadow").click(function () {
-                    $(".mNav").removeClass("on");
-                    $(".bg-shadow").css("display", "none");
-                });
-                // 닫기 버튼 클릭
-                $(closeBtn).click(function () {
-                    $(".mNav").removeClass("on");
-                    $(".bg-shadow").css("display", "none");
-                });
-            }
-        }
-        const subNavtab = {
-            init: function () {
-                this.motab();
-            },
-            motab: function () {
-                const subMenus = document.querySelectorAll('.mobile-bar .menu a');
-                subMenus.forEach((sub) => {
-                    sub.addEventListener('click', function () {
-                        let onList = document.querySelector('.mobile-bar .menu.on');
-                        if (onList) {
-                            onList.classList.remove('on');
-                        }
-                        sub.parentElement.classList.add('on');
-                    })
-                })
-
-            }
-        }
-        $(document).ready(function () {
-            navtab.init();
-            subNavtab.init();
-        })</script>
+    <script src="./js/main.js"></script>
+    <script src="./js/swiper.js"></script>
+    <!-- common file 가져오기 -->
 </body>
 
 </html>

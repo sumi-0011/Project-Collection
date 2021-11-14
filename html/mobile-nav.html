@@ -1,0 +1,119 @@
+<nav class="mNav">
+    <ul class="sub">
+        <div class="closeBtn"><a href="javascript:;">메뉴닫기</a></div>
+        <li class=" menu">
+            <a href="#!">병원소개</a>
+            <ul class="sub-menu">
+                <li>진료시간</li>
+                <li>찾아오시는 길</li>
+                <li>병원 내부안내</li>
+                <li>의료장비 소개</li>
+            </ul>
+        </li>
+        <li class=" menu">
+            <a href="#!">통증클리닉</a>
+            <ul class="sub-menu">
+                <li>두통</li>
+                <li>목통증</li>
+                <li>등통증</li>
+                <li>어깨 통증</li>
+                <li>팔꿈치 통증</li>
+                <li>허리 통증</li>
+                <li>무릎 통증</li>
+                <li>엉덩이 통증</li>
+                <li>사타구니 통증</li>
+                <li>손목/손가락 통증</li>
+                <li>발목/발가락 통증</li>
+
+            </ul>
+        </li>
+        <li class=" menu">
+            <a href="#!">전문클리닉</a>
+            <ul class="sub-menu">
+                <li>팔꿈치 통증</li>
+                <li>어깨 통증</li>
+                <li>목 통증</li>
+                <li>대상포진</li>
+                <li>교통사고 진단</li>
+            </ul>
+        </li>
+        <li class=" menu">
+            <a href="#!">치료법</a>
+            <ul class="sub-menu">
+                <li>프롤로 치료</li>
+                <li>스톨스체외 충격치료</li>
+                <li>수면 신경치료</li>
+                <li>무릎 유전자 치료</li>
+                <li>도수 치료</li>
+            </ul>
+        </li>
+        <li class=" menu">
+            <a href="#!">상담&예약</a>
+            <ul class="sub-menu">
+                <li>공지사항</li>
+                <li>자주하는질문</li>
+            </ul>
+        </li>
+        <li class=" menu">
+            <a href="#!">관리자</a>
+            <ul class="sub-menu">
+
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div class="bg-shadow"></div>
+
+<script>
+
+    // includeHTML();
+
+    const navtab = {
+
+        init: function () {
+            this.motab();
+        },
+        motab: function () {
+            let mBtn = $(".mBtn");
+            let closeBtn = $(".closeBtn");
+
+            // 모바일 버튼 클릭
+            $(mBtn).click(function () {
+                $(".mNav").addClass("on");
+                $(".bg-shadow").css("display", "block");
+            });
+            // 화면 클릭
+            $(".bg-shadow").click(function () {
+                $(".mNav").removeClass("on");
+                $(".bg-shadow").css("display", "none");
+            });
+            // 닫기 버튼 클릭
+            $(closeBtn).click(function () {
+                $(".mNav").removeClass("on");
+                $(".bg-shadow").css("display", "none");
+            });
+        }
+    }
+    const subNavtab = {
+        init: function () {
+            this.motab();
+        },
+        motab: function () {
+            const subMenus = document.querySelectorAll('#mobile-nav .menu a');
+            subMenus.forEach((sub) => {
+                sub.addEventListener('click', function () {
+                    let onList = document.querySelector('#mobile-nav .menu.on');
+                    if (onList) {
+                        onList.classList.remove('on');
+                    }
+                    sub.parentElement.classList.add('on');
+                })
+            })
+
+        }
+    }
+    $(document).ready(function () {
+        navtab.init();
+        subNavtab.init();
+    })
+</script>
