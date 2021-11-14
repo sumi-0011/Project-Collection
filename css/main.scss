@@ -98,7 +98,7 @@ body {
     }
 }
 /* Header */
-#header {
+header {
     height: fit-content;
     .header-container {
         display: flex;
@@ -536,7 +536,7 @@ section.section2 {
     .container {
         padding: 0 15px;
     }
-    #header {
+    header {
         .header-container {
             display: none;
         }
