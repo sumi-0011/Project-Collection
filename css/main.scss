@@ -333,6 +333,7 @@ nav {
    
 }
 #main-section {
+    padding: 20px 0;
     text-align: center;
     .section__title {
         padding: 30px 0;
@@ -348,7 +349,6 @@ nav {
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
-            // width: 200px;
             padding-left: 0;
             flex-direction: row;
             width: 100%;
@@ -370,14 +370,10 @@ nav {
             }
         }
         img {
-            // height: 100%;
-            object-fit:cover;
             margin: 0 1px;
         }
         .content-img img {
             width: 100%;
-            height: 300px;
-            object-fit: cover;  // 같은 오브젝트의 사이즈를 컨테이너의 크기에 맞춰 조절할 수 있음
             overflow-y: hidden;
         }
         .content-banner {
@@ -400,7 +396,7 @@ section.section1 {
         display: flex;
         // flex-direction: row;
         flex-wrap: wrap;
-        
+        justify-content: center;
         .banner-item {
             overflow: hidden;
             // img {
@@ -415,6 +411,7 @@ section.section1 {
     }
 }
 section.section2 {
+    margin: 20px 0;
     .section__title {
     text-align: center;
         padding: 30px 0;
@@ -521,15 +518,19 @@ section.section2 {
                 }
             }
             .content-img img {
-                width: 690px;            
+                // width: 690px;            
                 height: 100%;
             }
             .content-banner.content-banner-lg {
                 display: none;
             }
             .content-banner.content-banner-sm {
-                width: 300px;
+                width: fit-content;
+                object-fit: cover;
                 display: block;
+                img {
+                    height: 100%;
+                }
             }
 
         }
