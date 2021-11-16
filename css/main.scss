@@ -360,15 +360,18 @@ nav {
                 padding-top: 8px;
                 padding-bottom: 1px;
                 background-color: #aea79f;
-                // width: 100%;
-                // height: 100%;
                 color: white;
                 font-weight: 600;
                 font-size: 18px;
+
+                &.on {
+                    background-color: #3d262e;
+                }
             }
         }
         img {
-            height: 100%;
+            // height: 100%;
+            object-fit:cover;
             margin: 0 1px;
         }
         .content-img img {
@@ -379,8 +382,8 @@ nav {
         }
         .content-banner {
             width: 100%;
-            height: 300px;
-            // object-fit:cover;
+            // height: 300px;
+            object-fit:cover;
             overflow: hidden;
         }
         .content-banner.content-banner-lg {

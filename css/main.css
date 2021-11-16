@@ -447,8 +447,13 @@ nav .nav-menu li.item:hover .item-content {
   font-size: 18px;
 }
 
+#main-section .section__content .content-ul li.on {
+  background-color: #3d262e;
+}
+
 #main-section .section__content img {
-  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   margin: 0 1px;
 }
 
@@ -462,7 +467,8 @@ nav .nav-menu li.item:hover .item-content {
 
 #main-section .section__content .content-banner {
   width: 100%;
-  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
   overflow: hidden;
 }
 
