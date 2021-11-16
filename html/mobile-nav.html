@@ -110,8 +110,19 @@
                     let onList = document.querySelector('#mobile-nav .menu.on');
                     if (onList) {
                         onList.classList.remove('on');
+                        console.log('remove');
                     }
-                    sub.parentElement.classList.add('on');
+                    if(sub.parentElement.classList.contains('on')) {
+                        sub.parentElement.classList.remove('on');
+                        console.log('on remove');
+
+                    }
+                    else {
+                        sub.parentElement.classList.add('on');
+                        console.log('add');
+
+                    }
+                   
                 })
             })
 

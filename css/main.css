@@ -303,11 +303,6 @@ nav .nav-menu li.item:hover .item-content {
   font-size: 35px;
 }
 
-#mobile-nav .mNav ul.sub .closeBtn a {
-  margin-top: 25px;
-  margin-right: 20px;
-}
-
 #mobile-nav .mNav ul.sub li.menu {
   position: relative;
 }
@@ -331,14 +326,20 @@ nav .nav-menu li.item:hover .item-content {
 }
 
 #mobile-nav .mNav ul.sub li.menu .sub-menu {
+  max-height: 0;
+  -webkit-transition: max-height 0.5s;
+  transition: max-height 0.5s;
   background-color: #f6f7fa;
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  overflow: hidden;
 }
 
 #mobile-nav .mNav ul.sub li.menu .sub-menu li {
-  width: 50%;
+  width: 49%;
   padding: 10px;
   border-bottom: #eaeaea 1px solid;
   border-right: #eaeaea 1px solid;
@@ -356,9 +357,11 @@ nav .nav-menu li.item:hover .item-content {
 }
 
 #mobile-nav .mNav ul.sub li.menu.on .sub-menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  max-height: 500px;
+  -webkit-transition: max-height 1s;
+  transition: max-height 1s;
+  -webkit-transition-delay: .7s;
+          transition-delay: .7s;
 }
 
 #mobile-nav .bg-shadow {
