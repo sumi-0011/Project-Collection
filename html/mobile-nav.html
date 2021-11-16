@@ -108,21 +108,17 @@
             subMenus.forEach((sub) => {
                 sub.addEventListener('click', function () {
                     let onList = document.querySelector('#mobile-nav .menu.on');
-                    if (onList) {
-                        onList.classList.remove('on');
-                        console.log('remove');
-                    }
+                    
                     if(sub.parentElement.classList.contains('on')) {
                         sub.parentElement.classList.remove('on');
-                        console.log('on remove');
-
                     }
                     else {
                         sub.parentElement.classList.add('on');
-                        console.log('add');
 
                     }
-                   
+                    if (onList) {
+                        onList.classList.remove('on');
+                    }
                 })
             })
 
