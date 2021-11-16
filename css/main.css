@@ -192,6 +192,10 @@ nav {
   border-top: 1px solid #dadada;
 }
 
+nav .container {
+  position: unset;
+}
+
 nav .nav-menu {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -212,6 +216,7 @@ nav .nav-menu li.item {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  z-index: 50;
 }
 
 nav .nav-menu li.item.first-item {
@@ -223,37 +228,41 @@ nav .nav-menu li.item .item-name {
 }
 
 nav .nav-menu li.item .item-content {
-  z-index: 10;
-  display: none;
+  position: absolute;
+  height: 0;
   left: 0;
-  position: fixed;
-  background: rgba(246, 246, 246, 0.97);
   right: 0;
-  height: 200px;
-  padding: 10px 0;
+  z-index: 10;
+  overflow: hidden;
+  background: rgba(246, 246, 246, 0.97);
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
 }
 
-nav .nav-menu li.item .item-content .container .item-container {
+nav .nav-menu li.item .item-content .item-container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 1200px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-nav .nav-menu li.item .item-content .container .item-container ul {
+nav .nav-menu li.item .item-content .item-container ul {
   padding: 0;
   font-weight: 500;
 }
 
-nav .nav-menu li.item .item-content .container .item-container ul li {
+nav .nav-menu li.item .item-content .item-container ul li {
   padding: 8px 10px 8px 0;
 }
 
-nav .nav-menu li.item .item-content .container .item-container ul li > a {
+nav .nav-menu li.item .item-content .item-container ul li > a {
   color: #5c5956;
   text-decoration: none;
 }
 
-nav .nav-menu li.item .item-content .container .item-container ul li > a:hover {
+nav .nav-menu li.item .item-content .item-container ul li > a:hover {
   color: red;
 }
 
@@ -262,7 +271,10 @@ nav .nav-menu li.item:hover .item-name {
 }
 
 nav .nav-menu li.item:hover .item-content {
-  display: block;
+  padding: 10px 0;
+  height: 200px;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
 }
 
 #mobile-nav {
@@ -542,10 +554,10 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
 
 @media (min-width: 768px) {
   nav .nav-menu li.item .item-content .container .item-container {
-    margin-left: 74px;
+    margin-left: 71px;
   }
   nav .nav-menu li.item .item-content .container .item-container ul {
-    min-width: 140px;
+    width: 138px;
   }
   #visual .visual_image .visual_txt.visual_text_01 {
     font-size: 22px;
@@ -566,10 +578,10 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
 
 @media (min-width: 992px) {
   nav .nav-menu li.item .item-content .container .item-container {
-    margin-left: 115px;
+    margin-left: 105px;
   }
   nav .nav-menu li.item .item-content .container .item-container ul {
-    min-width: 175px;
+    width: 175px;
   }
 }
 
@@ -578,7 +590,7 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
     width: 1200px !important;
   }
   nav .nav-menu li.item .item-content .container .item-container {
-    margin-left: 155px;
+    margin-left: 145px;
   }
   nav .nav-menu li.item .item-content .container .item-container ul {
     min-width: 213px;

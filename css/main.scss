@@ -149,9 +149,10 @@ body {
 nav {
     position: relative;
     border-top: 1px solid #dadada;
-
+    .container {
+        position: unset;
+    }
     .nav-menu {
-
         display: flex;
         justify-content: space-evenly;
         align-items: center;
@@ -165,21 +166,25 @@ nav {
                 visibility: hidden;
             }
             flex-grow: 1;
-            
+            z-index: 50;
             .item-name {
                 padding: 10px 0;
             }
             .item-content {
-                z-index: 10;
-                display: none;
+              
+                position: absolute;
+                height: 0;
                 left: 0;
-                position: fixed;
-                background: rgba(246, 246, 246, 0.97);
                 right: 0;
-                height: 200px;
-                padding: 10px 0;
-                    .container {
+                z-index: 10;
+                overflow: hidden;
+                background: rgba(246, 246, 246, 0.97);
+                transition: height 0.5s;
+
                         .item-container {
+                            margin-right: auto;
+                            margin-left: auto;
+                            width: 1200px;
                             // margin-left: 145px;
                             display: inline-flex;
                             ul {
@@ -195,7 +200,6 @@ nav {
                                         }
                                     }
                                 }
-                            }
                         }
                       
                     }
@@ -206,7 +210,10 @@ nav {
                     color: red;
                 }
                 .item-content {
-                    display: block;
+                    padding: 10px 0;
+                    // display: block;
+                    height:200px;
+                    transition: height 0.5s;
 
                 }
             } 
@@ -444,9 +451,9 @@ section.section2 {
 }
 @media (min-width: 768px) {
     nav .nav-menu li.item .item-content .container .item-container {
-        margin-left: 74px;
+        margin-left: 71px;
         ul {
-            min-width: 140px;
+            width: 138px;
         }
     }
     #visual .visual_image  .visual_txt {
@@ -476,9 +483,9 @@ section.section2 {
 }
 @media (min-width: 992px) {
     nav .nav-menu li.item .item-content .container .item-container {
-        margin-left: 115px;
+        margin-left: 105px;
         ul {
-            min-width: 175px;
+            width: 175px;
         }
     }
 }
@@ -489,7 +496,7 @@ section.section2 {
       width: 1200px !important;
     }
     nav .nav-menu li.item .item-content .container .item-container {
-        margin-left: 155px;
+        margin-left: 145px;
         ul {
             min-width: 213px;
         }
