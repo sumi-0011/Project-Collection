@@ -1,7 +1,10 @@
 /* common */
+body ul {
+    margin: 0;
+    padding: 0;
+}
 li {
     list-style: none;
-   
 }
 a { 
     text-decoration:none  !important;
@@ -30,15 +33,33 @@ a {
     background-color: unset;
 }
 /* 모바일 */
-#mobile-navToggle {
+#mobile-nav #navToggle {
     width: fit-content;
-
+}
+#mobile-nav #navPanel {
+    text-align: left;
+   
+    
     
 }
-#navPanel {
-    text-align: left;
+#mobile-nav #navPanel button {
+    width: 50px;
+    background-color: #e8e8e8;
+    margin: 20px 0;
+
 }
-#navPanel.on {
+#mobile-nav #navPanel li {
+    padding: 10px 0;
+}
+#mobile-nav #navPanel li a {
+    font-size: 20px;
+    color: #444;
+    font-weight: 700;
+}
+#mobile-nav #navPanel li + li {
+    border-top: 1px solid #e8e8e8;
+}
+#mobile-nav #navPanel.on {
     transform: translateX(0);
 }
 

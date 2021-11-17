@@ -3,21 +3,21 @@ import { Link } from "react-router-dom";
 
 function MobileNav() {
 	const [navOn,setNavOn] = useState(false);
-  const toggleClick = () => {
+  const toggleClick = (e) => {
 		setNavOn(!navOn);
-		console.log(navOn);
+		console.log(e.target);
 	};
 
   return (
-    <div>
+    <div id="mobile-nav">
       <div id="navToggle" onClick={toggleClick}>
         <a  class="toggle"></a>
       </div>
-      <div id="navPanel" className={`${navOn ? 'on' : ''}`}>
+      <div id="navPanel" className={`${navOn ? 'on' : ''} `}>
         <nav>
           <button onClick={toggleClick}>X</button>
-          <h1>모바일용 Nav</h1>
-          <ul>
+          {/* <h1>모바일용 Nav</h1> */}
+          <ul onClick={toggleClick}>
           {/* 메인 + 확진자 현황 */}
           <li className="current">
             <Link
