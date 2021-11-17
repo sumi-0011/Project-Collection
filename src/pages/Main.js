@@ -6,7 +6,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
 } from "recharts";
 // import
 function Main() {
@@ -18,24 +18,20 @@ function Main() {
 }
 
 function Tempelate() {
-
   const list = [
     {
       name: "Page A",
-      "DECIDE_CNT": 10,
-      
+      DECIDE_CNT: 10,
     },
     {
       name: "Page B",
-      "DECIDE_CNT": 5,
-      
+      DECIDE_CNT: 5,
     },
     {
       name: "Page C",
-      "DECIDE_CNT": 25,
-      
+      DECIDE_CNT: 25,
     },
-  ]
+  ];
   return (
     <div id="page-wrapper">
       {/* <MainContainer /> */}
@@ -70,7 +66,9 @@ function Tempelate() {
           </div>
         </div>
       </div>
-      <Graph list={list}/>
+      <div className="graph-container">
+        <Graph list={list} />
+      </div>
     </div>
   );
 }
@@ -80,34 +78,33 @@ const data = [
     name: "Page A",
     uv: 4000,
     pv: 2400,
-    amt: 2400
+    amt: 2400,
   },
   {
     name: "Page B",
     uv: 3000,
     pv: 1398,
-    amt: 2210
+    amt: 2210,
   },
   {
     name: "Page C",
     uv: 2000,
     pv: 9800,
-    amt: 2290
+    amt: 2290,
   },
-  
 ];
 
-function Graph({list}) {
+function Graph({ list }) {
   return (
     <LineChart
-      width={500}
+      width={350}
       height={300}
       data={list}
       margin={{
         top: 5,
         right: 30,
         left: 20,
-        bottom: 5
+        bottom: 5,
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
