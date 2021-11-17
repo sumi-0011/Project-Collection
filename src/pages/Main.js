@@ -11,11 +11,6 @@ function Main() {
 function Tempelate() {
   return (
     <div id="page-wrapper">
-      {/* <!-- Banner --> */}
-      {/* <Banner /> */}
-      {/* <!-- Features --> */}
-      {/* <Features /> */}
-      {/* <!-- Main --> */}
       <MainContainer />
     </div>
   );
