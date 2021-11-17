@@ -126,20 +126,20 @@ input, select, textarea {
 		text-decoration: underline;
 	}
 
-		a:hover {
-			text-decoration: none;
-		}
+	a:hover {
+		text-decoration: none;
+	}
 
 	h1, h2, h3, h4, h5, h6 {
 		color: #444;
 		font-weight: 800;
 	}
 
-		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-			color: inherit;
-			text-decoration: none;
-			outline: 0;
-		}
+	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+		color: inherit;
+		text-decoration: none;
+		outline: 0;
+	}
 
 	h2 {
 		font-size: 2.25em;
@@ -241,9 +241,9 @@ input, select, textarea {
 		align-items: stretch;
 	}
 
-		.row > * {
-			box-sizing: border-box;
-		}
+	.row > * {
+		box-sizing: border-box;
+	}
 
 		.row.gtr-uniform > * > :last-child {
 			margin-bottom: 0;
