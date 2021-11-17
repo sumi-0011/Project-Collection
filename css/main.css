@@ -459,17 +459,23 @@ nav .nav-menu li.item:hover .item-content {
   margin: 0 1px;
 }
 
+#main-section .section__content .content-img {
+  overflow: hidden;
+}
+
 #main-section .section__content .content-img img {
   width: 100%;
   min-height: 300px;
-  overflow-y: hidden;
 }
 
 #main-section .section__content .content-banner {
-  width: 100%;
+  overflow: hidden;
+}
+
+#main-section .section__content .content-banner img {
   -o-object-fit: cover;
      object-fit: cover;
-  overflow: hidden;
+  width: 100%;
 }
 
 #main-section .section__content .content-banner.content-banner-lg {
@@ -654,6 +660,10 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
 }
 
 @media (max-width: 769px) {
+  body {
+    width: 100vw;
+    overflow: hidden;
+  }
   .container {
     padding: 0 15px;
   }
@@ -690,11 +700,6 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-  }
-  #main-section .section__content .content-banner {
-    height: 130px;
-    -o-object-fit: cover;
-       object-fit: cover;
   }
   section.section1 {
     margin: 15px;

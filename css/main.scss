@@ -374,16 +374,23 @@ nav {
         img {
             margin: 0 1px;
         }
-        .content-img img {
-            width: 100%;
-            min-height: 300px;
-            overflow-y: hidden;
+        .content-img {
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                min-height: 300px;
+                
+            }
         }
         .content-banner {
-            width: 100%;
             // height: 300px;
-            object-fit:cover;
             overflow: hidden;
+            img {
+                object-fit:cover;
+                width: 100%;
+
+            }
         }
         .content-banner.content-banner-lg {
             display: block;
@@ -545,7 +552,10 @@ section.section2 {
     // }
 }  
 @media (max-width: 769px) {
-    
+    body {
+        width: 100vw;
+        overflow: hidden;
+    }
     .container {
         padding: 0 15px;
     }
@@ -588,8 +598,8 @@ section.section2 {
                 height: fit-content;
             }
             .content-banner {
-                height: 130px;
-                object-fit: cover ;
+                // height: 200px;
+                // object-fit: cover ;
             }
         }
     }
