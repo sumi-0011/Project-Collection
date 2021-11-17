@@ -6,6 +6,7 @@ import Detail from "./components/Test/Detail.js";
 import { Main, NoSiderBarPage,SocialDistance,ConfirmeState,MapView } from "./pages/index";
 import { Header, Footer } from "./components/index";
 import "./assets/css/main.css";
+
 function App() {
   return (
     <BrowserRouter>
