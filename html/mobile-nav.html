@@ -1,6 +1,11 @@
 <nav class="mNav">
     <ul class="sub">
-        <div class="closeBtn"><a href="javascript:;">메뉴닫기</a></div>
+        <div class="closeBtn">
+            <span class="material-icons">
+                close
+        </span>
+
+        </div>
         <li class=" menu">
             <a href="#!">병원소개</a>
             <ul class="sub-menu">
@@ -103,10 +108,17 @@
             subMenus.forEach((sub) => {
                 sub.addEventListener('click', function () {
                     let onList = document.querySelector('#mobile-nav .menu.on');
+                    
+                    if(sub.parentElement.classList.contains('on')) {
+                        sub.parentElement.classList.remove('on');
+                    }
+                    else {
+                        sub.parentElement.classList.add('on');
+
+                    }
                     if (onList) {
                         onList.classList.remove('on');
                     }
-                    sub.parentElement.classList.add('on');
                 })
             })
 
