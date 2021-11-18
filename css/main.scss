@@ -2,10 +2,13 @@
 html {
     // width: fit-content;
     overflow-x: hidden;
+    min-width: 320px;
 }
 body {
     overflow-x: hidden;
     width: 100vw;
+    min-width: 350px;
+
     // touch-action: none; //
     ul {
         list-style:none;
@@ -236,7 +239,7 @@ nav {
         background-color: #fff; 
         top: 0; 
         left: -100%; 
-        width: 80vw;
+        width: 320px;
         height: 100%; 
         transition: all 0.3s ease; 
         &.on { 
