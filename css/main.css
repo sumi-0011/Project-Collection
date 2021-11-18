@@ -469,6 +469,7 @@ nav .nav-menu li.item:hover .item-content {
 
 #main-section .section__content .content-img {
   overflow: hidden;
+  margin-top: 5px;
 }
 
 #main-section .section__content .content-img img {
