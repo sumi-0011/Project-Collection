@@ -362,6 +362,7 @@ nav {
             flex-direction: row;
             width: 100%;
             flex-wrap: wrap;
+            justify-content: space-around;
             li {
                 width: calc(25% - 2px);
                 height: 40px;
@@ -400,6 +401,7 @@ nav {
             }
         }
         .content-banner.content-banner-lg {
+            margin-top: 5px;
             display: block;
         }
         .content-banner.content-banner-sm {
@@ -437,6 +439,7 @@ section.section2 {
         display: flex;
         width: 100%;
         .map,.parking {
+            margin-top: 5px;
             overflow: hidden;
             img:hover {
                 cursor:pointer;
@@ -456,11 +459,16 @@ section.section2 {
                 width: 100%;
                 display: flex;
                 img{
+                    
                     width: 50%;
+                }
+                img + img {
+                    margin-left: 5px;
                 }
             }
             .timetable img,.center-phone img  {
                 width: 100%;
+                margin-top: 5px;
             }
         }
         

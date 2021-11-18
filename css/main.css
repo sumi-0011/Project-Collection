@@ -443,6 +443,8 @@ nav .nav-menu li.item:hover .item-content {
   width: 100%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 #main-section .section__content .content-ul li {
@@ -485,6 +487,7 @@ nav .nav-menu li.item:hover .item-content {
 }
 
 #main-section .section__content .content-banner.content-banner-lg {
+  margin-top: 5px;
   display: block;
 }
 
@@ -536,6 +539,7 @@ section.section2 .section__content {
 }
 
 section.section2 .section__content .map, section.section2 .section__content .parking {
+  margin-top: 5px;
   overflow: hidden;
 }
 
@@ -573,8 +577,13 @@ section.section2 .section__content .rest .parking img {
   width: 50%;
 }
 
+section.section2 .section__content .rest .parking img + img {
+  margin-left: 5px;
+}
+
 section.section2 .section__content .rest .timetable img, section.section2 .section__content .rest .center-phone img {
   width: 100%;
+  margin-top: 5px;
 }
 
 @media (min-width: 768px) {
