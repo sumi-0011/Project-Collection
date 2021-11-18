@@ -554,7 +554,7 @@ section.section2 {
 @media (max-width: 769px) {
     body {
         width: 100vw;
-        overflow: hidden;
+        overflow-x: hidden;
     }
     .container {
         padding: 0 15px;

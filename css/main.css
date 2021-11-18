@@ -662,7 +662,7 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
 @media (max-width: 769px) {
   body {
     width: 100vw;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   .container {
     padding: 0 15px;
