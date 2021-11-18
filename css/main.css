@@ -189,10 +189,6 @@ header .header-mobile .header-mobile-title img#header-mobile-logo {
   height: 60px;
 }
 
-body {
-  height: 2000px;
-}
-
 nav {
   position: relative;
   border-top: 1px solid #dadada;
