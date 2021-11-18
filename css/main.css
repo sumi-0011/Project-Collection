@@ -440,7 +440,7 @@ nav .nav-menu li.item:hover .item-content {
 }
 
 #main-section .section__content .content-ul li {
-  width: calc(25% - 4px);
+  width: calc(25% - 2px);
   height: 40px;
   margin: 1px;
   padding-top: 8px;
