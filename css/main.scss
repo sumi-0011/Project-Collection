@@ -1,8 +1,12 @@
 // common
-
+html {
+    // width: fit-content;
+    overflow-x: hidden;
+}
 body {
     overflow-x: hidden;
     width: 100vw;
+    touch-action: none; //
     ul {
         list-style:none;
         margin-top: 0;
