@@ -1,7 +1,13 @@
 @charset "UTF-8";
+html {
+  overflow-x: hidden;
+}
+
 body {
   overflow-x: hidden;
   width: 100vw;
+  -ms-touch-action: none;
+      touch-action: none;
 }
 
 body ul {
@@ -375,8 +381,8 @@ nav .nav-menu li.item:hover .item-content {
   max-height: 500px;
   -webkit-transition: max-height 1s;
   transition: max-height 1s;
-  -webkit-transition-delay: .7s;
-          transition-delay: .7s;
+  -webkit-transition-delay: .2s;
+          transition-delay: .2s;
 }
 
 #mobile-nav .bg-shadow {
