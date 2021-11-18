@@ -614,10 +614,10 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
 
 @media (min-width: 992px) {
   nav .nav-menu li.item .item-content .container .item-container {
-    margin-left: 105px;
+    margin-left: 107px;
   }
   nav .nav-menu li.item .item-content .container .item-container ul {
-    width: 175px;
+    width: 176px;
   }
 }
 
