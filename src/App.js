@@ -23,6 +23,7 @@ function App() {
 function RouterList() {
   return (
     <Switch>
+      <Route exact path="/" component={Main} />
       <Route exact path="/main" component={Main} />
       <Route exact path="/clinic" component={ConfirmeState} />
       <Route exact path="/map" component={MapView} />

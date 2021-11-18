@@ -11,7 +11,7 @@ function MobileNav() {
   return (
     <div id="mobile-nav">
       <div id="navToggle" onClick={toggleClick}>
-        <a  class="toggle"></a>
+        <a  className="toggle"></a>
       </div>
       <div id="navPanel" className={`${navOn ? 'on' : ''} `}>
         <nav>
