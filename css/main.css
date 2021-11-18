@@ -488,8 +488,8 @@ nav .nav-menu li.item:hover .item-content {
 }
 
 #main-section .section__content .content-banner.content-banner-lg {
-  margin-top: 5px;
   display: block;
+  margin-top: 5px;
 }
 
 #main-section .section__content .content-banner.content-banner-sm {
@@ -561,6 +561,7 @@ section.section2 .section__content .map {
 
 section.section2 .section__content .map img {
   width: 100%;
+  height: 100%;
 }
 
 section.section2 .section__content .rest {
@@ -608,6 +609,10 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
   }
   section.section1 .banner-list .banner-item img {
     width: 100%;
+    height: 100%;
+  }
+  section.section2 .map {
+    margin-right: 5px;
   }
 }
 
@@ -655,6 +660,9 @@ section.section2 .section__content .rest .timetable img, section.section2 .secti
   }
   #main-section .section__content .content-ul li {
     width: 100%;
+  }
+  #main-section .section__content .content-img {
+    margin: 0;
   }
   #main-section .section__content .content-img img {
     height: 100%;
