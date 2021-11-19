@@ -60,6 +60,7 @@ public class RouterTable {
 			routeEntry temp = entryList.get(i);		//entryList의 i번째 요소를 temp에 저장 (routeEntry 객체)
 			boolean check = masking(temp,dstIP);	//temp랑 dstIP와 subnetMask를 &한 값이 같은지 확인
 			
+			//TODO : longest match rule 구현 필요
 			if(check) {	//matching되면
 				if(temp.flag.contains("H")) {
 					// flag가 H인지 확인 : Host와 direct connection이 되어있는지 확인되면
@@ -73,6 +74,7 @@ public class RouterTable {
 		return result;
 	}
 
+	//ip주소와 subnet mask를 &연산 한 값과 라우팅 테이블의 entry값을 비교한 boolean값 리턴
 	public boolean masking(routeEntry entry, byte[] dstIP) {
 		boolean check = true;
 		for (int j = 0; j < 4; j++) {
