@@ -73,8 +73,13 @@ public class RouterTable {
 		return result;
 	}
 
-	public boolean masking(routeEntry temp, byte[] dstIP) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean masking(routeEntry entry, byte[] dstIP) {
+		boolean check = true;
+		for (int j = 0; j < 4; j++) {
+			if (entry.dst[j] != (dstIP[j] & entry.netMask[j])) {
+				check = false;
+			}
+		}
+		return check;
 	}
 }
