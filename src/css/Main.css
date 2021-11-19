@@ -63,7 +63,9 @@
 }
 .graph-container-mobile .graph__content .line-chart {
     width: fit-content;
+    height: fit-content;
     margin: 0 auto;
+    /* height: 325px; */
 }
 
 /* pc화면? */
@@ -71,9 +73,24 @@
     display: none;
     width: fit-content;
     margin: 0 auto;
+
 }
-.graph-container .recharts-wrapper {
+.graph-container .graph__title {
+    background-color: #DFD8CA;
+    padding: 3px;
+    text-align: center;
+    border-left:1px solid #cfc5b1;  /*모바일과는 달리 여러개 그래프 존재*/
+}
+.graph-container .graph-item:first-child .graph__title{
+    border: none;
+}
+.graph-container .graph__content {
+    padding: 20px 0;
+}
+.graph-container .line-chart {
     margin-right: 50px;
+    height: fit-content;
+
 }
 
 
@@ -85,6 +102,6 @@
         display: none;
     }
     .graph-container {
-        display: block;
+        display: flex;
     }
 }

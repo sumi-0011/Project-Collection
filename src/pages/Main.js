@@ -1,4 +1,4 @@
-import React ,{useState}from "react";
+import React, { useState } from "react";
 import {
   LineChart,
   Line,
@@ -72,19 +72,38 @@ function Tempelate() {
 
       {<MobileGraph list={list} />}
       <div className="graph-container">
-        <Graph list={list} />
+        <div className="graph-item">
+          <div className="graph__title">일별 확진자 수</div>
+          <div className="graph__content"> <Graph list={list} /></div>
+        </div>
+        <div className="graph-item">
+          <div className="graph__title">누적 확진자 수</div>
+          <div className="graph__content"> <Graph list={list} /></div>
+        </div>
+
+       
       </div>
     </div>
   );
 }
 function MobileGraph({ list }) {
   const [selectGraph, setSelectGraph] = useState(0);
-  
+
   return (
     <div className="graph-container-mobile">
       <div className="graph__title-container">
-        <div className={`graph__title ${selectGraph ===0 ? 'current' : ''}`} onClick={() => (setSelectGraph(0))}>일별</div>
-        <div className={`graph__title ${selectGraph ===1 ? 'current' : ''}`} onClick={() => (setSelectGraph(1))}>누적</div>
+        <div
+          className={`graph__title ${selectGraph === 0 ? "current" : ""}`}
+          onClick={() => setSelectGraph(0)}
+        >
+          일별
+        </div>
+        <div
+          className={`graph__title ${selectGraph === 1 ? "current" : ""}`}
+          onClick={() => setSelectGraph(1)}
+        >
+          누적
+        </div>
       </div>
       <div className="graph__content">
         <Graph list={list} />
@@ -110,7 +129,7 @@ function Graph({ list }) {
       <XAxis dataKey="name" />
       <YAxis />
       <Tooltip />
-      <Legend />
+      {/* <Legend /> */}
       <Line
         type="monotone"
         dataKey="DECIDE_CNT"
