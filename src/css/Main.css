@@ -27,13 +27,48 @@
 .ConfirmedState-container .item {
     flex-grow: 1;
 }
-.ConfirmedState-container  .item__title{
-   
+.ConfirmedState-container .item__title{
+    padding: 2px;
     background-color: #DFD8CA;
 }
-.graph-container-mobile {
-    display: block;
+.ConfirmedState-container .item__content {
+    padding: 2px;
+
 }
+/* 모바일용 */
+.graph-container-mobile {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+ .graph-container-mobile .graph__title-container {
+    display: flex;
+}
+.graph-container-mobile .graph__title-container  .graph__title  {
+    width: 50%;
+    text-align: center;
+    background-color: #DFD8CA;
+    padding: 3px;
+} 
+.graph-container-mobile .graph__title-container .graph__title + .graph__title {
+    border-left:1px solid #cfc5b1;
+}
+.graph-container-mobile .graph__title-container  .graph__title.current {
+    /* 현재 클릭된 graph */
+    background-color: #bbb3a2;
+}
+.graph-container-mobile .graph__content {
+    width: 100%;
+    padding: 25px 50px 25px 0;/* 그래프 치우쳐짐 조정*/
+    /* padding-right: 50px;     */
+
+}
+.graph-container-mobile .graph__content .line-chart {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+/* pc화면? */
 .graph-container {
     display: none;
     width: fit-content;

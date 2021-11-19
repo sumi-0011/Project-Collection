@@ -70,7 +70,15 @@ function Tempelate() {
       </div>
       {/* 리액트 반응형 웹도 있는것 같지만 여기서는 쓰지 말고 익숙한 것으로 하자아~  */}
       
-      <div className="graph-container-mobile"><Graph list={list} /></div>
+      <div className="graph-container-mobile">
+        <div className="graph__title-container">
+          <div className="graph__title">일별</div>
+          <div className="graph__title">누적</div>
+        </div>
+        <div className="graph__content">
+          <Graph list={list} />
+        </div>
+      </div>
       <div className="graph-container">
         <Graph list={list} />
       </div>
@@ -111,6 +119,7 @@ function Graph({ list }) {
         left: 20,
         bottom: 5,
       }}
+      className="line-chart"
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
