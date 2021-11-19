@@ -9,6 +9,8 @@ import {
   Legend,
 } from "recharts";
 // import
+import '../css/Main.css';
+
 function Main() {
   return (
     <div>
@@ -66,6 +68,9 @@ function Tempelate() {
           </div>
         </div>
       </div>
+      {/* 리액트 반응형 웹도 있는것 같지만 여기서는 쓰지 말고 익숙한 것으로 하자아~  */}
+      
+      <div className="graph-container-mobile"><Graph list={list} /></div>
       <div className="graph-container">
         <Graph list={list} />
       </div>

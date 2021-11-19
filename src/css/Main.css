@@ -1,0 +1,57 @@
+/* 모바일 우선 미디어쿼리 작성법 */
+/* // Mobile
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    // Tablet
+}
+@media screen and (min-width: 1024px) {
+    // PC
+} */
+
+/* ConfirmedState-container */
+.ConfirmedState-container .setion-containter{
+    /* left: 0;
+    right: 0;
+    margin: 0 auto; */
+    margin: 20px;
+    min-width: 300px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    border-radius: 10px;
+    flex-grow: 1;
+}
+.ConfirmedState-container .sortation {
+    background-color: #c9b4a5;
+    width: 80px;
+}
+.ConfirmedState-container .item {
+    flex-grow: 1;
+}
+.ConfirmedState-container  .item__title{
+   
+    background-color: #DFD8CA;
+}
+.graph-container-mobile {
+    display: block;
+}
+.graph-container {
+    display: none;
+    width: fit-content;
+    margin: 0 auto;
+}
+.graph-container .recharts-wrapper {
+    margin-right: 50px;
+}
+
+
+
+
+/* pc화면에서 */
+@media screen and (min-width: 1024px) {
+    .graph-container-mobile {
+        display: none;
+    }
+    .graph-container {
+        display: block;
+    }
+}
