@@ -42,11 +42,39 @@ public class RouterTable {
 		
 		entryList.add(newRouteEntry);	//생성한 routerEntry를 routerList에 추가
 		
-		
 		return true;
+	}
+	
+	// routing table의 모든 element를 제거한다. clear
+	public boolean removeAll() {
+		entryList.clear(); 	//entryList를 비워서 모든 routerEntry정보를 삭제한다. => routerTable을 비운다. 
+		return true;
+	}
+	
+	//해당 패킷을 전달할 네트워크 주소를 알아낸다.
+	// findInterface와 같은거예요
+	public byte[] findSendingNetwork(byte[] dstIP) {
+		byte[] result = null;
 		
+		for (int i=0; i< entryList.size();i++) {	//entryList의 모든 요소를 하나씩 다 돌려가면서
+			routeEntry temp = entryList.get(i);		//entryList의 i번째 요소를 temp에 저장 (routeEntry 객체)
+			boolean check = masking(temp,dstIP);	//temp랑 dstIP와 subnetMask를 &한 값이 같은지 확인
+			
+			if(check) {	//matching되면
+				if(temp.flag.contains("H")) {
+					// flag가 H인지 확인 : Host와 direct connection이 되어있는지 확인되면
+					result = temp.routeInterface;
+				}
+				
+			}
+			
+		}
 		
-		
-		
+		return result;
+	}
+
+	public boolean masking(routeEntry temp, byte[] dstIP) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
