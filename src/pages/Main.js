@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState}from "react";
 import {
   LineChart,
   Line,
@@ -9,7 +9,7 @@ import {
   Legend,
 } from "recharts";
 // import
-import '../css/Main.css';
+import "../css/Main.css";
 
 function Main() {
   return (
@@ -69,44 +69,29 @@ function Tempelate() {
         </div>
       </div>
       {/* 리액트 반응형 웹도 있는것 같지만 여기서는 쓰지 말고 익숙한 것으로 하자아~  */}
-      
-      <div className="graph-container-mobile">
-        <div className="graph__title-container">
-          <div className="graph__title">일별</div>
-          <div className="graph__title">누적</div>
-        </div>
-        <div className="graph__content">
-          <Graph list={list} />
-        </div>
-      </div>
+
+      {<MobileGraph list={list} />}
       <div className="graph-container">
         <Graph list={list} />
       </div>
     </div>
   );
 }
-
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-];
-
+function MobileGraph({ list }) {
+  const [selectGraph, setSelectGraph] = useState(0);
+  
+  return (
+    <div className="graph-container-mobile">
+      <div className="graph__title-container">
+        <div className={`graph__title ${selectGraph ===0 ? 'current' : ''}`} onClick={() => (setSelectGraph(0))}>일별</div>
+        <div className={`graph__title ${selectGraph ===1 ? 'current' : ''}`} onClick={() => (setSelectGraph(1))}>누적</div>
+      </div>
+      <div className="graph__content">
+        <Graph list={list} />
+      </div>
+    </div>
+  );
+}
 function Graph({ list }) {
   return (
     <LineChart

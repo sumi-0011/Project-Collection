@@ -59,9 +59,7 @@
 }
 .graph-container-mobile .graph__content {
     width: 100%;
-    padding: 25px 50px 25px 0;/* 그래프 치우쳐짐 조정*/
-    /* padding-right: 50px;     */
-
+    padding: 25px 50px 25px 0;  /* 그래프 치우쳐짐 조정*/
 }
 .graph-container-mobile .graph__content .line-chart {
     width: fit-content;
