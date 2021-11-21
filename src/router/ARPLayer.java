@@ -6,10 +6,12 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
 import java.net.NetworkInterface;
 import java.net.SocketException;
 
 public class ARPLayer implements BaseLayer {
+	public ArpTable arpCache;
 	public int nUpperLayerCount = 0;
 	public String pLayerName = null;
 	public BaseLayer p_UnderLayer = null;
@@ -21,6 +23,7 @@ public class ARPLayer implements BaseLayer {
 	private final byte[] OP_ARP_REPLY = byte4To2(intToByte(2));
 	public final _IP_ADDR MY_IP_ADDRESS = new _IP_ADDR();
 	public final _ETHERNET_ADDR MY_MAC_ADDRESS = new _ETHERNET_ADDR();
+	
 
 	public class _Cache_Entry {
 		// basic cache
@@ -91,30 +94,136 @@ public class ARPLayer implements BaseLayer {
 			return sb.toString();
 		}
 	}
-
+	
 	private class _ARP_HEADER {
-		byte[] arp_hdType; // Ethernet = 1
-		byte[] arp_prototype; // Ipv4 = 0x0800
-		byte arp_hdLength; // MAC address = 6
-		byte arp_protoLength; // IP address = 4
-		byte[] arp_op; // request = 1, reply = 2
-		_ETHERNET_ADDR arp_srcHdAddr; // Sender's Ethernet Address
+
+		byte[] hard_type = new byte[2];
+		byte[] prot_type = new byte[2];
+		byte hard_size;
+		byte prot_size;
+		byte[] op = new byte[2];
+		_ETHERNET_ADDR arp_srcHdAddr; //Sender ethernet address
 		_IP_ADDR arp_srcProtoAddr;// Sender's IP Address
 		_ETHERNET_ADDR arp_destHdAddr; // Receiver's Ethernet Address
 		_IP_ADDR arp_destProtoAddr; // Receiver's IP Address
 
-		public _ARP_HEADER() { // 28byte
-			this.arp_hdType = new byte[2];
-			this.arp_prototype = new byte[2];
-			this.arp_hdLength = (byte) 0x00;// 4
-			this.arp_protoLength = (byte) 0x00;// 5
-			this.arp_op = new byte[2];// 6~7
-			this.arp_srcHdAddr = new _ETHERNET_ADDR(); // 8~13
-			this.arp_srcProtoAddr = new _IP_ADDR(); // 14~17
-			this.arp_destHdAddr = new _ETHERNET_ADDR();// 18~23
-			this.arp_destProtoAddr = new _IP_ADDR(); // 24~27
+		private _ARP_HEADER() {
+			hard_type[0] = (byte) 0x00;
+			hard_type[1] = (byte) 0x01;
+			prot_type[0] = (byte) 0x08;
+			prot_type[1] = (byte) 0x00;
+			hard_size = (byte) 0x06;
+			prot_size = (byte) 0x04;
+			op[0] = (byte) 0x00;
+			op[1] = (byte) 0x00;
+			arp_srcHdAddr = new _ETHERNET_ADDR();
+			arp_srcProtoAddr = new _IP_ADDR();
+			arp_destHdAddr = new _ETHERNET_ADDR();
+			arp_destProtoAddr = new _IP_ADDR();
+		}
+
+		private void arpForSend(byte[] input) {
+			op[1] = 0x01;
+			arp_srcHdAddr.addr = MY_MAC_ADDRESS.addr;
+			arp_srcProtoAddr.addr = MY_IP_ADDRESS.addr;
+			arp_destProtoAddr.addr = input;
+		}
+
+		private void arpForReply(byte[] ip, byte[] mac) {
+			op[1] = 0x02;
+			arp_srcHdAddr.addr = MY_MAC_ADDRESS.addr;
+			arp_srcProtoAddr.addr = MY_IP_ADDRESS.addr;
+			arp_destProtoAddr.addr = ip;
+			arp_destHdAddr.addr = mac;
+		}
+
+		private byte[] arpToByte() {
+			byte[] data = new byte[28];
+			data[0] = hard_type[0];
+			data[1] = hard_type[1];
+			data[2] = prot_type[0];
+			data[3] = prot_type[1];
+			data[4] = hard_size;
+			data[5] = prot_size;
+			data[6] = op[0];
+			data[7] = op[1];
+			for (int i = 0; i < 6; i++) {
+				data[i + 8] = arp_srcHdAddr.addr[i];
+				data[i + 18] = arp_destHdAddr.addr[i];
+			}
+			for (int i = 0; i < 4; i++) {
+				data[i + 14] = arp_srcProtoAddr.addr[i];
+				data[i + 24] = arp_destProtoAddr.addr[i];
+			}
+			return data;
+		}
+
+		private _ARP_HEADER byteToArp(byte[] input) {
+			_ARP_HEADER data = new _ARP_HEADER();
+			data.hard_type[0] = input[0];
+			data.hard_type[1] = input[1];
+			data.prot_type[0] = input[2];
+			data.prot_type[1] = input[3];
+			data.hard_size = input[4];
+			data.prot_size = input[5];
+			data.op[0] = input[6];
+			data.op[1] = input[7];
+			for (int i = 0; i < 6; i++) {
+				data.arp_srcHdAddr.addr[i] = input[i + 8];
+				data.arp_destHdAddr.addr[i] = input[i + 18];
+			}
+			for (int i = 0; i < 4; i++) {
+				data.arp_srcProtoAddr.addr[i] = input[i + 14];
+				data.arp_destProtoAddr.addr[i] = input[i + 24];
+			}
+			return data;
 		}
 	}
+
+//	private class _ARP_HEADER {
+//		byte[] arp_hdType; // Ethernet = 1
+//		byte[] arp_prototype; // Ipv4 = 0x0800
+//		byte arp_hdLength; // MAC address = 6
+//		byte arp_protoLength; // IP address = 4
+//		byte[] arp_op; // request = 1, reply = 2
+//		_ETHERNET_ADDR arp_srcHdAddr; // Sender's Ethernet Address
+//		_IP_ADDR arp_srcProtoAddr;// Sender's IP Address
+//		_ETHERNET_ADDR arp_destHdAddr; // Receiver's Ethernet Address
+//		_IP_ADDR arp_destProtoAddr; // Receiver's IP Address
+//
+//		public _ARP_HEADER() { // 28byte
+//			this.arp_hdType = new byte[2];
+//			this.arp_prototype = new byte[2];
+//			this.arp_hdLength = (byte) 0x00;// 4
+//			this.arp_protoLength = (byte) 0x00;// 5
+//			this.arp_op = new byte[2];// 6~7
+//			this.arp_srcHdAddr = new _ETHERNET_ADDR(); // 8~13
+//			this.arp_srcProtoAddr = new _IP_ADDR(); // 14~17
+//			this.arp_destHdAddr = new _ETHERNET_ADDR();// 18~23
+//			this.arp_destProtoAddr = new _IP_ADDR(); // 24~27
+//		}
+//		
+//		
+//		private byte[] arpToByte() {
+//			byte[] data = new byte[28];
+//			data[0] = hard_type[0];
+//			data[1] = hard_type[1];
+//			data[2] = prot_type[0];
+//			data[3] = prot_type[1];
+//			data[4] = hard_size;
+//			data[5] = prot_size;
+//			data[6] = op[0];
+//			data[7] = op[1];
+//			for (int i = 0; i < 6; i++) {
+//				data[i + 8] = sender_Enet.addr[i];
+//				data[i + 18] = target_Enet.addr[i];
+//			}
+//			for (int i = 0; i < 4; i++) {
+//				data[i + 14] = sender_IP.addr[i];
+//				data[i + 24] = target_IP.addr[i];
+//			}
+//			return data;
+//	}
 
 	_ARP_HEADER m_aHeader = new _ARP_HEADER();
 
@@ -137,25 +246,25 @@ public class ARPLayer implements BaseLayer {
 			m_aHeader.arp_destProtoAddr.addr[i] = (byte) 0x00;
 		}
 		for (int i = 0; i < 2; i++) {
-			m_aHeader.arp_hdType[i] = (byte) 0x00;
-			m_aHeader.arp_prototype[i] = (byte) 0x00;
-			m_aHeader.arp_op[i] = (byte) 0x00;
+			m_aHeader.hard_type[i] = (byte) 0x00;
+			m_aHeader.prot_type[i] = (byte) 0x00;
+			m_aHeader.op[i] = (byte) 0x00;
 		}
-		m_aHeader.arp_hdLength = (byte) 0x00;
-		m_aHeader.arp_protoLength = (byte) 0x00;
+		m_aHeader.hard_size = (byte) 0x00;
+		m_aHeader.prot_size = (byte) 0x00;
 	}
 
 	public byte[] ObjToByte(_ARP_HEADER Header, byte[] input, int length) {
 		byte[] buf = new byte[length + 28];
 
-		buf[0] = Header.arp_hdType[0];
-		buf[1] = Header.arp_hdType[1];
-		buf[2] = Header.arp_prototype[0];
-		buf[3] = Header.arp_prototype[1];
-		buf[4] = Header.arp_hdLength;
-		buf[5] = Header.arp_protoLength;
-		buf[6] = Header.arp_op[0];
-		buf[7] = Header.arp_op[1];
+		buf[0] = Header.hard_type[0];
+		buf[1] = Header.hard_type[1];
+		buf[2] = Header.prot_type[0];
+		buf[3] = Header.prot_type[1];
+		buf[4] = Header.hard_size;
+		buf[5] = Header.prot_size;
+		buf[6] = Header.op[0];
+		buf[7] = Header.op[1];
 
 		buf[8] = Header.arp_srcHdAddr.addr[0];
 		buf[9] = Header.arp_srcHdAddr.addr[1];
@@ -208,36 +317,60 @@ public class ARPLayer implements BaseLayer {
 		return false;
 	}
 
-	public boolean Send(byte[] input, int length) {
+	public boolean Send(byte[] input, byte[] dst) {
 		if (cameFromDlg(input)) { // 비어 있는 byte[]다 -> Dlg에서 왔다 -> Send Request Message.
+			
+			
 			System.out.println("request test");
 			setARPHeaderBeforeSend(); // opCode를 포함한 hdtype,prototype,hdLen,protoLen 초기화. opCode의 default는 1이다.
 			setSrcMAC(MY_MAC_ADDRESS.addr);
 			setSrcIPAddr(MY_IP_ADDRESS.addr);
 			// setDst는 GUI에서 이루어지고 있다.
-			byte[] ARP_header_added_bytes = ObjToByte(m_aHeader, input, length);
+			//byte[] ARP_header_added_bytes = ObjToByte(m_aHeader, input, length);
 			
-			for(byte b : ARP_header_added_bytes) {
-				System.out.print(b);
+//			for(byte b : ARP_header_added_bytes) {
+//				System.out.print(b);
+//			}
+//			System.out.println();
+//			
+//			String target_IP = getDstAddrFromHeader(ARP_header_added_bytes);
+			
+			//router
+			if (arpCache.checkARP(dst) == null) {
+				_ARP_HEADER requestData = new _ARP_HEADER();
+				requestData.arpForSend(dst);
+				byte[] reqData = requestData.arpToByte();
+				((EthernetLayer) this.GetUnderLayer()).Send(reqData, reqData.length);
+
+				byte[] dstMac = arpCache.checkARP(dst);
+				if (dstMac != null) {
+					((EthernetLayer) this.GetUpperLayer(0)).SetEnetDstAddress(dstMac);
+					((EthernetLayer) this.GetUpperLayer(0)).Send(input, input.length);
+				}
+			} else {
+				((EthernetLayer)this.GetUnderLayer()).SetEnetDstAddress(arpCache.checkARP(dst));
+				this.GetUnderLayer().Send(input, input.length);
 			}
-			System.out.println();
+			return true;
+			//router
 			
-			String target_IP = getDstAddrFromHeader(ARP_header_added_bytes);
-			_Cache_Entry cache_Entry = // dst_Addr를 KEY로 갖고 cache_Entry를 VALUE로 갖는 hashMap 생성
-					new _Cache_Entry(new byte[6], "Incomplete", 80);
-
-			if (!cache_Table.containsKey(target_IP))
-				cache_Table.put(target_IP, cache_Entry);
-
-			this.GetUnderLayer().Send(ARP_header_added_bytes, ARP_header_added_bytes.length); // Send Request Message
-		} else { // byte[]가 비어있지 않다 -> Send Reply Message
-			System.out.println("reply test");
-			for (int i = 0; i < 6; i++)
-				input[i + 18] = MY_MAC_ADDRESS.addr[i]; // 패킷의 ???(target MAC)를 내 PC의 MAC 주소로 갱신
-			input = swappingAddr(input); // src 주소 <-> target 주소 swapping
-			input[6] = (byte) 0x00; // setOpCode(2)
-			input[7] = (byte) 0x02;
-			this.GetUnderLayer().Send(input, input.length); // Send Reply Message
+			
+//			
+//			_Cache_Entry cache_Entry = // dst_Addr를 KEY로 갖고 cache_Entry를 VALUE로 갖는 hashMap 생성
+//					new _Cache_Entry(new byte[6], "Incomplete", 80);
+//
+//			if (!cache_Table.containsKey(target_IP))
+//				cache_Table.put(target_IP, cache_Entry);
+//
+//			this.GetUnderLayer().Send(ARP_header_added_bytes, ARP_header_added_bytes.length); // Send Request Message
+//		} else { // byte[]가 비어있지 않다 -> Send Reply Message
+//			System.out.println("reply test");
+//			for (int i = 0; i < 6; i++)
+//				input[i + 18] = MY_MAC_ADDRESS.addr[i]; // 패킷의 ???(target MAC)를 내 PC의 MAC 주소로 갱신
+//			input = swappingAddr(input); // src 주소 <-> target 주소 swapping
+//			input[6] = (byte) 0x00; // setOpCode(2)
+//			input[7] = (byte) 0x02;
+//			this.GetUnderLayer().Send(input, input.length); // Send Reply Message
 		}
 		return false;
 	}
@@ -253,54 +386,81 @@ public class ARPLayer implements BaseLayer {
 	}
 
 	// 10/25 수정: 같은 네트워크 상에서 ARP를 받아도 target이 자신이 아니면 캐시 테이블 업데이트는 하지 않는 것 같습니다.
-
 	public boolean Receive(byte[] input) {
-		boolean Mine = IsItMine(input);
-		if (isRequest(input)) {// ARP request 인 경우
-			if (isProxyARP(input)) {// proxy ARP request 인 경우
-				boolean proxyTrue = proxyRQReceive(input, input.length);
-				if (proxyTrue == true) {
-					proxyRPSend(input, input.length);
-					return true;
+		_ARP_HEADER data = new _ARP_HEADER();
+		data = data.byteToArp(input);
+		if (arpCache.checkARP(data.arp_srcProtoAddr.addr) != null) {
+			arpCache.remove(arpCache.checkARP(data.arp_srcProtoAddr.addr));
+			arpCache.put(data.arp_srcProtoAddr.addr, data.arp_srcHdAddr.addr);
+		} else {
+			arpCache.put(data.arp_srcProtoAddr.addr, data.arp_srcHdAddr.addr);
+		}
+
+		if (data.arp_destProtoAddr.addr == MY_IP_ADDRESS.addr) {
+			if (data.op[1] == (byte) 0x01) {
+				_ARP_HEADER replydata = new _ARP_HEADER();
+				replydata.arpForReply(data.arp_srcProtoAddr.addr, data.arp_srcHdAddr.addr);
+				byte[] returnData = replydata.arpToByte();
+				((EthernetLayer) this.GetUnderLayer()).arpSend(returnData, data.arp_srcHdAddr.addr);
+			} else if (data.op[1] == (byte) 0x02) {
+				if (arpCache.checkARP(input) != null) {
+					arpCache.remove(arpCache.checkARP(input));
+					arpCache.put(data.arp_srcProtoAddr.addr, data.arp_srcHdAddr.addr);
+				} else {
+					arpCache.put(data.arp_srcProtoAddr.addr, data.arp_srcHdAddr.addr);
 				}
-				return false;
-			} else if (isGratuitousARP(input)) {// Gratuitous ARP request 인 경우
-				updateCache(input);
-				return true;
-			} else {// basic ARP request 인 경우
-				if (Mine) {
-					updateCache(input);
-					Send(input, input.length);// 내 ip 주소로 온 ARP일 때만 reply
-					return true;
-				} else
-					return false;
-
 			}
-		} else if (isReply(input)) {// ARP reply 인 경우
-			if (isProxyARP(input)) {// proxy ARP reply 인 경우
-				if (Mine) {// then proxy send
-					proxyRPReceive(input);
-					return true;
-				} else
-					return false;
-			} // else if (isGratuitousARP(input)) {
-				// if (Mine) {Gratuitous ARP reply 인 경우: 추가 구현 사항이므로 구현하지 않음
-				// then Gratuitous send
-				// return true;
-				// } else
-				// return false;
-				// }
-
-			else {// basic ARP reply 인 경우
-				if (Mine) {
-					updateCache(input);
-					return true;
-				} else
-					return false;
-			}
-		} else
-			return false;
+			return true;
+		}
+		return false;
 	}
+//	public boolean Receive(byte[] input) {
+//		boolean Mine = IsItMine(input);
+//		if (isRequest(input)) {// ARP request 인 경우
+//			if (isProxyARP(input)) {// proxy ARP request 인 경우
+//				boolean proxyTrue = proxyRQReceive(input, input.length);
+//				if (proxyTrue == true) {
+//					proxyRPSend(input, input.length);
+//					return true;
+//				}
+//				return false;
+//			} else if (isGratuitousARP(input)) {// Gratuitous ARP request 인 경우
+//				updateCache(input);
+//				return true;
+//			} else {// basic ARP request 인 경우
+//				if (Mine) {
+//					updateCache(input);
+//					Send(input, input.length);// 내 ip 주소로 온 ARP일 때만 reply
+//					return true;
+//				} else
+//					return false;
+//
+//			}
+//		} else if (isReply(input)) {// ARP reply 인 경우
+//			if (isProxyARP(input)) {// proxy ARP reply 인 경우
+//				if (Mine) {// then proxy send
+//					proxyRPReceive(input);
+//					return true;
+//				} else
+//					return false;
+//			} // else if (isGratuitousARP(input)) {
+//				// if (Mine) {Gratuitous ARP reply 인 경우: 추가 구현 사항이므로 구현하지 않음
+//				// then Gratuitous send
+//				// return true;
+//				// } else
+//				// return false;
+//				// }
+//
+//			else {// basic ARP reply 인 경우
+//				if (Mine) {
+//					updateCache(input);
+//					return true;
+//				} else
+//					return false;
+//			}
+//		} else
+//			return false;
+//	}
 
 	// Grat Send
 	public boolean GratSend(byte[] input, int length) {
@@ -425,12 +585,12 @@ public class ARPLayer implements BaseLayer {
 	}
 
 	public void setARPHeaderBeforeSend() {
-		this.m_aHeader.arp_hdType = byte4To2(intToByte(1));
-		this.m_aHeader.arp_prototype[0] = (byte) 0x08;
-		this.m_aHeader.arp_prototype[1] = (byte) 0x00;
-		this.m_aHeader.arp_hdLength = 6;
-		this.m_aHeader.arp_protoLength = 4;
-		this.m_aHeader.arp_op[1] = 1;
+		this.m_aHeader.hard_type = byte4To2(intToByte(1));
+		this.m_aHeader.prot_type[0] = (byte) 0x08;
+		this.m_aHeader.prot_type[1] = (byte) 0x00;
+		this.m_aHeader.hard_size = 6;
+		this.m_aHeader.prot_size = 4;
+		this.m_aHeader.op[1] = 1;
 
 	}
 
@@ -632,11 +792,11 @@ public class ARPLayer implements BaseLayer {
 
 	// opcode getter & setter
 	public byte[] getOpcode() {
-		return this.m_aHeader.arp_op;
+		return this.m_aHeader.op;
 	}
 
 	public void setOpCode(int value) {
-		this.m_aHeader.arp_op = byte4To2(intToByte(value));
+		this.m_aHeader.op = byte4To2(intToByte(value));
 	}
 
 	// SrcMAC getter & setter
