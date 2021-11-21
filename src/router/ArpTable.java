@@ -57,13 +57,13 @@ public class ArpTable {
 		if (checkARP(input) == null) {
 			this.arpCache.put(input, Enet);
 		}
-		app.reload();
+		//app.reload();  //애플리케이션 레이어에서 구현 필요함
 	}
 
 	// - remove
 	// removes input(IP) from arpCache.
 	public void remove(byte[] input) {
 		this.arpCache.remove(input);
-		app.reload();
+		//app.reload(); //에플리케이션 레이어서에서 구현 필요
 	}
 }

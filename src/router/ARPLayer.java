@@ -180,50 +180,6 @@ public class ARPLayer implements BaseLayer {
 		}
 	}
 
-//	private class _ARP_HEADER {
-//		byte[] arp_hdType; // Ethernet = 1
-//		byte[] arp_prototype; // Ipv4 = 0x0800
-//		byte arp_hdLength; // MAC address = 6
-//		byte arp_protoLength; // IP address = 4
-//		byte[] arp_op; // request = 1, reply = 2
-//		_ETHERNET_ADDR arp_srcHdAddr; // Sender's Ethernet Address
-//		_IP_ADDR arp_srcProtoAddr;// Sender's IP Address
-//		_ETHERNET_ADDR arp_destHdAddr; // Receiver's Ethernet Address
-//		_IP_ADDR arp_destProtoAddr; // Receiver's IP Address
-//
-//		public _ARP_HEADER() { // 28byte
-//			this.arp_hdType = new byte[2];
-//			this.arp_prototype = new byte[2];
-//			this.arp_hdLength = (byte) 0x00;// 4
-//			this.arp_protoLength = (byte) 0x00;// 5
-//			this.arp_op = new byte[2];// 6~7
-//			this.arp_srcHdAddr = new _ETHERNET_ADDR(); // 8~13
-//			this.arp_srcProtoAddr = new _IP_ADDR(); // 14~17
-//			this.arp_destHdAddr = new _ETHERNET_ADDR();// 18~23
-//			this.arp_destProtoAddr = new _IP_ADDR(); // 24~27
-//		}
-//		
-//		
-//		private byte[] arpToByte() {
-//			byte[] data = new byte[28];
-//			data[0] = hard_type[0];
-//			data[1] = hard_type[1];
-//			data[2] = prot_type[0];
-//			data[3] = prot_type[1];
-//			data[4] = hard_size;
-//			data[5] = prot_size;
-//			data[6] = op[0];
-//			data[7] = op[1];
-//			for (int i = 0; i < 6; i++) {
-//				data[i + 8] = sender_Enet.addr[i];
-//				data[i + 18] = target_Enet.addr[i];
-//			}
-//			for (int i = 0; i < 4; i++) {
-//				data[i + 14] = sender_IP.addr[i];
-//				data[i + 24] = target_IP.addr[i];
-//			}
-//			return data;
-//	}
 
 	_ARP_HEADER m_aHeader = new _ARP_HEADER();
 
@@ -337,17 +293,22 @@ public class ARPLayer implements BaseLayer {
 			
 			//router
 			if (arpCache.checkARP(dst) == null) {
+				// 1차로 ARP 캐쉬 테이블에 저장되어 있지 않은경우
 				_ARP_HEADER requestData = new _ARP_HEADER();
-				requestData.arpForSend(dst);
-				byte[] reqData = requestData.arpToByte();
+				requestData.arpForSend(dst); //헤더 값 세팅
+				byte[] reqData = requestData.arpToByte(); // 헤더를 하나의 바이트로
 				((EthernetLayer) this.GetUnderLayer()).Send(reqData, reqData.length);
-
+				//2차로 캐쉬 테이블에 저장되었는지 확인 -> 만약 같은 네트워크라면 저장되어 있다.
 				byte[] dstMac = arpCache.checkARP(dst);
+				
 				if (dstMac != null) {
+					//ARP table에 캐시 테이블에 값이 저장되어 있는 경우
+					//? 같은 네트워크에 저장 되어 있는경우
 					((EthernetLayer) this.GetUpperLayer(0)).SetEnetDstAddress(dstMac);
 					((EthernetLayer) this.GetUpperLayer(0)).Send(input, input.length);
 				}
 			} else {
+				//같은 네트워크가 아니라면 라우팅 테이블에서 값을 가져와야한다.
 				((EthernetLayer)this.GetUnderLayer()).SetEnetDstAddress(arpCache.checkARP(dst));
 				this.GetUnderLayer().Send(input, input.length);
 			}
@@ -390,23 +351,32 @@ public class ARPLayer implements BaseLayer {
 		_ARP_HEADER data = new _ARP_HEADER();
 		data = data.byteToArp(input);
 		if (arpCache.checkARP(data.arp_srcProtoAddr.addr) != null) {
+			// ARP 테이블에 sender IP가 있다면 삭제하고 새로 put
+			// 일단은 수신측 부터
 			arpCache.remove(arpCache.checkARP(data.arp_srcProtoAddr.addr));
 			arpCache.put(data.arp_srcProtoAddr.addr, data.arp_srcHdAddr.addr);
 		} else {
+			// ARP 테이블에 없다면 바로 추가
 			arpCache.put(data.arp_srcProtoAddr.addr, data.arp_srcHdAddr.addr);
 		}
 
 		if (data.arp_destProtoAddr.addr == MY_IP_ADDRESS.addr) {
+			// 만약 목적지 주소와 IP 주소와 같은경우
 			if (data.op[1] == (byte) 0x01) {
+				//arp send 인경우 arp reply를 상대방에 전달해야한다.
 				_ARP_HEADER replydata = new _ARP_HEADER();
 				replydata.arpForReply(data.arp_srcProtoAddr.addr, data.arp_srcHdAddr.addr);
 				byte[] returnData = replydata.arpToByte();
 				((EthernetLayer) this.GetUnderLayer()).arpSend(returnData, data.arp_srcHdAddr.addr);
 			} else if (data.op[1] == (byte) 0x02) {
+				//arp receive인경우
 				if (arpCache.checkARP(input) != null) {
+					//만약 arp 테이블에 값이 존재했다면
 					arpCache.remove(arpCache.checkARP(input));
+					//최신화를 진행
 					arpCache.put(data.arp_srcProtoAddr.addr, data.arp_srcHdAddr.addr);
 				} else {
+					//없었다면 바로 push
 					arpCache.put(data.arp_srcProtoAddr.addr, data.arp_srcHdAddr.addr);
 				}
 			}
