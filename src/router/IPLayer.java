@@ -9,7 +9,8 @@ public class IPLayer implements BaseLayer {
 	public String pLayerName = null;
 	public BaseLayer p_UnderLayer = null;
 	public ArrayList<BaseLayer> p_aUpperLayer = new ArrayList<BaseLayer>();
-
+	private RouterTable router_Table = null;
+	
 	private int IP_HEAD_SIZE = 20;
 
 	private class _IP_ADDR {
@@ -99,15 +100,15 @@ public class IPLayer implements BaseLayer {
 		m_iHeader.ip_data = null;
 	}
 
-//	boolean isEqualIpAddress(byte[] adr) {
-//		for (int i = 0; i < 4; i++) {
-//			if (ip_sourceIP[i] != adr[i + 24]) {
-//				return false;
-//			}
-//		}
-//		return true;
-//
-//	}
+	boolean isEqualIpAddress(byte[] input, byte[] addr) {
+		for (int i = 0; i < input.length; i++) {
+			if (input[i] != addr[i]) {
+				return false;
+			}
+		}
+		return true;
+
+	}
 
 	public byte[] ObjToByte(_IP_HEADER Header, byte[] input, int length) {
 		byte[] buf = new byte[length + 20];
@@ -130,21 +131,38 @@ public class IPLayer implements BaseLayer {
 		return buf;
 	}
 	
+	public boolean Receive(byte[] input) {
+
+		byte[] dstIpAddr = new byte[4];
+
+		for (int i = 0; i < 4; i++)
+			dstIpAddr[i] = input[16 + i];
+		
+		dstIpAddr = router_Table.findSendingNetwork(dstIpAddr);
+
+		try {
+			if (isEqualIpAddress(dstIpAddr, m_iHeader.ip_src.addr)) {
+				this.Send(input, input.length);
+			} else if (isEqualIpAddress(dstIpAddr, otherIPLayer.m_iHeader.ip_src.addr)) {
+				otherIPLayer.Receive(input);
+			}
+		} catch (NullPointerException e) {
+		}
+		return true;
+	}
 	
 	public boolean Send(byte[] input, int length) {
-		// ObjToByte 메소드에서 보낼 data 생성.
 		byte[] IP_header_added_bytes = ObjToByte(m_iHeader, input, length);
-
 		((ARPLayer) this.GetUnderLayer()).Send(IP_header_added_bytes, IP_header_added_bytes.length);
-		return false;
+		return true;
 	}
 	
-	public boolean GratSend(byte[] input, int length) {
-		byte[] TCP_header_added_bytes = ObjToByte(m_iHeader, input, length);
-
-		this.GetUnderLayer().GratSend(TCP_header_added_bytes, TCP_header_added_bytes.length);
-		return false;
-	}
+//	public boolean GratSend(byte[] input, int length) {
+//		byte[] TCP_header_added_bytes = ObjToByte(m_iHeader, input, length);
+//
+//		this.GetUnderLayer().GratSend(TCP_header_added_bytes, TCP_header_added_bytes.length);
+//		return false;
+//	}
 
 	
 	public static int byte2Int(byte[] src) {
