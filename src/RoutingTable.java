@@ -13,7 +13,6 @@ public class RoutingTable {
 
       @Override
       public int compare(Entry<Integer, HashMap<String,Object[]>> o1, Entry<Integer, HashMap<String,Object[]>> o2) {
-         // TODO Auto-generated method stub
          return -o1.getKey().compareTo(o2.getKey());
       }
    }
@@ -33,7 +32,6 @@ public class RoutingTable {
       HashMap<String,Object[]> head = null;
       byte[] netmask = (byte[]) value[1];
       int netnum = computeNetnum(netmask);
-//      System.out.println(netnum);
 
       if(rountingTable.containsKey(netnum)) {
          head = rountingTable.get(netnum);
@@ -43,7 +41,6 @@ public class RoutingTable {
       }else {
          rountingTable.put(netnum, new HashMap<String,Object[]>());
          head = rountingTable.get(netnum);
-         //         head.next = new HashMap<String,Object[]>();
          head.put(key, value);
          Sorting();
 
@@ -75,7 +72,6 @@ public class RoutingTable {
 
    public Object[] findEntry(byte[] realDestination) {
 	  long time = System.currentTimeMillis();
-//	  System.out.println(time);
       if(entries == null) return null;
 
       for(Map.Entry<Integer, HashMap<String,Object[]>> entry : entries) {
