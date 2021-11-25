@@ -1,6 +1,6 @@
 
 public class ARPTable {
-	// arpLayer -> _ARP_Layer
+
 	ARPLayer _ARP_Layer1;
 	ARPLayer _ARP_Layer2;
 	ApplicationLayer _APP;	// app -> _APP
@@ -31,8 +31,7 @@ public class ARPTable {
 		}
 
 	}
-	// addEntry -> addCache
-	// ipAddress -> ipAddr
+
 	public void addCache(String ipAddr, Object[] value, String portName) {
 		if (value[2].equals("Incomplete")) {
             _APP.TotalArea.append("       " + ipAddr + "\t" + "??????????????\t incomplete"+portName+"\n");

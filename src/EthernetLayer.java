@@ -47,8 +47,7 @@ public class EthernetLayer implements BaseLayer {
 		pLayerName = pName;
 
 	}
-	// SetEnetSrcAddress -> setEnetSrc
-	// srcAddress -> srcAddr
+
 	public void setEnetSrc(byte[] srcAddr) {
 		// TODO Auto-generated method stub
 		m_sHeader.enetSrc.addr[0] = srcAddr[0];
@@ -59,17 +58,16 @@ public class EthernetLayer implements BaseLayer {
 		m_sHeader.enetSrc.addr[5] = srcAddr[5];
 
 	}
-	// getEnetSrcAddress -> getEnetSrc
+
 	public byte[] getEnetSrc() {
 		// TODO Auto-generated method stub
-		// returnByte -> srcAddr
+
 		byte[] srcAddr = new byte[6];
 		System.arraycopy(m_sHeader.enetSrc.addr, 0, srcAddr, 0, 6);
 		return srcAddr;
 	}
 
-	// SetEnetDstAddress -> setEnetDst
-	// dstAddress -> dstAddr
+
 	public void setEnetDst(byte[] dstAddr) {
 		// TODO Auto-generated method stub
 		m_sHeader.enetDst.addr[0] = dstAddr[0];
@@ -81,13 +79,12 @@ public class EthernetLayer implements BaseLayer {
 
 	}
 
-	// SetMacAddrDstAddr -> setMacIsDst
-	// dstAddress -> dstAddr
+
 	public static void setMacIsDst(byte[] dstAddr) {
 		arp_macDst = dstAddr;
 	}
 
-	// ObjToByteDATA -> ObjToByte
+
 	public byte[] ObjToByte(_ETHERNET_HEADER Header, byte[] input, int length) {
 		byte[] buf = new byte[length + HEARER_SIZE];
 
@@ -112,7 +109,6 @@ public class EthernetLayer implements BaseLayer {
 		return buf;
 	}
 
-	// identifier -> dstAddr
 	public boolean Send(byte[] input, int length, byte[] dstAddr) {
 
 		m_sHeader.enetData = input;
@@ -176,7 +172,6 @@ public class EthernetLayer implements BaseLayer {
 		return true;
 	}
 
-	// RemoveCappHeader -> removeHeader
 	public byte[] removeHeader(byte[] input, int length) {
 
 		byte[] rebuf = new byte[length - HEARER_SIZE];
@@ -213,7 +208,6 @@ public class EthernetLayer implements BaseLayer {
 		return true;
 	}
 
-	// dstme_Addr -> IsDstMe
 	public boolean IsDstMe(byte[] add) {
 		for (int i = 0; i < 6; i++) {
 			if (add[i] != m_sHeader.enetSrc.addr[i])
@@ -222,7 +216,6 @@ public class EthernetLayer implements BaseLayer {
 		return true;
 	}
 
-	// srcme_Addr -> IsSrcMe
 	public boolean IsSrcMe(byte[] add) {
 		for (int i = 0; i < 6; i++) {
 			if (add[i + 6] != m_sHeader.enetSrc.addr[i])
@@ -231,7 +224,6 @@ public class EthernetLayer implements BaseLayer {
 		return true;
 	}
 
-	// dst_you -> AreDstYou
 	public boolean AreDstYou(byte[] add) {
 		for (int i = 0; i < 6; i++) {
 			if (add[i + 6] != ((IPLayer)GetUpperLayer(1)).chatDST_mac[i]) {
@@ -241,7 +233,6 @@ public class EthernetLayer implements BaseLayer {
 		return true;
 	}
 
-	// bro_Addr -> IsBroad
 	public boolean IsBroad(byte[] add) {
 		for (int i = 0; i < 6; i++) {
 			if (add[i] != (byte) 0xff) {
