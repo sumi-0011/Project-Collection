@@ -8,7 +8,6 @@ public class IPLayer implements BaseLayer {
 	public BaseLayer p_UnderLayer = null;
 	public ArrayList<BaseLayer> p_aUnderLayerIP = new ArrayList<BaseLayer>();
 	public ArrayList<BaseLayer> p_aUpperLayer = new ArrayList<BaseLayer>();
-	// IPHEADER -> IP_HEADER_SIZE
 	public final static int IP_HEADER_SIZE = 20;
 
 	byte[] chatDST_mac = new byte[6];
@@ -16,36 +15,28 @@ public class IPLayer implements BaseLayer {
 	byte[] chatDST_ip = new byte[4];
 	byte[] arpDST_ip = new byte[4];
 
-	// friendIPLayer -> _OtherIPLayer
 	public BaseLayer _OtherIPLayer;
-	// routingTable -> _Router_Table
 	public RoutingTable _Router_Table;
 
-	// Receive_Thread -> _Receive_Thread
 	_Receive_Thread receiveThread = null;
 	Thread receiveStartThread = null;
 
 
 	String portName;
-	// srcMacAddress -> macSrcAddr
 	byte[] macSrcAddr;
 
 
 
 	private class _IPLayer_HEADER {
-		// ip_versionLen -> ip_version
 		byte[] ip_version;   // ip version -> IPv4 : 4
 		byte[] ip_serviceType;   // type of service
-		// ip_packetLen -> ip_packetLength
 		byte[] ip_packetLength;   // total packet length
 		byte[] ip_datagramID;   // datagram id
 		byte[] ip_offset;      // fragment offset
 		byte[] ip_ttl;         // time to live in gateway hops
 		byte[] ip_protocol;      // IP protocol
 		byte[] ip_cksum;      // header checksum
-		// ip_srcaddr -> ip_src
 		byte[] ip_src;      // IP address of source
-		// ip_dstaddr -> ip_dst
 		byte[] ip_dst;      // IP address of destination
 		byte[] ip_data;         // data
 
@@ -67,14 +58,13 @@ public class IPLayer implements BaseLayer {
 	_IPLayer_HEADER m_sHeader = new _IPLayer_HEADER();
 
 	public IPLayer(String pName) {
-		// super(pName);
 		// TODO Auto-generated constructor stub
 		pLayerName = pName;
 		m_sHeader = new _IPLayer_HEADER(); 
 	}
 
 
-	public void friendIPset( BaseLayer _OtherIPLayer ) {
+	public void setOtherIP( BaseLayer _OtherIPLayer ) {
 		this._OtherIPLayer = _OtherIPLayer;
 	}
 
@@ -136,7 +126,6 @@ public class IPLayer implements BaseLayer {
 		return buf;
 	}
 
-	// bytes -> data
 	public boolean Send(byte[] input, int length) {
 		if((input[2]==(byte)0x20 && input[3]==(byte)0x80) || (input[2]==(byte)0x20 && input[3]==(byte)0x90) ) {
 			m_sHeader.ip_offset[0] = 0x00;
@@ -176,8 +165,6 @@ public class IPLayer implements BaseLayer {
 		         return false;
 		      }
 		      if (IsDstMe(input)) {
-		//    	  System.out.println();
-		//    	 System.out.println("goto GUI Layer");
 		         this.GetUpperLayer(0).Receive(data);
 		         return true;
 		      } else {
@@ -185,38 +172,31 @@ public class IPLayer implements BaseLayer {
 		         System.arraycopy(input, 16, destIP, 0, 4);
 		         Object[] value = _Router_Table.findEntry(destIP);
 		         if (value != null) {
-		            /* flag Ȯ�� */
 		            byte[] netAdd;
 		            if ((boolean) value[4]) {
 		               netAdd = (byte[]) value[2];
 		            } else {
 		               netAdd = (byte[]) destIP;
 		            }
-		            /* ��Ʈ��ũ �ּ� -> arp */
 		            byte[] opcode = new byte[2];
 		            opcode[0] = (byte) 0x00;
 		            opcode[1] = (byte) 0x01;
 		
 		
 		            if(((String)value[6]).equals(portName)) {
-		//            	System.out.println("Send");
 		               ((ARPLayer) this.GetUnderLayer(0)).SendforARP(input, (String) value[6], m_sHeader.ip_src,
 		                     netAdd, macSrcAddr, new byte[6], opcode);
 		            }else {
-		//            	System.out.println("Send to Friend");
 		            	IPLayer friend = (IPLayer)this._OtherIPLayer;
 		            	((ARPLayer) friend.GetUnderLayer(0)).SendforARP(input, (String) value[6], friend.m_sHeader.ip_src,
 		                        netAdd, friend.macSrcAddr, new byte[6], opcode);
 		            }
-		            //////////////later/////////////////////////
-		            
 		         }
 		      }
 		      return false;
 		
 	}
 	
-	// dstme_Addr -> IsDstMe
 	public boolean IsDstMe(byte[] add) {
 		for(int i = 0; i < 4; i++) {
 			if(add[i + 16] != m_sHeader.ip_src[i]) return false;
@@ -225,7 +205,6 @@ public class IPLayer implements BaseLayer {
 		return true;
 	}
 	
-	// srcme_Addr -> IsSrcMe
 	public boolean IsSrcMe(byte[] add) {
 		for(int i = 0; i < 4; i++) {
 			if(add[i + 12] != m_sHeader.ip_src[i]) return false;
@@ -234,17 +213,13 @@ public class IPLayer implements BaseLayer {
 		return true;
 	}
 
-	// _Receive_Thread
 	class _Receive_Thread implements Runnable {
 		
 		byte[] input;
 
-//		EthernetLayer ethernet;
-		ARPLayer _ARP;	//arp -> _ARP
-		IPLayer _OtherIP ;	// friend -> _OtherIP
-		
-		// friend -> _OtherIP
-		// arp -> _ARP
+		ARPLayer _ARP;
+		IPLayer _OtherIP ;
+
 		public _Receive_Thread(byte[] input, IPLayer _OtherIP, ARPLayer _ARP) {
 			this.input = input;
 			this._OtherIP = _OtherIP;
@@ -253,68 +228,35 @@ public class IPLayer implements BaseLayer {
 
 		@Override
 		public void run() {
-			//	      System.out.println("IP receive input length : " + input.length);
 			byte[] data = removeHeader(input, input.length);
 
 			if (IsSrcMe(input)) {
 				return ;
 			}
 			if (IsDstMe(input)) {
-				//		    	  System.out.println();
-				//		    	 System.out.println("goto GUI Layer");
-//				this.GetUpperLayer(0).Receive(data);
 				return ;
 			} else {
-				// destIP -> ipDst
 				byte[] ipDst = new byte[4];
 				System.arraycopy(input, 16, ipDst, 0, 4);
 				Object[] value = _Router_Table.findEntry(ipDst);
 				if (value != null) {
-					/* flag */
-					// netAdd -> dstAddr
 					byte[] dstAddr;
 					if ((boolean) value[4]) {
 						dstAddr = (byte[]) value[2];
 					} else {
 						dstAddr = (byte[]) ipDst;
 					}
-					/* ��Ʈ��ũ �ּ� -> arp */
 					byte[] opcode = new byte[2];
 					opcode[0] = (byte) 0x00;
 					opcode[1] = (byte) 0x01;
 
-					//		            System.out.println();
-					//		            System.out.println("portName is "+portName+", input : "+(String)value[6]);
-					//		            System.out.println();
-					//		            
-					//		            
-
-					//		            String macAddress = String.format("%X:", srcMacAddress[0]) + String.format("%X:", srcMacAddress[1])
-					//					+ String.format("%X:", srcMacAddress[2]) + String.format("%X:", srcMacAddress[3])
-					//					+ String.format("%X:", srcMacAddress[4]) + String.format("%X", srcMacAddress[5]);
-					//				
-					//					
-					//					System.out.println("IP Layer src mac : " + macAddress);
-					//					
-					//					String macAddress1 = String.format("%X:", ((IPLayer)this.friendIPLayer).srcMacAddress[0]) + String.format("%X:", ((IPLayer)this.friendIPLayer).srcMacAddress[1])
-					//					+ String.format("%X:", ((IPLayer)this.friendIPLayer).srcMacAddress[2]) + String.format("%X:", ((IPLayer)this.friendIPLayer).srcMacAddress[3])
-					//					+ String.format("%X:", ((IPLayer)this.friendIPLayer).srcMacAddress[4]) + String.format("%X", ((IPLayer)this.friendIPLayer).srcMacAddress[5]);
-					//				
-					//					
-					//					System.out.println("Friend IP Layer src mac : " + macAddress1);
-					//					System.out.println();
 					if(((String)value[6]).equals(portName)) {
-						//		            	System.out.println("Send");
 						((ARPLayer) _ARP).SendforARP(input, (String) value[6], m_sHeader.ip_src,
 								dstAddr, macSrcAddr, new byte[6], opcode);
 					}else {
-						//		            	System.out.println("Send to Friend");
-//						IPLayer friend = (IPLayer)friendIPLayer;
 						((ARPLayer) _OtherIP.GetUnderLayer(0)).SendforARP(input, (String) value[6], _OtherIP.m_sHeader.ip_src,
 								dstAddr, _OtherIP.macSrcAddr, new byte[6], opcode);
 					}
-					//////////////later/////////////////////////
-
 				}
 			}
 			return ;
@@ -351,12 +293,10 @@ public class IPLayer implements BaseLayer {
 		if (pUpperLayer == null)
 			return;
 		this.p_aUpperLayer.add(nUpperLayerCount++, pUpperLayer);
-		// nUpperLayerCount++;
 
 	}
 	@Override
 	public void SetUpperUnderLayer(BaseLayer pUULayer) {
-		//      System.out.println("ip "+pUULayer.GetLayerName());
 		this.SetUpperLayer(pUULayer);
 		this.SetUnderLayer(pUULayer);
 	}

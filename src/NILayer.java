@@ -37,19 +37,16 @@ public class NILayer implements BaseLayer {
 		m_AdapterObject = Pcap.openLive(m_pAdapterList.get(m_iNumAdapter).getName(), snaplen, flags, timeout, errbuf);
 	}
 
-	// GetAdapterObject -> getAdapterObject
 	public PcapIf GetAdapterObject(int iIndex) {
 		return m_pAdapterList.get(iIndex);
 	}
 
-	// SetAdapterNumber -> setAdapterNumber
 	public void SetAdapterNumber(int iNum) {
 		m_iNumAdapter = iNum;
 		PacketStartDriver();
 		Receive();
 	}
 
-	// SetAdapterList -> setAdapterList
 	public void SetAdapterList() {
 		int r = Pcap.findAllDevs(m_pAdapterList, errbuf);
 		if (r == Pcap.NOT_OK || m_pAdapterList.isEmpty()) {

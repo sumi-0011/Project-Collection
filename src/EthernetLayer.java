@@ -7,7 +7,7 @@ public class EthernetLayer implements BaseLayer {
 	public BaseLayer p_UnderLayer = null;
 	public ArrayList<BaseLayer> p_aUpperLayer = new ArrayList<BaseLayer>();
 	public final static int HEARER_SIZE = 14;
-	private static byte[] arp_macDst = null;	// arp_mac_dstaddr -> arp_macDst
+	private static byte[] arp_macDst = null;
 
 	public byte[] chat_file_dstaddr;
 	public byte[] ex_ethernetaddr = new byte[6];
@@ -26,10 +26,10 @@ public class EthernetLayer implements BaseLayer {
 	}
 
 	private class _ETHERNET_HEADER {
-		_ETHERNET_ADDR enetSrc;	// enet_srcaddr -> enetSrc
-		_ETHERNET_ADDR enetDst;	// enet_dstaddr -> enetDst
-		byte[] enetType;	// enet_type -> enetType
-		byte[] enetData;	// enet_data -> enetData
+		_ETHERNET_ADDR enetSrc;
+		_ETHERNET_ADDR enetDst;
+		byte[] enetType;
+		byte[] enetData;
 
 		public _ETHERNET_HEADER() {
 			this.enetSrc = new _ETHERNET_ADDR();
@@ -42,7 +42,6 @@ public class EthernetLayer implements BaseLayer {
 	_ETHERNET_HEADER m_sHeader = new _ETHERNET_HEADER();
 
 	public EthernetLayer(String pName) {
-		// super(pName);
 		// TODO Auto-generated constructor stub
 		pLayerName = pName;
 

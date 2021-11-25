@@ -3,7 +3,7 @@ public class ARPTable {
 
 	ARPLayer _ARP_Layer1;
 	ARPLayer _ARP_Layer2;
-	ApplicationLayer _APP;	// app -> _APP
+	ApplicationLayer _APP;
 
 	ARPTable() {
 		this._ARP_Layer1 = null;

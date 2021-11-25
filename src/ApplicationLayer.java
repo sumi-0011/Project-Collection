@@ -35,7 +35,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	public int nUnderLayerCount = 0;
 	public String pLayerName = null;
 	public static ARPTable arpTable;
-	// public BaseLayer p_UnderLayer = null;
+
 	public ArrayList<BaseLayer> p_aUnderLayerGUI = new ArrayList<BaseLayer>();
 	public ArrayList<BaseLayer> p_aUpperLayer = new ArrayList<BaseLayer>();
 	BaseLayer UnderLayer;
@@ -87,8 +87,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	JCheckBox flagG;
 	JCheckBox flagH;
 
-	//
-
 	int index1;
 	int index2;
 
@@ -117,7 +115,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 		m_LayerMgr.AddLayer(new IPLayer("IP2"));
 		m_LayerMgr.AddLayer(new ApplicationLayer("GUI"));
 
-//            arpTable = new ARPTable((ARPLayer) m_LayerMgr.GetLayer("ARP"), (ARPLayer) m_LayerMgr.GetLayer("ARP2"));
 		arpTable = new ARPTable((ARPLayer) m_LayerMgr.GetLayer("ARP"), (ARPLayer) m_LayerMgr.GetLayer("ARP2"),
 				(ApplicationLayer) m_LayerMgr.GetLayer("GUI"));
 		((ARPLayer) m_LayerMgr.GetLayer("ARP")).SetARPTable(arpTable, (ApplicationLayer) m_LayerMgr.GetLayer("GUI"));
@@ -128,8 +125,8 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 
 		routingTable = new RoutingTable();
 
-		((IPLayer) m_LayerMgr.GetLayer("IP")).friendIPset(((IPLayer) m_LayerMgr.GetLayer("IP2")));
-		((IPLayer) m_LayerMgr.GetLayer("IP2")).friendIPset(((IPLayer) m_LayerMgr.GetLayer("IP")));
+		((IPLayer) m_LayerMgr.GetLayer("IP")).setOtherIP(((IPLayer) m_LayerMgr.GetLayer("IP2")));
+		((IPLayer) m_LayerMgr.GetLayer("IP2")).setOtherIP(((IPLayer) m_LayerMgr.GetLayer("IP")));
 		((IPLayer) m_LayerMgr.GetLayer("IP")).setRouterTable(routingTable);
 		((IPLayer) m_LayerMgr.GetLayer("IP2")).setRouterTable(routingTable);
 
@@ -160,7 +157,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			choice1.setBounds(80, 20, 170, 20);
 			settingPanel.add(choice1);
 
-			// strCombo1 -> combo1
 			combo1 = new JComboBox();
 			combo1.setBounds(150, 20, 220, 20);
 			combo1.setVisible(true);
@@ -170,7 +166,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			choice2.setBounds(390, 20, 170, 20);
 			settingPanel.add(choice2);
 
-			// strCombo2 -> combo2
 			combo2 = new JComboBox();
 			combo2.setBounds(460, 20, 220, 20);
 			combo2.setVisible(true);
@@ -448,7 +443,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 
 					routingTable.add(input_Destination.getText(), value);
 					RoutingArea.setText(routingTable.updateRoutingTable());
-					// dispose();
 				} // =======================
 
 			}

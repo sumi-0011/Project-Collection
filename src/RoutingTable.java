@@ -10,7 +10,6 @@ public class RoutingTable {
 	
 	
    public static class CustomizedHashMap implements Comparator<Map.Entry<Integer, HashMap<String,Object[]>>> {
-	   // 컴페어 함수
       @Override
       public int compare(Entry<Integer, HashMap<String,Object[]>> o1, Entry<Integer, HashMap<String,Object[]>> o2) {
          // TODO Auto-generated method stub
@@ -43,7 +42,6 @@ public class RoutingTable {
       }else {
     	  rounterTable.put(tempNetmask, new HashMap<String,Object[]>());
          head = rounterTable.get(tempNetmask);
-         //         head.next = new HashMap<String,Object[]>();
          head.put(key, value);
          Sorting();
 
@@ -85,7 +83,7 @@ public class RoutingTable {
          HashMap.Entry<String, Object[]> nodeEntry = getMap.entrySet().iterator().next();
          byte[] netmask = (byte[])(nodeEntry.getValue()[1]);
 
-         //마스킹
+         // Masking
          byte[] maskingResult = new byte[4];
          maskingResult[0]=(byte) (dst[0]&netmask[0]);
          maskingResult[1]=(byte) (dst[1]&netmask[1]);
@@ -93,7 +91,7 @@ public class RoutingTable {
          maskingResult[3]=(byte) (dst[3]&netmask[3]);
 
          String maskingResult2String = (maskingResult[0]&0xFF)+"."+(maskingResult[1]&0xFF)+"."+(maskingResult[2]&0xFF)+"."+(maskingResult[3]&0xFF);
-         //만약 목적지 IP와 masking 결과와 동일한 경우
+         // if Destination IP == Masking Result
          if(getMap.containsKey(maskingResult2String)) {
         	 long time2 = System.currentTimeMillis();
              System.out.println("hi : " + (time2 - time));
