@@ -1,9 +1,9 @@
-package router;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class LayerManager {	//Layer�? �?리해주는 ?��?��?��(계층�? ?���?)
+public class LayerManager {
 	
 	private class _NODE{
 		private String token;
@@ -51,20 +51,20 @@ public class LayerManager {	//Layer�? �?리해주는 ?��?��?��(�
 	
 	public void ConnectLayers(String pcList){
 		MakeList(pcList);
-		LinkLayer(mp_sListHead);			 //mPList?�� ?��?? 값들�? ?���?
+		LinkLayer(mp_sListHead);		
 	}
 
-	private void MakeList(String pcList){	//?��?��?��?�� Layer ?��름을 token?���? ?���?
-		StringTokenizer tokens = new StringTokenizer(pcList, " ");	
+	private void MakeList(String pcList){
+		StringTokenizer tokens = new StringTokenizer(pcList, " ");
 		
 		for(; tokens.hasMoreElements();){
-			_NODE pNode = AllocNode(tokens.nextToken());	//�? ?��?��?�� ?��?���? ?��?��
-			AddNode(pNode);		//?��?�� ?��?��?�� ?��?���? mp_list�? ?��결해�?
+			_NODE pNode = AllocNode(tokens.nextToken());
+			AddNode(pNode);
 			
 		}	
 	}
 
-	private _NODE AllocNode(String pcName){ //�? ?��?��?�� ?��?��?��?�� ?��결해�?
+	private _NODE AllocNode(String pcName){
 		_NODE node = new _NODE(pcName);
 				
 		return node;				
@@ -97,7 +97,7 @@ public class LayerManager {	//Layer�? �?리해주는 ?��?��?��(�
 		return mp_Stack.get(m_nTop);
 	}
 	
-	private void LinkLayer(_NODE pNode){	 //계층 �? ?��결해�?
+	private void LinkLayer(_NODE pNode){
 		BaseLayer pLayer = null;
 		
 		while(pNode != null){
@@ -116,13 +116,13 @@ public class LayerManager {	//Layer�? �?리해주는 ?��?��?��(�
 					
 					switch(cMode){
 					case '*':
-						Top().SetUpperUnderLayer( pLayer );	//?��방향?���?
+						Top().SetUpperUnderLayer( pLayer );
 						break;
 					case '+':
-						Top().SetUpperLayer( pLayer );		 //?��방향 ?���?
+						Top().SetUpperLayer( pLayer );
 						break;
 					case '-':
-						Top().SetUnderLayer( pLayer );		 // ?��?��방향 ?���?
+						Top().SetUnderLayer( pLayer );
 						break;
 					}					
 				}
@@ -133,6 +133,9 @@ public class LayerManager {	//Layer�? �?리해주는 ?��?��?��(�
 		}
 	}
 	
+	public void DeAllocLayer(){
+			
+	}
+
 	
 }
-
