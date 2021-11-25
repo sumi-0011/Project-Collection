@@ -97,13 +97,10 @@ public class ARPLayer implements BaseLayer {
 		// super(pName);
 		// TODO Auto-generated constructor stub
 		pLayerName = pName;
-//      System.out.println(pName);
 		if (pName.equals("ARP"))
 			portName = "Port1";
 		else
 			portName = "Port2";
-//      System.out.println(GetLayerName()+" "+portName);
-		// m_sHeader = new _ARP_HEADER();
 		if (_TTL_Thread == null) {
 			_TTL_Thread = new _Cache_TimeToLive(this._Cache_Table, 30, 50);
 			Thread obj = new Thread(_TTL_Thread);
@@ -138,12 +135,7 @@ public class ARPLayer implements BaseLayer {
 	public boolean Send(byte[] arp_protocol_srcaddr, byte[] arp_protocol_dstaddr, byte[] mac_srcaddr,
 			byte[] mac_dstaddr, byte[] arp_opcode) {
 		
-//		System.out.println("arp send ");
-//		sendThread = new Send_Thread(arp_protocol_srcaddr, arp_protocol_dstaddr, mac_srcaddr, mac_dstaddr,
-//				arp_opcode, ((EthernetLayer) GetUnderLayer(0)));
-//		sendStartThread = new Thread(sendThread);
-//		sendStartThread.start();
-//		return false;
+
       Object[] value = new Object[4];
 
       String srcIpAddressToString = (arp_protocol_srcaddr[0] & 0xFF) + "." + (arp_protocol_srcaddr[1] & 0xFF) + "."
@@ -172,12 +164,8 @@ public class ARPLayer implements BaseLayer {
          value[3] = System.currentTimeMillis();
 
          _Cache_Table.put(dstIpAddressToString, value);
-//         arpTable.updateARPCacheTable();
          _ARP_Table.addEntry(dstIpAddressToString,value,portName);
-         
-//         if (arp_mac_dstaddr != null)
-//            m_sHeader._arp_mac_dstaddr.addr = arp_mac_dstaddr;
-//         else
+
             m_sHeader.arp_macDst.addr = mac_dstaddr;
 
          m_sHeader.arp_ipSrc.addr = arp_protocol_srcaddr;
@@ -185,12 +173,7 @@ public class ARPLayer implements BaseLayer {
          m_sHeader.arp_macSrc.addr = mac_srcaddr;
 
       } else {
-//    	  System.out.println("ARP Send Reply");
-//    	  System.out.println("Mac src address : "+ macAddress1);
-//    	  System.out.println("Mac dst address : "+ macAddress2);
-//////         if (arp_mac_dstaddr != null)
-//            m_sHeader._arp_mac_dstaddr.addr = arp_mac_dstaddr;
-//         else
+
     	 m_sHeader.arp_macDst.addr = mac_dstaddr;
 
          m_sHeader.arp_ipSrc.addr = arp_protocol_srcaddr;
@@ -212,151 +195,18 @@ public class ARPLayer implements BaseLayer {
 
       byte[] bytes = ObjToByte(m_sHeader);
 
-//      arpTable.updateARPCacheTable();
-     
+
       ((EthernetLayer)this.GetUnderLayer(0)).Send(bytes, bytes.length,null);
       
-//      arp_mac_dstaddr = null;
 
       return true;
 	}
 
 	public boolean Receive(byte[] input, byte[] mac_srcaddress) {
-//		System.out.println("arp receive "+Thread.currentThread().getName());
 		receiveThread = new _Receive_Thread(input, mac_srcaddress, ((EthernetLayer) GetUnderLayer(0)),this,_ARP_Table);
 		receiveStartThread = new Thread(receiveThread);
 		receiveStartThread.start();
-//		byte[] message = input;
-//
-//		Object[] value = new Object[4];
-//		byte[] dstIP = new byte[4];
-//		byte[] dstMac = new byte[6];
-//		byte[] targetIP = new byte[4];
-//
-//		System.arraycopy(message, 14, dstIP, 0, 4);
-//		System.arraycopy(message, 8, dstMac, 0, 6);
-//		System.arraycopy(message, 24, targetIP, 0, 4);
-//
-//		String ipAddressToString = (dstIP[0] & 0xFF) + "." + (dstIP[1] & 0xFF) + "." + (dstIP[2] & 0xFF) + "."
-//				+ (dstIP[3] & 0xFF);
-//		String targetIpAddressToString = (targetIP[0] & 0xFF) + "." + (targetIP[1] & 0xFF) + "." + (targetIP[2] & 0xFF)
-//				+ "." + (targetIP[3] & 0xFF);
-//
-//		if (message[6] == (byte) 0x00 && message[7] == (byte) 0x01) { // ARP-request Receive ("Complete")
-//
-//			byte[] newOp = new byte[2];
-//			newOp[0] = (byte) 0x00;
-//			newOp[1] = (byte) 0x02;
-//
-////         SetMacAddrDstAddr(dstMac);
-//			if (proxyTable.containsKey(targetIpAddressToString)) {
-//				byte[] getDstMac = (byte[]) (proxyTable.get(targetIpAddressToString)[1]);
-//				String portName_proxy = (String) proxyTable.get(targetIpAddressToString)[0];
-//				Send(targetIP, dstIP, mac_srcaddress, dstMac, newOp);
-//				return true;
-//			}
-//			if (!cacheTable.containsKey(ipAddressToString)) {
-//
-//				value[0] = cacheTable.size();
-//				value[1] = dstMac;
-//				value[2] = "Complete";
-//				value[3] = System.currentTimeMillis();
-//
-//				cacheTable.put(ipAddressToString, value);
-////            arpTable.updateARPCacheTable();
-//				arpTable.addEntry(ipAddressToString, value, portName);
-////				System.out.println("지원");
-//			} else {
-//
-//				value[0] = cacheTable.get(ipAddressToString)[0];
-//				value[1] = dstMac; // mac address
-//				value[2] = cacheTable.get(ipAddressToString)[2];
-//				value[3] = System.currentTimeMillis();
-//
-//				cacheTable.put(ipAddressToString, value);
-////            arpTable.addEntry(ipAddressToString,value,portName);
-////            arpTable.updateARPCacheTable();
-////            return true;
-//			}
-//			if (proxyTable.containsKey(targetIpAddressToString))
-//				return true;
-//
-//			newOp = new byte[2];
-//			newOp[0] = (byte) 0x00;
-//			newOp[1] = (byte) 0x02;
-//
-////         SetMacAddrDstAddr(dstMac);
-//
-//			boolean checkPort = false;
-//
-//			if (!proxyTable.containsKey(targetIpAddressToString)) {
-////        	 System.out.println();
-////        	 System.out.println("ip 검사 : "+targetIpAddressToString);
-//				for (int i = 0; i < 4; i++) {
-//					if (message[i + 24] != ipAddress_port[i])
-//						checkPort = true;
-//
-//				}
-////            System.out.println("ip 검사 결과 "+(checkPort)+" portName : "+portName+" layerName : "+GetLayerName());
-//				if (checkPort)
-//					return false;
-//
-//				Send(ipAddress_port, dstIP, mac_srcaddress, dstMac, newOp);
-////            if(checkPort1) Send(ipAddress_port2, dstIP,mac_srcaddress , arp_mac_dstaddr, newOp, "Port2");
-////            else Send(ipAddress_port1, dstIP, mac_srcaddress, arp_mac_dstaddr, newOp,"Port1");
-//				return true;
-//			}
-//
-//		} else if (message[6] == (byte) 0x00 && message[7] == (byte) 0x02) { // ARP-reply Receive ("Incomplete" ->
-//
-//			/*****************************************************/
-//    	  System.out.println("REPLY RECEIVE : "+ipAddressToString+" "+waitfor.containsKey(ipAddressToString));
-//			if (waitfor.containsKey(ipAddressToString)) {
-////        	 System.out.println("reply 도착");
-//				ArrayList<Object[]> list = waitfor.get(ipAddressToString);
-//				if (!list.isEmpty()) {
-//					Object[] toSendObj = (Object[]) list.get(0);
-//
-////                 if(((String)toSendObj[1]).equals("Port1")) {
-//					((EthernetLayer) this.GetUnderLayer(0)).Send((byte[]) toSendObj[0], ((byte[]) toSendObj[0]).length,
-//							dstMac);
-////                 }else {
-////                    ((EthernetLayer)this.GetUnderLayer(1)).Send((byte[])toSendObj[0], ((byte[])toSendObj[0]).length,dstMac);
-////                 }
-//					if (list.size() == 1)
-//						waitfor.remove(ipAddressToString);
-//					else
-//						list.remove(0);
-//				}
-//
-//			}
-//			/****************************************************/
-//
-//			if (cacheTable.containsKey(ipAddressToString)) {
-////            System.out.println("cache Table already has it "+cacheTable.get(ipAddressToString)[2]);
-//
-//				value[0] = cacheTable.get(ipAddressToString)[0];
-//				value[1] = dstMac;
-//				value[2] = "Complete";
-//				value[3] = System.currentTimeMillis();
-//				cacheTable.replace(ipAddressToString, value);
-//
-//				arpTable.updateARPCacheTable();
-////            arpTable.addEntry(ipAddressToString,value,portName);
-//			} else {
-//				value[0] = cacheTable.size();
-//				value[1] = dstMac;
-//				value[2] = "Complete";
-//				value[3] = System.currentTimeMillis();
-//				cacheTable.put(ipAddressToString, value);
-//
-//				arpTable.addEntry(ipAddressToString, value, portName);
-//				
-////				System.out.println("유나");
-////             arpTable.updateARPCacheTable();
-//			}
-//
-//		}
+
 		return false;
 	}
 
@@ -397,19 +247,13 @@ public class ARPLayer implements BaseLayer {
 
 		String ipAddressToString = (arp_ipDstAddr[0] & 0xFF) + "." + (arp_ipDstAddr[1] & 0xFF) + "."
 				+ (arp_ipDstAddr[2] & 0xFF) + "." + (arp_ipDstAddr[3] & 0xFF);
-//      System.out.println();
-//      System.out.println("Send for ARP : "+port);
-//      System.out.println("is in cacheTable ? : "+cacheTable.containsKey(ipAddressToString));
-//      
 
 		if (_Cache_Table.containsKey(ipAddressToString) && (_Cache_Table.get(ipAddressToString)[2].equals("Complete"))) {
 
 			byte[] realAddress = (byte[]) (_Cache_Table.get(ipAddressToString)[1]);
-//         if(port.equals("Port1")) {
-//            ((EthernetLayer)this.GetUnderLayer(0)).Send(message, message.length,realAddress);
-//         }else {
+
 			((EthernetLayer) this.GetUnderLayer(0)).Send(message, message.length, realAddress);
-//         }
+
 			return true;
 		}
 		Object[] value = new Object[2];
@@ -423,7 +267,6 @@ public class ARPLayer implements BaseLayer {
 			objList.add(value);
 			_TimeToLive.put(ipAddressToString, objList);
 		}
-//      System.out.println("_TimeToLive size : "+ _TimeToLive.size());
 
 		Send(arp_ipSrcAddr, arp_ipDstAddr, arp_macSrcAddr, arp_macDstAddr, arp_opcode);
 
