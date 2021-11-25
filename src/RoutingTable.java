@@ -10,7 +10,7 @@ public class RoutingTable {
 	
 	
    public static class CustomizedHashMap implements Comparator<Map.Entry<Integer, HashMap<String,Object[]>>> {
-
+	   // 컴페어 함수
       @Override
       public int compare(Entry<Integer, HashMap<String,Object[]>> o1, Entry<Integer, HashMap<String,Object[]>> o2) {
          // TODO Auto-generated method stub
@@ -19,30 +19,30 @@ public class RoutingTable {
    }
 
 
-   public static Map<Integer,HashMap<String,Object[]>> rountingTable;
+   public static Map<Integer,HashMap<String,Object[]>> rounterTable;
    public HashMap<String,Object[]> head;
 
    public static List<Map.Entry<Integer, HashMap<String,Object[]>>> entries;
 
    public RoutingTable() {
-      rountingTable = new HashMap<Integer,HashMap<String,Object[]>>();
+	   rounterTable = new HashMap<Integer,HashMap<String,Object[]>>();
    }
 
    public static void add(String key, Object[] value) {
 
       HashMap<String,Object[]> head = null;
       byte[] netmask = (byte[]) value[1];
-      int netnum = computeNetnum(netmask);
-//      System.out.println(netnum);
+      int tempNetmask = NetmaskCompute(netmask);
 
-      if(rountingTable.containsKey(netnum)) {
-         head = rountingTable.get(netnum);
+
+      if(rounterTable.containsKey(tempNetmask)) {
+         head = rounterTable.get(tempNetmask);
 
          head.put(key, value);
 
       }else {
-         rountingTable.put(netnum, new HashMap<String,Object[]>());
-         head = rountingTable.get(netnum);
+    	  rounterTable.put(tempNetmask, new HashMap<String,Object[]>());
+         head = rounterTable.get(tempNetmask);
          //         head.next = new HashMap<String,Object[]>();
          head.put(key, value);
          Sorting();
@@ -51,16 +51,18 @@ public class RoutingTable {
    }
 
    public static void Sorting() {
-      entries = new ArrayList<Map.Entry<Integer, HashMap<String,Object[]>>>(rountingTable.entrySet());
+      entries = new ArrayList<Map.Entry<Integer, HashMap<String,Object[]>>>(rounterTable.entrySet());
       Collections.sort(entries, new CustomizedHashMap());
 
    }
 
-   public static int computeNetnum(byte[] netmask) {
+   public static int NetmaskCompute(byte[] netmask) {
       int cnt=0;
 
       for(int i=0;i<4;i++) {
-         if((netmask[i]&0xFF) == 255) cnt += 8;
+         if((netmask[i]&0xFF) == 255) {
+        	 cnt += 8;
+         }
          else {
             int n= (netmask[i]&0xFF);
             while(n!=0) {
@@ -73,9 +75,8 @@ public class RoutingTable {
       return cnt;
    }
 
-   public Object[] findEntry(byte[] realDestination) {
+   public Object[] findEntry(byte[] dst) {
 	  long time = System.currentTimeMillis();
-//	  System.out.println(time);
       if(entries == null) return null;
 
       for(Map.Entry<Integer, HashMap<String,Object[]>> entry : entries) {
@@ -84,16 +85,15 @@ public class RoutingTable {
          HashMap.Entry<String, Object[]> nodeEntry = getMap.entrySet().iterator().next();
          byte[] netmask = (byte[])(nodeEntry.getValue()[1]);
 
-         //masking
+         //마스킹
          byte[] maskingResult = new byte[4];
-         maskingResult[0]=(byte) (realDestination[0]&netmask[0]);
-         maskingResult[1]=(byte) (realDestination[1]&netmask[1]);
-         maskingResult[2]=(byte) (realDestination[2]&netmask[2]);
-         maskingResult[3]=(byte) (realDestination[3]&netmask[3]);
+         maskingResult[0]=(byte) (dst[0]&netmask[0]);
+         maskingResult[1]=(byte) (dst[1]&netmask[1]);
+         maskingResult[2]=(byte) (dst[2]&netmask[2]);
+         maskingResult[3]=(byte) (dst[3]&netmask[3]);
 
-         //masking Result convert String
          String maskingResult2String = (maskingResult[0]&0xFF)+"."+(maskingResult[1]&0xFF)+"."+(maskingResult[2]&0xFF)+"."+(maskingResult[3]&0xFF);
-         //if destination IP Address equals masking Result
+         //만약 목적지 IP와 masking 결과와 동일한 경우
          if(getMap.containsKey(maskingResult2String)) {
         	 long time2 = System.currentTimeMillis();
              System.out.println("hi : " + (time2 - time));
@@ -107,12 +107,12 @@ public class RoutingTable {
 
    public boolean remove(Object[] value) {
       byte[] netmask = (byte[]) value[1];
-      int netnum = computeNetnum(netmask);
+      int tempNum = NetmaskCompute(netmask);
 
-      HashMap<String,Object[]> head = rountingTable.get(netnum);
+      HashMap<String,Object[]> head = rounterTable.get(tempNum);
       if(head==null) return false;
 
-      /* Object[] value�� String���� ��ȯ : ���ϱ� ���� */
+
       byte[] valueDestIP = (byte[]) value[0];
       String valueDestIPString = (valueDestIP[0] & 0xFF) + "." + (valueDestIP[1] & 0xFF) + "."
             + (valueDestIP[2] & 0xFF) + "." + (valueDestIP[3] & 0xFF);
@@ -120,7 +120,7 @@ public class RoutingTable {
       HashMap<String, Object[]> getMap = head;
       if(getMap.containsKey(valueDestIPString)) {
          if(getMap.size()==1) {
-            rountingTable.remove(netnum);
+        	 rounterTable.remove(tempNum);
             Sorting();
          }else {
             getMap.remove(valueDestIPString);

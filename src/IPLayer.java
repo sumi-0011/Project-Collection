@@ -73,27 +73,25 @@ public class IPLayer implements BaseLayer {
 		m_sHeader = new _IPLayer_HEADER(); 
 	}
 
-	// friendIPLayer -> _OtherIPLayer
+
 	public void friendIPset( BaseLayer _OtherIPLayer ) {
 		this._OtherIPLayer = _OtherIPLayer;
 	}
-	// friendIPget -> getOtherIP
+
 	public BaseLayer getOtherIP() {
 		return this._OtherIPLayer;
 	}
-	// setRouter -> setRouterTable
-	// routingTable -> _Router_Table
+
 	public void setRouterTable(RoutingTable _Router_Table) {
 		this._Router_Table = _Router_Table;
 	}
-	// srcMacAddress -> macSrcAddr
+
 	public void setPort(byte[] macSrcAddr, String portName) {
 		this.macSrcAddr = macSrcAddr;
 		this.portName = portName;
 	}
 
-	// SetIPSrcAddress -> setIPSrc
-	// srcAddress -> srcAddr
+
 	public void setIPSrc(byte[] srcAddr) {
 		// TODO Auto-generated method stub
 		m_sHeader.ip_src[0]= srcAddr[0];
@@ -103,8 +101,7 @@ public class IPLayer implements BaseLayer {
 
 	}
 
-	// SetIPDstAddress -> setIPDst
-	// dstAddress -> dstAddr
+
 	public void setIPDst(byte[] dstAddr) {
 		// TODO Auto-generated method stub
 		m_sHeader.ip_dst[0]= dstAddr[0];
@@ -173,12 +170,6 @@ public class IPLayer implements BaseLayer {
 
 	public synchronized boolean Receive(byte[] input) {
 		
-//		System.out.println("IP receive "+Thread.currentThread().getName());
-//		receiveThread = new Receive_Thread(input, ((IPLayer)this.friendIPLayer), (ARPLayer)this.GetUnderLayer(0));
-//		receiveStartThread = new Thread(receiveThread);
-//		receiveStartThread.start();
-//		return false;
-		//      System.out.println("IP receive input length : " + input.length);
 		      byte[] data = removeHeader(input, input.length);
 		
 		      if (IsSrcMe(input)) {
@@ -206,26 +197,7 @@ public class IPLayer implements BaseLayer {
 		            opcode[0] = (byte) 0x00;
 		            opcode[1] = (byte) 0x01;
 		
-		//            System.out.println();
-		//            System.out.println("portName is "+portName+", input : "+(String)value[6]);
-		//            System.out.println();
-		//            
-		//            
-		            
-		//            String macAddress = String.format("%X:", srcMacAddress[0]) + String.format("%X:", srcMacAddress[1])
-		//			+ String.format("%X:", srcMacAddress[2]) + String.format("%X:", srcMacAddress[3])
-		//			+ String.format("%X:", srcMacAddress[4]) + String.format("%X", srcMacAddress[5]);
-		//		
-		//			
-		//			System.out.println("IP Layer src mac : " + macAddress);
-		//			
-		//			String macAddress1 = String.format("%X:", ((IPLayer)this.friendIPLayer).srcMacAddress[0]) + String.format("%X:", ((IPLayer)this.friendIPLayer).srcMacAddress[1])
-		//			+ String.format("%X:", ((IPLayer)this.friendIPLayer).srcMacAddress[2]) + String.format("%X:", ((IPLayer)this.friendIPLayer).srcMacAddress[3])
-		//			+ String.format("%X:", ((IPLayer)this.friendIPLayer).srcMacAddress[4]) + String.format("%X", ((IPLayer)this.friendIPLayer).srcMacAddress[5]);
-		//		
-		//			
-		//			System.out.println("Friend IP Layer src mac : " + macAddress1);
-		//			System.out.println();
+		
 		            if(((String)value[6]).equals(portName)) {
 		//            	System.out.println("Send");
 		               ((ARPLayer) this.GetUnderLayer(0)).SendforARP(input, (String) value[6], m_sHeader.ip_src,

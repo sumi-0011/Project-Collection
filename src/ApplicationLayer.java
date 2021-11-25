@@ -74,11 +74,11 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 	JTextArea input_Netmask;
 	JTextArea input_Gateway;
 	JComboBox<String> selectInterface;
-	JLabel lbl_Destination;
-	JLabel lbl_Netmask;
-	JLabel lbl_Gateway;
-	JLabel lbl_Flag;
-	JLabel lbl_Interface;
+	JLabel label_Destination;
+	JLabel label_Netmask;
+	JLabel label_Gateway;
+	JLabel label_Flag;
+	JLabel label_Interface;
 
 	String[] interfaceName = { "Port1", "Port2" };
 	String interface0 = interfaceName[0];
@@ -330,60 +330,60 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 			}
 		});
 
-		JPanel Proxy_Entry = new JPanel();
-		Proxy_Entry.setToolTipText("Add routerTable");
-		Proxy_Entry.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Add Router Table",
+		JPanel Router_Input_Entry = new JPanel();
+		Router_Input_Entry.setToolTipText("Add routerTable");
+		Router_Input_Entry.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Add Router Table",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		Proxy_Entry.setBounds(486, 214, 458, 200);
-		getContentPane().add(Proxy_Entry);
-		Proxy_Entry.setLayout(null);
+		Router_Input_Entry.setBounds(486, 214, 458, 200);
+		getContentPane().add(Router_Input_Entry);
+		Router_Input_Entry.setLayout(null);
 
-		lbl_Destination = new JLabel("Destination");
-		lbl_Destination.setBounds(50, 25, 90, 30);
-		Proxy_Entry.add(lbl_Destination);
+		label_Destination = new JLabel("Destination");
+		label_Destination.setBounds(50, 25, 90, 30);
+		Router_Input_Entry.add(label_Destination);
 
 		input_Destination = new JTextArea();
 		input_Destination.setBounds(150, 30, 170, 20);
 		input_Destination.setText("192.168.1.0");
-		Proxy_Entry.add(input_Destination);
+		Router_Input_Entry.add(input_Destination);
 
-		lbl_Netmask = new JLabel("Netmask");
-		lbl_Netmask.setBounds(50, 60, 90, 30);
-		Proxy_Entry.add(lbl_Netmask);
+		label_Netmask = new JLabel("Netmask");
+		label_Netmask.setBounds(50, 60, 90, 30);
+		Router_Input_Entry.add(label_Netmask);
 
 		input_Netmask = new JTextArea();
 		input_Netmask.setBounds(150, 65, 170, 20);
 		input_Netmask.setText("255.255.255.0");
-		Proxy_Entry.add(input_Netmask);
+		Router_Input_Entry.add(input_Netmask);
 
-		lbl_Gateway = new JLabel("Gateway");
-		lbl_Gateway.setBounds(50, 95, 90, 30);
-		Proxy_Entry.add(lbl_Gateway);
+		label_Gateway = new JLabel("Gateway");
+		label_Gateway.setBounds(50, 95, 90, 30);
+		Router_Input_Entry.add(label_Gateway);
 
 		input_Gateway = new JTextArea();
 		input_Gateway.setBounds(150, 100, 170, 20);
 		input_Gateway.setText("0.0.0.0");
-		Proxy_Entry.add(input_Gateway);
+		Router_Input_Entry.add(input_Gateway);
 
-		lbl_Flag = new JLabel("Flag");
-		lbl_Flag.setBounds(50, 130, 90, 30);
-		Proxy_Entry.add(lbl_Flag);
+		label_Flag = new JLabel("Flag");
+		label_Flag.setBounds(50, 130, 90, 30);
+		Router_Input_Entry.add(label_Flag);
 
 		flagU = new JCheckBox("UP");
 		flagU.setBounds(150, 135, 50, 20);
-		Proxy_Entry.add(flagU);
+		Router_Input_Entry.add(flagU);
 
 		flagG = new JCheckBox("Gateway");
 		flagG.setBounds(205, 135, 80, 20);
-		Proxy_Entry.add(flagG);
+		Router_Input_Entry.add(flagG);
 
 		flagH = new JCheckBox("Host");
 		flagH.setBounds(285, 135, 60, 20);
-		Proxy_Entry.add(flagH);
+		Router_Input_Entry.add(flagH);
 
-		lbl_Interface = new JLabel("Interface");
-		lbl_Interface.setBounds(50, 165, 90, 30);
-		Proxy_Entry.add(lbl_Interface);
+		label_Interface = new JLabel("Interface");
+		label_Interface.setBounds(50, 165, 90, 30);
+		Router_Input_Entry.add(label_Interface);
 
 		selectInterface = new JComboBox<String>(interfaceName);
 		selectInterface.setBounds(150, 170, 170, 20);
@@ -392,13 +392,13 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 				interface0 = interfaceName[selectInterface.getSelectedIndex()];
 			}
 		});
-		Proxy_Entry.add(selectInterface);
+		Router_Input_Entry.add(selectInterface);
 
 		/////////////
 
 		btnRoutingAdd = new JButton("Add");
 		btnRoutingAdd.setBounds(340, 45, 100, 60);
-		Proxy_Entry.add(btnRoutingAdd);
+		Router_Input_Entry.add(btnRoutingAdd);
 
 		JButton btnOk = new JButton("Ok");
 		btnRoutingAdd.addActionListener(new ActionListener() {
@@ -433,9 +433,6 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 						Gateway[i] = (byte) (s & 0xFF);
 					}
 
-//                 System.out.println(flagU.isSelected()); 
-//                 System.out.println(flagG.isSelected());
-//                 System.out.println(flagH.isSelected());
 					String interface_Num = interface0;
 
 					/* routing table add */
@@ -474,7 +471,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 
 		JMenu mnNewMenu = new JMenu("New menu");
 		mnNewMenu.setBounds(-206, 226, 375, 183);
-		Proxy_Entry.add(mnNewMenu);
+		Router_Input_Entry.add(mnNewMenu);
 
 		this.exist = true;
 		setVisible(true);
@@ -542,7 +539,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 
 					System.out.println("NIC1: " + IPAddrbuf0.toString() + " // " + EthernetAddrbuf1.toString());
 					System.out.println("NIC2: " + IPAddrbuf1.toString() + " // " + EthernetAddrbuf2.toString());
-//
+
 					/* IP Address 설정 */
 					((IPLayer) m_LayerMgr.GetLayer("IP")).setIPSrc(ipSrcAddress1);
 					((IPLayer) m_LayerMgr.GetLayer("IP2")).setIPSrc(ipSrcAddress2);
@@ -553,8 +550,7 @@ public class ApplicationLayer extends JFrame implements BaseLayer {
 					/* ARP Address 설정 */
 					((ARPLayer) m_LayerMgr.GetLayer("ARP")).SetIPAddrSrcAddr(ipSrcAddress1);
 					((ARPLayer) m_LayerMgr.GetLayer("ARP2")).SetIPAddrSrcAddr(ipSrcAddress2);
-//               ((ARPLayer)m_LayerMgr.GetLayer("ARP")).SetPortName("Port1");
-//               ((ARPLayer)m_LayerMgr.GetLayer("ARP2")).SetPortName("Port2");
+
 					/* Ethernet Mac 주소 설정 */
 					((EthernetLayer) m_LayerMgr.GetLayer("Ethernet")).setEnetSrc(mac0);
 					((EthernetLayer) m_LayerMgr.GetLayer("Ethernet2")).setEnetSrc(mac1);
