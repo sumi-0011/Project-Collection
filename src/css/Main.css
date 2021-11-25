@@ -36,6 +36,11 @@
 
 }
 /* 모바일용 */
+html {
+    overflow-x: scroll;
+    min-width:410px;
+}
+
 .graph-container-mobile {
     display: flex;
     flex-direction: column;
@@ -60,6 +65,7 @@
 .graph-container-mobile .graph__content {
     width: 100%;
     padding: 25px 50px 25px 0;  /* 그래프 치우쳐짐 조정*/
+    
 }
 .graph-container-mobile .graph__content .line-chart {
     width: fit-content;

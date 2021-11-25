@@ -18,22 +18,36 @@ function Main() {
     </div>
   );
 }
-
+const DaylistTest = [
+  {
+    name: "Page A",
+    DECIDE_CNT: 10,
+  },
+  {
+    name: "Page B",
+    DECIDE_CNT: 5,
+  },
+  {
+    name: "Page C",
+    DECIDE_CNT: 25,
+  },
+];
+const listTest = [
+  {
+    name: "Page A",
+    DECIDE_CNT: 10,
+  },
+  {
+    name: "Page B",
+    DECIDE_CNT: 15,
+  },
+  {
+    name: "Page C",
+    DECIDE_CNT: 40,
+  },
+];
 function Tempelate() {
-  const list = [
-    {
-      name: "Page A",
-      DECIDE_CNT: 10,
-    },
-    {
-      name: "Page B",
-      DECIDE_CNT: 5,
-    },
-    {
-      name: "Page C",
-      DECIDE_CNT: 25,
-    },
-  ];
+
   return (
     <div id="page-wrapper">
       {/* <MainContainer /> */}
@@ -70,15 +84,15 @@ function Tempelate() {
       </div>
       {/* 리액트 반응형 웹도 있는것 같지만 여기서는 쓰지 말고 익숙한 것으로 하자아~  */}
 
-      {<MobileGraph list={list} />}
+      {<MobileGraph list={DaylistTest} />}
       <div className="graph-container">
         <div className="graph-item">
           <div className="graph__title">일별 확진자 수</div>
-          <div className="graph__content"> <Graph list={list} /></div>
+          <div className="graph__content"> <Graph list={DaylistTest} /></div>
         </div>
         <div className="graph-item">
           <div className="graph__title">누적 확진자 수</div>
-          <div className="graph__content"> <Graph list={list} /></div>
+          <div className="graph__content"> <Graph list={listTest} /></div>
         </div>
 
        
@@ -106,7 +120,10 @@ function MobileGraph({ list }) {
         </div>
       </div>
       <div className="graph__content">
-        <Graph list={list} />
+        {
+          selectGraph == 0? <Graph list={DaylistTest} /> : <Graph list={listTest} />
+        }
+        
       </div>
     </div>
   );
