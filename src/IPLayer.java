@@ -15,7 +15,7 @@ public class IPLayer implements BaseLayer {
 	byte[] chatDST_ip = new byte[4];
 	byte[] arpDST_ip = new byte[4];
 
-	public BaseLayer friendIPLayer;
+	public BaseLayer friendIPLayer;	
 	public RoutingTable routingTable;
 
 	Receive_Thread receiveThread = null;
