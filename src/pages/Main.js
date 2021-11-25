@@ -120,7 +120,10 @@ function MobileGraph({ list }) {
         </div>
       </div>
       <div className="graph__content">
-        <Graph list={list} />
+        {
+          selectGraph == 0? <Graph list={DaylistTest} /> : <Graph list={listTest} />
+        }
+        
       </div>
     </div>
   );
