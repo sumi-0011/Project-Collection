@@ -1,47 +1,49 @@
 
 public class ARPTable {
-
-	ARPLayer arpLayer1;
-	ARPLayer arpLayer2;
-	ApplicationLayer app;
+	// arpLayer -> _ARP_Layer
+	ARPLayer _ARP_Layer1;
+	ARPLayer _ARP_Layer2;
+	ApplicationLayer _APP;	// app -> _APP
 
 	ARPTable() {
-		this.arpLayer1 = null;
-		this.arpLayer2 = null;
+		this._ARP_Layer1 = null;
+		this._ARP_Layer2 = null;
 	}
 
-	ARPTable(ARPLayer arpLayer1, ARPLayer arpLayer2, ApplicationLayer app) {
-		this.arpLayer1 = arpLayer1;
-		this.arpLayer2 = arpLayer2;
-		this.app = app;
+	ARPTable(ARPLayer _ARP_Layer1, ARPLayer _ARP_Layer2, ApplicationLayer _APP) {
+		this._ARP_Layer1 = _ARP_Layer1;
+		this._ARP_Layer2 = _ARP_Layer2;
+		this._APP = _APP;
 
 	}
 
-	public void setARPLayer(ARPLayer arpLayer1, ARPLayer arpLayer2) {
-		this.arpLayer1 = arpLayer1;
-		this.arpLayer2 = arpLayer2;
+	public void setARPLayer(ARPLayer _ARP_Layer1, ARPLayer _ARP_Layer2) {
+		this._ARP_Layer1 = _ARP_Layer1;
+		this._ARP_Layer2 = _ARP_Layer2;
 	}
 
 	public  void updateARPCacheTable() {
-		app.TotalArea.setText("");
-		if (arpLayer1 != null && arpLayer2 != null) {
+		_APP.TotalArea.setText("");
+		if (_ARP_Layer1 != null && _ARP_Layer2 != null) {
 
-			arpLayer1.updateCacheTable();
-			arpLayer2.updateCacheTable();
+			_ARP_Layer1.updateCacheTable();
+			_ARP_Layer2.updateCacheTable();
 		}
 
 	}
-	public void addEntry(String ipAddress, Object[] value, String portName) {
+	// addEntry -> addCache
+	// ipAddress -> ipAddr
+	public void addCache(String ipAddr, Object[] value, String portName) {
 		if (value[2].equals("Incomplete")) {
-            app.TotalArea.append("       " + ipAddress + "\t" + "??????????????\t incomplete"+portName+"\n");
+            _APP.TotalArea.append("       " + ipAddr + "\t" + "??????????????\t incomplete"+portName+"\n");
          } else {
             byte[] maxAddr = (byte[]) value[1];
             String macAddress = String.format("%X:", maxAddr[0]) + String.format("%X:", maxAddr[1])
                   + String.format("%X:", maxAddr[2]) + String.format("%X:", maxAddr[3])
                   + String.format("%X:", maxAddr[4]) + String.format("%X", maxAddr[5]);
             
-            System.out.println(ipAddress +" : "+macAddress);
-            app.TotalArea.append("       " + ipAddress + "\t" + macAddress + "\t complete"+portName+"\n");
+            System.out.println(ipAddr +" : "+macAddress);
+            _APP.TotalArea.append("       " + ipAddr + "\t" + macAddress + "\t complete"+portName+"\n");
             System.out.println("완료!!!");
          }
 		return;
