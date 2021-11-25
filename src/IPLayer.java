@@ -64,22 +64,30 @@ public class IPLayer implements BaseLayer {
 		m_sHeader = new _IPLayer_HEADER(); 
 	}
 
+	//otherIPset 으로 바꿉시다. (sumi)
+	// 매개변수로 받은 IP Layer을 other layer로 설정, (ping test시 주고 받을 layer로 설정)
 	public void friendIPset( BaseLayer friendIPLayer ) {
 		this.friendIPLayer = friendIPLayer;
 	}
 
+	// other layer로 설정한 IP layer을 반환
 	public BaseLayer friendIPget() {
 		return this.friendIPLayer;
 	}
+	
+	//setRoutingTable로 바꿉시다 (sumi)
+	// 매개변수로 받은 routingTable을 현재 객체의 routing table로 설정
 	public void setRouter(RoutingTable routingTable) {
 		this.routingTable = routingTable;
 	}
+	
+//	 TODO : what?, 매개변수로 받은 수신지의 MAC주소와 포트 이름을 설정해준다. ?
 	public void setPort(byte[] srcMacAddress, String portName) {
 		this.srcMacAddress = srcMacAddress;
 		this.portName = portName;
 	}
 
-
+//	매개변수로 받은 src주소를 Soure IP Address로 설정
 	public void SetIPSrcAddress(byte[] srcAddress) {
 		// TODO Auto-generated method stub
 		m_sHeader.ip_srcaddr[0]= srcAddress[0];
@@ -88,6 +96,7 @@ public class IPLayer implements BaseLayer {
 		m_sHeader.ip_srcaddr[3]= srcAddress[3];
 
 	}
+//	매개변수로 받은 dst주소를 Soure IP Address로 설정한다. 
 
 	public void SetIPDstAddress(byte[] dstAddress) {
 		// TODO Auto-generated method stub
@@ -97,7 +106,7 @@ public class IPLayer implements BaseLayer {
 		m_sHeader.ip_dstaddr[3]= dstAddress[3];
 
 	}
-
+//	매개변수로 받은 Header와  input(데이터)를 합쳐서 리턴
 	public byte[] ObjToByte(_IPLayer_HEADER Header, byte[] input, int length) {
 		byte[] buf = new byte[length + IPHEADER];
 
@@ -123,7 +132,7 @@ public class IPLayer implements BaseLayer {
 		return buf;
 	}
 
-
+//	routing table에서 전달된 input(데이터)와 IP의 header을 합쳐, 하위 레이어(Ethernet or ARP layer)에 전달
 	public boolean Send(byte[] input, int length) {
 
 
@@ -147,7 +156,7 @@ public class IPLayer implements BaseLayer {
 		}
 	}
 
-
+//	 매개변수로 받은 input 데이터에는 header가 합쳐져 있는 상태의 데이터이므로,  0~19 index에 있는  header을 제거하여 header가 제거된 데이터를 리턴한다. 
 	public byte[] RemoveCappHeader(byte[] input, int length) {
 
 		byte[] remvHeader = new byte[length-20];
@@ -157,6 +166,8 @@ public class IPLayer implements BaseLayer {
 		return remvHeader;// �����ϼ��� �ʿ��Ͻø�
 	}
 
+//	매개변수로 받은 header가 포함되어 있는 input 데이터로 부터 Ethernet type를 알아내어 ARP layer로 보낼지, other IP layer의 ARP로 보낼지 구분한 후, src Address가 자기 자신이 아닌지 확인한후에 데이터에서 header을 제거하고 상위 레이어(ARP layer)에 전송
+//	TODO : 잘 모르겠어요.. 수정 해야될거같아요 
 	public synchronized boolean Receive(byte[] input) {
 		
 
@@ -201,6 +212,7 @@ public class IPLayer implements BaseLayer {
 		      return false;
 		
 	}
+//	TODO : src로 보는거 보니까 수정해야 할것 같습ㄴ디ㅏ. 
 	public boolean dstme_Addr(byte[] add) {//�ּ�Ȯ��
 		for(int i = 0;i<4;i++) {
 			if(add[i+16]!=m_sHeader.ip_srcaddr[i]) return false;
@@ -208,6 +220,7 @@ public class IPLayer implements BaseLayer {
 
 		return true;
 	}
+//	매개변수로 받은 값과 헤더의 IP Src Address와 비교하여 자신의 주소와 같으면 true, 같지 않으면 false를 리턴한다. 
 	public boolean srcme_Addr(byte[] add) {//�ּ�Ȯ��
 		for(int i = 0;i<4;i++) {
 			if(add[i+12]!=m_sHeader.ip_srcaddr[i]) return false;
@@ -216,7 +229,7 @@ public class IPLayer implements BaseLayer {
 		return true;
 	}
 
-
+//TODO : help!!
 	class Receive_Thread implements Runnable {
 		
 		byte[] input;
