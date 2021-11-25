@@ -104,54 +104,13 @@ public class ApplicationLayer  extends JFrame implements BaseLayer    {
             m_LayerMgr.ConnectLayers(" NI ( +Ethernet ( +ARP ( +IP ( +GUI ) ) +IP ( +GUI ) ) ) ^GUI ( -IP ( -ARP ( -Ethernet ( -NI ) ) -Ethernet ( -NI ) ) )  ^NI2 ( +Ethernet2 ( +ARP2 ( +IP2 ( +GUI ) ) +IP2 ( +GUI ) ) ) ^GUI ( -IP2 ( -ARP2 ( -Ethernet2 ( -NI2 ) ) -Ethernet2 ( -NI2 ) ) )");
             
 
-//            System.out.println("GUI UnderLayer 0 : "+((ApplicationLayer) m_LayerMgr.GetLayer("GUI")).GetUnderLayer(0).GetLayerName());
-//            System.out.println("GUI UnderLayer 1 : "+((ApplicationLayer) m_LayerMgr.GetLayer("GUI")).GetUnderLayer(1).GetLayerName());
-//            System.out.println();
-//            System.out.println("ARP UpperLayer 0 : "+((ARPLayer) m_LayerMgr.GetLayer("ARP")).GetUpperLayer(0).GetLayerName());
-//            System.out.println("ARP UpperLayer 1 : "+((ARPLayer) m_LayerMgr.GetLayer("ARP")).GetUpperLayer(1).GetLayerName());
-//            System.out.println("ARP UnderLayer 0 : "+((ARPLayer) m_LayerMgr.GetLayer("ARP")).GetUnderLayer(0).GetLayerName());
-//            System.out.println("ARP UnderLayer 1 : "+((ARPLayer) m_LayerMgr.GetLayer("ARP")).GetUnderLayer(1).GetLayerName());
-//            System.out.println();
-//            System.out.println("ARP2 UpperLayer 0 : "+((ARPLayer) m_LayerMgr.GetLayer("ARP2")).GetUpperLayer(0).GetLayerName());
-//            System.out.println("ARP2 UpperLayer 1 : "+((ARPLayer) m_LayerMgr.GetLayer("ARP2")).GetUpperLayer(1).GetLayerName());
-//            System.out.println("ARP2 UnderLayer 0 : "+((ARPLayer) m_LayerMgr.GetLayer("ARP2")).GetUnderLayer(0).GetLayerName());
-//            System.out.println("ARP2 UnderLayer 1 : "+((ARPLayer) m_LayerMgr.GetLayer("ARP2")).GetUnderLayer(1).GetLayerName());
-//            System.out.println();
-//            System.out.println("Ethernet UnderLayer : "+((EthernetLayer) m_LayerMgr.GetLayer("Ethernet")).GetUnderLayer().GetLayerName());
-//            System.out.println("Ethernet UpperLayer 0 : "+((EthernetLayer) m_LayerMgr.GetLayer("Ethernet")).GetUpperLayer(0).GetLayerName());
-//            System.out.println("Ethernet UpperLayer 1 : "+((EthernetLayer) m_LayerMgr.GetLayer("Ethernet")).GetUpperLayer(1).GetLayerName());
-//            System.out.println();
-//            System.out.println("Ethernet2 UnderLayer : "+((EthernetLayer) m_LayerMgr.GetLayer("Ethernet2")).GetUnderLayer().GetLayerName());
-//            System.out.println("Ethernet2 UpperLayer 0 : "+((EthernetLayer) m_LayerMgr.GetLayer("Ethernet2")).GetUpperLayer(0).GetLayerName());
-//            System.out.println("Ethernet2 UpperLayer 1 : "+((EthernetLayer) m_LayerMgr.GetLayer("Ethernet2")).GetUpperLayer(1).GetLayerName());
-//            System.out.println();
-//            System.out.println("IP UnderLayer 0 : "+((IPLayer) m_LayerMgr.GetLayer("IP")).GetUnderLayer(0).GetLayerName());
-//            System.out.println("IP UnderLayer 1 : "+((IPLayer) m_LayerMgr.GetLayer("IP")).GetUnderLayer(1).GetLayerName());
-//            System.out.println("IP UpperLayer 0 : "+((IPLayer) m_LayerMgr.GetLayer("IP")).GetUpperLayer(0).GetLayerName());
-//            
-//            System.out.println();
-//            
+
             routingTable = new RoutingTable();
             
             ((IPLayer) m_LayerMgr.GetLayer("IP")).friendIPset(((IPLayer) m_LayerMgr.GetLayer("IP2")));
             ((IPLayer) m_LayerMgr.GetLayer("IP2")).friendIPset(((IPLayer) m_LayerMgr.GetLayer("IP")));
             ((IPLayer) m_LayerMgr.GetLayer("IP")).setRouter(routingTable);
             ((IPLayer) m_LayerMgr.GetLayer("IP2")).setRouter(routingTable);
-
-//            Object[] value = new Object[4];
-//            byte[] ip = new byte[4];
-//            ip[0]=(byte)168;
-//            ip[1]=(byte)168;
-//            ip[2]=(byte)168;
-//            ip[3]=(byte)168;
-//            
-//            
-//            value[0] = ip;
-//            value[1] = new byte[6];
-//            value[2] = "Incomplete";
-//            value[3] = System.currentTimeMillis();
-//			((ARPLayer) m_LayerMgr.GetLayer("ARP")).cacheTable.put("168.188.129.220", value);
-//			((ARPLayer) m_LayerMgr.GetLayer("ARP")).updateARPCacheTable();
 
          }
    public ApplicationLayer(String pName) throws IOException  {
