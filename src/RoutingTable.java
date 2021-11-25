@@ -27,9 +27,10 @@ public class RoutingTable {
       rountingTable = new HashMap<Integer,HashMap<String,Object[]>>();
    }
 
+//   파라미터로 받은 데이터들로 엔트리를 생성하고 생성한 routeEntry를 router들의 리스트에 추가해주는 메소드
    public static void add(String key, Object[] value) {
 
-      HashMap<String,Object[]> head = null;
+      HashMap<String,Object[]> head = null;	//?
       byte[] netmask = (byte[]) value[1];
       int netnum = computeNetnum(netmask);
 
@@ -46,13 +47,15 @@ public class RoutingTable {
 
       }
    }
-
+   // sorting 화면에 깔끔하게 보여주기 위해서
    public static void Sorting() {
       entries = new ArrayList<Map.Entry<Integer, HashMap<String,Object[]>>>(rountingTable.entrySet());
       Collections.sort(entries, new CustomizedHashMap());
 
    }
-
+   //masking 으로 바꾸세여 (밑에 설명이 맞다면) 이거 아닌가 
+   // ip주소와 subnet mask를 &연산 한 값과 라우팅 테이블의 entry값을 비교하여 matching이 되는지 확인하는 메소드
+   // 틀렸나 봅니다. 수정 부탁드려요 밑에 마스킹 있네여, Netnum이걸 계산 하는건데
    public static int computeNetnum(byte[] netmask) {
       int cnt=0;
 
@@ -70,6 +73,7 @@ public class RoutingTable {
       return cnt;
    }
 
+   //: 파라미터(목적지주소)에 해당하는 패킷을 전달할 네트워크 주소를 알아내는 메소드 
    public Object[] findEntry(byte[] realDestination) {
 	  long time = System.currentTimeMillis();
       if(entries == null) return null;
@@ -101,6 +105,7 @@ public class RoutingTable {
       return null;
    }
 
+   // 매개변수로 받은 value값의 netmask를 찾아 해당하는 netnum을 구해 라우팅 테이블에서 삭제해준다. 
    public boolean remove(Object[] value) {
       byte[] netmask = (byte[]) value[1];
       int netnum = computeNetnum(netmask);
@@ -129,6 +134,7 @@ public class RoutingTable {
 
 
 
+   // 라우터 테이블 entries에 있는 값을 가져와 routing table area를 다시 띄어준다. 
    public static String updateRoutingTable() {
       String printResult = "";
 
