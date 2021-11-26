@@ -1,0 +1,15 @@
+
+#map {
+    
+    height:50vh;
+    position:relative;
+    overflow:hidden;
+}
+
+/* pc화면에서 */
+@media screen and (min-width: 1024px) {
+    #map {
+        width:50%;
+        margin: auto;
+    }
+}

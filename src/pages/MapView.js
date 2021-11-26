@@ -1,7 +1,7 @@
 /*global kakao*/
 import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
-
+import '../css/MapView.css';
 export default function MapView(){
     var markers = [];
     const { register, handleSubmit } = useForm();
@@ -216,7 +216,7 @@ export default function MapView(){
     
     return (
         <div>
-            <div id="map" style={{width:"50%", height:"50vh", position:"relative", overflow:"hidden"}}></div>
+            <div id="map" ></div>
 
             <div id="menu_wrap">
                 <div>
