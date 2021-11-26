@@ -1,4 +1,5 @@
 import "../../css/all.css";
+import { Link } from "react-router-dom";
 import Nav from './Nav';
 import MobileNav from "./MobileNav";
 function Header() {
@@ -8,7 +9,15 @@ function Header() {
         {/* <!-- Logo --> */}
         <div id="logo">
           <h1>
-            <a href="index.html">Corona</a>
+          <Link
+            to={{
+              pathname: `/main`,
+              state: {},
+            }}
+            key="mainPage"
+          >
+            Corona
+          </Link>
           </h1>
           <span>by sumi😚</span>
         </div>
