@@ -24,3 +24,5 @@ yarn-error.log*
 api 키.txt
 public/index.html
 public/index.html
+
+.env
