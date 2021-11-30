@@ -5,6 +5,7 @@ import { Main, NoSiderBarPage,SocialDistance,ConfirmeState,MapView } from "./pag
 import { Header, Footer } from "./components/index";
 import "./assets/css/main.css";
 import {authService, dbService} from './firebase';
+import Clinic from "./pages/Clinic";
 function App() {
  
   console.log(authService.currentUser);
@@ -14,7 +15,7 @@ function App() {
       {/* <a href='html\index.html'>sss</a> */}
       <Header />
       <RouterList />
-      <TestD/>
+      {/* <TestD/> */}
       {/* <TestNav/>
      <TestRouter/> */}
 
@@ -22,7 +23,7 @@ function App() {
     </BrowserRouter>
   );
 }
-function TestD() {
+function TestDB() {
   // #3.1 Nweeting! (06:37) 어떻게 가져올지는 이 다음에
   const [nweet,setNweet] = useState("sumi");
 
@@ -61,7 +62,7 @@ function RouterList() {
     <Switch>
       <Route exact path="/" component={Main} />
       <Route exact path="/main" component={Main} />
-      <Route exact path="/clinic" component={ConfirmeState} />
+      <Route exact path="/clinic" component={Clinic} />
       <Route exact path="/map" component={MapView} />
       <Route exact path="/distance" component={SocialDistance} />
     </Switch>
