@@ -5,9 +5,19 @@
     height: fit-content;
     overflow: hidden;
 }
+#clinic-container nav {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+#clinic-container nav span,#clinic-container nav button{
+    color: #666;
+}
 #clinic-container table th {
     min-width:90px;
 }
 #clinic-container table th.tableIndex {
     min-width:30px;
+}
+#clinic-container table tbody tr:not(.current) {
+    display: none;
 }
