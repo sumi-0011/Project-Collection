@@ -2,9 +2,11 @@ import React from 'react'
 
 function Clinic() {
     return (
-        <div>
-            
+        <div id="main-wrapper">
+        <div className="container">
+          <h1>Welcome, Clinic</h1>
         </div>
+      </div>
     )
 }
 

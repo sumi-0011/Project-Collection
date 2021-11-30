@@ -23,8 +23,14 @@ nav#nav ul li {
     font-size: 14px;
     padding-left: 0;
     margin-left:  1.5em;
+    width: fit-content;
+    height: fit-content;
 }
-#nav ul li .dropdown button {
+nav#nav ul li a:hover {
+    background-color: #555;
+    color: #fff;
+}
+/* #nav ul li .dropdown button {
     transition: background-color .25s ease-in-out;
     font-size: 14px;
     letter-spacing: 0.025em;
@@ -33,7 +39,7 @@ nav#nav ul li {
     border-radius: 6px;
     padding: 0.5em 1em 0.5em 1em;
     background-color: unset;
-}
+} */
 /* 모바일 */
 #mobile-nav #navToggle {
     width: fit-content;
