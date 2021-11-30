@@ -58,6 +58,17 @@ function Nav() {
             거리두기
           </Link>
         </li>
+        <li>
+          <Link
+            to={{
+              pathname: `/errorReport`,
+              state: {},
+            }}
+            key="errorReport"
+          >
+            오류리포트
+          </Link>
+        </li>
       </ul>
     </nav>
   );
