@@ -1,0 +1,13 @@
+#main-wrapper {
+    height: fit-content;
+}
+#clinic-container {
+    height: fit-content;
+    overflow: hidden;
+}
+#clinic-container table th {
+    min-width:90px;
+}
+#clinic-container table th.tableIndex {
+    min-width:30px;
+}
