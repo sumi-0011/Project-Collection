@@ -5,14 +5,12 @@ import { Dropdown, Button } from "react-bootstrap";
 function Nav() {
 
  
-  const handleClick = (e) => {
-    console.log(e.target);
-  };
+
   return (
     <nav id="nav">
-      <ul onClick={handleClick}>
+      <ul >
         {/* 메인 + 확진자 현황 */}
-        <li className="current">
+        <li>
           <Link
             to={{
               pathname: `/main`,
