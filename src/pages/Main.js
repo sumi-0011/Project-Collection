@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { ConfirmeState } from ".";
 // import
 import "../css/Main.css";
 

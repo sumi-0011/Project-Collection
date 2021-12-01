@@ -1,0 +1,10 @@
+#error-report-container {
+    font-size: 1.35em;
+}
+
+#error-report-container .form-group {
+    margin: 15px 0;
+}
+#error-report-container button.btn {
+    font-size: 1em;
+}
