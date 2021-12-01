@@ -1,7 +1,7 @@
 
 
 import React, { useState } from "react";
-
+import { ClinicRow } from "../components/index";
 import "../css/Clinic.css";
 import ClinicJson from '../assets/json/Clinic.json';
 function Clinic() {
@@ -19,37 +19,20 @@ function Clinic() {
   const [currentPage, setcurrentPage] = useState(1);
   const [dataList, setdataList] = useState(ClinicJson);
   const mapDataList = dataList.map((item, index) => (
-    <tr
-      key={index}
-      data-page={parseInt(index / PAGEITEMNUM) + 1}
-      className={
-        currentPage == parseInt(index / PAGEITEMNUM) + 1 ? "current" : ""
-      }
-    >
-      <td scope="row">{index + 1}</td>
-      <td>{item.city}</td>
-      <td>{item.distric}</td>
-      <td>{item.clinicName}</td>
-      <td>{item.address}</td>
-      <td>{item.operationHour}</td>
-      <td>{item.operationHourSat}</td>
-      <td>{item.operationHourSun}</td>
-      <td>{item.phoneNumber}</td>
-      <td>{item.ref}</td>
-    </tr>
+    <ClinicRow key={item.address+index}item={item} index={index} PAGEITEMNUM={PAGEITEMNUM} currentPage={currentPage}/>
   ));
   const paginationNum = Array.from(
     { length: parseInt(dataList.length / PAGEITEMNUM) + 1 },
     (v, i) => i + 1
   ); //page개수 만큼의 배열 생성 ex)0-5
-  const paginationJSX = paginationNum.map((item) => (
-    <li className="page-item">
+  const paginationJSX = paginationNum.map((item,index) => (
+    <li className="page-item" key={`pageLink${index}`}>
       <button className="page-link" onClick={() => setcurrentPage(item)}>
         {item}
       </button>
     </li>
   ));
-  console.log(ClinicJson);
+  // console.log(ClinicJson);
   return (
     <div id="main-wrapper">
       <div id="clinic-container">
