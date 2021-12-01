@@ -13,10 +13,21 @@
     color: #666;
 }
 #clinic-container table th {
-    min-width:90px;
+    /* width: fit-content; */
+    white-space:nowrap;
+}
+#clinic-container table th:nth-child(5) {
+    min-width: 250px;
+}
+#clinic-container table th:nth-child(10) {
+    width: 100px;
 }
 #clinic-container table th.tableIndex {
     min-width:30px;
+}
+#clinic-container table tr td{
+    /* max-width: 300px; */
+    word-break:break-all;
 }
 #clinic-container table tbody tr:not(.current) {
     display: none;
