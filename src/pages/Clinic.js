@@ -50,7 +50,6 @@ function Clinic() {
             <ul className="pagination">
               <li className="page-item">
                 <button className="page-link" aria-label="Previous" onClick={() => {
-                  console.log(currentPage,parseInt(dataList.length/PAGEITEMNUM ))
                     if(currentPage>1) {
                     currentPage !=1 && setcurrentPage(currentPage-1)
                   }
@@ -78,18 +77,16 @@ function Clinic() {
                 <th scope="col" className="tableIndex">
                   #
                 </th>
-                <th scope="col">시도</th>
-                <th scope="col">시군구</th>
-                <th scope="col">의료기관명</th>
-                <th scope="col">주소</th>
-                <th scope="col">평일 운영시간</th>
-                <th scope="col">토요일 운영시간</th>
-                <th scope="col">일요일 운영시간</th>
-                <th scope="col">전화번호</th>
-                <th scope="col" className="tableRef">
-                  장애인 <br />
-                  편의사항
-                </th>
+                <th scope="col"><div>시도</div></th>
+                <th scope="col"><div>시군구</div></th>
+                <th scope="col"><div>의료기관명</div></th>
+                <th scope="col"><div>주소</div></th>
+                <th scope="col"><div>평일 운영시간</div></th>
+                <th scope="col"><div>토요일 운영시간</div></th>
+                <th scope="col"><div>일요일 운영시간</div></th>
+                <th scope="col"><div>전화번호</div></th>
+                <th scope="col"><div>장애인 편의사항</div></th>
+
               </tr>
             </thead>
             <tbody>{mapDataList}</tbody>
