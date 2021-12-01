@@ -16,22 +16,30 @@ function Clinic() {
   // 전화번호 : phoneNumber
   // 장애인 편의사항 : ref
   const PAGEITEMNUM = 5;
-  const [currentPage, setcurrentPage] = useState(1);
+  const [currentPage, setcurrentPage] = useState(125);
   const [dataList, setdataList] = useState(ClinicJson);
   const mapDataList = dataList.map((item, index) => (
     <ClinicRow key={item.address+index}item={item} index={index} PAGEITEMNUM={PAGEITEMNUM} currentPage={currentPage}/>
   ));
   const paginationNum = Array.from(
-    { length: parseInt(dataList.length / PAGEITEMNUM) + 1 },
-    (v, i) => i + 1
+    { length:5 },
+    (v, i) => (i+currentPage)
   ); //page개수 만큼의 배열 생성 ex)0-5
-  const paginationJSX = paginationNum.map((item,index) => (
-    <li className="page-item" key={`pageLink${index}`}>
-      <button className="page-link" onClick={() => setcurrentPage(item)}>
-        {item}
-      </button>
-    </li>
-  ));
+  const paginationJSX = paginationNum.map((item,index) => {
+    // let itemIndex = item;
+    if(item-1 <= parseInt(dataList.length/PAGEITEMNUM )) {
+      return (
+        <li className="page-item" key={`pageLink${index}`}>
+          <button className="page-link" onClick={() => setcurrentPage(item)}>
+            {item}
+          </button>
+        </li>
+      )
+    }
+   
+   
+    
+  });
   // console.log(ClinicJson);
   return (
     <div id="main-wrapper">
@@ -49,9 +57,12 @@ function Clinic() {
               </li>
               {paginationJSX}
               <li className="page-item">
-                <button className="page-link"  aria-label="Next" onClick={() => (
-                   currentPage !=paginationNum.length && setcurrentPage(currentPage+1)
-                )}>
+                <button className="page-link"  aria-label="Next" onClick={() => {
+                  console.log(currentPage,parseInt(dataList.length/PAGEITEMNUM ))
+                  if(currentPage!=parseInt(dataList.length/PAGEITEMNUM )+1) { 
+                    setcurrentPage(currentPage+1)
+                  }
+                }}>
                   <span aria-hidden="true">&raquo;</span>
                 </button>
               </li>
