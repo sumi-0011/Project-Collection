@@ -16,7 +16,7 @@ function Clinic() {
   // 전화번호 : phoneNumber
   // 장애인 편의사항 : ref
   const PAGEITEMNUM = 5;
-  const [currentPage, setcurrentPage] = useState(125);
+  const [currentPage, setcurrentPage] = useState(0);
   const [dataList, setdataList] = useState(ClinicJson);
   const mapDataList = dataList.map((item, index) => (
     <ClinicRow key={item.address+index}item={item} index={index} PAGEITEMNUM={PAGEITEMNUM} currentPage={currentPage}/>
@@ -49,8 +49,13 @@ function Clinic() {
           <nav aria-label="Page navigation example">
             <ul className="pagination">
               <li className="page-item">
-                <button className="page-link" aria-label="Previous" onClick={() => 
-                  currentPage !=1 && setcurrentPage(currentPage-1)
+                <button className="page-link" aria-label="Previous" onClick={() => {
+                  console.log(currentPage,parseInt(dataList.length/PAGEITEMNUM ))
+                    if(currentPage>0) {
+                    currentPage !=1 && setcurrentPage(currentPage-1)
+                  }
+                }
+                 
                 }>
                   <span aria-hidden="true">&laquo;</span>
                 </button>
@@ -58,7 +63,6 @@ function Clinic() {
               {paginationJSX}
               <li className="page-item">
                 <button className="page-link"  aria-label="Next" onClick={() => {
-                  console.log(currentPage,parseInt(dataList.length/PAGEITEMNUM ))
                   if(currentPage!=parseInt(dataList.length/PAGEITEMNUM )+1) { 
                     setcurrentPage(currentPage+1)
                   }
