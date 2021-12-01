@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as UpdateConfirmStateDB from "../backend/ConfirmStateAPI.js";
 import {
   LineChart,
   Line,
@@ -46,6 +47,10 @@ const listTest = [
     DECIDE_CNT: 40,
   },
 ];
+const onSubmit = (e) => {
+  e.preventDefault();
+  UpdateConfirmStateDB.ConfirmStateAPI();
+};
 function Tempelate() {
 
   return (
@@ -94,9 +99,11 @@ function Tempelate() {
           <div className="graph__title">누적 확진자 수</div>
           <div className="graph__content"> <Graph list={listTest} /></div>
         </div>
-
-       
       </div>
+      <button
+        onClick={onSubmit}>
+          update
+      </button>
     </div>
   );
 }
