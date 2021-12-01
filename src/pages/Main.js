@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import * as UpdateConfirmStateDB from "../backend/ConfirmStateAPI.js";
+import React, { useState, useEffect } from "react";
+import * as ConfirmStateDB from "../backend/ConfirmStateAPI.js";
 import {
   LineChart,
   Line,
@@ -12,6 +12,7 @@ import {
 import { ConfirmeState } from ".";
 // import
 import "../css/Main.css";
+import { dbService } from "../firebase.js";
 
 function Main() {
   return (
@@ -50,10 +51,23 @@ const listTest = [
 ];
 const onSubmit = (e) => {
   e.preventDefault();
-  UpdateConfirmStateDB.ConfirmStateAPI();
+  ConfirmStateDB.ConfirmStateAPI();
 };
 function Tempelate() {
-
+  //
+  // DB에서 데이터 가져오는 부분!
+  //
+  const [datas, setDatas] = useState(null);
+  useEffect(() => {
+    ConfirmStateDB.getDB(function(data){
+      setDatas(data);
+    });
+  }, [])
+  console.log(datas);
+  //
+  //
+  //
+  if(!datas) return <loading />
   return (
     <div id="page-wrapper">
       {/* <MainContainer /> */}
@@ -66,7 +80,7 @@ function Tempelate() {
 
           <div className="item">
             <div className="item__title">확진자수</div>
-            <div className="item__content">11111</div>
+            <div className="item__content">{datas.incDec}</div>
           </div>
           <div className="item">
             <div className="item__title">치료중 환자수</div>
@@ -80,11 +94,11 @@ function Tempelate() {
         <div className="setion-containter">
           <div className="item">
             <div className="item__title">누적 확진자수</div>
-            <div className="item__content">11111</div>
+            <div className="item__content">{datas.totalCnt}</div>
           </div>
           <div className="item">
             <div className="item__title">누적 사망자수</div>
-            <div className="item__content">11111</div>
+            <div className="item__content">{datas.deathCnt}</div>
           </div>
         </div>
       </div>
@@ -165,5 +179,7 @@ function Graph({ list }) {
     </LineChart>
   );
 }
-
+const today = new Date();
+const yesterday = new Date();
+yesterday.setDate(today.getDate()-1);
 export default Main;
