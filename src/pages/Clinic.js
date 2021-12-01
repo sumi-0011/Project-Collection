@@ -16,7 +16,7 @@ function Clinic() {
   // 전화번호 : phoneNumber
   // 장애인 편의사항 : ref
   const PAGEITEMNUM = 5;
-  const [currentPage, setcurrentPage] = useState(0);
+  const [currentPage, setcurrentPage] = useState(1);
   const [dataList, setdataList] = useState(ClinicJson);
   const mapDataList = dataList.map((item, index) => (
     <ClinicRow key={item.address+index}item={item} index={index} PAGEITEMNUM={PAGEITEMNUM} currentPage={currentPage}/>
@@ -51,7 +51,7 @@ function Clinic() {
               <li className="page-item">
                 <button className="page-link" aria-label="Previous" onClick={() => {
                   console.log(currentPage,parseInt(dataList.length/PAGEITEMNUM ))
-                    if(currentPage>0) {
+                    if(currentPage>1) {
                     currentPage !=1 && setcurrentPage(currentPage-1)
                   }
                 }
