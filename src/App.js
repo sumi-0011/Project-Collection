@@ -8,7 +8,7 @@ import {authService, dbService} from './firebase';
 import Clinic from "./pages/Clinic";
 function App() {
  
-  console.log(authService.currentUser);
+  // console.log(authService.currentUser);
 
   return (
     <BrowserRouter>
