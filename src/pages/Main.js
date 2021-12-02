@@ -21,7 +21,7 @@ function Main() {
     </div>
   );
 }
-const DaylistTest = [
+let DaylistTest = [
   {
     name: "Page A",
     DECIDE_CNT: 10,
@@ -35,7 +35,7 @@ const DaylistTest = [
     DECIDE_CNT: 25,
   },
 ];
-const listTest = [
+let listTest = [
   {
     name: "Page A",
     DECIDE_CNT: 10,
@@ -58,16 +58,28 @@ function Tempelate() {
   // DB에서 데이터 가져오는 부분!
   //
   const [datas, setDatas] = useState(null);
+  const [ydatas, setYdatas] = useState(null);
+  const [yydatas, setYYdatas] = useState(null);
+
   useEffect(() => {
     ConfirmStateDB.getDB(function(data){
       setDatas(data);
+      DaylistTest[2].DECIDE_CNT = data.incDec;
+      listTest[2].DECIDE_CNT = data.totalCnt;
+    }, function(data2){
+      setYdatas(data2);
+      DaylistTest[1].DECIDE_CNT = data2.incDec;
+      listTest[1].DECIDE_CNT = data2.totalCnt;
+    }, function(data3){
+      setYYdatas(data3);
+      DaylistTest[0].DECIDE_CNT = data3.incDec;
+      listTest[0].DECIDE_CNT = data3.totalCnt;
     });
   }, [])
-  console.log(datas);
   //
   //
   //
-  if(!datas) return <loading />
+  if(!datas || !ydatas || !yydatas) return <h1>Loadings...</h1>
   return (
     <div id="page-wrapper">
       {/* <MainContainer /> */}
@@ -84,11 +96,11 @@ function Tempelate() {
           </div>
           <div className="item">
             <div className="item__title">치료중 환자수</div>
-            <div className="item__content">11111</div>
+            <div className="item__content">{datas.isolCnt}</div>
           </div>
           <div className="item">
             <div className="item__title">사망자수</div>
-            <div className="item__content">11111</div>
+            <div className="item__content">{datas.deathCnt - ydatas.deathCnt}</div>
           </div>
         </div>
         <div className="setion-containter">
@@ -179,7 +191,4 @@ function Graph({ list }) {
     </LineChart>
   );
 }
-const today = new Date();
-const yesterday = new Date();
-yesterday.setDate(today.getDate()-1);
 export default Main;

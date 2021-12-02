@@ -22,12 +22,27 @@ export async function ConfirmStateAPI() {
     });   
 }
 
-export async function getDB(callback) {
-    const ref = dbService.collection('ConfirmState').doc('12.01');
-    const doc = await ref.get();
-    if (!doc.exists) {
-      console.log('No such document!');
+export async function getDB(callback1, callback2, callback3, callback4, callback5) {
+    const ref1 = dbService.collection('ConfirmState').doc(getToday);
+    const doc1 = await ref1.get();
+    const ref2 = dbService.collection('ConfirmState').doc(getYesterday);
+    const doc2 = await ref2.get();
+    const ref3 = dbService.collection('ConfirmState').doc('12.01');
+    const doc3 = await ref3.get();
+    if (!doc1.exists || !doc2.exists || !doc3.exists) {
+      console.log('No document!');
     } else {
-      callback(doc.data());
+      callback1(doc1.data());
+      callback2(doc2.data());
+      callback3(doc3.data());
     }
 }
+
+const today = new Date();
+let getToday = today.getMonth()+1 + "." + ("0"+today.getDate()).slice(-2);
+const yesterday = new Date();
+yesterday.setDate(today.getDate()-1);
+let getYesterday = yesterday.getMonth()+1 + "." + ("0"+yesterday.getDate()).slice(-2);
+const beforeYesterday = new Date();
+beforeYesterday.setDate(today.getDate()-2);
+let getBeforeYesterday = beforeYesterday.getMonth()+1 + "." + ("0"+beforeYesterday.getDate()).slice(-2);
