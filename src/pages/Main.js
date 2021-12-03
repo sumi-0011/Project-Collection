@@ -18,6 +18,10 @@ function Main() {
   return (
     <div>
       <Tempelate />
+      <button
+        onClick={onSubmit}>
+          update
+      </button>
     </div>
   );
 }
@@ -127,10 +131,6 @@ function Tempelate() {
           <div className="graph__content"> <Graph list={listTest} /></div>
         </div>
       </div>
-      <button
-        onClick={onSubmit}>
-          update
-      </button>
     </div>
   );
 }
