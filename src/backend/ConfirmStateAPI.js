@@ -27,7 +27,7 @@ export async function getDB(callback1, callback2, callback3, callback4, callback
     const doc1 = await ref1.get();
     const ref2 = dbService.collection('ConfirmState').doc(getYesterday);
     const doc2 = await ref2.get();
-    const ref3 = dbService.collection('ConfirmState').doc('12.01');
+    const ref3 = dbService.collection('ConfirmState').doc(getBeforeYesterday);
     const doc3 = await ref3.get();
     if (!doc1.exists || !doc2.exists || !doc3.exists) {
       console.log('No document!');
