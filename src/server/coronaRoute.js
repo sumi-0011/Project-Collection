@@ -1,6 +1,7 @@
 const request = require("request");
 const cheerio = require("cheerio");
  
+
 coronaRoute = {
   'distric': '',
   'placeType': '',
@@ -10,20 +11,24 @@ coronaRoute = {
   'ref':'' //소독여부
 }
 
-function getData() {
-  request("nhttps://www.daejeon.go.kr/corona19/index.do?menuId=0008", function (err, res, body) {
-      const $ = cheerio.load(body);
-      const bodyList = $(".corona").map(function (i, element) {
-          coronaRoute['distric'] = String($(element).find('td:nth-of-type(1)').text());
-          coronaRoute['placeType'] =  String($(element).find('td:nth-of-type(2)').text());
-          coronaRoute['placeName'] =  String($(element).find('td:nth-of-type(3)').text());
-          coronaRoute['location'] =  String($(element).find('td:nth-of-type(4)').text());
-          coronaRoute['date'] =  String($(element).find('td:nth-of-type(5)').text());
-          coronaRoute['ref'] =  String($(element).find('td:nth-of-type(6)').text());
+const url = "https://www.daejeon.go.kr/corona19/index.do?menuId=0008";
+request(url, (error, response, body) => {
+  if (error) throw error;
 
-          console.log(coronaRoute)
-      });s
-  });
-}
+  let $ = cheerio.load(body);
 
-getData();
+  try {
+
+    $('table').find('tr').each(function (index, elem) {
+      coronaRoute['distric'] = $(this).find('td').text().trim();
+      coronaRoute['placeType'] =  $(this).find('td').next().text().trim();
+      coronaRoute['placeName'] =  $(this).find('td').next().next().text().trim();
+      coronaRoute['location'] =  $(this).find('td').next().next().next().text().trim();
+      coronaRoute['date'] =  $(this).find('td').next().next().next().next().text().trim();
+      coronaRoute['ref'] =  $(this).find('td').next().next().next().next().next().text().trim();
+      console.log(coronaRoute)
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
