@@ -1,66 +1,117 @@
 import React from 'react'
 
-import distance from '../assets/json/keepDistance_Daejon.json';
+import distance from '../assets/json/keepDistance.json';
 
 
 
 function SocialDistance() {
+  const DaejonList = distance.Daejon;
+
+  // console.log(DaejonList.common[1].content.join('\n'));
+      
+  
     return (
         <div id="main-wrapper">
       <div className="container">
         <h2>Daejeon SocialDistance Rule</h2>
-        <table class = "socialDistance">
+        <table className = "socialDistance">
           <thead>
             <tr>
-              <th colspan = "2">구분</th>
+              <th colSpan = "2">구분</th>
               <th>단계적 일상회복 1차 개편 주요 방역수칙</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td rowspan="2">공통 방역수칙</td>
-              <td>마스크착용</td>
-              <td></td>
+              <td rowSpan = {DaejonList.common.length} >공통 방역수칙</td>
+              <td>{ DaejonList.common[0].title.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+              <td>{ DaejonList.common[0].content.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+           
             </tr>
+            {
+               DaejonList.common.map((item,index) => (
+                 index >0 && <tr  key={index}>
+                   <td>{ item.title.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+                   <td>{ item.content.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+                 </tr>
+               ))
+            }
+           
+           
+           
             <tr>
-              <td>기본방역수칙</td>
-              <td></td>
+              <td rowSpan ={DaejonList.meeting.length} >모임 / 행사 / 집회</td>
+              <td>{ DaejonList.meeting[0].title.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+              <td>{ DaejonList.meeting[0].content.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
             </tr>
+            {
+               DaejonList.meeting.map((item,index) => (
+                 index >0 && <tr  key={index}>
+                   <td>{ item.title.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+                   <td>{ item.content.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+                 </tr>
+               ))
+            }
+           
             <tr>
-              <td rowspan = "2">모임 / 행사 / 집회</td>
-              <td>사적모임</td>
-              <td></td>
+              <td rowSpan = {DaejonList.proofOfVaccinationApply.length} >접종증명 / <br/>음성확인제 의무적용시설</td>
+              <td>{ DaejonList.proofOfVaccinationApply[0].title.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+              <td>{ DaejonList.proofOfVaccinationApply[0].content.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
             </tr>
+            {
+               DaejonList.proofOfVaccinationApply.map((item,index) => (
+                 index >0 && <tr  key={index}>
+                   <td>{ item.title.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+                   <td>{ item.content.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+                 </tr>
+               ))
+            }
+           
             <tr>
-              <td>기타 행사 / 모임</td>
-              <td></td>
+              <td rowSpan = {DaejonList.proofOfVaccinationNotApply.length} >접종증명 / <br/> 음성확인제 미적용시설</td>
+              <td>{ DaejonList.proofOfVaccinationNotApply[0].title.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+              <td>{ DaejonList.proofOfVaccinationNotApply[0].content.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
             </tr>
-            <tr>
-              <td rowspan = "2">접종증명 / 음성확인제 의무적용시설</td>
-              <td>유흥시설</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>기타 행사 / 모임</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td rowspan = "4">접종증명 / 음성확인제 미적용시설</td>
-              <td>식당 / 카페</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>영화관 / 공연장</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>스포츠경기장</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>학원 등 독서실 / 스터디카페 / PC방</td>
-              <td></td>
-            </tr>
+            {
+               DaejonList.proofOfVaccinationNotApply.map((item,index) => (
+                 index >0 && <tr  key={index}>
+                   <td>{ item.title.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+                   <td>{ item.content.map((ic) => (
+                     <p>{ic}</p>
+                   ))}</td>
+                 </tr>
+               ))
+            }
           </tbody>
 
         </table>
