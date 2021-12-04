@@ -76,7 +76,10 @@ nav#nav ul li a:hover {
 
 }
 
-
+/* 사회적 거리두기 */
+.socialDistance p {
+    margin: 0;
+}
 
 @media screen and (min-width: 980px) {
     /* 컴퓨터 화면 */
