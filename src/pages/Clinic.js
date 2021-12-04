@@ -17,7 +17,7 @@ function Clinic() {
   // 장애인 편의사항 : ref
   const PAGEITEMNUM = 5;
   const [currentPage, setcurrentPage] = useState(1);
-  const [dataList, setdataList] = useState(ClinicJson);
+  const [dataList, setdataList] = useState(ClinicJson.Clinic);
   const mapDataList = dataList.map((item, index) => (
     <ClinicRow key={item.address+index}item={item} index={index} PAGEITEMNUM={PAGEITEMNUM} currentPage={currentPage}/>
   ));
