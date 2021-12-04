@@ -1,4 +1,4 @@
-{ "Clinic" :[{"city":"서울","distric":"강남구","clinicName":"강남구보건소","address":"서울 강남구 삼성동(삼성2동) 8 강남구보건소","operationHour":"09:00~21:00","operationHourSat":"09:00~18:00","operationHourSun":"09:00~18:00","phoneNumber":"02-3423-5555","ref":"수어상담가능, 전자문진표 이용, 의사소통 도움판, 중증장애인 우선검사 시행"},
+[{"city":"서울","distric":"강남구","clinicName":"강남구보건소","address":"서울 강남구 삼성동(삼성2동) 8 강남구보건소","operationHour":"09:00~21:00","operationHourSat":"09:00~18:00","operationHourSun":"09:00~18:00","phoneNumber":"02-3423-5555","ref":"수어상담가능, 전자문진표 이용, 의사소통 도움판, 중증장애인 우선검사 시행"},
     {"city":"서울","distric":"강남구","clinicName":"삼성서울병원","address":"서울 강남구 일원로81 삼성서울병원","operationHour":"09:00~16:30","operationHourSat":"09:00~16:30","operationHourSun":"09:00~16:30","phoneNumber":"02-1599-3114","ref":""},
     {"city":"서울","distric":"강남구","clinicName":"강남세브란스병원","address":"서울 강남구 언주로211 강남세브란스병원","operationHour":"09:00~17:00","operationHourSat":"09:00~12:30","operationHourSun":"미운영","phoneNumber":"02-1599-6114","ref":""},
     {"city":"서울","distric":"강동구","clinicName":"강동구보건소","address":"서울 강동구 성내로45","operationHour":"09:00~21:00","operationHourSat":"09:00~18:00","operationHourSun":"09:00~18:00","phoneNumber":"02-3425-6713","ref":""},
@@ -630,4 +630,3 @@
     {"city":"제주","distric":"제주시","clinicName":"중앙병원","address":"월랑로 91","operationHour":"00:00~24:00","operationHourSat":"00:00~24:00","operationHourSun":"00:00~24:00","phoneNumber":"064-786-7119","ref":""},
     {"city":"제주","distric":"제주시","clinicName":"제주시(동부보건소)","address":"제주 제주시 구좌읍 김녕리 1697-1 동부보건소 동부보건소","operationHour":"09:00~17:30","operationHourSat":"09:00~16:00","operationHourSun":"09:00~16:00","phoneNumber":"064-728-4392","ref":""},
     {"city":"제주","distric":"제주시","clinicName":"제주시(서부보건소)","address":"제주특별자치도 제주시 한림읍 한림리 966-1번지 (한림리)","operationHour":"09:00~17:30","operationHourSat":"09:00~17:00","operationHourSun":"09:00~17:00","phoneNumber":"064-728-4141","ref":"거동불편자 대상 차량 내 검사 등 지원"}]
-}
