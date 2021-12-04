@@ -17,7 +17,8 @@ function Clinic() {
   // 장애인 편의사항 : ref
   const PAGEITEMNUM = 5;
   const [currentPage, setcurrentPage] = useState(1);
-  const [dataList, setdataList] = useState(ClinicJson.Clinic);
+  const [dataList, setdataList] = useState(ClinicJson.Clinic.filter((item)=>item.city ==='대전' ));
+  console.log(dataList);
   const mapDataList = dataList.map((item, index) => (
     <ClinicRow key={item.address+index}item={item} index={index} PAGEITEMNUM={PAGEITEMNUM} currentPage={currentPage}/>
   ));
@@ -40,7 +41,6 @@ function Clinic() {
    
     
   });
-  // console.log(ClinicJson);
   return (
     <div id="main-wrapper">
       <div id="clinic-container">
@@ -81,11 +81,11 @@ function Clinic() {
                 <th scope="col"><div>시군구</div></th>
                 <th scope="col"><div>의료기관명</div></th>
                 <th scope="col"><div>주소</div></th>
-                <th scope="col"><div>평일 운영시간</div></th>
-                <th scope="col"><div>토요일 운영시간</div></th>
-                <th scope="col"><div>일요일 운영시간</div></th>
+                <th scope="col"><div>평일  <br/>운영시간</div></th>
+                <th scope="col"><div>토요일 <br/>운영시간</div></th>
+                <th scope="col"><div>일요일  <br/>운영시간</div></th>
                 <th scope="col"><div>전화번호</div></th>
-                <th scope="col"><div>장애인 편의사항</div></th>
+                <th scope="col"><div>장애인  <br/>편의사항</div></th>
 
               </tr>
             </thead>
