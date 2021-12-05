@@ -17,8 +17,8 @@ function Clinic() {
   // 장애인 편의사항 : ref
   const PAGEITEMNUM = 5;
   const [currentPage, setcurrentPage] = useState(1);
-  const [dataList, setdataList] = useState(ClinicJson.Clinic.filter((item)=>item.city ==='대전' ));
-  console.log(dataList);
+  const [dataList, setdataList] = useState(ClinicJson.Clinic.filter((item)=>item.city ==='대전'));
+  const [searchTarget, setsearchTarget] = useState("");
   const mapDataList = dataList.map((item, index) => (
     <ClinicRow key={item.address+index}item={item} index={index} PAGEITEMNUM={PAGEITEMNUM} currentPage={currentPage}/>
   ));
@@ -37,10 +37,15 @@ function Clinic() {
         </li>
       )
     }
-   
-   
-    
   });
+  const handleSearchChange = (e) => {
+    let keyword = e.target.value;
+    setsearchTarget(keyword);
+    const filterList = ClinicJson.Clinic.filter((item)=>(
+     (item.city ==='대전') &&(item.distric.includes(keyword) ||item.clinicName.includes(keyword) ||item.address.includes(keyword)  )
+    ));
+    setdataList(filterList);
+  }
   return (
     <div id="main-wrapper">
       <div id="clinic-container">
@@ -70,6 +75,8 @@ function Clinic() {
                 </button>
               </li>
             </ul>
+              
+          <input type="text" placeholder="검색" className="search-input" value={searchTarget} onChange={handleSearchChange}/>
           </nav>
           <table className="table table-hover">
             <thead>
