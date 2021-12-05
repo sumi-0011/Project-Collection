@@ -75,8 +75,8 @@ function Clinic() {
                 </button>
               </li>
             </ul>
-
-          <input type="text" className="search-input" value={searchTarget} onChange={handleSearchChange}/>
+              
+          <input type="text" placeholder="검색" className="search-input" value={searchTarget} onChange={handleSearchChange}/>
           </nav>
           <table className="table table-hover">
             <thead>

@@ -6,6 +6,10 @@
     height: fit-content;
     overflow: hidden;
 }
+#clinic-container .container {
+    height: fit-content;
+    overflow-x: scroll;
+}
 #clinic-container nav {
     margin-top: 30px;
     margin-bottom: 10px;
@@ -39,4 +43,25 @@
 }
 #clinic-container table tbody tr:not(.current) {
     display: none;
+}
+#clinic-container nav {
+    display: flex;
+    justify-content: space-between;
+}
+#clinic-container nav .search-input {
+    border-radius: .5rem;
+    
+}
+
+@media screen and (max-width: 800px) {
+  #clinic-container {
+      min-height: fit-content;
+  }
+  /* #clinic-container nav {
+      justify-content: flex-start;
+  } */
+  #clinic-container nav .pagination li{
+    min-width: 40px;
+
+  }
 }
