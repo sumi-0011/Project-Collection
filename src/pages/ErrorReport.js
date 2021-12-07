@@ -1,7 +1,7 @@
 import React from "react";
 import '../css/ErrorReport.css';
 import { useForm } from "react-hook-form";
-import * as SendError from "../backend/SendError.js";
+import * as SendError from "../backend/SendDB.js";
 
 function ErrorReport() {
   const { register, handleSubmit } = useForm();

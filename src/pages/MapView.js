@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import '../css/MapView.css';
+import * as getDB from "../backend/GetDB.js"
 export default function MapView(){
     var markers = [];
     const { register, handleSubmit } = useForm();
@@ -204,6 +205,7 @@ export default function MapView(){
             el.removeChild (el.lastChild);
         }
     }
+    // 페이지 로딩
     useEffect(() => {
         var mapContainer = document.getElementById('map') // 지도를 표시할 div 
         var mapOption = {
@@ -212,7 +214,9 @@ export default function MapView(){
         }; 
         // 지도를 생성합니다    
         map = new kakao.maps.Map(mapContainer, mapOption);
-
+        getDB.getClinic(function(data){
+            searchPlaces(data.address);
+        });
         if (navigator.geolocation) {
     
             // GeoLocation을 이용해서 접속 위치를 얻어옵니다
