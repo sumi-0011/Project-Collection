@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import '../css/MapView.css';
+import * as getDB from "../backend/GetDB.js"
 export default function MapView(){
     var markers = [];
     const { register, handleSubmit } = useForm();
@@ -14,6 +15,8 @@ export default function MapView(){
     var infowindow = new kakao.maps.InfoWindow({zIndex:1});
     // 장소 검색 객체를 생성합니다
     var ps = new kakao.maps.services.Places();  
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
     // 키워드 검색을 요청하는 함수입니다
     function searchPlaces(data) {
 
@@ -204,6 +207,67 @@ export default function MapView(){
             el.removeChild (el.lastChild);
         }
     }
+    //마커 생성
+    function displayMarker(locPosition, message) {
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({  
+            map: map, 
+            position: locPosition
+        }); 
+        
+        var iwContent = message, // 인포윈도우에 표시할 내용
+            iwRemoveable = true;
+    
+        // 인포윈도우를 생성합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content : iwContent,
+            removable : iwRemoveable
+        });
+        
+        // 인포윈도우를 마커위에 표시합니다 
+        infowindow.open(map, marker);
+        
+        // 지도 중심좌표를 접속위치로 변경합니다
+        map.setCenter(locPosition);      
+    }  
+    // 주소로 좌표를 검색합니다
+    function addressSearch(data, data2) {
+        removeMarker();
+        geocoder.addressSearch(data, function(result, status) {
+
+            // 정상적으로 검색이 완료됐으면 
+            if (status === kakao.maps.services.Status.OK) {
+    
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords
+                });
+                // 인포윈도우로 장소에 대한 설명을 표시합니다
+                var content= '<div style="width:150px;text-align:center;padding:6px 0;">'+data2+'</div>'
+                kakao.maps.event.addListener(marker, 'mouseover', function() {
+                    displayInfowindow(marker, content);
+                });
+
+                kakao.maps.event.addListener(marker, 'mouseout', function() {
+                    infowindow.close();
+                });
+                
+                markers.push(marker);
+            } 
+        }); 
+    }
+
+    //
+    function setClinicMarker() {
+        getDB.getClinic(function(data){
+            addressSearch(data.address, data.clinicName);
+        });
+    }
+    // 페이지 로딩
     useEffect(() => {
         var mapContainer = document.getElementById('map') // 지도를 표시할 div 
         var mapOption = {
@@ -212,7 +276,7 @@ export default function MapView(){
         }; 
         // 지도를 생성합니다    
         map = new kakao.maps.Map(mapContainer, mapOption);
-
+    
         if (navigator.geolocation) {
     
             // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -236,41 +300,20 @@ export default function MapView(){
                 
             displayMarker(locPosition, message);
         }
-    });
+    }, [map]);
 
-    function displayMarker(locPosition, message) {
-
-        // 마커를 생성합니다
-        var marker = new kakao.maps.Marker({  
-            map: map, 
-            position: locPosition
-        }); 
-        
-        var iwContent = message, // 인포윈도우에 표시할 내용
-            iwRemoveable = true;
-    
-        // 인포윈도우를 생성합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content : iwContent,
-            removable : iwRemoveable
-        });
-        
-        // 인포윈도우를 마커위에 표시합니다 
-        infowindow.open(map, marker);
-        
-        // 지도 중심좌표를 접속위치로 변경합니다
-        map.setCenter(locPosition);      
-    }    
-    
     return (
         <div>
             <div id="map" ></div>
-
+            
             <div id="menu_wrap">
                 <div>
                     <div>
+                        <button onClick={setClinicMarker}>선별진료소</button>
+                    </div>
+                    <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                        키워드 : <input type="text" id="keyword" size="15" {...register("keyword")}/>
+                        <input type="text" id="keyword" size="15" {...register("keyword")}/>
                         <button type="submit">검색하기</button> 
                         </form>
                     </div>

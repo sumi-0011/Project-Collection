@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import * as ConfirmStateDB from "../backend/ConfirmStateAPI.js";
+import * as ConfirmStateDB from "../backend/GetDB.js";
+import * as SendConfirmAPI from "../backend/SendDB.js";
 import {
   LineChart,
   Line,
@@ -55,7 +56,7 @@ let listTest = [
 ];
 const onSubmit = (e) => {
   e.preventDefault();
-  ConfirmStateDB.ConfirmStateAPI();
+  SendConfirmAPI.ConfirmStateAPI();
 };
 function Tempelate() {
   //
@@ -66,7 +67,7 @@ function Tempelate() {
   const [yydatas, setYYdatas] = useState(null);
 
   useEffect(() => {
-    ConfirmStateDB.getDB(function(data){
+    ConfirmStateDB.getConfirmStateDB(function(data){
       setDatas(data);
       DaylistTest[2].DECIDE_CNT = data.incDec;
       listTest[2].DECIDE_CNT = data.totalCnt;
