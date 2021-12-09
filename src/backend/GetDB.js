@@ -22,9 +22,9 @@ export async function getConfirmStateDB(callback1, callback2, callback3) {
     if (!doc1.exists || !doc2.exists || !doc3.exists) {
       console.log('No document!');
     } else {
-      callback1(doc1.data());
-      callback2(doc2.data());
-      callback3(doc3.data());
+      await callback1(doc1.data());
+      await callback2(doc2.data());
+      await callback3(doc3.data());
     }
 }
 
