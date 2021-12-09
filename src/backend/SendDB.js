@@ -1,5 +1,6 @@
 import {dbService} from '../firebase';
 import axios from 'axios';
+const cheerio = require("cheerio");
 
 export async function ConfirmStateAPI() {
     var url = 'https://api.corona-19.kr/korea/beta/';
@@ -24,5 +25,36 @@ export async function SendError(data) {
     await dbService.collection("Error").add({
         title: data.inputReportTitle,
         content: data.inputReportContent
+    });
+}
+export async function SendConfirmRoute() {
+    await dbService.collection("ConfirmRoute").get().then(val => {
+        val.forEach((val) => {
+            val.ref.delete();
+        })
+    })
+    const getHtml = async () => {
+        try {
+          return await axios.get("/api/index.do?menuId=0008");
+          // 해당 사이트 html 태그 가져오기
+        } catch (error) {
+          console.error(error);
+        }
+    };
+    getHtml()
+    .then((html) => {
+      const $ = cheerio.load(html.data);
+
+      const bodyList = $(".corona tbody tr").map(function (i, element) {
+        if (String($(element).find('td:nth-of-type(2)').text()) !== "") {
+            dbService.collection("ConfirmRoute").add({
+                sigungu: String($(element).find('td:nth-of-type(1)').text()),
+                type: String($(element).find('td:nth-of-type(2)').text()),
+                name: String($(element).find('td:nth-of-type(3)').text()),
+                address: String($(element).find('td:nth-of-type(4)').text()),
+                clear: String($(element).find('td:nth-of-type(5)').text())
+            });
+        }
+      });
     });
 }

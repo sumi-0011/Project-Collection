@@ -2,10 +2,14 @@ const createProxyMiddleware = require('http-proxy-middleware');
 
 module.exports = function(app) {
     app.use(
-        '/openapi',
+        '/api',
         createProxyMiddleware({
-            target: 'http://openapi.data.go.kr',
+            target: 'https://corona.daejeon.go.kr',
             changeOrigin: true,
+            pathRewrite: {
+                '^/api': ''
+            },
+            secure: false
         })
     );
 };
