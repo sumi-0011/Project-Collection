@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Main() {
     return (
@@ -8,11 +8,10 @@ function Main() {
             201902698 변수미
             </h3>
             <h3>
-201902766 하태욱
+            201902766 하태욱
             </h3>
             <h3>
-201902757 정지은
-
+            201902757 정지은
             </h3>
         </div>
     )
