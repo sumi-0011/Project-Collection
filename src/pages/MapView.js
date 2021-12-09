@@ -232,7 +232,7 @@ export default function MapView(){
         map.setCenter(locPosition);      
     }  
     // 주소로 좌표를 검색합니다
-    function addressSearch(data, data2) {
+    function addressSearch(data, data2, data3) {
         removeMarker();
         geocoder.addressSearch(data, function(result, status) {
 
@@ -240,11 +240,40 @@ export default function MapView(){
             if (status === kakao.maps.services.Status.OK) {
     
                 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-    
+                //
+                //
+                //
+                // 아이콘 추가해줄 사람!!!!!!!!!!!!!!!!!!
+                //
+                //
+                // 소독완료 초록색 아이콘 추가
+                if (data3 ==="소독완료") {
+                    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+                    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+                    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+                // 선별진료소 아이콘 추가
+                    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+                } else if (data3 === "선별진료소"){
+                    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+                    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+                    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+                // 소독미완료 붉은 병균 아이콘 추가
+                    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+                } else {
+                    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+                    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+                    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+                    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+                    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+                }
                 // 결과값으로 받은 위치를 마커로 표시합니다
                 var marker = new kakao.maps.Marker({
                     map: map,
-                    position: coords
+                    position: coords,
+                    image: markerImage
                 });
                 // 인포윈도우로 장소에 대한 설명을 표시합니다
                 var content= '<div style="width:150px;text-align:center;padding:6px 0;">'+data2+'</div>'
@@ -264,7 +293,13 @@ export default function MapView(){
     //
     function setClinicMarker() {
         getDB.getClinic(function(data){
-            addressSearch(data.address, data.clinicName);
+            addressSearch(data.address, data.clinicName, "선별진료소");
+        });
+    }
+
+    function setRouteMarker() {
+        getDB.getRoute(function(data){
+            addressSearch(data.address, data.name, data.complete);
         });
     }
     // 페이지 로딩
@@ -310,6 +345,8 @@ export default function MapView(){
                 <div>
                     <div>
                         <button onClick={setClinicMarker}>선별진료소</button>
+                        <button onClick={setRouteMarker}>확진자이동장소</button>
+                        <button onClick={removeMarker}>CLEAR</button>
                     </div>
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>

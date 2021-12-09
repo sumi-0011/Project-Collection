@@ -52,7 +52,8 @@ export async function SendConfirmRoute() {
                 type: String($(element).find('td:nth-of-type(2)').text()),
                 name: String($(element).find('td:nth-of-type(3)').text()),
                 address: String($(element).find('td:nth-of-type(4)').text()),
-                clear: String($(element).find('td:nth-of-type(5)').text())
+                clear: String($(element).find('td:nth-of-type(5)').text()),
+                complete: String($(element).find('td:nth-of-type(6)').text())
             });
         }
       });

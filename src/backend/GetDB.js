@@ -35,3 +35,10 @@ export async function getClinic(callback) {
         callback(doc.data());
     })
 }
+export async function getRoute(callback) {
+  const ref = dbService.collection('ConfirmRoute');
+  const docs = await ref.get();
+  docs.forEach(doc => {
+      callback(doc.data());
+  })
+}
