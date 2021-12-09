@@ -10,10 +10,8 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { ConfirmeState } from ".";
 // import
 import "../css/Main.css";
-import { dbService } from "../firebase.js";
 
 function Main() {
   return (
@@ -26,32 +24,34 @@ function Main() {
     </div>
   );
 }
-let DaylistTest = [
+const today = new Date();
+let getToday = today.getMonth()+1 + "." + ("0"+today.getDate()).slice(-2);
+const yesterday = new Date();
+yesterday.setDate(today.getDate()-1);
+let getYesterday = yesterday.getMonth()+1 + "." + ("0"+yesterday.getDate()).slice(-2);
+const beforeYesterday = new Date();
+beforeYesterday.setDate(today.getDate()-2);
+let getBeforeYesterday = beforeYesterday.getMonth()+1 + "." + ("0"+beforeYesterday.getDate()).slice(-2);
+const DaylistTest = [
   {
-    name: "Page A",
-    DECIDE_CNT: 10,
+    name: getBeforeYesterday,
   },
   {
-    name: "Page B",
-    DECIDE_CNT: 5,
+    name: getYesterday,
   },
   {
-    name: "Page C",
-    DECIDE_CNT: 25,
+    name: getToday,
   },
 ];
-let listTest = [
+const listTest = [
   {
-    name: "Page A",
-    DECIDE_CNT: 10,
+    name: getBeforeYesterday,
   },
   {
-    name: "Page B",
-    DECIDE_CNT: 15,
+    name: getYesterday,
   },
   {
-    name: "Page C",
-    DECIDE_CNT: 40,
+    name: getToday,
   },
 ];
 const onSubmit = (e) => {
@@ -68,23 +68,23 @@ function Tempelate() {
 
   useEffect(() => {
     ConfirmStateDB.getConfirmStateDB(function(data){
-      setDatas(data);
       DaylistTest[2].DECIDE_CNT = data.incDec;
       listTest[2].DECIDE_CNT = data.totalCnt;
+      setDatas(data);
     }, function(data2){
-      setYdatas(data2);
       DaylistTest[1].DECIDE_CNT = data2.incDec;
       listTest[1].DECIDE_CNT = data2.totalCnt;
+      setYdatas(data2);
     }, function(data3){
-      setYYdatas(data3);
       DaylistTest[0].DECIDE_CNT = data3.incDec;
       listTest[0].DECIDE_CNT = data3.totalCnt;
+      setYYdatas(data3);
     });
   }, [])
   //
   //
   //
-  if(!datas || !ydatas || !yydatas) return <h1>Loadings...</h1>
+  if(!yydatas) return <h1>Loadings...</h1>
   return (
     <div id="page-wrapper">
       {/* <MainContainer /> */}
