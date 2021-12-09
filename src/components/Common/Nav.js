@@ -9,7 +9,7 @@ function Nav() {
   return (
     <nav id="nav">
       <ul >
-        {/* 메인 + 확진자 현황 */}
+        {/* 메인 */}
         <li>
           <Link
             to={{
@@ -21,6 +21,18 @@ function Nav() {
             Main
           </Link>
           {/* <a href="index.html">Welcome</a> */}
+        </li>
+        {/*  확진자 현황 */}
+        <li>
+          <Link
+            to={{
+              pathname: `/confirmeState`,
+              state: {},
+            }}
+            key="confirmeState"
+          >
+             확진자 현황
+          </Link>
         </li>
         {/* 선별진료소 */}
         <li>
