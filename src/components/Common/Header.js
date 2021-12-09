@@ -11,7 +11,7 @@ function Header() {
           <h1>
           <Link
             to={{
-              pathname: `/main`,
+              pathname: `/`,
               state: {},
             }}
             key="mainPage"

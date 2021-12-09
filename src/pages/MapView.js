@@ -303,7 +303,7 @@ export default function MapView(){
     }, [map]);
 
     return (
-        <div>
+        <div  id="main-wrapper">
             <div id="map" ></div>
             
             <div id="menu_wrap">

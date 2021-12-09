@@ -17,7 +17,7 @@ import { dbService } from "../firebase.js";
 
 function Main() {
   return (
-    <div>
+    <div  id="main-wrapper">
       <Tempelate />
       <button
         onClick={onSubmit}>

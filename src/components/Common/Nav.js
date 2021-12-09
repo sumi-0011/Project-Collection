@@ -10,7 +10,7 @@ function Nav() {
     <nav id="nav">
       <ul >
         {/* 메인 */}
-        <li>
+        {/* <li>
           <Link
             to={{
               pathname: `/main`,
@@ -20,8 +20,9 @@ function Nav() {
           >
             Main
           </Link>
-          {/* <a href="index.html">Welcome</a> */}
-        </li>
+        </li> */}
+
+
         {/*  확진자 현황 */}
         <li>
           <Link
