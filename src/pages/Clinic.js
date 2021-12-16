@@ -50,7 +50,7 @@ function Clinic() {
     <div id="main-wrapper">
       <div id="clinic-container">
         <div className="container">
-          <h1>선별 진료소 리스트</h1>
+          <h2>선별 진료소 리스트</h2>
           <nav aria-label="Page navigation example">
             <ul className="pagination">
               <li className="page-item">

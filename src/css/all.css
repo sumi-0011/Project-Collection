@@ -13,9 +13,13 @@ a {
 #header {
     position: relative;
 }
-#header-wrapper {
+div#header-wrapper {
    padding: unset;
-   padding: 20px 0;
+   padding: 3em 0 3em 0;
+}
+div#main-wrapper h2 {
+    font-size: 2.3em;
+    margin: 0 0 .8em 0;
 }
 /* main */
 .main-container {
