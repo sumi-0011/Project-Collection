@@ -13,7 +13,7 @@ function SocialDistance() {
     return (
         <div id="main-wrapper">
       <div className="container">
-        <h2>Daejeon SocialDistance Rule</h2>
+        <h2>SocialDistance Rule</h2>
         <table className = "socialDistance">
           <thead>
             <tr>
