@@ -346,22 +346,49 @@ export default function MapView(){
 
     return (
         <div  id="main-wrapper">
-            <div id="map" ></div>
-            <div>
-            {/* 이쪽에 해주면 됭 태욱 */}
-            {/* 여기는 지도 확진자 경로부분 */}
-                <h1>확진자</h1>
-                {/* <ul id="routeList"></ul> */}
-                {console.log(detailInfo)}
-            </div>
-               <div>
-            {/* 여기는 지도 선별진료소 부분 */}
-                <h1>선별진료소</h1>
-                <ul id="clinicList"></ul>
-            </div>
-            <div id="menu_wrap">
-                <div>
+           <div className="map-container"> 
+           <div id="map" > </div>
+           {detailInfo !== "" && (
+                <div id="subMap">
+                {/* 이쪽에 해주면 됭 태욱 */}
+                {                    console.log(detailInfo.clinicName)}
+                {   
+                    detailInfo.clinicName!==undefined ? 
                     <div>
+                        <h2>{detailInfo.clinicName}</h2>
+                        <p>
+                            주소 : {detailInfo.address}
+                        </p>
+                        <p>전화 번호 :  {detailInfo.phoneNumber}</p>
+                        <h3>운영시간</h3>
+                        <ul>  
+                            <li>{detailInfo.operationHour}</li>
+                            <li>{detailInfo.operationHourSun}</li>
+                            <li>{detailInfo.operationHourSun}</li>
+                        </ul>
+
+                        
+                        <p>참고 :  {detailInfo.ref}</p>
+                    </div> :
+                        <div>
+                            <h2>{detailInfo.name}</h2>
+                            <p>
+                                주소 : {detailInfo.address}
+                            </p>
+                            <p>일자 :  {detailInfo.clear}</p>
+                            <p>소독 여부 :  {detailInfo.complete}</p>
+                            <p>type :  {detailInfo.type}</p>
+                        </div>
+                }
+               
+                {console.log(detailInfo)}
+              </div> 
+           ) }
+           
+                </div>
+        
+            <div id="menu_wrap">
+                    <div className="btn-container">
                         <button onClick={setClinicMarker}>선별진료소</button>
                         <button onClick={setRouteMarker}>확진자이동장소</button>
                         <button onClick={removeMarker}>CLEAR</button>
@@ -372,10 +399,8 @@ export default function MapView(){
                         <button type="submit">검색하기</button> 
                         </form>
                     </div>
-                </div>
-                <hr />
-                <ul id="placesList"></ul>
-                <div id="pagination"></div>
+                {/* <ul id="placesList"></ul>
+                <div id="pagination"></div> */}
             </div>
         </div>
     )
