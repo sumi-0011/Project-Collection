@@ -99,7 +99,7 @@ function Tempelate() {
             }}
             key="LocalConfirmeState"
           >
-            -> 지역별 확진자 현황
+            지역별 확진자 현황
           </Link></button>
       </h2>
 
