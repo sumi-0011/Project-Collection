@@ -7,16 +7,52 @@ import "./assets/css/main.css";
 import {authService, dbService} from './firebase';
 import Clinic from "./pages/Clinic";
 import * as Send from "./backend/SendDB.js";
+
+import { signIn } from './components/test2/auth';
+import Profile from './components/test2/Profile';
+import AuthRoute from './components/test2/AuthRoute';
+import LogoutButton from './components/test2/LogoutButton';
+import LoginForm from './components/test2/LoginForm';
 function App() {
   useEffect(() => {
     Send.SendConfirmRoute();
   }, [])
 
+  // test
+ const [user, setUser] = useState(null);
+  const authenticated = user != null;
+
+  const login = ({ email, password }) => setUser(signIn({ email, password }));
+  const logout = () => setUser(null);
+//
   return (
     <BrowserRouter>
+  <div>
+          {authenticated ? (
+            <LogoutButton logout={logout} />
+          ) : (
+            <Link to="/login">
+              <button>Login</button>
+            </Link>
+          )}
+        </div>
       <Header />
       <RouterList />
-     {/* <TestRouter/> / */}
+  <main>
+        <Switch>
+          <Route
+            path="/login"
+            render={props => (
+              <LoginForm authenticated={authenticated} login={login} {...props} />
+            )}
+          />
+          <AuthRoute
+            authenticated={authenticated}
+            path="/profile"
+            render={props => <Profile user={user} {...props} />}
+          />
+        </Switch>
+      </main>
 
     </BrowserRouter>
   );
