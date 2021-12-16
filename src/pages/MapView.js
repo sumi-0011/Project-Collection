@@ -342,9 +342,13 @@ export default function MapView(){
             <div id="map" ></div>
             <div>
             {/* 이쪽에 해주면 됭 태욱 */}
-                <h1>여깅</h1>
+            {/* 여기는 지도 확진자 경로부분 */}
+                <h1>확진자</h1>
             </div>
-            
+               <div>
+            {/* 여기는 지도 선별진료소 부분 */}
+                <h1>선별진료소</h1>
+            </div>
             <div id="menu_wrap">
                 <div>
                     <div>
