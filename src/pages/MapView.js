@@ -1,9 +1,13 @@
 /*global kakao*/
-import React, { useEffect } from 'react';
+import React, { useEffect,useState} from 'react';
 import { useForm } from "react-hook-form";
 import '../css/MapView.css';
 import * as getDB from "../backend/GetDB.js"
 export default function MapView(){
+    // 작은 window 정보
+    const [detailInfo, setdetailInfo] = useState("");
+
+
     var markers = [];
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
@@ -276,7 +280,7 @@ export default function MapView(){
                     image: markerImage
                 });
                 // 인포윈도우로 장소에 대한 설명을 표시합니다
-                var content= '<div style="width:150px;text-align:center;padding:6px 0;">'+data2+'<br>'+data4+'</div>'
+                var content= '<div style="width:150px;text-align:center;padding:6px 0;">'+data2+'</div>'
                 kakao.maps.event.addListener(marker, 'mouseover', function() {
                     displayInfowindow(marker, content);
                 });
@@ -284,6 +288,8 @@ export default function MapView(){
                 kakao.maps.event.addListener(marker, 'click', function() {
                     // 마커 위에 인포윈도우를 표시합니다
                     infowindow.open(map, marker);  
+                    setdetailInfo(data4);
+
                 });
                 
                 markers.push(marker);
@@ -345,7 +351,8 @@ export default function MapView(){
             {/* 이쪽에 해주면 됭 태욱 */}
             {/* 여기는 지도 확진자 경로부분 */}
                 <h1>확진자</h1>
-                <ul id="routeList"></ul>
+                {/* <ul id="routeList"></ul> */}
+                {console.log(detailInfo)}
             </div>
                <div>
             {/* 여기는 지도 선별진료소 부분 */}
