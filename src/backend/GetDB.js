@@ -30,13 +30,13 @@ export async function getConfirmStateDB(callback1, callback2, callback3) {
 
 export async function getDaejeonDB(callback1, callback2, callback3) {
   // const ref1 = dbService.collection('ConfirmState').doc(getToday);
-  const ref1 = dbService.collection('DaejeonState').doc('12.06');
+  const ref1 = dbService.collection('DaejeonState').doc('12.16');
   const doc1 = await ref1.get();
   // const ref2 = dbService.collection('ConfirmState').doc(getYesterday);
-  const ref2 = dbService.collection('DaejeonState').doc('12.06');
+  const ref2 = dbService.collection('DaejeonState').doc('12.16');
   const doc2 = await ref2.get();
   // const ref3 = dbService.collection('ConfirmState').doc(getBeforeYesterday);
-  const ref3 = dbService.collection('DaejeonState').doc('12.06');
+  const ref3 = dbService.collection('DaejeonState').doc('12.16');
   const doc3 = await ref3.get();
   if (!doc1.exists || !doc2.exists || !doc3.exists) {
     console.log('No document!');
