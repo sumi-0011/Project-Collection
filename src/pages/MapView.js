@@ -294,13 +294,13 @@ export default function MapView(){
     //
     function setClinicMarker() {
         getDB.getClinic(function(data){
-            addressSearch(data.address, data.clinicName, "선별진료소", data.address);
+            addressSearch(data.address, data.clinicName, "선별진료소", data);
         });
     }
 
     function setRouteMarker() {
         getDB.getRoute(function(data){
-            addressSearch(data.address, data.name, data.complete, data.clear);
+            addressSearch(data.address, data.name, data.complete, data);
         });
     }
     // 페이지 로딩
