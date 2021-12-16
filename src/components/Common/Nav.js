@@ -82,6 +82,17 @@ function Nav() {
             오류리포트
           </Link>
         </li>
+        <li>
+          <Link
+            to={{
+              pathname: `/ManagerReport`,
+              state: {},
+            }}
+            key="ManagerReport"
+          >
+            관리자
+          </Link>
+        </li>
       </ul>
     </nav>
   );

@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Main,SocialDistance,MapView ,ErrorReport,ConfirmeState} from "./pages/index";
+import { Main,SocialDistance,MapView ,ErrorReport,ConfirmeState,ManagerReport} from "./pages/index";
 import { Header, Footer } from "./components/index";
 import "./assets/css/main.css";
 import {authService, dbService} from './firebase';
@@ -31,6 +31,7 @@ function RouterList() {
       <Route exact path="/map" component={MapView} />
       <Route exact path="/distance" component={SocialDistance} />
       <Route exact path="/errorReport" component={ErrorReport} />
+      <Route exact path="/ManagerReport" component={ManagerReport} />
     </Switch>
   );
 }
