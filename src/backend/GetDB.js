@@ -61,3 +61,10 @@ export async function getRoute(callback) {
       callback(doc.data());
   })
 }
+export async function getError(callback) {
+  const ref = dbService.collection('Error');
+  const docs = await ref.get();
+  docs.forEach(doc => {
+      callback(doc.data());
+  })
+}
