@@ -94,10 +94,10 @@ function Tempelate() {
       <h2>전국 확진자 현황  
       <button><Link
             to={{
-              pathname: `/ConfirmeState`,
+              pathname: `/LocalConfirmeState`,
               state: {},
             }}
-            key="ConfirmeState"
+            key="LocalConfirmeState"
           >
             -> 지역별 확진자 현황
           </Link></button>
