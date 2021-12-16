@@ -88,6 +88,7 @@ function Tempelate() {
   return (
     <div id="page-wrapper">
       {/* <MainContainer /> */}
+      <h2>전국 확진자 현황</h2>
       <div className="ConfirmedState-container">
         <div className="setion-containter">
           <div className="sortation">

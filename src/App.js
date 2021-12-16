@@ -27,9 +27,7 @@ function App() {
 //
   return (
     <BrowserRouter>
-      <div>
-        
-        </div>
+     
       <Header logout={logout} authenticated={authenticated} />
       <RouterList />
   <main>
