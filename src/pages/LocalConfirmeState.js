@@ -98,7 +98,7 @@ function Tempelate() {
             }}
             key="confirmeState"
           >
-            전국 확진자 현황
+            -> 전국 확진자 현황
           </Link></button>
       </h2>
 
