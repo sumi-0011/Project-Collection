@@ -252,22 +252,22 @@ export default function MapView(){
                 //
                 // 소독완료 초록색 아이콘 추가
                 if (data3 ==="소독완료") {
-                    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-                    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+                    var imageSrc = 'https://user-images.githubusercontent.com/49177223/146444414-0071e505-4d7f-45ff-ac3c-8511cd0615ef.png', // 마커이미지의 주소입니다    
+                    imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
                     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
                 // 선별진료소 아이콘 추가
                     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
                 } else if (data3 === "선별진료소"){
-                    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-                    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+                    var imageSrc = 'https://user-images.githubusercontent.com/49177223/146445481-4d5029b7-f73d-424d-a703-b134eaaa363a.png', // 마커이미지의 주소입니다    
+                    imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
                     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
                 // 소독미완료 붉은 병균 아이콘 추가
                     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
                 } else {
-                    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-                    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+                    var imageSrc = 'https://user-images.githubusercontent.com/49177223/146444340-8ced6dba-29a0-4c8e-bd4a-0989a1374e03.png', // 마커이미지의 주소입니다    
+                    imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
                     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
                     // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
@@ -399,8 +399,8 @@ export default function MapView(){
                         <button type="submit">검색하기</button> 
                         </form>
                     </div>
-                {/* <ul id="placesList"></ul>
-                <div id="pagination"></div> */}
+                <ul id="placesList"></ul>
+                <div id="pagination"></div>
             </div>
         </div>
     )
