@@ -340,6 +340,10 @@ export default function MapView(){
     return (
         <div  id="main-wrapper">
             <div id="map" ></div>
+            <div>
+            {/* 이쪽에 해주면 됭 태욱 */}
+                <h1>여깅</h1>
+            </div>
             
             <div id="menu_wrap">
                 <div>
