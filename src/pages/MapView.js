@@ -232,7 +232,7 @@ export default function MapView(){
         map.setCenter(locPosition);      
     }  
     // 주소로 좌표를 검색합니다
-    function addressSearch(data, data2, data3) {
+    function addressSearch(data, data2, data3, data4) {
         removeMarker();
         geocoder.addressSearch(data, function(result, status) {
 
@@ -276,13 +276,14 @@ export default function MapView(){
                     image: markerImage
                 });
                 // 인포윈도우로 장소에 대한 설명을 표시합니다
-                var content= '<div style="width:150px;text-align:center;padding:6px 0;">'+data2+'</div>'
+                var content= '<div style="width:150px;text-align:center;padding:6px 0;">'+data2+'<br>'+data4+'</div>'
                 kakao.maps.event.addListener(marker, 'mouseover', function() {
                     displayInfowindow(marker, content);
                 });
-
-                kakao.maps.event.addListener(marker, 'mouseout', function() {
-                    infowindow.close();
+                // 마커에 클릭이벤트를 등록합니다
+                kakao.maps.event.addListener(marker, 'click', function() {
+                    // 마커 위에 인포윈도우를 표시합니다
+                    infowindow.open(map, marker);  
                 });
                 
                 markers.push(marker);
@@ -293,13 +294,13 @@ export default function MapView(){
     //
     function setClinicMarker() {
         getDB.getClinic(function(data){
-            addressSearch(data.address, data.clinicName, "선별진료소");
+            addressSearch(data.address, data.clinicName, "선별진료소", data.address);
         });
     }
 
     function setRouteMarker() {
         getDB.getRoute(function(data){
-            addressSearch(data.address, data.name, data.complete);
+            addressSearch(data.address, data.name, data.complete, data.clear);
         });
     }
     // 페이지 로딩
@@ -344,10 +345,12 @@ export default function MapView(){
             {/* 이쪽에 해주면 됭 태욱 */}
             {/* 여기는 지도 확진자 경로부분 */}
                 <h1>확진자</h1>
+                <ul id="routeList"></ul>
             </div>
                <div>
             {/* 여기는 지도 선별진료소 부분 */}
                 <h1>선별진료소</h1>
+                <ul id="clinicList"></ul>
             </div>
             <div id="menu_wrap">
                 <div>
