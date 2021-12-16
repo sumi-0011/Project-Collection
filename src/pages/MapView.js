@@ -251,7 +251,7 @@ export default function MapView(){
                 //
                 //
                 // 소독완료 초록색 아이콘 추가
-                if (data3 ==="소독완료") {
+                if (data3 =="소독완료") {
                     var imageSrc = 'https://user-images.githubusercontent.com/49177223/146444414-0071e505-4d7f-45ff-ac3c-8511cd0615ef.png', // 마커이미지의 주소입니다    
                     imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
                     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -306,7 +306,7 @@ export default function MapView(){
 
     function setRouteMarker() {
         getDB.getRoute(function(data){
-            addressSearch(data.address, data.name, data.complete, data);
+            addressSearch(data.address, data.name, data.complete.trim(), data);
         });
     }
     // 페이지 로딩
