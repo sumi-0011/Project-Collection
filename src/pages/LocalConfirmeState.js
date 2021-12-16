@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import * as ConfirmStateDB from "../backend/GetDB.js";
 import * as SendConfirmAPI from "../backend/SendDB.js";
+import { Link } from "react-router-dom";
+
 import {
   LineChart,
   Line,
@@ -88,6 +90,18 @@ function Tempelate() {
   if(!yydatas) return <h1>Loadings...</h1>
   return (
     <div id="page-wrapper">
+     <h2>대전 확진자 현황  
+      <button><Link
+            to={{
+              pathname: `/confirmeState`,
+              state: {},
+            }}
+            key="confirmeState"
+          >
+            전국 확진자 현황
+          </Link></button>
+      </h2>
+
       {/* <MainContainer /> */}
       <div className="ConfirmedState-container">
         <div className="setion-containter">
