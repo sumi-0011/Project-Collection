@@ -68,7 +68,7 @@ function Tempelate() {
   const [yydatas, setYYdatas] = useState(null);
 
   useEffect(() => {
-    ConfirmStateDB.getDaejeonStateDB(function(data){
+    ConfirmStateDB.getDaejeonDB(function(data){
       DaylistTest[2].DECIDE_CNT = data.incDec;
       listTest[2].DECIDE_CNT = data.totalCnt;
       setDatas(data);
