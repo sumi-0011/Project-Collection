@@ -33,6 +33,9 @@ nav#nav ul li a:hover {
     background-color: #555;
     color: #fff;
 }
+nav#nav button {
+    padding:0 10px;
+}
 /* #nav ul li .dropdown button {
     transition: background-color .25s ease-in-out;
     font-size: 14px;

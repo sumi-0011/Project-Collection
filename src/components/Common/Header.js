@@ -2,7 +2,7 @@ import "../../css/all.css";
 import { Link } from "react-router-dom";
 import Nav from './Nav';
 import MobileNav from "./MobileNav";
-function Header() {
+function Header({logout,authenticated}) {
   return (
     <div id="header-wrapper">
       <header id="header" className="container">
@@ -23,7 +23,7 @@ function Header() {
         </div>
 
         {/* <!-- Nav --> */}
-        {<Nav />}
+        {<Nav logout={logout} authenticated={authenticated}/>}
 
         {/* Mobile Nav */}
         <MobileNav/>

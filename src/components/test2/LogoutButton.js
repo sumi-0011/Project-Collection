@@ -6,7 +6,7 @@ function LogoutButton({ logout, history }) {
     logout();
     history.push("/");
   };
-  return <button onClick={handleClick}>Logout</button>;
+  return <span onClick={handleClick}>Logout</span>;
 }
 
 export default withRouter(LogoutButton);

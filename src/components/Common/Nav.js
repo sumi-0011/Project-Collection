@@ -1,30 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Dropdown, Button } from "react-bootstrap";
+import LogoutButton from '../test2/LogoutButton';
 
-function Nav() {
+function Nav({logout,authenticated}) {
 
  
 
   return (
     <nav id="nav">
       <ul >
-        {/* 메인 */}
-        {/* <li>
-          <Link
-            to={{
-              pathname: `/main`,
-              state: {},
-            }}
-            key="mainPage"
-          >
-            Main
-          </Link>
-        </li> */}
-
 
         {/*  확진자 현황 */}
-        <li>
+      
+         {authenticated ? (
+            <>
+  <li>
+          <Link
+            to={{
+              pathname: `/ManagerReport`,
+              state: {},
+            }}
+            key="ManagerReport"
+          >
+            관리자
+          </Link>
+        </li>
+           <li>
+          <LogoutButton logout={logout} />
+        </li>
+           
+            </>
+
+          ) : (
+            <>
+              <li>
           <Link
             to={{
               pathname: `/confirmeState`,
@@ -81,18 +91,17 @@ function Nav() {
           >
             오류리포트
           </Link>
-        </li>
+        </li>  
         <li>
-          <Link
-            to={{
-              pathname: `/ManagerReport`,
-              state: {},
-            }}
-            key="ManagerReport"
-          >
-            관리자
-          </Link>
+          <Link to="/login">
+             Login
+            </Link>
         </li>
+            </>
+           
+          )}
+       
+        
       </ul>
     </nav>
   );

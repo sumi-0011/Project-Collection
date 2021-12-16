@@ -27,16 +27,10 @@ function App() {
 //
   return (
     <BrowserRouter>
-  <div>
-          {authenticated ? (
-            <LogoutButton logout={logout} />
-          ) : (
-            <Link to="/login">
-              <button>Login</button>
-            </Link>
-          )}
+      <div>
+        
         </div>
-      <Header />
+      <Header logout={logout} authenticated={authenticated} />
       <RouterList />
   <main>
         <Switch>

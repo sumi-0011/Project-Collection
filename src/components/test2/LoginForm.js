@@ -19,7 +19,7 @@ function LoginForm({ authenticated, login, location }) {
   if (authenticated) return <Redirect to={from} />;
 
   return (
-    <>
+    <div id="main-wrapper">
       <h1>Login</h1>
       <input
         value={email}
@@ -34,7 +34,7 @@ function LoginForm({ authenticated, login, location }) {
         placeholder="password"
       />
       <button onClick={handleClick}>Login</button>
-    </>
+    </div>
   );
 }
 
