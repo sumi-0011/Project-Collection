@@ -19,10 +19,7 @@ function LocalConfirmeState() {
     return (
         <div  id="main-wrapper">
             <Tempelate />
-            <button
-                onClick={onSubmit}>
-                update
-            </button>
+            
         </div>
     );
 }

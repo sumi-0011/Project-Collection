@@ -20,10 +20,7 @@ function Main() {
     <div  id="main-wrapper">
       
       <Tempelate />
-      <button
-        onClick={onSubmit}>
-          update
-      </button>
+      
     </div>
   );
 }
