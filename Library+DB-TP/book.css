@@ -1,0 +1,70 @@
+/* header */
+.nav-user {
+  float: left;
+}
+/* detail */
+.div-detail{
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 1200px;
+    
+  }
+  .div-detail .detail {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .detail-book-img {
+    width: 350px;
+  }
+
+/* main */
+.book_img_td {
+    width: 200px;
+
+}
+.book_img_td img{
+    width: 180px;
+    height: auto;
+}
+.book-table {
+    margin: 10px auto;
+    border-spacing: 20px 100px;
+    max-width: 1200px;
+    
+}
+.book-nav{
+    margin-top: 100px;
+    margin: 15px;
+    text-align: center;
+    border-top: 1px solid #78c2ad;
+    border-bottom: 1px solid #78c2ad;
+    font-size: 30px;
+}
+/* 추가, 수정 */
+.div-change , .div-login {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px;
+  
+}
+.change-input-text {
+  padding: 10px;
+  margin: 30px 0px;
+<<<<<<< Updated upstream
+=======
+}
+
+.div-search {
+  margin: 50px auto;
+  padding: 20px;
+  max-width: 1200px;
+}
+.div-alert {
+  /* position: absolute;  */
+  
+  margin: 20px auto;
+  max-width: 1200px;
+
+>>>>>>> Stashed changes
+}
