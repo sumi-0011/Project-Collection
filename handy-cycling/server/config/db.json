@@ -1,0 +1,10 @@
+{
+  "development" : {
+      "username": "",
+      "password": "",
+      "database": "collathon",
+      "host": "",
+      "port": "3306",
+      "dialect": "mysql"
+  }
+}
