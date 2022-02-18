@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+body {
+  background: linear-gradient(to top, #af67e9, #6565e7);
+  /* background-size: cover; */
+  height: 100vh;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 1440px;
+
+}
+.hidden {
+  display: none;
+}
+.container {
+  background-color:  white;
+  border-radius: 12px;
+position: relative;
+overflow-x: hidden;
+overflow-y: hidden;
+/* overflow-y: visible; */
+width: 65%;
+/* height: 65%; */
+height: 570px;
+}
+.inner_container {
+  width: 40%;
+  float: right;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-right: 10%;
+}
+.background_img {
+  position: absolute;
+  width: 120%;
+  left: -76%;
+  top: 50%;
+  margin-top: -67%;
+}
+#img_woman {
+  position: absolute;
+  left: -7%;
+  /* width: 45%; */
+  top: -21px;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
+#img_box {
+  top: 400px;
+  position: absolute;
+  left: -35%;
+  margin-left: 56%;
+}
+.FAQ {
+  position: relative;
+}
+.FAQ::after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid  hsl(240, 5%, 91%);
+  margin: 20px 0px;
+}
+h1 {
+  margin-bottom: 40px;
+}
+.title, .description {
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 400;
+  margin: 10px 0;
+}
+.title {
+  color:  hsl(237, 12%, 33%);
+}
+.title:hover {
+  color:  hsl(14, 88%, 65%);
+}
+.title::after {
+  content: url('./images/icon-arrow-down.svg');
+  position: absolute;
+  right: 0;
+  padding: 0 10px 10px 10px;
+}
+.title.clicked {
+  color:  hsl(238, 29%, 16%);
+  font-weight: 700;
+}
+.description {
+  color: hsl(240, 6%, 50%);
+  line-height: 20px;
+  /* font-size: 12px; */
+
+}
+
+.attribution {
+  display: none;
+}
+
+
+@media (max-width: 800px) {
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+  }
+  .container {
+    width: 85%;
+    top: 200px;
+    height: auto;
+    overflow:visible;
+    position: absolute;
+   
+  }
+  .inner_container {
+    width: auto;
+    float: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0px auto;
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+  }
+  h1 {
+    margin-top: 70px;
+    text-align: center;
+    
+  }
+  .title,.description {
+    font-size: 12px; 
+  }
+
+  .background_img,#img_woman {
+    width: 60vw;
+    position: absolute;
+    top: -130px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  #img_woman {
+    top: -105px;
+  }
+  #img_box {
+    top: 150px;
+    width: 100px;
+    left: 60%;
+    margin-left: -45%;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

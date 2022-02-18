@@ -1,0 +1,45 @@
+// $site_max_width: 960px;
+
+
+// body {
+//   color: $font_color;
+
+//   // Property Nesting
+//   font: {
+//     size: $font_size;
+//     family: $font_family;
+//   }
+
+//   line-height: $line_height;
+// }
+
+// #main {
+//   width: 100%;
+//   max-width: $site_max_width;
+// }
+
+@import 'https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap';
+
+$mobile_width :375px;
+$desktop_width : 1440px;
+
+$text_dark_blue : hsl(238, 29%, 16%);
+$text_red : hsl(14, 88%, 65%);
+$text_verydark_grayishblue: hsl(237, 12%, 33%);
+$text_dark_grayishblue: hsl(240, 6%, 50%);
+$background_violet: hsl(273, 75%, 66%);
+$background_blue: hsl(240, 73%, 65%);
+$light_graish_blue : hsl(240, 5%, 91%);
+
+$body_font_size: 12px;
+
+$font_Kumbh: 'Kumbh Sans', sans-serif;
+
+body {
+  // background-image: url('./images/bg-pattern-desktop.svg');
+  background: linear-gradient(to top, $background_violet, $background_blue);
+  // background: linear-gradient(to top, #6565e7,#af67e9);
+  background-size: cover;
+  width: $desktop_width;
+}
+
