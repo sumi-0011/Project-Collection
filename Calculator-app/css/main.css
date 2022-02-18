@@ -1,0 +1,341 @@
+body {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body header {
+  margin: 20px auto;
+  width: 590px;
+  position: relative;
+}
+
+body header h2 {
+  all: unset;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+body header .switchs {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+body header .switchs::before {
+  content: 'THEME';
+  position: relative;
+  bottom: 5px;
+  right: 5px;
+  font-size: 13px;
+}
+
+body header .switchs::after {
+  content: '123';
+  font-size: 10px;
+  letter-spacing: 6px;
+  position: absolute;
+  top: -15px;
+  right: 1px;
+}
+
+body header .switchs input#switchBt {
+  display: none;
+}
+
+body header .switchs label {
+  all: unset;
+  display: inline-block;
+  width: 41px;
+  height: 17px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 10px;
+}
+
+body header .switchs label::before {
+  content: '';
+  display: block;
+  width: 11px;
+  height: 11px;
+  left: 3px;
+  bottom: 3px;
+  position: absolute;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+  border-radius: 50%;
+}
+
+body section {
+  width: 550px;
+  padding: 30px;
+}
+
+body section.screen {
+  border-radius: 10px;
+  height: 80px;
+  margin-bottom: 20px;
+  font-size: 50px;
+  font-weight: 700;
+  font-family: 'Spartan', sans-serif;
+  text-align: right;
+}
+
+body section.screen .item {
+  margin: 15px 10px;
+}
+
+body .container {
+  border-radius: 10px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+body .container .item {
+  border-radius: 10px;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  padding: 8px;
+}
+
+body .container .item:nth-child(18) {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / 3;
+}
+
+body .container .item:nth-child(19) {
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 2;
+  grid-column: 3 / 5;
+}
+
+body.theme1 {
+  background-color: #3a4764;
+}
+
+body.theme1 header {
+  color: white;
+}
+
+body.theme1 header label {
+  background-color: #232c43;
+}
+
+body.theme1 header label::before {
+  background-color: #d03f2f;
+}
+
+body.theme1 section.screen {
+  background-color: #182034;
+}
+
+body.theme1 section.screen .item {
+  color: white;
+}
+
+body.theme1 section.container {
+  background-color: #232c43;
+}
+
+body.theme1 section.container .item {
+  background-color: #eae3dc;
+  -webkit-box-shadow: 0 2px #b4a597;
+          box-shadow: 0 2px #b4a597;
+}
+
+body.theme1 section.container .item:nth-child(5), body.theme1 section.container .item:nth-child(18) {
+  background-color: #637097;
+  color: white;
+  -webkit-box-shadow: 0 2px #404e72;
+          box-shadow: 0 2px #404e72;
+}
+
+body.theme1 section.container .item:nth-child(19) {
+  background-color: #d03f2f;
+  color: white;
+  -webkit-box-shadow: 0 2px #93261a;
+          box-shadow: 0 2px #93261a;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 2;
+  grid-column: 3 / 5;
+}
+
+body.theme2 {
+  background-color: #e6e6e6;
+}
+
+body.theme2 header {
+  color: #35352c;
+}
+
+body.theme2 header label {
+  background-color: #d1cccc;
+}
+
+body.theme2 header label::before {
+  background-color: #d03f2f;
+}
+
+body.theme2 header #switchBt + label::before {
+  -webkit-transform: translateX(12px);
+          transform: translateX(12px);
+}
+
+body.theme2 section.screen {
+  background-color: #ededed;
+}
+
+body.theme2 section.screen .item {
+  color: #35352c;
+}
+
+body.theme2 section.container {
+  background-color: #d1cccc;
+}
+
+body.theme2 section.container .item {
+  background-color: #eae3dc;
+  -webkit-box-shadow: 0 2px #b4a597;
+          box-shadow: 0 2px #b4a597;
+}
+
+body.theme2 section.container .item:nth-child(5), body.theme2 section.container .item:nth-child(18) {
+  background-color: #377f86;
+  color: white;
+  -webkit-box-shadow: 0 2px #1b5f65;
+          box-shadow: 0 2px #1b5f65;
+}
+
+body.theme2 section.container .item:nth-child(19) {
+  background-color: #ca5502;
+  color: white;
+  -webkit-box-shadow: 0 2px #893901;
+          box-shadow: 0 2px #893901;
+}
+
+body.theme3 {
+  background-color: #160628;
+}
+
+body.theme3 header {
+  color: #ffe53d;
+}
+
+body.theme3 header label {
+  background-color: #1d0934;
+}
+
+body.theme3 header label::before {
+  background-color: #00e0d1;
+}
+
+body.theme3 header #switchBt + label::before {
+  -webkit-transform: translateX(24px);
+          transform: translateX(24px);
+}
+
+body.theme3 section.screen {
+  background-color: #1d0934;
+}
+
+body.theme3 section.screen .item {
+  color: #ffe53d;
+}
+
+body.theme3 section.container {
+  background-color: #1d0934;
+  color: #ffe53d;
+}
+
+body.theme3 section.container .item {
+  background-color: #341c4f;
+  -webkit-box-shadow: 0 2px #871c9c;
+          box-shadow: 0 2px #871c9c;
+}
+
+body.theme3 section.container .item:nth-child(5), body.theme3 section.container .item:nth-child(18) {
+  background-color: #58077d;
+  color: white;
+  -webkit-box-shadow: 0 2px #bc15f4;
+          box-shadow: 0 2px #bc15f4;
+}
+
+body.theme3 section.container .item:nth-child(19) {
+  background-color: #00e0d1;
+  color: #1b2428;
+  -webkit-box-shadow: 0 2px #6cf9f2;
+          box-shadow: 0 2px #6cf9f2;
+}
+
+@media (min-width: 300px) and (max-width: 757px) {
+  body {
+    padding: 30px;
+  }
+  header, section {
+    max-width: 100%;
+    padding: 0;
+  }
+  header h2 {
+    font-size: 40px;
+  }
+  header .switchs::before {
+    font-size: 20px;
+    bottom: 10px;
+    right: 10px;
+  }
+  header .switchs::after {
+    font-size: 15px;
+    top: -21px;
+    right: -7px;
+    letter-spacing: 17px;
+  }
+  header .switchs label {
+    width: 80px;
+    height: 30px;
+    border-radius: 15px;
+  }
+  header .switchs label::before {
+    width: 20px;
+    height: 20px;
+    left: 5px;
+    bottom: 5px;
+  }
+  section.screen {
+    max-width: calc(100% - 40px);
+    padding: 20px;
+  }
+  section.container {
+    max-width: calc(100% - 60px);
+    padding: 30px;
+    gap: 15px;
+  }
+  #switchBt.theme2 + label::before {
+    -webkit-transform: translateX(25px);
+            transform: translateX(25px);
+  }
+  #switchBt.theme3 + label::before {
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px);
+  }
+}
+/*# sourceMappingURL=main.css.map */
