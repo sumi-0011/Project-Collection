@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Tip calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./main.css">
+  <script defer src="./main.js"></script>
+</head>
+<body>
+  <div hidden  role="heading" aria-level="1">Frontend Mentor | Tip calculator app</div>
+  <header>
+    <img src="./images/logo.svg" alt="logo" >
+  </header>
+  <main>
+    <article>
+      <h2 hidden>select</h2>
+      <section class="bill">
+        <h4 >Bill</h4>
+        <img src="./images/icon-dollar.svg" alt="icon-dollar"  class="input_icon">
+        <label for="bill_input">bill_input</label>
+        <input type="number" name="bill_input" id="bill_input" class="input_num" dir="rtl">
+      </section>
+      <section class="select_tip">
+          <h4>Select Tip %</h4>
+          <div class="tip_btn_set">
+            <input type="button" value="5%" class="tip_btn ">
+          <input type="button" value="10%" class="tip_btn">
+          <input type="button" value="15%" class="tip_btn">
+          <input type="button" value="25%" class="tip_btn">
+          <input type="button" value="50%" class="tip_btn">
+        <label for="tip_custom" >tip_custom</label>
+          
+          <input type="number" name="tip_custom" id="tip_custom" class="tip_btn input_num" placeholder="Custom" dir="rtl">
+          </div>
+      </section>
+      <section class="number_people">
+        <h4>Number of People</h4>
+        <img src="./images/icon-person.svg" alt="icon-person"  class="input_icon">
+        <label for="select_people_num" >select_people_num</label>
+        <input type="number" name="select_people_num" id="select_people_num" class="input_num " dir="rtl">
+      </section>
+    </article>
+    <article id="result">
+      <h3 hidden>result</h3>
+      <section class="tip_amount">
+        <h4 hidden>tip_amount</h4>
+        <span class="title">
+          Tip Amount
+        </span>
+        <span class="title-sub">
+          /person
+        </span>
+        <span class="calculate_daler">$0.00</span>
+      </section>
+      <section class="total">
+        <h4 hidden>total</h4>
+        <span class="title">
+          Total
+        </span>
+        <span class="title-sub">
+          /person
+        </span>
+        <span class="calculate_daler">$0.00</span>
+      </section>
+      <section class="reset">
+       <h4 hidden>reset</h4>
+
+        <input type="button" class="btn-disabled" disabled  value="RESET">
+      </section>
+    </article>
+
+  </section>
+  
+  <div class="attribution" hidden>
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+</body>
+</html>
