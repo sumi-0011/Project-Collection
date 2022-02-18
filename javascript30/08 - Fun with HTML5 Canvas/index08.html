@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+<body>
+<canvas id="draw" width="800" height="800"></canvas>
+<script>
+    // 100에서 1사이
+var canvas = document.querySelector("#draw"); //<canvas> 요소를 표시할 DOM을 검색
+var ctx = canvas.getContext("2d");
+var isDraw = false;
+var hue = 0;
+var lineW = 100;
+direction = true;
+ctx.lineJoin = 'round';
+ctx.lineCap = 'round';
+[lastX, lastY] =[0,0];
+function draw(lineX,lineY) {
+	if(isDraw) {
+  	ctx.beginPath();
+		 ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+		ctx.lineWidth = lineW;
+		ctx.moveTo(lastX, lastY);
+		ctx.lineTo(lineX,lineY);
+		ctx.stroke();
+		[lastX, lastY] = [lineX,lineY];
+		hue++;
+		hue = hue>=360? 0:hue;
+		direction = (lineW<0)||(lineW >100) ? !direction : direction;
+		if(direction) {
+			lineW--;
+		}
+		else {
+			lineW++;
+		}
+	}
+	else {
+		// console.log('click해주세요		');
+	}
+}
+// draw();
+canvas.addEventListener('mousedown',(e) => {
+	isDraw = true;
+	[lastX, lastY] = [e.offsetX,e.offsetY];
+	// console.log([lastX, lastY]);
+});
+canvas.addEventListener('mousemove',(e)=> (draw(e.offsetX,e.offsetY)));
+canvas.addEventListener('mouseout', () => isDraw = false);
+canvas.addEventListener('mouseup',() => isDraw = false);
+
+    
+
+
+</script>
+
+<style>
+  html, body {
+    margin: 0;
+  }
+</style>
+
+</body>
+</html>

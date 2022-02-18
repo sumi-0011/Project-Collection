@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+</head>
+<body>
+
+
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+
+
+  <style>
+    html {
+      background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
+      background-size: cover;
+      font-family: 'helvetica neue';
+      text-align: center;
+      font-size: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-size: 2rem;
+      display: flex;
+      flex: 1;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .clock {
+      width: 30rem;
+      height: 30rem;
+      border: 20px solid white;
+      border-radius: 50%;
+      margin: 50px auto;
+      position: relative;
+      padding: 2rem;
+      box-shadow:
+        0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px); /* account for the height of the clock hands */
+    }
+
+    .hand {
+      width: 50%;
+      height: 6px;
+      background: black;
+      position: absolute;
+      top: 50%;
+      transform-origin:100%;
+      /* transform: rotate(90deg); */
+    }
+    .hour-hand {
+        background-color:darksalmon;
+    }
+    .min-hand {
+        background-color: #018DED;
+    }
+    .second-hand {
+        background-color:black;
+    }
+  </style>
+
+  <script >
+
+function setTime() {
+  var today = new Date();
+  //1시간 = 30도 ,1분 = 6도,1초 = 6도
+  var s = (today.getSeconds()/60 )*360 +90;   //Date 객체의 초 (0~59)
+  var m = (today.getMinutes()/60 )*360 +90;   //Date 객체의 분 (0~59)
+  var h = (today.getHours() /12 )*360 +90;   //Date 객체의 시 (0~23)
+
+  const hh = document.querySelector('.hour-hand');
+  const mh = document.querySelector('.min-hand');
+  const sh = document.querySelector('.second-hand');
+
+  console.log(h,m,s);
+  hh.style.transform = `rotateZ(${h}deg)`;
+  mh.style.transform = `rotateZ(${m}deg)`;
+  sh.style.transform = `rotateZ(${s}deg)`;
+
+
+}
+setTime();
+setInterval(setTime,1000);
+  </script>
+</body>
+</html>

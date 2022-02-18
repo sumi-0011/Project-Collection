@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+<script>
+// const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+const endpoint =
+	"https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+const cities = [];
+let panels = document.querySelectorAll(".search");
+const suggestions = document.querySelector(".suggestions"); // 이벤트 리스너
+panels.forEach((panel) => panel.addEventListener("input", toggleInput));
+
+// json파일에서 추출하여 cities배열에 저장
+fetch(endpoint)
+	.then((response) => response.json())
+	.then((data) => cities.push(...data)); //...없이 그냥 data쓰면 안된다. 왜?
+
+// 입력시 실행되는 함수
+function toggleInput(e) {
+	var city_html = findMatches(e.target.value, cities);
+	suggestions.innerHTML = city_html;
+}
+// 특정한 단어를 포함하는지 확인
+function findMatches(wordToMatch, cities) {
+	var wordReg = new RegExp(wordToMatch, "gi");
+
+	const result = cities.filter(
+		(word) => wordReg.test(word.city) || wordReg.test(word.state)
+	);
+
+	const html = result
+		.map((city) => {
+// 			매칭되는 단어는 h1 class로 설정해 노랗게 표시해준다. 
+			const cityName = city.city.replace(
+				wordReg,
+				`<span class="hl">${wordToMatch}</span>`
+			);
+			const stateName = city.state.replace(
+				wordReg,
+				`<span class="hl">${wordToMatch}</span>`
+			);
+
+			return `<li>
+			<span class="name">${cityName}, ${stateName}</span>
+			<span class="population">${city.population}</span>
+		</li>`;
+		})
+		.join("");
+	return html;
+}
+
+</script>
+</body>
+</html>
