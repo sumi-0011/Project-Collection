@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Starbucks">
+  <meta property="og:url" content="https://www.starbucks.co.kr/">
+  <meta property="og:image" content="https://image.istarbucks.co.kr/common/img/kakaotalk.png">
+  <meta property="og:description" content="Starbucks">
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <title id="titleJoin">Starbucks Coffee Korea</title>
+  <title>2021 STARBUCKS</title>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"
+    integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+  <!-- SWIPER -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+  <script defer src="./js/main.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="inner">
+      <a href="/index.html" class="logo">
+        <img src="./images/logo.png" alt="">
+      </a>
+      <div class="sub-menu">
+        <ul>
+          <li>
+            <a href="/signin">Sign in</a>
+          </li>
+          <li>
+            <a href="#">My Starbucks</a>
+          </li>
+          <li>
+            <a href="#">Customer Service & ideas</a>
+          </li>
+          <li>
+            <a href="#">Find a Store</a>
+          </li>
+        </ul>
+        <div class="search">
+          <input type="text" placeholder="통합검색">
+          <div class="material-icons">search</div>
+        </div>
+      </div>
+      <ul class="main-menu">
+        <li class="item">
+          <div class="item__name"><a href="#">COFFEE</a></div>
+          <div class="item__contents">
+            <div class="contents__menu">
+              <ul class="inner">
+                <li>
+                  <h4>커피</h4>
+                  <ul>
+                    <li>스타벅스 원두</li>
+                    <li>스타벅스 비아</li>
+                    <li>스타벅스 오리가미</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>나와 어울리는 커피</h4>
+                </li>
+                <li>
+                  <h4>스타벅스 리저브™</h4>
+                  <ul>
+                    <li>RESERVE MAGAZINE</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>에스프레소 음료</h4>
+                  <ul>
+                    <li>도피오</li>
+                    <li>에스프레소 마키아또</li>
+                    <li>아메리카노</li>
+                    <li>마키아또</li>
+                    <li>카푸치노</li>
+                    <li>라떼</li>
+                    <li>모카</li>
+                    <li>리스트레또 비안코</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>최상의 커피를 즐기는 법</h4>
+                  <ul>
+                    <li>커피 프레스</li>
+                    <li>푸어 오버</li>
+                    <li>아이스 푸어 오버</li>
+                    <li>커피 메이커</li>
+                    <li>리저브를 매장에서 다양하게 즐기는 법</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>커피 이야기</h4>
+                  <ul>
+                    <li>스타벅스 로스트 스팩트럼</li>
+                    <li>최상의 아라비카 원두</li>
+                    <li>한 잔의 커피가 완성되기까지</li>
+                    <li>클로버® 커피 추출 시스템</li>
+                    <li>스타벅스 디카페인</li>
+                  </ul>
+                </li>
+
+              </ul>
+            </div>
+            <div class="contents__texture">
+              <div class="inner">
+                <h4>나와 어울리는 커피 찾기</h4>
+                <p>스타벅스가 여러분에게 어울리는 커피를 찾아드립니다.</p>
+                <h4>최상의 커피를 즐기는 법</h4>
+                <p>여러가지 방법을 통해 다양한 풍미의 커피를 즐겨보세요.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item__name">MENU</div>
+          <div class="item__contents">
+            <div class="contents__menu">
+              <ul class="inner">
+                <li>
+                  <h4>음료</h4>
+                  <ul>
+                    <li>콜드 브루</li>
+                    <li>브루드 커피</li>
+                    <li>에스프레소</li>
+                    <li>프라푸치노</li>
+                    <li>블렌디드 음료</li>
+                    <li>스타벅스 피지오</li>
+                    <li>티(티바나)</li>
+                    <li>기타 제조 음료</li>
+                    <li>스타벅스 주스(병음료)</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>푸드</h4>
+                  <ul>
+                    <li>베이커리</li>
+                    <li>케익</li>
+                    <li>샌드위치 & 샐러드</li>
+                    <li>따뜻한 푸드</li>
+                    <li>과일 & 요거트</li>
+                    <li>스낵 & 미니 디저트</li>
+                    <li>아이스크림</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>상품</h4>
+                  <ul>
+                    <li>머그</li>
+                    <li>글라스</li>
+                    <li>플라스틱 텀블러</li>
+                    <li>스테인리스 텀블러</li>
+                    <li>보온병</li>
+                    <li>액세서리</li>
+                    <li>커피 용품</li>
+                    <li>패키지 티(티바나)</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>카드</h4>
+                  <ul>
+                    <li>실물카드</li>
+                    <li>e-Gift 카드</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>메뉴 이야기</h4>
+                  <ul>
+                    <li>나이트로 콜드브루</li>
+                    <li>콜드 브루</li>
+                    <li>스타벅스 티바나</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="contents__texture">
+              <div class="inner">
+                <h4 class="new">나이트로 콜드 브루</h4>
+                <p>나이트로 커피 정통의 물결치듯 흘러내리는 캐스케이딩과 부드러운 크림을 경험하세요.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item__name">STORE</div>
+          <div class="item__contents">
+            <div class="contents__menu">
+              <ul class="inner">
+                <li>
+                  <h4>매장 찾기</h4>
+                  <ul>
+                    <li>퀵 검색</li>
+                    <li>지역 검색</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>드라이브 스루 매장</h4>
+                </li>
+                <li>
+                  <h4>스타벅스 리저브™ 매장</h4>
+                </li>
+                <li>
+                  <h4>매장커뮤니티 스토어 매장매장</h4>
+                </li>
+                <li>
+                  <h4>매장 이야기</h4>
+                  <ul>
+                    <li>청담스타</li>
+                    <li>티바나 인스파이어드 매장</li>
+                    <li>파미에파크</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="contents__texture">
+              <div class="inner">
+                <h4>매장 찾기</h4>
+                <p>보다 빠르게 매장을 찾아보세요.</p>
+                <h4 class="new">이대R점</h4>
+                <p>1호점 특화 MD와 티바나 티, 최고의 리저브 커피를 만나보세요.
+                </p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item__name">RESPONSIBILITY</div>
+          <div class="item__contents">
+            <div class="contents__menu">
+              <ul class="inner">
+                <li>
+                  <h4>지역 사회 참여 활동</h4>
+                  <ul>
+                    <li>회망배달 캠페인</li>
+                    <li>재능기부 카페 소식</li>
+                    <li>커뮤니티 스토어</li>
+                    <li>청년인재 양성</li>
+                    <li>우리 농산물 사랑 캠페인</li>
+                    <li>우리 문화 지키기</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>환경보호 활동</h4>
+                  <ul>
+                    <li>환경 발자국 줄이기</li>
+                    <li>일회용 컵 없는 매장</li>
+                    <li>커피 원두 재활용</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>윤리 구매</h4>
+                  <ul>
+                    <li>윤리적 원두 구매</li>
+                    <li>공정무역 인증</li>
+                    <li>커피 농가 지원 활동</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>글로벌 사회 공헌</h4>
+                  <ul>
+                    <li>윤리경영 보고서</li>
+                    <li>스타벅스 재단</li>
+                    <li>지구촌 봉사의 달</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="contents__texture">
+              <div class="inner">
+                <h4>커피원두 재활용</h4>
+                <p>스타벅스 커피 원두를 재활용 해보세요.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item__name">MY STARBUCKS REWARDS</div>
+          <div class="item__contents">
+            <div class="contents__menu">
+              <ul class="inner">
+                <li>
+                  <h4>마이 스타벅스 리워드</h4>
+                  <ul>
+                    <li>마이 스타벅스 리워드 소개</li>
+                    <li>등급 및 혜택</li>
+                    <li>스타벅스 별</li>
+                    <li>자주하는 질문</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>스타벅스 카드</h4>
+                  <ul>
+                    <li>스타벅스 카드 소개</li>
+                    <li>스타벅스 카드 갤러리</li>
+                    <li>등록 및 조회</li>
+                    <li>충전 및 이용안내</li>
+                    <li>분실신고/환불신청</li>
+                    <li>자주하는 질문</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>스타벅스 카드 e-Gift</h4>
+                  <ul>
+                    <li>스타벅스 카드 e-Gift 소개</li>
+                    <li>이용안내</li>
+                    <li>선물하기</li>
+                    <li>자주하는 질문</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="contents__texture">
+              <div class="inner">
+                <h4>스타벅스 카드 등록하기</h4>
+                <p>카드 등록 후 리워드 서비스를 누리고 사용내역도 조회해보세요.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item__name">WHAT'S NEW</div>
+          <div class="item__contents">
+            <div class="contents__menu">
+              <ul class="inner">
+                <li>
+                  <h4>프로모션 & 이벤트</h4>
+                  <ul>
+                    <li>전체</li>
+                    <li>스타벅스 카드</li>
+                    <li>마이 스타벅스 리워드</li>
+                    <li>온라인</li>
+                    <li>2017 스타벅스 플래너</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>새소식</h4>
+                  <ul>
+                    <li>전체</li>
+                    <li>상품 출시</li>
+                    <li>스타벅스의 문화</li>
+                    <li>스타벅스 사회공헌</li>
+                    <li>스타벅스 카드출시</li>
+                  </ul>
+                </li>
+                <li>
+                  <h4>매장별 이벤트</h4>
+                  <ul>
+                    <li>일반 매장</li>
+                    <li>신규 매장</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="contents__texture">
+              <div class="inner">
+                <h4>매장별 이벤트</h4>
+                <p>스타벅스의 매장 이벤트 정보를 확인 하실 수 있습니다.</p>
+                <h4>소셜 스타벅스</h4>
+                <p>다양한 스타벅스 SNS 채널을 통해 스타벅스를 만나보세요!</p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- VISUAL -->
+  <section class="visual">
+    <div class="inner">
+      <div class="visual__slogan">
+        <img src="./images/2021_summer3_slogan.png" alt="">
+      </div>
+      <div class="visual__set">
+        <div class="set__common set_01">
+          <img src="./images/2021_summer3_blended.png" alt="">
+
+        </div>
+        <div class="set__common set_02">
+          <img src="./images/2021_summer3_coldbrew.png" alt="">
+
+        </div>
+        <div class="set__common set_03">
+          <img src="./images/2021_summer3_tea.png" alt="">
+
+        </div>
+      </div>
+      <div class="visual__btn__slogan">
+        <a href="#">자세히보기</a>
+      </div>
+      <!-- BADGE -->
+
+      <div class="badges">
+        <a href="#" class="badge">
+          <img src="./images/badge1.png" alt="badge1">
+        </a>
+      </div>
+    </div>
+
+
+  </section>
+
+  <section class="notice">
+    <div class="notice-line">
+      <div class="bg__left"></div>
+      <div class="bg__right"></div>
+      <div class="inner">
+        <div class="inner__left">
+          <h2>공지사항</h2>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide">
+                <a href="#">크리스마스 & 연말 연시 스타벅스 매장 영업시간</a></div>
+              <div class="swiper-slide">
+                <a href="#"> [당첨자 발표] 2021 스타벅스 플래너 영수증 이벤트</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">스타벅스커피 코리아 애플리케이션 버전 업데이트 안내</a>
+
+              </div>
+              <div class="swiper-slide">
+                <a href="#">[당첨자 발표] 뉴이어 전자영수증 이벤트</a>
+
+              </div>
+            </div>
+
+          </div>
+          <a href="#" class="notice-line__more">
+            <span class="material-icons-outlined">
+              add_circle_outline
+            </span>
+          </a>
+
+        </div>
+        <div class="inner__right">
+          <div>
+            <h2>스타벅스 프로모션</h2>
+            <div class="toggle-promotion">
+              <span class=" material-icons-outlined">
+                expand_circle_down
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- REWAERD -->
+  <section class="rewards">
+    <div class="inner">
+      <div class="rewards__logo">
+        <img src="./images/rewards-logo.png" alt="">
+      </div>
+      <div class="rewards__conentent">
+        <div class="info-cont">
+          <div class="info-cont_txt">
+            <h2>
+              스타벅스만의 특별한 혜택, <strong>스타벅스 리워드</strong>
+            </h2>
+            <p>
+              <strong>스타벅스 회원이세요?</strong> 로그인을 통해 나만의 리워드를 확인해보세요.
+              <br>
+              <strong>스타벅스 회원이 아니세요?</strong> 가입을 통해 리워드 혜택을 즐기세요.
+            </p>
+          </div>
+          <div class="btn-signin_group">
+            <a href="/mem/join.do" class="btn-signin_join">회원가입</a>
+            <a href="javascript:$.loginLib.showLayerLogin();" class="btn-signin_login">로그인</a>
+          </div>
+        </div>
+
+        <div class="gift-cont">
+          <div class="gift-cont_txt">
+            <p>
+              회원 가입 후, 스타벅스 e-Gift Card를 <strong>"나에게 선물하기"로 구매하시고, 편리하게 등록하세요!</strong>
+              <br>
+              카드를 등록하여 스타벅스 리워드 회원이 되신 후, 첫 구매를 하시면 무료 음료쿠폰을 드립니다!
+            </p>
+          </div>
+          <div class="btn_egift">
+            <a href="/msr/sceGift/gift_step1.do">e-Gift Card 선물하기</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- MAIN_BEAN -->
+  <section class="main-bean">
+    <div class="inner">
+      <div class="bean__img scroll-left" style="opacity: 0;">
+        <img src="https://image.istarbucks.co.kr/upload/common/img/main/2021/2021_summer3_bean.png" alt="인도네시아 아체 250g"
+          class="pc-bean">
+      </div>
+      <div class="bean__text scroll-right " style="opacity: 0;">
+        <img src="https://image.istarbucks.co.kr/upload/common/img/main/2021/2021_summer3_bean_txt.png"
+          alt="인도네시아 최고 고도의 아체 지역에서 만들어진 원두" class="pc-bean-txt">
+
+        <div class="btn_bean_detail">
+          <a href="/coffee/product_view.do?PRODUCT_CD=11118808">자세히 보기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="reserve">
+    <div class="inner">
+      <div class="reserve_title">
+        <img src="https://image.istarbucks.co.kr/upload/common/img/main/2021/reserve_sundried_brazil_title.png"
+          alt="RESERVE THE MERRY" class="reserve_visual-pc">
+      </div>
+
+      <div class="reserve_visual scroll-opacity" style="opacity: 0;">
+        <img src="https://image.istarbucks.co.kr/upload/common/img/main/2021/reserve_sundried_brazil_bean4_1.png" alt=""
+          class="reserve_visual-pc">
+
+      </div>
+
+      <div class="reserve_detail-btn_wrap">
+        <div class="reserve_detail-btn">
+          <a class="btn" href="https://www.starbucks.co.kr/whats_new/newsView.do?seq=4088">자세히 보기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="favorite">
+    <div class="inner">
+      <div class="favorite__text1 scroll-left ">
+        <img src="./images/fav_prod_txt01.png" alt="fav_prod_txt01">
+      </div>
+      <div class="favorite__text2 scroll-left scroll-trans1">
+        <img src="./images/fav_prod_txt02.png" alt="fav_prod_txt02">
+      </div>
+      <div class="favorite__img">
+        <img src="./images/2021_summer3_fav.png" alt="">
+      </div>
+      <div class="favorite__btn">
+        <a href="#" class="btn btn--white">자세히보기</a>
+      </div>
+    </div>
+  </section>
+  <!-- RESERVE_MAGAZIN -->
+  <section class="reserve_magazin">
+    <div class="inner reserve_magazin__inner">
+      <div class="reserve_magazin__left ">
+        <img src="./images/reserve_visual_pc.png" alt="">
+      </div>
+      <div class="reserve_magazin__right scroll-right scroll-trans1">
+        <img src="./images/reserve_text_pc.png" alt="">
+      </div>
+
+    </div>
+    <div class="look-detail_btn scroll-right scroll-trans1">
+      <a href="#"></a>
+    </div>
+  </section>
+  <section class="store">
+    <div class="inner">
+      <div class="store_exp_img1"> </div>
+      <div class="store_exp_img2"></div>
+      <div class="store_exp_img3"> </div>
+      <div class="store_exp_img4"></div>
+      <div class="store_exp_text1"> </div>
+      <div class="store_exp_text2"> </div>
+      <div class="store_btn">
+        <a href="#" class="">매장 찾기</a>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer_wrap">
+      <div class="footer_menus">
+        <!-- <ul class="footer_first_menu">
+							<li class="footer_menu_ttl"><a class="en" href="javascript:void(0);">CUSTOMER SERVICE &amp; IDEAS<span class="footer_arrow_down"></span></a></li>
+							<li><a href="/util/faq.do">자주하는 질문</a></li>
+							<li><a href="/customer/suggestionWrite.do">고객의 소리</a></li>
+							<li class="footer_2depth_ttl"><a href="javascript:void(0)">스타벅스 이용 팁<span class="footer_arrow_down"></span></a>
+								<ul>
+									<li><a href="/util/web_tip.do">홈페이지 이용 팁</a></li>
+									<li><a href="/util/app_tip.do">애플리케이션 이용 팁</a></li>
+									<li><a href="/util/partnership_card.do">제휴카드 안내</a></li>
+								</ul>
+							</li>
+							<li><a href="/util/online_survey.do">고객경험 설문조사</a></li>
+							
+							
+							<li><a href="/util/guest_eReceipt.do">비회원 전자영수증 조회</a></li>
+							
+						</ul> -->
+        <ul>
+          <li class="footer_menu_ttl"><a class="en" href="javascript:void(0);">COMPANY<span
+                class="footer_arrow_down"></span></a></li>
+          <li><a href="/footer/company/index.do">한눈에 보기</a></li>
+          <li><a href="/footer/company/mission.do">스타벅스 사명</a></li>
+          <li class="footer_2depth_ttl"><a href="javascript:void(0)">스타벅스 소개<span class="footer_arrow_down"></span></a>
+            <ul>
+              <li><a href="/footer/company/starbucks_information.do">스타벅스커피 코리아</a></li>
+              <li><a href="/footer/company/starbucks_history.do">주요 연혁</a></li> <!-- 202107 수정 -->
+              <li><a href="/footer/company/starbucks_story.do">스타벅스 이야기</a></li>
+            </ul>
+          </li>
+          <li><a href="/footer/company/news_list.do">국내 뉴스룸</a></li>
+          <li><a href="/footer/company/global_starbucks.do">세계의 스타벅스</a></li>
+          <!-- 160811 메뉴 추가 -->
+          <li><a href="https://news.starbucks.com" target="_blank">글로벌 뉴스룸</a></li>
+          <!-- 160811 메뉴 추가 end -->
+        </ul>
+        <ul>
+          <li class="footer_menu_ttl"><a class="en" id="goPage" href="javascript:void(0);">CORPORATE SALES<span
+                class="footer_arrow_down"></span></a></li>
+          <li><a href="/footer/co_sales/index.do">단체 및 기업 구매 안내</a></li>
+          <!-- <li><a href="/footer/co_sales/sbcard_egift.do">스타벅스 <span class="en">e-Gift Card</span></a></li> -->
+          <!-- <li><a href="/footer/co_sales/sbcard.do">스타벅스 카드</a></li> -->
+          <!-- <li><a href="/footer/co_sales/co-branded.do"><span class="en">Co-branded</span> 카드</a></li> -->
+          <!-- <li><a href="/footer/co_sales/sb_product.do">스타벅스 상품</a></li> -->
+          <!-- <li><a href="/footer/co_sales/sbgift_certificate.do">스타벅스 상품권</a></li> -->
+        </ul>
+        <ul>
+          <li class="footer_menu_ttl"><a class="en" href="javascript:void(0);">PARTNERSHIP<span
+                class="footer_arrow_down"></span></a></li>
+          <li><a href="/footer/partnership/new_partner.do">신규 입점 제의</a></li>
+          <!-- <li><a href="/footer/partnership/portal_systems.do">협력사 포털 시스템</a></li> -->
+          <li><a href="/srm/login.do">협력 고객사 등록신청</a></li>
+        </ul>
+        <ul>
+          <li class="footer_menu_ttl"><a class="en" href="javascript:void(0);">ONLINE COMMUNITY<span
+                class="footer_arrow_down"></span></a></li>
+          <li><a href="https://www.facebook.com/starbuckskorea" target="_blank">페이스북</a></li>
+          <li><a href="https://twitter.com/StarbucksKorea" target="_blank">트위터</a></li>
+          <li><a href="https://www.youtube.com/user/starbuckskorea" target="_blank">유튜브</a></li>
+          <li><a href="https://instagram.com/starbuckskorea/" target="_blank">인스타그램</a></li>
+        </ul>
+        <ul>
+          <li class="footer_menu_ttl"><a class="en" href="javascript:void(0);">RECRUIT<span
+                class="footer_arrow_down"></span></a></li>
+          <li><a href="/footer/recruit/index.do">채용 소개</a></li>
+          <li><a href="http://job.shinsegae.com/recruit_info/notice/notice02_view.jsp?notino=2895" target="_blank">채용
+              지원하기</a></li>
+        </ul>
+      </div>
+      <!-- <ul class="menu">
+        <li>
+          <a href="#" class="green">개인정보처리방침</a>
+        </li>
+        <li>
+          <a href="#">영상정보처리기긱 운영관리 방침</a>
+        </li>
+        <li>
+          <a href="#">홈페이지 이용약관</a>
+        </li>
+        <li>
+          <a href="#">위치정보 이용약관</a>
+        </li>
+        <li>
+          <a href="#">스타벅스 카드 이용약관</a>
+        </li>
+        <li>
+          <a href="#">윤리 경영 핫라인</a>
+        </li>
+      </ul> -->
+      <div class="footer_awards_wrap">
+        <div class="inner">
+          <ul class="footer_awards_slider">
+            <li><a taget="_blank" href="javascript:void(0);"><img alt="여섯가족부 2020 대한민국 일자리대상 여성가족부장관상"
+                  src="//image.istarbucks.co.kr/common/img/footer/footer_award23.jpg"></a></li>
+            <li><a taget="_blank" href="javascript:void(0);"><img alt="행정안전부 2020 소방의 날 행정안전부장관 표창"
+                  src="//image.istarbucks.co.kr/common/img/footer/footer_award24.jpg"></a></li>
+            <li><a taget="_blank" href="javascript:void(0);"><img alt="농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상"
+                  src="//image.istarbucks.co.kr/common/img/footer/footer_award25.jpg"></a></li>
+            <li><a taget="_blank" href="javascript:void(0);"><img alt="산업통상자원부 2020 대한민국 중소중견기업혁신 대상 국회산업통상자원중소벤처위원회장상"
+                  src="//image.istarbucks.co.kr/common/img/footer/footer_award26.jpg"></a></li>
+            <li><a taget="_blank" href="javascript:void(0);"><img alt="일자리위원회 2020 대한민국 일자리 유공 표창 대통령직속 일자리위원회 부위원장상"
+                  src="//image.istarbucks.co.kr/common/img/footer/footer_award27.jpg"></a></li>
+            <li><a taget="_blank" href="javascript:void(0);"><img alt="동반성장위원회 2020 사랑나눔 사회공헌대상 동반성장위원회 위원장상"
+                  src="//image.istarbucks.co.kr/common/img/footer/footer_award28.jpg"></a></li>
+          </ul>
+          <div class="footer_slider_controller">
+            <div class="footer_slider_controls"></div>
+            <div class="footer_slider_pagers"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <a href="#" class="btn btn--white">찾아오시는 길</a>
+        <a href="#" class="btn btn--white">신규입점제의</a>
+        <a href="#" class="btn btn--white">사이트 맵</a>
+      </div>
+      <div class="info">
+        <span>사업자등록번호 201-81-21515</span>
+        <span>(주)스타벅스 코리아 대표이사 이석구</span>
+        <span>TEL : 02) 3015-1100 / FAX : 02) 3015-1106</span>
+        <span>개인정보 책임자 : 강기원</span>
+      </div>
+
+      <div class="copyright">
+      <span class="en">ⓒ 2021 Starbucks Coffee Company. All Rights Reserved.</span>
+
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
+
+<head>
