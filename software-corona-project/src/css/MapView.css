@@ -1,0 +1,56 @@
+.map-container {
+    position:relative;
+}
+#map {
+    height:50vh;
+    position:relative;
+    overflow:hidden;
+}
+#subMap {
+    position: absolute;
+    width: 23%;
+    top: 0;
+    right:0;
+    height:100%;
+    border : 2px solid #0090c5;
+    margin : 0 20px ;
+    padding : 20px;
+    font-size : 18px;
+    overflow:hidden;
+    overflow-y : scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    border-radius : 10px;
+    color:#111;
+    font-weight:500;
+}
+#subMap::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+#subMap h2,h3 {
+    font-size : 1.7em;
+    margin: 0 0 .5em 0;
+}
+#subMap p {
+    margin-bottom: 1em;
+}
+#menu_wrap {
+    text-align: center;
+   
+}
+#menu_wrap  button{
+
+    margin: 10px 10px;
+}
+#menu_wrap input#keyword{
+    width:50%; /* 정렬하려는 요소의 넓이를 반드시 지정 */
+     margin: 10px auto;
+     border: solid 2px #0090c5;
+}
+/* pc화면에서 */
+@media screen and (min-width: 1024px) {
+    #map {
+        width:50%;
+        margin: auto;
+    }
+}

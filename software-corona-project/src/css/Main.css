@@ -1,0 +1,130 @@
+/* 모바일 우선 미디어쿼리 작성법 */
+/* // Mobile
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    // Tablet
+}
+@media screen and (min-width: 1024px) {
+    // PC
+} */
+
+/* ConfirmedState-container */
+div#main-wrapper {
+
+    padding: 2em 0 1em 0;
+    text-align:center;
+}
+h2 {
+    /* padding: 0 10px; */
+    position:relative;
+}
+h2 button {
+    position:absolute;
+    font-size: 20px;
+    width: 250px;
+    height: 50px;
+    padding: 5px;
+    right:20px;
+}
+.ConfirmedState-container .setion-containter{
+    /* left: 0;
+    right: 0;
+    margin: 0 auto; */
+    margin: 20px;
+    min-width: 300px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    border-radius: 10px;
+    flex-grow: 1;
+}
+.ConfirmedState-container .sortation {
+    background-color: #c9b4a5;
+    width: 80px;
+}
+.ConfirmedState-container .item {
+    flex-grow: 1;
+}
+.ConfirmedState-container .item__title{
+    padding: 2px;
+    background-color: #DFD8CA;
+}
+.ConfirmedState-container .item__content {
+    padding: 2px;
+
+}
+/* 모바일용 */
+html {
+    overflow-x: scroll;
+    min-width:410px;
+}
+
+.graph-container-mobile {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+ .graph-container-mobile .graph__title-container {
+    display: flex;
+}
+.graph-container-mobile .graph__title-container  .graph__title  {
+    width: 50%;
+    text-align: center;
+    background-color: #DFD8CA;
+    padding: 3px;
+} 
+.graph-container-mobile .graph__title-container .graph__title + .graph__title {
+    border-left:1px solid #cfc5b1;
+}
+.graph-container-mobile .graph__title-container  .graph__title.current {
+    /* 현재 클릭된 graph */
+    background-color: #bbb3a2;
+}
+.graph-container-mobile .graph__content {
+    width: 100%;
+    padding: 25px 50px 25px 0;  /* 그래프 치우쳐짐 조정*/
+    
+}
+.graph-container-mobile .graph__content .line-chart {
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    /* height: 325px; */
+}
+
+/* pc화면? */
+.graph-container {
+    display: none;
+    width: fit-content;
+    margin: 0 auto;
+
+}
+.graph-container .graph__title {
+    background-color: #DFD8CA;
+    padding: 3px;
+    text-align: center;
+    border-left:1px solid #cfc5b1;  /*모바일과는 달리 여러개 그래프 존재*/
+}
+.graph-container .graph-item:first-child .graph__title{
+    border: none;
+}
+.graph-container .graph__content {
+    padding: 20px 0;
+}
+.graph-container .line-chart {
+    margin-right: 50px;
+    height: fit-content;
+
+}
+
+
+
+
+/* pc화면에서 */
+@media screen and (min-width: 1024px) {
+    .graph-container-mobile {
+        display: none;
+    }
+    .graph-container {
+        display: flex;
+    }
+}
