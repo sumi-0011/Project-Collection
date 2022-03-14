@@ -5,7 +5,11 @@ const port = 3000;
 app.use(express.static("public")); //public 이라는 폴더를 정적인 파일이 존재하는 폴더로 하겠다.
 
 app.get("/topic", function (req, res) {
-  res.send(req.query.id);
+  let topics = ["JavaScript is...", "NodeJs is...", "Express is..."];
+  let output = `<a href="/topic?id=0">JavaScript</a><br><a href="/topic?id=1">NodeJs</a><br><a href="/topic?id=2">Express</a><br>${
+    topics[req.query.id]
+  }`;
+  res.send(output);
 });
 app.get("/", (req, res) => {
   res.send("Hello World!");
