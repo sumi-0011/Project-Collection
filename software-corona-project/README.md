@@ -1,4 +1,4 @@
-한국어 | [English](https://github.com/2021-Team-E/Mandoo/blob/main/README_en.md)
+<!-- 한국어 | [English](https://github.com/2021-Team-E/Mandoo/blob/main/README_en.md) -->
 
 
 
